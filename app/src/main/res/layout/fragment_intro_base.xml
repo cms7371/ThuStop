@@ -12,6 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -31,31 +32,67 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <me.relex.circleindicator.CircleIndicator3
-            android:id="@+id/indicator"
+        <RelativeLayout
+            android:id="@+id/indicator_view"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="51dp"
-            app:ci_drawable="@drawable/dot_indicator"
-            app:ci_height="10dp"
-            app:ci_margin="8dp"
-            app:ci_width="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/bt_intro_start"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.85">
+
+            <me.relex.circleindicator.CircleIndicator3
+                android:id="@+id/indicator"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                app:ci_drawable="@drawable/dot_indicator"
+                app:ci_height="10dp"
+                app:ci_margin="8dp"
+                app:ci_width="10dp" />
+
+            <ImageView
+                android:id="@+id/iv_intro_prev"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/indicator"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/icon_back_white"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/indicator" />
+
+            <ImageView
+                android:id="@+id/iv_intro_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/indicator"
+                android:layout_toEndOf="@id/indicator"
+                app:srcCompat="@drawable/icon_back_white" />
+
+        </RelativeLayout>
+
 
         <com.thustop_00.widgets.NotoButton
             android:id="@+id/bt_intro_start"
             android:layout_width="196dp"
             android:layout_height="48dp"
-            android:layout_marginBottom="60dp"
             android:background="@drawable/button_round_green"
             android:text="@string/bt_intro_start"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/indicator_view" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
@@ -64,28 +101,7 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5" />
 
-        <ImageView
-            android:id="@+id/iv_intro_prev"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="127dp"
-            android:layout_marginRight="127dp"
-            android:layout_marginBottom="51dp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/bt_intro_start"
-            app:layout_constraintEnd_toStartOf="@+id/guideline"
-            app:srcCompat="@drawable/icon_back_white" />
 
-        <ImageView
-            android:id="@+id/iv_intro_next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="127dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="51dp"
-            app:layout_constraintBottom_toTopOf="@+id/bt_intro_start"
-            app:layout_constraintStart_toEndOf="@+id/guideline"
-            app:srcCompat="@drawable/icon_back_white" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

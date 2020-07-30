@@ -37,7 +37,7 @@ public class IntroBaseFragment extends Fragment {
         viewpager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                ConstraintLayout.LayoutParams introLayoutParams = (ConstraintLayout.LayoutParams) binding.indicator.getLayoutParams();
+                ConstraintLayout.LayoutParams introLayoutParams = (ConstraintLayout.LayoutParams) binding.indicatorView.getLayoutParams();
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
 
                 if (position == 0) {
@@ -50,8 +50,7 @@ public class IntroBaseFragment extends Fragment {
 
                     if(pre_position == 1) {
                         introLayoutParams.bottomMargin -= 40;
-                        binding.ivIntroPrev.setLayoutParams(introLayoutParams);
-                        binding.indicator.setLayoutParams(introLayoutParams);
+                        binding.indicatorView.setLayoutParams(introLayoutParams);
                         pre_position = 0;
                     }
                 } else if(position == 2) {
@@ -60,8 +59,7 @@ public class IntroBaseFragment extends Fragment {
                     binding.btIntroStart.setVisibility(View.VISIBLE);
 
                     introLayoutParams.bottomMargin += 40;
-                    binding.ivIntroPrev.setLayoutParams(introLayoutParams);
-                    binding.indicator.setLayoutParams(introLayoutParams);
+                    binding.indicatorView.setLayoutParams(introLayoutParams);
                     pre_position = 1;
                 }
             }
