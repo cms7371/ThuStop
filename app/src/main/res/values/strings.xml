@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">ThuStop_00</string>
+    <string name="tv_splash_subtitle">신개념 출퇴근 버스 노선 공유 버스</string>
+    <string name="tv_splash_copyright">ⓒ2019. ThusTop INC. all rights reserved</string>
+    <string name="bt_intro_start">이용시작</string>
+    <string name="bt_intro_later">나중에 보기</string>
+    <string name="tv_intro_page1">안녕하세요!\n\'이번정류장\'은 여러분의\n워라벨 업그레이드를 위한\n출퇴근 버스 매칭 서비스입니다.</string>
+    <string name="tv_intro_page2">환승 없이 집 앞에서 회사까지 한번에!\n집, 그리고 회사 앞에\n나만의 정류장을 만들어 보세요.</string>
+    <string name="tv_intro_page3">처음 2회 무료티켓을 이용하여\n\'이번정류장\' 서비스를 경험 하신 후\n결제가 진행됩니다.\n\n\'이번정류장\'이 여러분의\n행복한 출퇴근을 만들어 드리겠습니다!</string>
 </resources>
