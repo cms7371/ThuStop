@@ -25,9 +25,11 @@
             android:textColor="#423f3f"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:bufferType="spannable"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -31,6 +31,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <me.relex.circleindicator.CircleIndicator3
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="51dp"
+            app:ci_drawable="@drawable/dot_indicator"
+            app:ci_height="10dp"
+            app:ci_margin="8dp"
+            app:ci_width="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/bt_intro_start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <com.thustop_00.widgets.NotoButton
             android:id="@+id/bt_intro_start"
             android:layout_width="196dp"

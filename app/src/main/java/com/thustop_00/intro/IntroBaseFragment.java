@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
@@ -16,7 +17,7 @@ import com.thustop_00.R;
 import com.thustop_00.databinding.FragmentIntroBaseBinding;
 
 public class IntroBaseFragment extends Fragment {
-
+    private int pre_position = 0;
     private FragmentIntroBaseBinding binding;
     private FragmentStateAdapter pagerAdapter;
     private ViewPager2 viewpager;
@@ -30,9 +31,13 @@ public class IntroBaseFragment extends Fragment {
         viewpager = binding.vpIntroContainer;
         viewpager.setAdapter(pagerAdapter);
 
+        binding.indicator.setViewPager(viewpager);
+        binding.indicator.createIndicators(3, 0);
+
         viewpager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                ConstraintLayout.LayoutParams introLayoutParams = (ConstraintLayout.LayoutParams) binding.indicator.getLayoutParams();
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
 
                 if (position == 0) {
@@ -42,10 +47,22 @@ public class IntroBaseFragment extends Fragment {
                     binding.ivIntroNext.setVisibility(View.VISIBLE);
                     binding.btIntroLater.setVisibility(View.VISIBLE);
                     binding.btIntroStart.setVisibility(View.INVISIBLE);
+
+                    if(pre_position == 1) {
+                        introLayoutParams.bottomMargin -= 40;
+                        binding.ivIntroPrev.setLayoutParams(introLayoutParams);
+                        binding.indicator.setLayoutParams(introLayoutParams);
+                        pre_position = 0;
+                    }
                 } else if(position == 2) {
                     binding.ivIntroNext.setVisibility(View.INVISIBLE);
                     binding.btIntroLater.setVisibility(View.INVISIBLE);
                     binding.btIntroStart.setVisibility(View.VISIBLE);
+
+                    introLayoutParams.bottomMargin += 40;
+                    binding.ivIntroPrev.setLayoutParams(introLayoutParams);
+                    binding.indicator.setLayoutParams(introLayoutParams);
+                    pre_position = 1;
                 }
             }
         });
