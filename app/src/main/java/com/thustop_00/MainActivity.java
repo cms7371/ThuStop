@@ -1,13 +1,17 @@
 package com.thustop_00;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.thustop_00.databinding.ActivityMainBinding;
 import com.thustop_00.intro.IntroBaseFragment;
@@ -38,6 +42,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         /* Link activity_main as binding, with doing setContentView(R.layout.activity_main);*/
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
+        /* Setting toolbar referred  https://blog.naver.com/qbxlvnf11/221328098468*/
+        Toolbar toolbar = binding.tbMain;
+        setSupportActionBar(toolbar); //Set toolbar as actionbar of activity
+        ActionBar actionbar = getSupportActionBar();
+        assert actionbar != null; // To prevent warning from setDisplayShowTitleEnabled
+        actionbar.setDisplayShowTitleEnabled(false); //Remove existing title
+        actionbar.setDisplayHomeAsUpEnabled(true);   //Make upper left button which will be a hamburger button
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_launcher_foreground); //$$Should replace image$$
+
         /* At start, display splash fragment during loading*/
         setFragment(SplashFragment.newInstance());
 
@@ -49,6 +63,17 @@ public class MainActivity extends AppCompatActivity {
         }, 1000);
     }
 
+    /* Toolbar hamburger button click listener*/
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home : {
+                finish(); //Write the actions with hamburger button
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     /* Change fragment of frame in activity_main.*/
     public void setFragment(Fragment fr) {
