@@ -1,7 +1,6 @@
 package com.thustop_00.intro;
 
 
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -18,15 +17,12 @@ import androidx.fragment.app.Fragment;
 
 import com.thustop_00.R;
 import com.thustop_00.databinding.FragmentIntroPage3Binding;
-import com.thustop_00.widgets.NotoButton;
 import com.thustop_00.widgets.NotoTextView;
 
 public class IntroPage3Fragment extends Fragment {
-    private Context mContext;
+    /* Bind fragment_intro_page3 as variable*/
     FragmentIntroPage3Binding binding;
-    public void setContext(Context context){
-        this.mContext = context;
-    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,16 +42,20 @@ public class IntroPage3Fragment extends Fragment {
         return fragment;
     }
 
+    /* This method colors specific words in TextView*/
     public void colorText(NotoTextView textView, int strAddress, String color) {
+        /* Get the string of the view to be colored */
         String str = textView.getText().toString();
+        /* Get string to be colored from address */
         String coloredStr = getString(strAddress);
-
+        /* Instantiate spannable to color view's string*/
         Spannable span = (Spannable)textView.getText();
+        /* Find position of start and end of coloredStr on str */
         int index_s=str.indexOf(coloredStr);
-
         int index_e = index_s+coloredStr.length();
-
+        /* Color the view's string with upper variables */
         span.setSpan(new ForegroundColorSpan(Color.parseColor(color)),index_s,index_e, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
     }
 
 

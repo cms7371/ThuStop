@@ -51,7 +51,8 @@
                 android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:layout_centerInParent="true"
-                app:ci_drawable="@drawable/dot_indicator"
+                app:ci_drawable="@drawable/circle_indicator_sel"
+                app:ci_drawable_unselected="@drawable/circle_indicator_unsel"
                 app:ci_height="10dp"
                 app:ci_margin="8dp"
                 app:ci_width="10dp" />
@@ -61,23 +62,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@+id/indicator"
+                android:layout_toLeftOf="@+id/indicator"
                 android:visibility="invisible"
-                app:srcCompat="@drawable/icon_back_white"
-                android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@+id/indicator" />
+                app:srcCompat="@drawable/img_intro_prev" />
 
             <ImageView
                 android:id="@+id/iv_intro_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/indicator"
                 android:layout_toEndOf="@id/indicator"
-                app:srcCompat="@drawable/icon_back_white" />
+                android:layout_toRightOf="@id/indicator"
+                app:srcCompat="@drawable/img_intro_next" />
 
         </RelativeLayout>
 

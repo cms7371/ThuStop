@@ -27,7 +27,7 @@ import com.thustop_00.intro.IntroBaseFragment;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    /* Bind activity_main as variable*/
     private ActivityMainBinding binding;
     /* Handler for delay of splash fragment. It should be removed after loading delay added*/
     Handler H = new Handler(Looper.getMainLooper());

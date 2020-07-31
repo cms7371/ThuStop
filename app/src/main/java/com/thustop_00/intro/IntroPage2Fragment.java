@@ -14,6 +14,7 @@ import com.thustop_00.R;
 import com.thustop_00.databinding.FragmentIntroPage2Binding;
 
 public class IntroPage2Fragment extends Fragment {
+    /* Bind fragment_intro_page2 as variable*/
     FragmentIntroPage2Binding binding;
 
     @Nullable

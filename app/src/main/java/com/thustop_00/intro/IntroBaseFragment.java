@@ -17,29 +17,30 @@ import com.thustop_00.R;
 import com.thustop_00.databinding.FragmentIntroBaseBinding;
 
 public class IntroBaseFragment extends Fragment {
-    private int pre_position = 0;
+    /* Bind fragment_intro_base as variable*/
     private FragmentIntroBaseBinding binding;
-    private FragmentStateAdapter pagerAdapter;
-    private ViewPager2 viewpager;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_intro_base, container, false);
-
-        pagerAdapter = new MyAdapter(this);
-        viewpager = binding.vpIntroContainer;
+        /* Adapter for viewpager which wraps intro fragments */
+        FragmentStateAdapter pagerAdapter = new MyAdapter(this);
+        /* Link viewpager in fragment_intro_base */
+        ViewPager2 viewpager = binding.vpIntroContainer;
+        /* Assign the adapter to the viewpager*/
         viewpager.setAdapter(pagerAdapter);
-
+        /* Link indicator and viewpager and create indicating dots*/
         binding.indicator.setViewPager(viewpager);
         binding.indicator.createIndicators(3, 0);
 
+        /* Set viewpager listener for page changing action(Set visibility of buttons) */
         viewpager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 ConstraintLayout.LayoutParams introLayoutParams = (ConstraintLayout.LayoutParams) binding.indicatorView.getLayoutParams();
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
-
+                /* Change visibility of buttons depend on page num. Initially, only prev button and start button are invisible*/
                 if (position == 0) {
                     binding.ivIntroPrev.setVisibility(View.INVISIBLE);
                 } else if(position == 1) {
@@ -47,20 +48,10 @@ public class IntroBaseFragment extends Fragment {
                     binding.ivIntroNext.setVisibility(View.VISIBLE);
                     binding.btIntroLater.setVisibility(View.VISIBLE);
                     binding.btIntroStart.setVisibility(View.INVISIBLE);
-
-                    if(pre_position == 1) {
-                        introLayoutParams.bottomMargin -= 40;
-                        binding.indicatorView.setLayoutParams(introLayoutParams);
-                        pre_position = 0;
-                    }
                 } else if(position == 2) {
                     binding.ivIntroNext.setVisibility(View.INVISIBLE);
                     binding.btIntroLater.setVisibility(View.INVISIBLE);
                     binding.btIntroStart.setVisibility(View.VISIBLE);
-
-                    introLayoutParams.bottomMargin += 40;
-                    binding.indicatorView.setLayoutParams(introLayoutParams);
-                    pre_position = 1;
                 }
             }
         });
@@ -75,8 +66,8 @@ public class IntroBaseFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
-    private class MyAdapter extends FragmentStateAdapter {
+    /* New class for custom adaptor. Nothing special, it links 3 intro fragment*/
+    private static class MyAdapter extends FragmentStateAdapter {
 
         public MyAdapter(@NonNull Fragment fragment) {
             super(fragment);
@@ -87,8 +78,7 @@ public class IntroBaseFragment extends Fragment {
             switch (position) {
                 case 0 : return new IntroPage1Fragment();
                 case 1 : return new IntroPage2Fragment();
-                case 2 : return new IntroPage3Fragment();
-                default : return null;
+                default : return new IntroPage3Fragment();
             }
         }
 

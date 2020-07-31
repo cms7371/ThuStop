@@ -14,7 +14,7 @@ import com.thustop_00.databinding.FragmentSplashBinding;
 
 /* This class is for fragment_splash. Nothing special*/
 public class SplashFragment extends Fragment {
-
+    /* Bind fragment_splash as variable*/
     FragmentSplashBinding binding;
 
     @Nullable
