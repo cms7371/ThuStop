@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".LoginFragment"
@@ -44,7 +43,8 @@
             android:layout_height="wrap_content"
             android:src ="@drawable/icon_notification"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
     <com.thustop_00.widgets.NotoTextView
@@ -79,7 +79,7 @@
         android:layout_marginTop="10dp"
         android:textColorHint="#979797"
         android:hint="@string/etv_login_phone"
-        android:background="@drawable/edittext_login"
+        android:background="@drawable/button_round_light_gray"
         />
 
     <com.thustop_00.widgets.NotoTextView
@@ -112,7 +112,7 @@
         android:layout_marginTop="10dp"
         android:textColorHint="#979797"
         android:hint="@string/etv_login_pass"
-        android:background="@drawable/edittext_login"
+        android:background="@drawable/button_round_light_gray"
         />
 
     <CheckBox
@@ -126,49 +126,58 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etPass" />
 
-    <com.thustop_00.widgets.NotoButton
-        android:id="@+id/bt_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="15dp"
-        android:background="@drawable/button_round_green"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cb_login" />
+        <com.thustop_00.widgets.NotoButton
+            android:id="@+id/bt_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/button_round_green"
+            android:text="로그인"
+            android:textColor=" #ffffff"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cb_login" />
 
-    <com.thustop_00.widgets.NotoButton
-        android:id="@+id/bt_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginRight="14dp"
-        android:background="@drawable/edittext_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bt_login" />
+        <com.thustop_00.widgets.NotoButton
+            android:id="@+id/bt_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginRight="14dp"
+            android:background="@drawable/button_round_light_gray"
+            android:text="회원가입"
+            android:textColor="#50555c"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bt_login" />
 
-    <com.thustop_00.widgets.NotoButton
-        android:id="@+id/bt_login_kakao"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="234dp"
-        android:background="@drawable/button_kakao"
-        android:text="카카오톡으로 시작하기"
-        android:textColor="#50555c"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bt_register"
-        app:notoTextStyle="bold" />
+        <com.thustop_00.widgets.NotoButton
+            android:id="@+id/bt_login_kakao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="234dp"
+            android:background="@drawable/button_round_kakao"
+            android:text="카카오톡으로 시작하기"
+            android:textColor="#50555c"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bt_register"
+            app:notoTextStyle="bold" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

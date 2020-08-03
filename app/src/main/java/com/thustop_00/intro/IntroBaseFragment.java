@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +25,7 @@ public class IntroBaseFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_intro_base, container, false);
+        binding.setIntro(this); //
         /* Adapter for viewpager which wraps intro fragments */
         FragmentStateAdapter pagerAdapter = new MyAdapter(this);
         /* Link viewpager in fragment_intro_base */
@@ -38,7 +40,6 @@ public class IntroBaseFragment extends Fragment {
         viewpager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                ConstraintLayout.LayoutParams introLayoutParams = (ConstraintLayout.LayoutParams) binding.indicatorView.getLayoutParams();
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
                 /* Change visibility of buttons depend on page num. Initially, only prev button and start button are invisible*/
                 if (position == 0) {
@@ -57,6 +58,10 @@ public class IntroBaseFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+    /*Method for button listener test */
+    public void onStartClick(View view) {
+        binding.btIntroStart.setText("눌렸음");
     }
 
     /*This method returns new instance of this fragment*/
