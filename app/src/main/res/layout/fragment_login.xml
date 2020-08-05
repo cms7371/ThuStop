@@ -23,11 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src ="@drawable/icon_menu_white"
-            android:layout_centerVertical="true"/>
+
 
         <com.thustop_00.widgets.NotoTextView
             android:id="@+id/tv_login_title"
@@ -41,7 +37,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src ="@drawable/icon_notification"
+            android:src ="@drawable/icon_notification_green"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true" />
@@ -115,16 +111,17 @@
         android:background="@drawable/button_round_light_gray"
         />
 
-    <CheckBox
-        android:id="@+id/cb_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:buttonTint="@color/colorPrimary"
-        android:text="로그인 정보 기억하기"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etPass" />
+        <CheckBox
+            android:id="@+id/cb_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:buttonTint="#9b9b9b"
+            android:text="로그인 정보 기억하기"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etPass" />
 
         <com.thustop_00.widgets.NotoButton
             android:id="@+id/bt_login"

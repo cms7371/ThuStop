@@ -14,11 +14,12 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
+import com.thustop_00.FragmentBase;
 import com.thustop_00.R;
 import com.thustop_00.databinding.FragmentIntroPage1Binding;
 import com.thustop_00.widgets.NotoTextView;
 
-public class IntroPage1Fragment extends Fragment {
+public class IntroPage1Fragment extends FragmentBase {
     /* Bind fragment_intro_page1 as variable*/
     FragmentIntroPage1Binding binding;
 
@@ -40,7 +41,7 @@ public class IntroPage1Fragment extends Fragment {
         return fragment;
     }
 
-    /* This method colors specific words in TextView*/
+    @Override
     public void colorText(NotoTextView textView, int strAddress, String color) {
         /* Get the string of the view to be colored */
         String str = textView.getText().toString();

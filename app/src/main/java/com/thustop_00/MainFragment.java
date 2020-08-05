@@ -8,29 +8,24 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
 
-import com.thustop_00.databinding.FragmentSplashBinding;
+import com.thustop_00.databinding.FragmentMainBinding;
 
-/* This class is for fragment_splash. Nothing special*/
-public class SplashFragment extends FragmentBase {
-    /* Bind fragment_splash as variable*/
-    FragmentSplashBinding binding;
+public class MainFragment extends FragmentBase {
+    private FragmentMainBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_splash, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
 
         return binding.getRoot();
     }
 
-    /*This method returns new instance of this fragment*/
-    public static SplashFragment newInstance() {
+    public static MainFragment newInstance() {
         Bundle args = new Bundle();
-        SplashFragment fragment = new SplashFragment();
+        MainFragment fragment = new MainFragment();
         fragment.setArguments(args);
         return fragment;
     }
-
 }

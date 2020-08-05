@@ -3,7 +3,9 @@ package com.thustop_00;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -30,7 +32,7 @@ import com.thustop_00.intro.IntroBaseFragment;
  */
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener{
     /* Bind activity_main as variable*/
     private ActivityMainBinding binding;
     /* Handler for delay of splash fragment. It should be removed after loading delay added*/
@@ -45,12 +47,15 @@ public class MainActivity extends AppCompatActivity {
 
         /* Setting toolbar referred  https://blog.naver.com/qbxlvnf11/221328098468*/
         Toolbar toolbar = binding.tbMain;
-        setSupportActionBar(toolbar); //Set toolbar as actionbar of activity
+        setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
         assert actionbar != null; // To prevent warning from setDisplayShowTitleEnabled
-        actionbar.setDisplayShowTitleEnabled(false); //Remove existing title
-        actionbar.setDisplayHomeAsUpEnabled(true);   //Make upper left button which will be a hamburger button
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_launcher_foreground); //$$Should replace image$$
+        actionbar.setDisplayShowTitleEnabled(false);
+        actionbar.setDisplayHomeAsUpEnabled(false); //Set back button invisible to make hamburger button visible
+        actionbar.setHomeAsUpIndicator(R.drawable.icon_back_green);
+        toolbar.setNavigationIcon(R.drawable.icon_hamburger_white);
+
+
 
         /* At start, display splash fragment during loading*/
         setFragment(SplashFragment.newInstance());
@@ -68,15 +73,27 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home : {
-                finish(); //Write the actions with hamburger button
+                setFragment(LoginFragment.newInstance());
+                return true;
+            }
+            case R.id.bt_notification : {
+                Toast.makeText(getApplicationContext(), "알림버튼 눌림", Toast.LENGTH_SHORT).show();
                 return true;
             }
         }
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+
+        return true;
+    }
+
     /* Change fragment of frame in activity_main.*/
-    public void setFragment(Fragment fr) {
+    @Override
+    public void setFragment(FragmentBase fr) {
         try {
             FragmentManager fm = getSupportFragmentManager();
             fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
@@ -85,4 +102,9 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
         } catch (IllegalStateException ignore) { }
     }
+
+    @Override
+    public void addFragment(FragmentBase fr) {
+    }
+
 }

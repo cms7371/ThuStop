@@ -4,20 +4,21 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.thustop_00.FragmentBase;
+import com.thustop_00.LoginFragment;
+import com.thustop_00.MainFragment;
 import com.thustop_00.R;
 import com.thustop_00.databinding.FragmentIntroBaseBinding;
 
-public class IntroBaseFragment extends Fragment {
+public class IntroBaseFragment extends FragmentBase {
     /* Bind fragment_intro_base as variable*/
     private FragmentIntroBaseBinding binding;
 
@@ -28,9 +29,7 @@ public class IntroBaseFragment extends Fragment {
         binding.setIntro(this); //
         /* Adapter for viewpager which wraps intro fragments */
         FragmentStateAdapter pagerAdapter = new MyAdapter(this);
-        /* Link viewpager in fragment_intro_base */
         ViewPager2 viewpager = binding.vpIntroContainer;
-        /* Assign the adapter to the viewpager*/
         viewpager.setAdapter(pagerAdapter);
         /* Link indicator and viewpager and create indicating dots*/
         binding.indicator.setViewPager(viewpager);
@@ -61,7 +60,7 @@ public class IntroBaseFragment extends Fragment {
     }
     /*Method for button listener test */
     public void onStartClick(View view) {
-        binding.btIntroStart.setText("눌렸음");
+        _listener.setFragment(MainFragment.newInstance());
     }
 
     /*This method returns new instance of this fragment*/
