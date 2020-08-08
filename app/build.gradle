@@ -3,6 +3,11 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.1"
+    //prevent Invoke-customs are only supported starting with android O
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
     defaultConfig {
         applicationId "com.thustop_00"
@@ -45,5 +50,25 @@ dependencies {
     /* Implementation CircleIndicator3 for ViewPager2 */
     implementation 'me.relex:circleindicator:2.1.4'
 
+    /* Implementation for kakao login*/
+    implementation 'com.kakao.sdk:usermgmt:1.27.0'
+    /*butter Knife Library*/
+    implementation 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+    /*Retrofit for Api request*/
+    implementation 'com.squareup.retrofit2:retrofit:2.7.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
 
+    /*pixplicity Library*/
+    implementation 'com.pixplicity.easyprefs:library:1.9.0'
+
+    implementation 'org.parceler:parceler-api:1.1.12'
+    annotationProcessor 'org.parceler:parceler:1.1.12'
+    /*Firebase for register*/
+    implementation 'com.google.firebase:firebase-analytics:17.2.2'
+
+    /*navigation drawer*/
+    implementation "androidx.navigation:navigation-fragment:2.2.1"
+    implementation "androidx.navigation:navigation-ui:2.2.1"
 }

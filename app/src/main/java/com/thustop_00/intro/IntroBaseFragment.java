@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -17,6 +19,9 @@ import com.thustop_00.LoginFragment;
 import com.thustop_00.MainFragment;
 import com.thustop_00.R;
 import com.thustop_00.databinding.FragmentIntroBaseBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class IntroBaseFragment extends FragmentBase {
     /* Bind fragment_intro_base as variable*/
@@ -28,7 +33,13 @@ public class IntroBaseFragment extends FragmentBase {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_intro_base, container, false);
         binding.setIntro(this); //
         /* Adapter for viewpager which wraps intro fragments */
-        FragmentStateAdapter pagerAdapter = new MyAdapter(this);
+
+        MyAdapter pagerAdapter = new MyAdapter(getChildFragmentManager(),getLifecycle());
+        pagerAdapter.add(IntroChildFragment.newInstance(getString(R.string.tv_intro_page1),R.drawable.img_intro1, 0));
+        pagerAdapter.add(IntroChildFragment.newInstance(getString(R.string.tv_intro_page2),R.drawable.img_intro2, 1));
+        pagerAdapter.add(IntroChildFragment.newInstance(getString(R.string.tv_intro_page3),R.drawable.img_intro3, 2));
+
+
         ViewPager2 viewpager = binding.vpIntroContainer;
         viewpager.setAdapter(pagerAdapter);
         /* Link indicator and viewpager and create indicating dots*/
@@ -70,25 +81,25 @@ public class IntroBaseFragment extends FragmentBase {
         fragment.setArguments(args);
         return fragment;
     }
+
     /* New class for custom adaptor. Nothing special, it links 3 intro fragment*/
     private static class MyAdapter extends FragmentStateAdapter {
-
-        public MyAdapter(@NonNull Fragment fragment) {
-            super(fragment);
-        }
-        @NonNull
-        @Override
-        public Fragment createFragment(int position) {
-            switch (position) {
-                case 0 : return new IntroPage1Fragment();
-                case 1 : return new IntroPage2Fragment();
-                default : return new IntroPage3Fragment();
-            }
-        }
+        private List<FragmentBase> _arrFragment = new ArrayList<>();
+        MyAdapter(FragmentManager fragmentManager, Lifecycle lifecycle) {
+            super(fragmentManager, lifecycle); }
 
         @Override
         public int getItemCount() {
-            return 3;
+            return _arrFragment.size();
         }
+
+        @NonNull
+        @Override
+        public FragmentBase createFragment(int position) {
+            return _arrFragment.get(position);
+        }
+
+        void add(FragmentBase f) {_arrFragment.add(f);}
+
     }
 }
