@@ -1,5 +1,6 @@
 package com.thustop_00;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -90,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
 
         return true;
     }
-
+    /*method of OnfragmentInteractionLister*/
     /* Change fragment of frame in activity_main.*/
     @Override
     public void setFragment(FragmentBase fr) {
@@ -105,6 +107,31 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
 
     @Override
     public void addFragment(FragmentBase fr) {
+    }
+
+    @Override
+    public void addFragmentNotBackStack(FragmentBase fr) {
+
+    }
+
+    @Override
+    public void showActionBar(boolean b) {
+        if(b)
+            getSupportActionBar().show();
+        else
+            getSupportActionBar().hide();
+    }
+
+    @Override
+    public void openDrawer() {
+        binding.drawerLayout.openDrawer(GravityCompat.START);
+    }
+
+    @Override
+    public void setTitle(String s,String color) {
+        getSupportActionBar().show();
+        binding.tvTitle.setText(s);
+        binding.tvTitle.setTextColor(Color.parseColor(color));
     }
 
 }

@@ -1,9 +1,12 @@
 <resources>
+    <!--fragment splash-->
     <string name="app_name">ThuStop_00</string>
     <string name="tv_splash_subtitle">신개념 출퇴근 버스 노선 공유 버스</string>
     <string name="tv_splash_copyright">ⓒ2019. ThusTop INC. all rights reserved</string>
+    <!--fragment intro base-->
     <string name="bt_intro_start">이용시작</string>
     <string name="bt_intro_later">나중에 보기</string>
+    <!--fragment intro child(1,2,3)-->
     <string name="tv_intro_page1">안녕하세요!\n\'이번정류장\'은 여러분의\n워라벨 업그레이드를 위한\n출퇴근 버스 매칭 서비스입니다.</string>
     <string name="tv_intro_page1_green">\'이번정류장\'</string>
     <string name="tv_intro_page2">환승 없이 집 앞에서 회사까지 한번에!\n집, 그리고 회사 앞에\n나만의 정류장을 만들어 보세요.\n</string>
@@ -11,11 +14,43 @@
     <string name="tv_intro_page3">처음 2회 무료티켓을 이용하여\n\'이번정류장\' 서비스를 경험 하신 후\n결제가 진행됩니다.\n\n\'이번정류장\'이 여러분의\n행복한 출퇴근을 만들어 드리겠습니다!</string>
     <string name="tv_intro_page3_green1">2회 무료티켓</string>
     <string name="tv_intro_page3_green2">\'이번정류장\'이 여러분의\n행복한 출퇴근을 만들어 드리겠습니다!</string>
+    <!--fragment login-->
     <string name="tv_login_title">로그인</string>
     <string name="tv_login_phone">휴대폰 번호</string>
     <string name="etv_login_phone">휴대폰 번호를 입력해주세요</string>
     <string name="tv_login_pass">비밀번호</string>
     <string name="etv_login_pass">비밀번호를 입력해주세요</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="bt_login">로그인</string>
+    <string name="bt_register">회원가입</string>
+    <string name="bt_kakao_login">카카오톡으로 시작하기</string>
+    <string name="bt_find_password">비밀번호가 기억나지 않으시나요?</string>
+    <!--fragmnet register-->
+    <string name="tv_name">이름</string>
+    <string name="etv_name">이름을 입력해주세요</string>
+    <string name="tv_id_num">주민등록 번호 앞 7자리</string>
+    <string name="etv_id_num">주민등록를 입력해주세요</string>
+    <string name="tv_pass">비밀번호</string>
+    <string name="etv_password">8자리 이상 비밀번호를 입력해주세요</string>
+    <string name="tv_pass_check">비밀번호 확인</string>
+    <string name="etv_pass_check">비밀번호를 확인해 주세요</string>
+    <string name="tv_phone_num">휴대폰 번호</string>
+    <string name="etv_phone_num">휴대폰 번호(\'-\'제외한 숫자만 입력해주세요)</string>
+    <string name="bt_send_message">확인번호 전송</string>
+    <string name="tv_check_num">확인번호 입력</string>
+    <string name="bt_check_ok">확인</string>
+    <!--fragment register complete-->
+    <string name="tv_done1">회원가입이 완료되었습니다</string>
+    <string name="tv_done2">노선 신청을 이어서 진행하겠습니다</string>
+    <string name="bt_done">완료</string>
+    <!--fragment agree terms-->
+    <string name="tv_agree">이용 약관에 동의해주세요</string>
+    <string name="tv_agree_content">서비스 이용약관, 위치기반 서비스 이용약관,\n개인정보 취급방침</string>
+    <string name="bt_agree">동의</string>
+
+
+
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>

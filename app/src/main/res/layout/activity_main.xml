@@ -3,26 +3,47 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <androidx.drawerlayout.widget.DrawerLayout
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tb_main"
+        android:layout_width="match_parent"
+        android:id="@+id/drawer_layout">
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:minHeight="90dp"
-            android:theme="?attr/actionBarTheme"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent"
+            tools:context=".MainActivity">
 
-        <FrameLayout
-            android:id="@+id/frMain"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tb_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00ff0000"
+                android:minHeight="90dp"
+                android:theme="?attr/actionBarTheme"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" >
+                <com.thustop_00.widgets.NotoTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:id="@+id/tv_title"
+                    android:text="이번 정류장"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    android:textStyle="normal" />
+            </androidx.appcompat.widget.Toolbar>
+            <FrameLayout
+                android:id="@+id/frMain"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_gravity="start"
+            android:layout_width="232dp"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/navi_header"
+            app:menu="@menu/navi_menu"/>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
 
 </layout>

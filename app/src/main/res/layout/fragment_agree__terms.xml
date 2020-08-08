@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.36">
+
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_agree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="21dp"
+                android:text="@string/tv_agree"
+                android:textColor="@android:color/black"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                app:notoTextStyle="bold" />
+
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_agree_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="72dp"
+                android:bufferType="spannable"
+                android:text="@string/tv_agree_content"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/img_terms" />
+
+
+        </LinearLayout>
+
+        <com.thustop_00.widgets.NotoButton
+            android:id="@+id/bt_agree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginRight="14dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/button_round_green"
+            android:text="@string/bt_agree"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            app:notoTextStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

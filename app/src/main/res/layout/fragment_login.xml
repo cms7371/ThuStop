@@ -3,113 +3,112 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".LoginFragment"
         android:background="@android:color/white">
+        <RelativeLayout
+            android:id="@+id/login_top_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="43dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <RelativeLayout
-        android:id="@+id/login_top_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="43dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
 
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_login_title"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_centerInParent="true"
+                android:text="@string/tv_login_title"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src ="@drawable/icon_notification_green"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
 
         <com.thustop_00.widgets.NotoTextView
-            android:id="@+id/tv_login_title"
-            android:layout_width="wrap_content"
-            android:layout_height="24dp"
-            android:layout_centerInParent="true"
-            android:text="@string/tv_login_title"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18sp"
-            android:textStyle="normal" />
-        <ImageView
+            android:id="@+id/tv_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src ="@drawable/icon_notification_green"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true" />
-    </RelativeLayout>
-
-    <com.thustop_00.widgets.NotoTextView
-        android:id="@+id/tv_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="100dp"
-        android:text="@string/tv_login_phone"
-        android:textColor="@android:color/black"
-        android:textSize="14sp"
-        android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="100dp"
+            android:text="@string/tv_login_phone"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.thustop_00.widgets.NotoEditText
-        android:layout_height="wrap_content"
-        android:layout_width="0dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_phone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:paddingTop="15dp"
-        android:id="@+id/etPhone"
-        android:paddingBottom="15dp"
-        android:textSize="14sp"
-        android:layout_marginTop="10dp"
-        android:textColorHint="#979797"
-        android:hint="@string/etv_login_phone"
-        android:background="@drawable/button_round_light_gray"
-        />
+        <com.thustop_00.widgets.NotoEditText
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_phone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            android:paddingTop="15dp"
+            android:id="@+id/etPhone"
+            android:paddingBottom="15dp"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"
+            android:textColorHint="#979797"
+            android:hint="@string/etv_login_phone"
+            android:background="@drawable/button_round_light_gray"
+            />
 
-    <com.thustop_00.widgets.NotoTextView
-        android:id="@+id/tv_pass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:text="@string/tv_login_pass"
-        android:textColor="@android:color/black"
-        android:textSize="14sp"
-        android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etPhone" />
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_pass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/tv_login_pass"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etPhone" />
 
-    <com.thustop_00.widgets.NotoEditText
-        android:layout_height="wrap_content"
-        android:layout_width="0dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_pass"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:paddingTop="15dp"
-        android:id="@+id/etPass"
-        android:paddingBottom="15dp"
-        android:textSize="14sp"
-        android:layout_marginTop="10dp"
-        android:textColorHint="#979797"
-        android:hint="@string/etv_login_pass"
-        android:background="@drawable/button_round_light_gray"
-        />
+        <com.thustop_00.widgets.NotoEditText
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_pass"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            android:paddingTop="15dp"
+            android:id="@+id/etPass"
+            android:paddingBottom="15dp"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"
+            android:textColorHint="#979797"
+            android:hint="@string/etv_login_pass"
+            android:background="@drawable/button_round_light_gray"
+            />
 
         <CheckBox
             android:id="@+id/cb_login"
@@ -124,57 +123,73 @@
             app:layout_constraintTop_toBottomOf="@id/etPass" />
 
         <com.thustop_00.widgets.NotoButton
+            android:id="@+id/bt_find_password"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/bt_find_password"
+            android:background="#00ff0000"
+            android:textColor="@android:color/black"
+            app:notoTextStyle="regular"
+            android:textSize="12sp"
+            android:paddingStart="9dp"
+            app:layout_constraintTop_toBottomOf="@id/cb_login"
+            app:layout_constraintStart_toStartOf="@id/cb_login"
+
+            />
+        <com.thustop_00.widgets.NotoButton
             android:id="@+id/bt_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="32dp"
             android:layout_marginEnd="15dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/button_round_green"
-            android:text="로그인"
+            android:text="@string/bt_login"
             android:textColor=" #ffffff"
             android:textSize="16sp"
+            app:notoTextStyle="bold"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cb_login" />
+            app:layout_constraintBottom_toTopOf="@+id/bt_register"
+            app:layout_constraintEnd_toEndOf="@id/etPhone"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@id/etPhone" />
 
         <com.thustop_00.widgets.NotoButton
             android:id="@+id/bt_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:layout_marginEnd="14dp"
             android:layout_marginRight="14dp"
             android:background="@drawable/button_round_light_gray"
-            android:text="회원가입"
+            android:text="@string/bt_register"
             android:textColor="#50555c"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bt_login" />
+            app:notoTextStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/bt_login_kakao"
+            app:layout_constraintEnd_toEndOf="@id/etPhone"
+            app:layout_constraintStart_toStartOf="@id/etPhone" />
 
         <com.thustop_00.widgets.NotoButton
             android:id="@+id/bt_login_kakao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="15dp"
-            android:layout_marginBottom="234dp"
+            android:layout_marginBottom="36dp"
             android:background="@drawable/button_round_kakao"
-            android:text="카카오톡으로 시작하기"
+            android:text="@string/bt_kakao_login"
             android:textColor="#50555c"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bt_register"
+            app:layout_constraintEnd_toEndOf="@id/etPhone"
+            app:layout_constraintStart_toStartOf="@id/etPhone"
             app:notoTextStyle="bold" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

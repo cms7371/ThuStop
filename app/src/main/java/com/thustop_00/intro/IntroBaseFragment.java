@@ -32,8 +32,8 @@ public class IntroBaseFragment extends FragmentBase {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_intro_base, container, false);
         binding.setIntro(this); //
-        /* Adapter for viewpager which wraps intro fragments */
 
+        /* Adapter for viewpager which wraps intro fragments and add new intro pages */
         MyAdapter pagerAdapter = new MyAdapter(getChildFragmentManager(),getLifecycle());
         pagerAdapter.add(IntroChildFragment.newInstance(getString(R.string.tv_intro_page1),R.drawable.img_intro1, 0));
         pagerAdapter.add(IntroChildFragment.newInstance(getString(R.string.tv_intro_page2),R.drawable.img_intro2, 1));
