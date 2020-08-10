@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.thustop_00.databinding.ActivityMainBinding;
@@ -37,8 +36,12 @@ import com.thustop_00.intro.IntroBaseFragment;
 public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener{
     /* Bind activity_main as variable*/
     private ActivityMainBinding binding;
+    private Menu menu;
+    private Toolbar toolbar;
+    private ActionBar actionbar;
     /* Handler for delay of splash fragment. It should be removed after loading delay added*/
     Handler H = new Handler(Looper.getMainLooper());
+
 
 
     @Override
@@ -48,15 +51,14 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         /* Setting toolbar referred  https://blog.naver.com/qbxlvnf11/221328098468*/
-        Toolbar toolbar = binding.tbMain;
+        toolbar = binding.tbMain;
         setSupportActionBar(toolbar);
-        ActionBar actionbar = getSupportActionBar();
+        actionbar = getSupportActionBar();
         assert actionbar != null; // To prevent warning from setDisplayShowTitleEnabled
         actionbar.setDisplayShowTitleEnabled(false);
         actionbar.setDisplayHomeAsUpEnabled(false); //Set back button invisible to make hamburger button visible
         actionbar.setHomeAsUpIndicator(R.drawable.icon_back_green);
         toolbar.setNavigationIcon(R.drawable.icon_hamburger_white);
-
 
 
         /* At start, display splash fragment during loading*/
@@ -76,10 +78,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         switch (item.getItemId()) {
             case android.R.id.home : {
                 setFragment(LoginFragment.newInstance());
+                setToolBar(false, false);
                 return true;
             }
             case R.id.bt_notification : {
                 Toast.makeText(getApplicationContext(), "알림버튼 눌림", Toast.LENGTH_SHORT).show();
+                menu.getItem(0).setIcon(R.drawable.icon_notification_green);
                 return true;
             }
         }
@@ -89,10 +93,11 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+        this.menu = menu;
 
         return true;
     }
-    /*method of OnfragmentInteractionLister*/
+    /*method of OnFragmentInteractionLister*/
     /* Change fragment of frame in activity_main.*/
     @Override
     public void setFragment(FragmentBase fr) {
@@ -133,5 +138,22 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         binding.tvTitle.setText(s);
         binding.tvTitle.setTextColor(Color.parseColor(color));
     }
+
+    @Override
+    public void setToolBar(boolean white, boolean back_en) {
+        if (white) {
+            toolbar.setNavigationIcon(R.drawable.icon_hamburger_white);
+            actionbar.setHomeAsUpIndicator(R.drawable.icon_notification_white);
+            menu.getItem(0).setIcon(R.drawable.icon_hamburger_green); //Should replace image!!!
+        } else {
+            toolbar.setNavigationIcon(R.drawable.icon_hamburger_green);
+            actionbar.setHomeAsUpIndicator(R.drawable.icon_notification_green);
+            menu.getItem(0).setIcon(R.drawable.icon_hamburger_green);
+        }
+        if (back_en) actionbar.setDisplayHomeAsUpEnabled(true);
+        else         actionbar.setDisplayHomeAsUpEnabled(false);
+
+    }
+
 
 }

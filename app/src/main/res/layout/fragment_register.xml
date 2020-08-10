@@ -46,7 +46,7 @@
             android:layout_marginTop="10dp"
             android:textColorHint="#979797"
             android:hint="@string/etv_name"
-            android:background="@drawable/edittext_login"
+            android:background="@drawable/button_round_light_gray"
             android:imeOptions="actionDone"
             />
 
@@ -80,7 +80,7 @@
             android:textSize="14sp"
             android:layout_marginTop="10dp"
             android:textColorHint="#979797"
-            android:background="@drawable/edittext_login"
+            android:background="@drawable/button_round_light_gray"
             />
 
         <com.thustop_00.widgets.NotoTextView
@@ -116,7 +116,7 @@
             android:layout_marginTop="10dp"
             android:textColorHint="#979797"
             android:hint="@string/etv_password"
-            android:background="@drawable/edittext_login"
+            android:background="@drawable/button_round_light_gray"
             />
 
         <com.thustop_00.widgets.NotoTextView
@@ -150,7 +150,7 @@
             android:layout_marginTop="10dp"
             android:textColorHint="#979797"
             android:hint="@string/etv_pass_check"
-            android:background="@drawable/edittext_login"
+            android:background="@drawable/button_round_light_gray"
             />
 
         <com.thustop_00.widgets.NotoTextView
@@ -190,7 +190,7 @@
                 android:textSize="10sp"
                 android:textColorHint="#979797"
                 android:hint="@string/etv_phone_num"
-                android:background="@drawable/edittext_login"
+                android:background="@drawable/button_round_light_gray"
                 />
 
             <com.thustop_00.widgets.NotoButton
@@ -200,7 +200,7 @@
                 android:layout_toRightOf="@id/et_phone_num"
                 android:layout_marginStart="5dp"
                 android:layout_alignParentEnd="true"
-                android:background="@drawable/edittext_login"
+                android:background="@drawable/button_round_light_gray"
                 android:text="@string/bt_send_message"
                 android:textSize="14sp"
                 android:textColor="#979797"
@@ -244,7 +244,7 @@
                 android:textSize="10sp"
                 android:textColorHint="#979797"
                 android:hint="                                                                             "
-                android:background="@drawable/edittext_login"
+                android:background="@drawable/button_round_light_gray"
                 />
 
             <com.thustop_00.widgets.NotoButton
@@ -254,7 +254,7 @@
                 android:layout_toRightOf="@id/et_check_num"
                 android:layout_marginStart="5dp"
                 android:layout_alignParentEnd="true"
-                android:background="@drawable/edittext_login"
+                android:background="@drawable/button_round_light_gray"
                 android:text="@string/bt_check_ok"
                 android:textColor="#979797"
                 />

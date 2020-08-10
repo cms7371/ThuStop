@@ -8,4 +8,5 @@ public interface OnFragmentInteractionListener {
     void showActionBar(boolean b);
     void openDrawer();
     void setTitle(String s, String color);
+    void setToolBar(boolean white, boolean back_en);
 }

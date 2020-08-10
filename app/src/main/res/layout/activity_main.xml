@@ -17,17 +17,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#00ff0000"
-                android:minHeight="90dp"
+                android:minHeight="60dp"
                 android:theme="?attr/actionBarTheme"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" >
+                app:layout_constraintTop_toTopOf="parent">
+
                 <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
-                    android:id="@+id/tv_title"
+                    android:layout_gravity="center"
                     android:text="이번 정류장"
                     android:textSize="18sp"
-                    android:layout_gravity="center"
                     android:textStyle="normal" />
             </androidx.appcompat.widget.Toolbar>
             <FrameLayout
