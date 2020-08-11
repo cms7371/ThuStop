@@ -8,14 +8,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.thustop_00.FragmentBase;
-import com.thustop_00.LoginFragment;
 import com.thustop_00.MainFragment;
 import com.thustop_00.R;
 import com.thustop_00.databinding.FragmentIntroBaseBinding;

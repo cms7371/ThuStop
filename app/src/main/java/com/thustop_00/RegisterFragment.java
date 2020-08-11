@@ -120,8 +120,10 @@ public class RegisterFragment extends FragmentBase {
         context = container.getContext();
         binding = FragmentRegisterBinding.inflate(inflater);
         ButterKnife.bind(this,binding.getRoot());
-        _listener.setTitle("회원가입","#64bb74");
-        _listener.showActionBar(true);
+        //_listener.showActionBar(true);
+        _listener.setToolbar(true, false, false);
+        _listener.setTitle("회원가입");
+
 
         return binding.getRoot();
 

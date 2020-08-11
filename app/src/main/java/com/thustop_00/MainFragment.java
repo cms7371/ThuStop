@@ -1,17 +1,14 @@
 package com.thustop_00;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+
+import androidx.fragment.app.Fragment;
 
 import com.thustop_00.databinding.FragmentMainBinding;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 

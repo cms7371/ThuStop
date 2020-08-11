@@ -1,26 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <androidx.drawerlayout.widget.DrawerLayout
-        android:layout_height="match_parent"
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:id="@+id/drawer_layout">
+        android:layout_height="match_parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".MainActivity">
 
+            <FrameLayout
+                android:id="@+id/frMain"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </FrameLayout>
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/tb_main"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#00ff0000"
-                android:minHeight="60dp"
+                android:layout_height="60dp"
+                android:background="@color/colorPrimary"
                 android:theme="?attr/actionBarTheme"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
 
                 <com.thustop_00.widgets.NotoTextView
                     android:id="@+id/tv_title"
@@ -29,21 +37,33 @@
                     android:layout_gravity="center"
                     android:text="이번 정류장"
                     android:textSize="18sp"
-                    android:textStyle="normal" />
+                    android:textStyle="normal"
+                    android:visibility="gone"
+                    tools:layout_editor_absoluteX="163dp"
+                    tools:layout_editor_absoluteY="18dp" />
+
+                <ImageView
+                    android:id="@+id/iv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/img_title"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="21dp" />
+
             </androidx.appcompat.widget.Toolbar>
-            <FrameLayout
-                android:id="@+id/frMain"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"
-            android:layout_gravity="start"
             android:layout_width="232dp"
             android:layout_height="match_parent"
+            android:layout_gravity="start|center_horizontal|center_vertical"
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/navi_header"
-            app:menu="@menu/navi_menu"/>
+            app:menu="@menu/navi_menu" />
 
     </androidx.drawerlayout.widget.DrawerLayout>
 

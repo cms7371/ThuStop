@@ -47,7 +47,10 @@ public class Agree_TermsFragment extends FragmentBase {
                              Bundle savedInstanceState) {
         binding = FragmentAgreeTermsBinding.inflate(inflater);
         ButterKnife.bind(this,binding.getRoot());
-        _listener.showActionBar(false);
+
+        _listener.setToolbar(true, true, false);
+        _listener.setTitle("");
+
         // Inflate the layout for this fragment
         return binding.getRoot();
     }

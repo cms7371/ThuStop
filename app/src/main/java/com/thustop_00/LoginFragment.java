@@ -1,28 +1,14 @@
 package com.thustop_00;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
-import com.kakao.auth.Session;
-import com.kakao.usermgmt.UserManagement;
-import com.kakao.usermgmt.callback.LogoutResponseCallback;
-import com.kakao.usermgmt.response.model.User;
-import com.pixplicity.easyprefs.library.Prefs;
 import com.thustop_00.databinding.FragmentLoginBinding;
-import com.thustop_00.model.Route;
 import com.thustop_00.model.Token;
 import com.thustop_00.model.UserData;
-
-import org.parceler.Parcels;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -57,6 +43,8 @@ public class LoginFragment extends FragmentBase {
         binding = FragmentLoginBinding.inflate(inflater);
         ButterKnife.bind(this,binding.getRoot());
 
+        _listener.setToolbar(true, false, false);
+        _listener.setTitle("로그인");
         _listener.showActionBar(true);
         return binding.getRoot();
 

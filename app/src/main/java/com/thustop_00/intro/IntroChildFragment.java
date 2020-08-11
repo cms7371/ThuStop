@@ -1,6 +1,5 @@
 package com.thustop_00.intro;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.Spanned;
@@ -73,16 +72,16 @@ public class IntroChildFragment extends FragmentBase {
         binding.tvIntroPage.setText(text);
         binding.ivIntroPage.setImageResource(res);
         switch (position) {
-            case 0 : colorText(binding.tvIntroPage, R.string.tv_intro_page1_green ,"#64bb74");
+            case 0 : colorText(binding.tvIntroPage, R.string.tv_intro_page1_green , R.color.colorPrimary);
             case 1 : break;
-            default: colorText(binding.tvIntroPage, R.string.tv_intro_page3_green1, "#64bb74");
-                     colorText(binding.tvIntroPage, R.string.tv_intro_page3_green2, "#64bb74");
+            default: colorText(binding.tvIntroPage, R.string.tv_intro_page3_green1, R.color.colorPrimary);
+                     colorText(binding.tvIntroPage, R.string.tv_intro_page3_green2, R.color.colorPrimary);
         }
         // Inflate the layout for this fragment
         return binding.getRoot();
     }
 
-    public void colorText(NotoTextView textView, int strAddress, String color) {
+    public void colorText(NotoTextView textView, int strAddress, int color) {
         /* Get the string of the view to be colored */
         String str = textView.getText().toString();
         /* Get string to be colored from address */
@@ -93,6 +92,6 @@ public class IntroChildFragment extends FragmentBase {
         int index_s=str.indexOf(coloredStr);
         int index_e = index_s+coloredStr.length();
         /* Color the view's string with upper variables */
-        span.setSpan(new ForegroundColorSpan(Color.parseColor(color)),index_s,index_e, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        span.setSpan(new ForegroundColorSpan(getResources().getColor(color)),index_s,index_e, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
 }

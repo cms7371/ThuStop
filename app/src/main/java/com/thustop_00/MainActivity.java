@@ -1,11 +1,11 @@
 package com.thustop_00;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,9 +39,10 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     private Menu menu;
     private Toolbar toolbar;
     private ActionBar actionbar;
+    /* Static variable indicates back button is available*/
+    private static boolean isbackenabled = false;
     /* Handler for delay of splash fragment. It should be removed after loading delay added*/
     Handler H = new Handler(Looper.getMainLooper());
-
 
 
     @Override
@@ -60,8 +61,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         actionbar.setHomeAsUpIndicator(R.drawable.icon_back_green);
         toolbar.setNavigationIcon(R.drawable.icon_hamburger_white);
 
-
         /* At start, display splash fragment during loading*/
+        actionbar.hide();
         setFragment(SplashFragment.newInstance());
 
         H.postDelayed(new Runnable() {
@@ -77,24 +78,21 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home : {
-                setFragment(LoginFragment.newInstance());
-                setToolBar(false, false);
+                if(isbackenabled) onBackPressed();
+                else openDrawer();
                 return true;
             }
             case R.id.bt_notification : {
                 Toast.makeText(getApplicationContext(), "알림버튼 눌림", Toast.LENGTH_SHORT).show();
-                menu.getItem(0).setIcon(R.drawable.icon_notification_green);
-                return true;
             }
         }
         return super.onOptionsItemSelected(item);
     }
-
+    /* This method links */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         this.menu = menu;
-
         return true;
     }
     /*method of OnFragmentInteractionLister*/
@@ -122,9 +120,9 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     @Override
     public void showActionBar(boolean b) {
         if(b)
-            getSupportActionBar().show();
+            actionbar.show();
         else
-            getSupportActionBar().hide();
+            actionbar.hide();
     }
 
     @Override
@@ -133,27 +131,56 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     }
 
     @Override
-    public void setTitle(String s,String color) {
+    public void setTitle(String s) {
         getSupportActionBar().show();
         binding.tvTitle.setText(s);
-        binding.tvTitle.setTextColor(Color.parseColor(color));
     }
 
+    /* This method changes color and status of toolbar
+     * If 'white' is true, background color will be white, else, green. Buttons colors will also change depend on background.
+     * If 'back_en' is true, back button is enabled, hamburger button and notification button will disappear.
+     * If 'main_title' is true, TextView title will be disable, and main title will be visible*/
     @Override
-    public void setToolBar(boolean white, boolean back_en) {
+    public void setToolbar(boolean white, boolean back_en, boolean main_title) {
         if (white) {
-            toolbar.setNavigationIcon(R.drawable.icon_hamburger_white);
-            actionbar.setHomeAsUpIndicator(R.drawable.icon_notification_white);
-            menu.getItem(0).setIcon(R.drawable.icon_hamburger_green); //Should replace image!!!
+            toolbar.setBackground(getDrawable(R.color.colorWhite));
+            binding.tvTitle.setTextColor(getResources().getColor(R.color.colorPrimary));
+            actionbar.setHomeAsUpIndicator(R.drawable.icon_back_green);
+            if (back_en) {
+                actionbar.setDisplayHomeAsUpEnabled(true);
+                menu.getItem(0).setEnabled(false);
+                menu.getItem(0).setVisible(false);
+            } else {
+                actionbar.setDisplayHomeAsUpEnabled(false);
+                menu.getItem(0).setEnabled(true);
+                menu.getItem(0).setVisible(true);
+                toolbar.setNavigationIcon(R.drawable.icon_hamburger_green);
+                menu.getItem(0).setIcon(R.drawable.icon_notification_green);
+            }
         } else {
-            toolbar.setNavigationIcon(R.drawable.icon_hamburger_green);
-            actionbar.setHomeAsUpIndicator(R.drawable.icon_notification_green);
-            menu.getItem(0).setIcon(R.drawable.icon_hamburger_green);
+            toolbar.setBackground(getDrawable(R.color.colorPrimary));
+            binding.tvTitle.setTextColor(getResources().getColor(R.color.colorWhite));
+            actionbar.setHomeAsUpIndicator(R.drawable.icon_back_white);
+            if (back_en) {
+                actionbar.setDisplayHomeAsUpEnabled(true);
+                menu.getItem(0).setEnabled(false);
+                menu.getItem(0).setVisible(false);
+            } else {
+                actionbar.setDisplayHomeAsUpEnabled(false);
+                menu.getItem(0).setEnabled(true);
+                menu.getItem(0).setVisible(true);
+                toolbar.setNavigationIcon(R.drawable.icon_hamburger_white);
+                menu.getItem(0).setIcon(R.drawable.icon_notification_white);
+            }
         }
-        if (back_en) actionbar.setDisplayHomeAsUpEnabled(true);
-        else         actionbar.setDisplayHomeAsUpEnabled(false);
-
+        isbackenabled = back_en;
+        if (main_title) {
+            findViewById(R.id.iv_title).setVisibility(View.VISIBLE);
+            findViewById(R.id.tv_title).setVisibility(View.GONE);
+        } else {
+            findViewById(R.id.iv_title).setVisibility(View.GONE);
+            findViewById(R.id.tv_title).setVisibility(View.VISIBLE);
+        }
     }
-
 
 }
