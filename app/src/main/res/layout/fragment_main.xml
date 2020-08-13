@@ -1,85 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@android:color/white">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/top_layout"
+    xmlns:tools="http://schemas.android.com/tools">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:elevation="10dp">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="?attr/actionBarSize" />
-
-        <Spinner
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/top_layout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:entries="@array/province"
-            app:layout_constraintStart_toStartOf="@id/tvSelLocal"
-            app:layout_constraintEnd_toEndOf="@id/tvSelLocal"
-            app:layout_constraintTop_toTopOf="@id/tvSelLocal"
-            app:layout_constraintBottom_toBottomOf="@id/tvSelLocal"/>
+            android:layout_height="112dp"
+            android:background="@color/colorPrimary"
+            android:elevation="10dp">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="?attr/actionBarSize" />
+
+
+
+            <Spinner
+                android:id="@+id/sp_prov"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:entries="@array/province"
+                android:overlapAnchor="false"
+                app:layout_constraintBottom_toBottomOf="@id/tvSelLocal"
+                app:layout_constraintEnd_toEndOf="@id/tvSelLocal"
+                app:layout_constraintStart_toStartOf="@id/tvSelLocal"
+                app:layout_constraintTop_toTopOf="@id/tvSelLocal"
+                android:popupBackground="@drawable/main_sel_local"/>
+
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tvSelLocal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/main_sel_local"
+                android:paddingStart="40dp"
+                android:paddingTop="9dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="9dp"
+                android:text="서비스 지역 선택"
+                android:textColor="#979797"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@id/top_layout"
+                app:layout_constraintEnd_toStartOf="@id/gps"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/guideline1"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:id="@+id/ivSelLocal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/icon_down"
+                app:layout_constraintBottom_toBottomOf="@id/tvSelLocal"
+                app:layout_constraintStart_toStartOf="@id/tvSelLocal"
+                app:layout_constraintTop_toTopOf="@id/tvSelLocal"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/gps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/main_sel_local"
+                android:paddingStart="9dp"
+                android:paddingTop="6dp"
+                android:paddingEnd="9dp"
+                android:paddingBottom="6dp"
+                android:src="@drawable/gps_main"
+                app:layout_constraintBottom_toBottomOf="@id/top_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/guideline1"
+                tools:ignore="ContentDescription" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_main"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/top_layout" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.thustop_00.widgets.NotoTextView
-            android:id="@+id/tvSelLocal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/main_sel_local"
-            android:paddingStart="40dp"
-            android:paddingTop="9dp"
-            android:paddingEnd="5dp"
-            android:paddingBottom="9dp"
-            android:text="서비스 지역 선택"
-            android:textColor="#979797"
-            android:textSize="13sp"
-            app:layout_constraintEnd_toStartOf="@id/gps"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/guideline1"
-            app:layout_constraintBottom_toBottomOf="@id/top_layout"
-            tools:ignore="HardcodedText" />
-        <ImageView
+            android:id="@+id/tv_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_down"
-            android:layout_marginEnd="12dp"
-            android:id="@+id/ivSelLocal"
-            app:layout_constraintTop_toTopOf="@id/tvSelLocal"
-            app:layout_constraintBottom_toBottomOf="@id/tvSelLocal"
-            app:layout_constraintStart_toStartOf="@id/tvSelLocal"
-            android:layout_marginStart="9dp"
-            tools:ignore="ContentDescription"/>
+            android:layout_below="@id/top_layout"
+            android:text="@string/tv_all"
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            app:notoTextStyle="bold"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            />
 
-        <ImageButton
-            android:id="@+id/gps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/main_sel_local"
-            android:paddingStart="9dp"
-            android:paddingTop="6dp"
-            android:paddingEnd="9dp"
-            android:paddingBottom="6dp"
-            android:src="@drawable/gps_main"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/guideline1"
-            app:layout_constraintBottom_toBottomOf="@id/top_layout"
-            tools:ignore="ContentDescription"/>
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tv_all"
+            android:orientation="vertical"
+            tools:listitem="@layout/item_route"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:paddingEnd="27dp"
+            android:paddingStart="27dp"
+            android:layout_marginTop="20dp"
+            />
+    </RelativeLayout>
 
 
 </layout>

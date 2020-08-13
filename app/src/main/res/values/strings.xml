@@ -14,6 +14,8 @@
     <string name="tv_intro_page3">처음 2회 무료티켓을 이용하여\n\'이번정류장\' 서비스를 경험 하신 후\n결제가 진행됩니다.\n\n\'이번정류장\'이 여러분의\n행복한 출퇴근을 만들어 드리겠습니다!</string>
     <string name="tv_intro_page3_green1">2회 무료티켓</string>
     <string name="tv_intro_page3_green2">\'이번정류장\'이 여러분의\n행복한 출퇴근을 만들어 드리겠습니다!</string>
+    <!--fragment main-->
+    <string name="tv_all">전체 출근 노선</string>
     <!--fragment login-->
     <string name="tv_login_title">로그인</string>
     <string name="tv_login_phone">휴대폰 번호</string>

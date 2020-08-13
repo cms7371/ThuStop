@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import androidx.fragment.app.Fragment;
 
@@ -19,12 +20,7 @@ import butterknife.OnClick;
  */
 public class MainFragment extends FragmentBase {
     FragmentMainBinding binding;
-
-    @OnClick(R.id.gologin)
-    void goLogin() {
-        _listener.setFragment(LoginFragment.newInstance());
-    }
-
+    
 
     public static MainFragment newInstance() {
         MainFragment fragment = new MainFragment();
@@ -44,6 +40,18 @@ public class MainFragment extends FragmentBase {
                              Bundle savedInstanceState) {
         binding = FragmentMainBinding.inflate(inflater);
         ButterKnife.bind(this,binding.getRoot());
+
+       binding.spProv.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                binding.tvSelLocal.setText(adapterView.getItemAtPosition(position).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                binding.tvSelLocal.setText("서비스 지역 선택");
+            }
+        });
 
         _listener.showActionBar(true);
         // Inflate the layout for this fragment
