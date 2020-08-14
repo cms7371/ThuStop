@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Button
+        android:id="@+id/bt_new_route1"
+        android:layout_width="match_parent"
+        android:layout_height="104dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="27dp"
+        android:background="@drawable/outline_gray"
+        android:paddingTop="55dp"
+        android:text="노선 생성하기"
+        android:textColor=" #757f8c"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_route_plus1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:paddingTop="26dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/bt_new_route1"
+        app:srcCompat="@drawable/img_route_plus" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

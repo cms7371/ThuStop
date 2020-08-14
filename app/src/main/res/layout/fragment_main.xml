@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -11,116 +11,151 @@
             android:layout_width="match_parent"
             android:layout_height="112dp"
             android:background="@color/colorPrimary"
-            android:elevation="10dp">
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_begin="?attr/actionBarSize" />
-
-
-
-            <Spinner
-                android:id="@+id/sp_prov"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:entries="@array/province"
-                android:overlapAnchor="false"
-                app:layout_constraintBottom_toBottomOf="@id/tvSelLocal"
-                app:layout_constraintEnd_toEndOf="@id/tvSelLocal"
-                app:layout_constraintStart_toStartOf="@id/tvSelLocal"
-                app:layout_constraintTop_toTopOf="@id/tvSelLocal"
-                android:popupBackground="@drawable/main_sel_local"/>
-
-            <com.thustop_00.widgets.NotoTextView
-                android:id="@+id/tvSelLocal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/main_sel_local"
-                android:paddingStart="40dp"
-                android:paddingTop="9dp"
-                android:paddingEnd="5dp"
-                android:paddingBottom="9dp"
-                android:text="서비스 지역 선택"
-                android:textColor="#979797"
-                android:textSize="13sp"
-                app:layout_constraintBottom_toBottomOf="@id/top_layout"
-                app:layout_constraintEnd_toStartOf="@id/gps"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/guideline1"
-                tools:ignore="HardcodedText" />
-
-            <ImageView
-                android:id="@+id/ivSelLocal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="9dp"
-                android:layout_marginEnd="12dp"
-                android:src="@drawable/icon_down"
-                app:layout_constraintBottom_toBottomOf="@id/tvSelLocal"
-                app:layout_constraintStart_toStartOf="@id/tvSelLocal"
-                app:layout_constraintTop_toTopOf="@id/tvSelLocal"
-                tools:ignore="ContentDescription" />
-
-            <ImageButton
-                android:id="@+id/gps"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/main_sel_local"
-                android:paddingStart="9dp"
-                android:paddingTop="6dp"
-                android:paddingEnd="9dp"
-                android:paddingBottom="6dp"
-                android:src="@drawable/gps_main"
-                app:layout_constraintBottom_toBottomOf="@id/top_layout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/guideline1"
-                tools:ignore="ContentDescription" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_main"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/top_layout" />
+            android:elevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="1dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="?attr/actionBarSize" />
+
+
+        <Spinner
+            android:id="@+id/sp_prov"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:elevation="1dp"
+            android:entries="@array/province"
+            android:overlapAnchor="false"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:popupBackground="@drawable/main_sel_local"
+            app:layout_constraintBottom_toBottomOf="@id/tvSelLocal"
+            app:layout_constraintEnd_toEndOf="@id/tvSelLocal"
+            app:layout_constraintStart_toStartOf="@id/tvSelLocal"
+            app:layout_constraintTop_toTopOf="@id/tvSelLocal" />
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tvSelLocal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/main_sel_local"
+            android:elevation="2dp"
+            android:paddingStart="40dp"
+            android:paddingTop="9dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="9dp"
+            android:text="서비스 지역 선택"
+            android:textColor="#979797"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@id/top_layout"
+            app:layout_constraintEnd_toStartOf="@id/gps"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline1"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:id="@+id/ivSelLocal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:elevation="3dp"
+            android:src="@drawable/icon_down"
+            app:layout_constraintBottom_toBottomOf="@id/tvSelLocal"
+            app:layout_constraintStart_toStartOf="@id/tvSelLocal"
+            app:layout_constraintTop_toTopOf="@id/tvSelLocal"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/gps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/main_sel_local"
+            android:elevation="2dp"
+            android:paddingStart="9dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="9dp"
+            android:paddingBottom="6dp"
+            android:src="@drawable/gps_main"
+            app:layout_constraintBottom_toBottomOf="@id/top_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline1"
+            tools:ignore="ContentDescription" />
+
+
+        <Button
+            android:id="@+id/bt_new_route"
+            android:layout_width="match_parent"
+            android:layout_height="104dp"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="27dp"
+            android:background="@drawable/outline_gray"
+            android:paddingTop="55dp"
+            android:text="노선 생성하기"
+            android:textColor=" #757f8c"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/top_layout" />
+
+        <ImageView
+            android:id="@+id/iv_route_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:paddingTop="26dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/bt_new_route"
+            app:srcCompat="@drawable/img_route_plus" />
 
         <com.thustop_00.widgets.NotoTextView
             android:id="@+id/tv_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/top_layout"
-            android:text="@string/tv_all"
-            android:textSize="16sp"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
-            app:notoTextStyle="bold"
+            android:layout_below="@id/bt_new_route"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="25dp"
-            />
+            android:layout_marginTop="22dp"
+            android:text="@string/tv_all"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bt_new_route"
+            app:notoTextStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/tv_all"
+            android:id="@+id/rv_routes"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:orientation="vertical"
-            tools:listitem="@layout/item_route"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:paddingEnd="27dp"
             android:paddingStart="27dp"
-            android:layout_marginTop="20dp"
-            />
-    </RelativeLayout>
+            android:paddingTop="20dp"
+            android:paddingEnd="27dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_all"
+            tools:listitem="@layout/item_route">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </layout>

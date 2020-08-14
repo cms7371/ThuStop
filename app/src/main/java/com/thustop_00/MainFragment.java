@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import com.thustop_00.databinding.FragmentMainBinding;
 
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -52,7 +51,7 @@ public class MainFragment extends FragmentBase {
                 binding.tvSelLocal.setText("서비스 지역 선택");
             }
         });
-
+        _listener.setToolbar(false, false, true);
         _listener.showActionBar(true);
         // Inflate the layout for this fragment
         return binding.getRoot();
