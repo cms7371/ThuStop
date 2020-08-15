@@ -36,7 +36,8 @@
             android:textColor="#6d7278"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{intro::onLaterClick}"/>
 
         <RelativeLayout
             android:id="@+id/indicator_view"
