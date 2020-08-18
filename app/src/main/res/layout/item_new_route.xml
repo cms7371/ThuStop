@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="136dp">
 
     <Button
         android:id="@+id/bt_new_route1"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="match_parent"
         android:layout_height="104dp"
-        android:layout_marginStart="27dp"
+        android:layout_marginLeft="27dp"
         android:layout_marginTop="22dp"
-        android:layout_marginEnd="27dp"
+        android:layout_marginRight="27dp"
         android:background="@drawable/outline_gray"
         android:paddingTop="55dp"
         android:text="노선 생성하기"
         android:textColor=" #757f8c"
         android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
