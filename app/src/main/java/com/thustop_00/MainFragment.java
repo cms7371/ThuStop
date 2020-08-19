@@ -13,22 +13,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.widget.AdapterView;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.thustop_00.databinding.FragmentMainBinding;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
-
-import butterknife.ButterKnife;
 
 import static android.content.Context.LOCATION_SERVICE;
 
@@ -81,10 +77,12 @@ public class MainFragment extends FragmentBase {
         binding.vPause.setVisibility(View.GONE);
         binding.layoutLocal.setVisibility(View.GONE);
         toggle = false;
-
-
         _listener.setToolbar(false, false, true);
         _listener.showActionBar(true);
+
+        RecyclerView mainRecycler = binding.rvRoutes;
+        RouteAdapter mainAdapter = new RouteAdapter(null);
+        mainRecycler.setAdapter(mainAdapter);
         // Inflate the layout for this fragment
         return binding.getRoot();
     }
@@ -135,8 +133,8 @@ public class MainFragment extends FragmentBase {
                 binding.tvSelLocal.setText(R.string.tvSelLocal);
             }
         }
-
     }
+
     public void onLocal3Click(View view) {
         if(tog_local[0] || tog_local[1]) {
             Toast.makeText(getActivity(), "지역을 하나만 선택해주세요", Toast.LENGTH_SHORT).show();
