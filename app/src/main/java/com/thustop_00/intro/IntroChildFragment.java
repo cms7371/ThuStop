@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.text.Spannable;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -15,6 +17,8 @@ import com.thustop_00.FragmentBase;
 import com.thustop_00.R;
 import com.thustop_00.databinding.FragmentIntroChildBinding;
 import com.thustop_00.widgets.NotoTextView;
+
+import java.lang.reflect.TypeVariable;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -76,6 +80,10 @@ public class IntroChildFragment extends FragmentBase {
             case 1 : break;
             default: colorText(binding.tvIntroPage, R.string.tv_intro_page3_green1, R.color.colorPrimary);
                      colorText(binding.tvIntroPage, R.string.tv_intro_page3_green2, R.color.colorPrimary);
+                     RelativeLayout.LayoutParams paramControl = (RelativeLayout.LayoutParams) binding.ivIntroPage.getLayoutParams();
+                     paramControl.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40,getResources().getDisplayMetrics());
+                     paramControl.bottomMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 35,getResources().getDisplayMetrics());
+                     binding.ivIntroPage.setLayoutParams(paramControl);
         }
         // Inflate the layout for this fragment
         return binding.getRoot();
