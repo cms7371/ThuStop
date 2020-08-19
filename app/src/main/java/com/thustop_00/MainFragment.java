@@ -104,49 +104,67 @@ public class MainFragment extends FragmentBase {
     }
 
 
+    // when select local, change selected button's background resource
     public void onLocal1Click(View view) {
-        if(tog_local[1]||tog_local[2]) {
-            Toast.makeText(getActivity(), "지역을 하나만 선택해주세요", Toast.LENGTH_SHORT).show();
-        } else {
-            tog_local[0] = !tog_local[0];
-            if(tog_local[0]) {
-                binding.btLocal1.setBackgroundResource(R.drawable.button_round_light_gray_sel);
-                binding.tvSelLocal.setText(R.string.bt_local1);
+        if (tog_local[1] || tog_local[2]) {
+            if (tog_local[1]) {
+                tog_local[1] = false;
+                binding.btLocal2.setBackgroundResource(R.drawable.button_round_light_gray);
             } else {
-                binding.btLocal1.setBackgroundResource(R.drawable.button_round_light_gray);
-                binding.tvSelLocal.setText(R.string.tvSelLocal);
+                tog_local[2] = false;
+                binding.btLocal3.setBackgroundResource(R.drawable.button_round_light_gray);
             }
         }
 
+        tog_local[0] = !tog_local[0];
+        if(tog_local[0]) {
+            binding.btLocal1.setBackgroundResource(R.drawable.button_round_light_gray_sel);
+            binding.tvSelLocal.setText(R.string.bt_local1);
+        } else {
+            binding.btLocal1.setBackgroundResource(R.drawable.button_round_light_gray);
+            binding.tvSelLocal.setText(R.string.tvSelLocal);
+        }
     }
 
     public void onLocal2Click(View view) {
         if(tog_local[0] || tog_local[2]) {
-            Toast.makeText(getActivity(), "지역을 하나만 선택해주세요", Toast.LENGTH_SHORT).show();
-        } else{
-            tog_local[1] = !tog_local[1];
-            if(tog_local[1]) {
-                binding.btLocal2.setBackgroundResource(R.drawable.button_round_light_gray_sel);
-                binding.tvSelLocal.setText(R.string.bt_local2);
+            if (tog_local[0]) {
+                tog_local[0] = false;
+                binding.btLocal1.setBackgroundResource(R.drawable.button_round_light_gray);
             } else {
-                binding.btLocal2.setBackgroundResource(R.drawable.button_round_light_gray);
-                binding.tvSelLocal.setText(R.string.tvSelLocal);
+                tog_local[2] = false;
+                binding.btLocal3.setBackgroundResource(R.drawable.button_round_light_gray);
             }
+        }
+
+        tog_local[1] = !tog_local[1];
+        if(tog_local[1]) {
+            binding.btLocal2.setBackgroundResource(R.drawable.button_round_light_gray_sel);
+            binding.tvSelLocal.setText(R.string.bt_local2);
+        } else {
+            binding.btLocal2.setBackgroundResource(R.drawable.button_round_light_gray);
+            binding.tvSelLocal.setText(R.string.tvSelLocal);
         }
     }
 
     public void onLocal3Click(View view) {
         if(tog_local[0] || tog_local[1]) {
-            Toast.makeText(getActivity(), "지역을 하나만 선택해주세요", Toast.LENGTH_SHORT).show();
-        } else {
-            tog_local[2] = !tog_local[2];
-            if(tog_local[2]) {
-                binding.btLocal3.setBackgroundResource(R.drawable.button_round_light_gray_sel);
-                binding.tvSelLocal.setText(R.string.bt_local3);
+            if (tog_local[0]) {
+                tog_local[0] = false;
+                binding.btLocal1.setBackgroundResource(R.drawable.button_round_light_gray);
             } else {
-                binding.btLocal3.setBackgroundResource(R.drawable.button_round_light_gray);
-                binding.tvSelLocal.setText(R.string.tvSelLocal);
+                tog_local[1] = false;
+                binding.btLocal2.setBackgroundResource(R.drawable.button_round_light_gray);
             }
+        }
+
+        tog_local[2] = !tog_local[2];
+        if(tog_local[2]) {
+            binding.btLocal3.setBackgroundResource(R.drawable.button_round_light_gray_sel);
+            binding.tvSelLocal.setText(R.string.bt_local3);
+        } else {
+            binding.btLocal3.setBackgroundResource(R.drawable.button_round_light_gray);
+            binding.tvSelLocal.setText(R.string.tvSelLocal);
         }
 
     }
