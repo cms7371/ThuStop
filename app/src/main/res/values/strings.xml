@@ -53,10 +53,14 @@
     <string name="bt_done">완료</string>
     <!--fragment agree terms-->
     <string name="tv_agree">이용 약관에 동의해주세요</string>
-    <string name="tv_agree_content">서비스 이용약관, 위치기반 서비스 이용약관,\n개인정보 취급방침</string>
+    <string name="cb_agree_all">본인인증 이용 동의</string>
+    <string name="cb_agree1">휴대폰본인확인이용약관(필수)</string>
+    <string name="cb_agree2">통신사본인확인이용약관(필수)</string>
+    <string name="cb_agree3">고유식별정보처리동의(필수)</string>
+    <string name="cb_agree4">개인정보수집이용/취급위탁동의(필수)</string>
+    <string name="cb_agree5">개인정보제3자제공동의(필수)</string>
+    <string name="cb_agree6">마켓팅동의(선택)</string>
     <string name="bt_agree">동의</string>
-
-
 
 
     <string name="hello_blank_fragment">Hello blank fragment</string>

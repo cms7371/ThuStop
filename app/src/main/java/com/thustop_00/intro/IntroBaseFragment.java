@@ -15,6 +15,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.thustop_00.FragmentBase;
+import com.thustop_00.IdVerificationFragment;
 import com.thustop_00.MainFragment;
 import com.thustop_00.R;
 import com.thustop_00.databinding.FragmentIntroBaseBinding;
@@ -73,7 +74,7 @@ public class IntroBaseFragment extends FragmentBase {
         _listener.setFragment(MainFragment.newInstance());
     }
     public void onLaterClick(View view) {
-        _listener.setFragment(MainFragment.newInstance());
+        _listener.setFragment(IdVerificationFragment.newInstance());
     }
     /*This method returns new instance of this fragment*/
     public static IntroBaseFragment newInstance() {
