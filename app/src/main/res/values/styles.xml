@@ -7,4 +7,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="EtStyle">
+        <item name="android:paddingTop">17dp</item>
+        <item name="android:paddingBottom">17dp</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>

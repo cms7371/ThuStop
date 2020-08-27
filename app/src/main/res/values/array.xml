@@ -5,5 +5,12 @@
         <item>외국인</item>
     </string-array>
 
+    <string-array name="agency">
+        <item>kt</item>
+        <item>skt</item>
+        <item>U+</item>
+        <item>통신사</item>
+    </string-array>
+
 
 </resources>

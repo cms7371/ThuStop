@@ -34,19 +34,11 @@
     <string name="bt_kakao_login">카카오톡으로 시작하기</string>
     <string name="bt_find_password">비밀번호가 기억나지 않으시나요?</string>
     <!--fragmnet register-->
-    <string name="tv_name">이름</string>
-    <string name="etv_name">이름을 입력해주세요</string>
-    <string name="tv_id_num">주민등록 번호 앞 7자리</string>
-    <string name="etv_id_num">주민등록를 입력해주세요</string>
     <string name="tv_pass">비밀번호</string>
-    <string name="etv_password">8자리 이상 비밀번호를 입력해주세요</string>
-    <string name="tv_pass_check">비밀번호 확인</string>
-    <string name="etv_pass_check">비밀번호를 확인해 주세요</string>
-    <string name="tv_phone_num">휴대폰 번호</string>
-    <string name="etv_phone_num">휴대폰 번호(\'-\'제외한 숫자만 입력해주세요)</string>
-    <string name="bt_send_message">확인번호 전송</string>
-    <string name="tv_check_num">확인번호 입력</string>
-    <string name="bt_check_ok">확인</string>
+    <string name="et_pass">8자리 이상 비밀번호를 입력해주세요</string>
+    <string name="tv_check">비밀번호 확인</string>
+    <string name="et_check">비밀번호를 확인해 주세요</string>
+    <string name="bt_confirm">완료</string>
     <!--fragment register complete-->
     <string name="tv_done1">회원가입이 완료되었습니다</string>
     <string name="tv_done2">노선 신청을 이어서 진행하겠습니다</string>
@@ -62,6 +54,10 @@
     <string name="cb_agree6">마켓팅동의(선택)</string>
     <string name="bt_agree">동의</string>
 
+    <!--Find Password Fragment-->
+    <string name="et_name_find">이름을 입력해주세요</string>
+    <string name="et_phone_find">휴대폰 번호를 입력해주세요</string>
+    <string name="bt_IssuePass_find">임시비밀번호 발급</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

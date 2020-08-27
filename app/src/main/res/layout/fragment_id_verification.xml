@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="IDVerfrag"
+            type="com.thustop_00.IdVerificationFragment" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/background_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:onClick="@{IDVerfrag::onBackgroundClick}">
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline1"
             android:layout_width="wrap_content"
@@ -12,32 +21,33 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="?attr/actionBarSize" />
 
+
+
         <Spinner
             android:id="@+id/sp_nation"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/button_round_light_gray"
             android:dropDownWidth="125dp"
-            app:layout_constraintTop_toTopOf="@id/tv_nation"
-            app:layout_constraintStart_toStartOf="@id/tv_nation"
-            app:layout_constraintEnd_toEndOf="@id/tv_nation"
+            android:overlapAnchor="false"
             app:layout_constraintBottom_toBottomOf="@id/tv_nation"
-            />
+            app:layout_constraintEnd_toEndOf="@id/tv_nation"
+            app:layout_constraintStart_toStartOf="@id/tv_nation"
+            app:layout_constraintTop_toTopOf="@id/tv_nation" />
 
         <com.thustop_00.widgets.NotoTextView
             android:id="@+id/tv_nation"
             android:layout_width="125dp"
             android:layout_height="0dp"
             android:layout_marginStart="20dp"
-            android:text="내국인"
-            android:textSize="14sp"
             android:background="@drawable/button_round_light_gray"
-            app:layout_constraintTop_toTopOf="@id/et_name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/et_name"
-            app:layout_constraintBottom_toBottomOf="@id/et_name"
-            android:paddingStart="20dp"
             android:gravity="center_vertical"
+            android:paddingStart="20dp"
+            android:textSize="14sp"
+            android:text="내국인"
+            app:layout_constraintBottom_toBottomOf="@id/et_name"
+            app:layout_constraintEnd_toStartOf="@id/et_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/et_name"
 
             />
 
@@ -49,11 +59,9 @@
             android:layout_marginEnd="20dp"
             android:background="@drawable/button_round_light_gray"
             android:hint="이름"
-
-            android:paddingStart="30dp"
-            android:paddingTop="15dp"
-            android:paddingEnd="30dp"
-            android:paddingBottom="15dp"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            style="@style/EtStyle"
             android:textColorHint="#979797"
             android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@id/layout_idnum"
@@ -67,142 +75,173 @@
             android:id="@+id/layout_idnum"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_round_light_gray"
             android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@id/et_name"
+            android:background="@drawable/button_round_light_gray"
             app:layout_constraintBottom_toTopOf="@id/layout_phonenum"
+            app:layout_constraintEnd_toEndOf="@id/et_name"
             app:layout_constraintStart_toStartOf="@id/tv_nation"
-            app:layout_constraintEnd_toEndOf="@id/et_name">
+            app:layout_constraintTop_toBottomOf="@id/et_name">
 
             <com.thustop_00.widgets.NotoTextView
                 android:id="@+id/tv_idnum"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:paddingEnd="25dp"
                 android:background="@drawable/button_round_light_gray"
-                android:text="●●●●●●"
-                android:textSize="14sp"
                 android:letterSpacing="0.2"
+                android:paddingTop="15dp"
+                android:paddingEnd="25dp"
+                android:paddingBottom="15dp"
+                android:text="●●●●●●"
                 android:textColor="@color/colorTextGray"
-                app:layout_constraintTop_toTopOf="@id/layout_idnum"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@id/layout_idnum"
-                app:layout_constraintEnd_toEndOf="@id/layout_idnum"/>
+                app:layout_constraintEnd_toEndOf="@id/layout_idnum"
+                app:layout_constraintTop_toTopOf="@id/layout_idnum" />
 
             <View
                 android:id="@+id/hyphen"
                 android:layout_width="20dp"
                 android:layout_height="1dp"
                 android:background="@color/colorTextGray"
-                app:layout_constraintTop_toTopOf="@id/layout_idnum"
                 app:layout_constraintBottom_toBottomOf="@id/layout_idnum"
-                app:layout_constraintStart_toStartOf="@id/layout_idnum"
                 app:layout_constraintEnd_toEndOf="@id/layout_idnum"
-                />
+                app:layout_constraintStart_toStartOf="@id/layout_idnum"
+                app:layout_constraintTop_toTopOf="@id/layout_idnum" />
 
             <com.thustop_00.widgets.NotoEditText
                 android:id="@+id/et_idnum1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                android:hint="981018"
-                android:textSize="14sp"
+                android:hint="생년월일"
+                android:maxLength="6"
+                android:maxLines="1"
+                android:inputType="numberDecimal"
+                android:nextFocusRight="@id/et_idnum2"
                 android:letterSpacing="0.2"
-                android:paddingStart="25dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                app:layout_constraintStart_toStartOf="@id/layout_idnum"
+                style="@style/EtStyle"
+                app:layout_constraintBottom_toBottomOf="@id/layout_idnum"
                 app:layout_constraintEnd_toStartOf="@id/hyphen"
-                app:layout_constraintTop_toTopOf="@id/layout_idnum"
-                app:layout_constraintBottom_toBottomOf="@id/layout_idnum"/>
+                app:layout_constraintStart_toStartOf="@id/layout_idnum"
+                app:layout_constraintTop_toTopOf="@id/layout_idnum" />
 
             <com.thustop_00.widgets.NotoEditText
                 android:id="@+id/et_idnum2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                android:gravity="center"
-                android:hint="2"
-                android:textSize="14sp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:inputType="numberPassword"
+                android:inputType="numberDecimal"
+                style="@style/EtStyle"
+                android:layout_marginStart="10dp"
+                app:layout_constraintBottom_toBottomOf="@id/layout_idnum"
+                app:layout_constraintEnd_toEndOf="@id/tv_idnum"
                 app:layout_constraintStart_toEndOf="@id/hyphen"
-                app:layout_constraintEnd_toStartOf="@id/tv_idnum"
-                app:layout_constraintTop_toTopOf="@id/layout_idnum"
-                app:layout_constraintBottom_toBottomOf="@id/layout_idnum"/>
+                app:layout_constraintTop_toTopOf="@id/layout_idnum" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_phonenum"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_round_light_gray"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/layout_idnum"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@id/layout_idnum"
-        app:layout_constraintEnd_toStartOf="@id/bt_send"
-        >
-        <Spinner
-            android:id="@+id/sp_agency"
-            android:layout_width="90dp"
-            android:layout_height="0dp"
-            android:paddingStart="20dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:textSize="14sp"
-            android:textColor="@android:color/black"
-            app:layout_constraintStart_toStartOf="@id/layout_phonenum"
-            app:layout_constraintTop_toTopOf="@id/layout_phonenum"
-            app:layout_constraintBottom_toBottomOf="@id/layout_phonenum"
-            />
-        <com.thustop_00.widgets.NotoTextView
-            android:id="@+id/tv_agency"
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:paddingStart="20dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:text="통신사"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@id/layout_phonenum"
-            app:layout_constraintTop_toTopOf="@id/layout_phonenum"
-            app:layout_constraintBottom_toBottomOf="@id/layout_phonenum"/>
-
-        <com.thustop_00.widgets.NotoEditText
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_phonenum"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingStart="12dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:hint="휴대폰 번호"
-            android:textSize="14sp"
-            android:background="@android:color/transparent"
-            app:layout_constraintTop_toTopOf="@id/layout_phonenum"
-            app:layout_constraintBottom_toBottomOf="@id/layout_phonenum"
-            app:layout_constraintEnd_toEndOf="@id/layout_phonenum"
-            app:layout_constraintStart_toEndOf="@id/sp_agency"/>
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_round_light_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/bt_send"
+            app:layout_constraintStart_toStartOf="@id/layout_idnum"
+            app:layout_constraintTop_toBottomOf="@id/layout_idnum">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Spinner
+                android:id="@+id/sp_agency"
+                android:layout_width="90dp"
+                android:layout_height="0dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:dropDownWidth="90dp"
+                android:overlapAnchor="false"
+                app:layout_constraintBottom_toBottomOf="@id/layout_phonenum"
+                app:layout_constraintStart_toStartOf="@id/layout_phonenum"
+                app:layout_constraintTop_toTopOf="@id/layout_phonenum" />
 
-    <com.thustop_00.widgets.NotoButton
-        android:id="@+id/bt_send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_round_green"
-        android:layout_marginStart="15dp"
-        android:text="전송"
-        android:textSize="14dp"
-        android:textColor="@android:color/white"
-        app:layout_constraintTop_toTopOf="@id/layout_phonenum"
-        app:layout_constraintBottom_toBottomOf="@id/layout_phonenum"
-        app:layout_constraintStart_toEndOf="@id/layout_phonenum"
-        app:layout_constraintEnd_toEndOf="@id/layout_idnum"/>
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_agency"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:paddingTop="17dp"
+                android:paddingBottom="17dp"
+                android:text="통신사"
+                android:textSize="14sp"
+                android:background="@drawable/button_round_light_gray"
+                app:layout_constraintBottom_toBottomOf="@id/layout_phonenum"
+                app:layout_constraintStart_toStartOf="@id/layout_phonenum"
+                app:layout_constraintTop_toTopOf="@id/layout_phonenum" />
+
+            <com.thustop_00.widgets.NotoEditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:hint="휴대폰 번호"
+                android:paddingStart="12dp"
+                style="@style/EtStyle"
+                android:textSize="14sp"
+                android:inputType="numberDecimal"
+                android:maxLength="11"
+                android:maxLines="1"
+                app:layout_constraintBottom_toBottomOf="@id/layout_phonenum"
+                app:layout_constraintEnd_toEndOf="@id/layout_phonenum"
+                app:layout_constraintStart_toEndOf="@id/sp_agency"
+                app:layout_constraintTop_toTopOf="@id/layout_phonenum" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.thustop_00.widgets.NotoButton
+            android:id="@+id/bt_send"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/button_round_green"
+            android:text="전송"
+            android:textColor="@android:color/white"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="@id/layout_phonenum"
+            app:layout_constraintEnd_toEndOf="@id/layout_idnum"
+            app:layout_constraintStart_toEndOf="@id/layout_phonenum"
+            app:layout_constraintTop_toTopOf="@id/layout_phonenum"
+            android:onClick="@{IDVerfrag::onSendClick}"/>
+
+        <com.thustop_00.widgets.NotoEditText
+            android:id="@+id/et_code"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_round_outlineb6"
+            style="@style/EtStyle"
+            android:inputType="numberDecimal"
+            android:maxLength="11"
+            android:maxLines="1"
+            app:layout_constraintEnd_toEndOf="@id/bt_send"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@id/layout_phonenum"
+            app:layout_constraintTop_toBottomOf="@id/bt_send" />
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:text="03:00"
+            android:letterSpacing="0.15"
+            android:textSize="14sp"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintTop_toTopOf="@id/et_code"
+            app:layout_constraintEnd_toEndOf="@id/et_code"
+            app:layout_constraintBottom_toBottomOf="@id/et_code"/>
+
+        <com.thustop_00.widgets.NotoButton
+            android:id="@+id/bt_done"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/button_round_c4"
@@ -213,10 +252,12 @@
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/bt_send"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@id/layout_phonenum"
             app:layout_constraintTop_toTopOf="@id/guideline1"
-            app:layout_constraintVertical_bias="0.65"
-            app:notoTextStyle="medium"/>
+            app:layout_constraintVertical_bias="0.915"
+            app:notoTextStyle="medium"
+            android:onClick="@{IDVerfrag::onDoneClick}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

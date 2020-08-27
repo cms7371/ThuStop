@@ -35,24 +35,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RegisterFragment extends FragmentBase {
     private FragmentRegisterBinding binding;
     private Context context;
-    @OnClick(R.id.bt_confirm)
-    void reg() {
-        UserData user = new UserData();
-        user.username = binding.etName.getText().toString();
-        user.email = binding.etPass.getText().toString();
-        user.password1=binding.etIdnum.getText().toString();
-        user.password2=binding.etCheckPass.getText().toString();
-        Log.d("id", user.username);
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                RegisterRequest(user);
-            }
-        };
-        Thread mythread = new Thread(runnable);
-        mythread.start();
-        Log.d("test", "끝");
-    }
+
 
 
     public void RegisterRequest(UserData user) {
