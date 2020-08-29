@@ -2,7 +2,7 @@ package com.thustop_00;
 
 public class Constant {
     public final static String SERVER_URL = BuildConfig.SERVER;
-
+    public final static String APP_KEY ="d052c3328162c0f6638fc7ac4839196f";
     public final static String FRAGMENT = "fragment";
     public static final String FID = "fid";
     public static final String STOP = "stop";

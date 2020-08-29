@@ -1,14 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".LocationMapSearchFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="match_parent">
+        <net.daum.mf.map.api.MapView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:background="@color/colorPrimary"
+            android:layout_marginBottom="180dp"
+            />
 
-</FrameLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_place_start"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/center"
+
+            />
+
+        <View
+            android:id="@+id/center"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:background="#E42F2F"
+            app:layout_constraintBottom_toBottomOf="@id/map"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="invisible"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="@color/colorWhite"
+            android:elevation="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_white"
+            android:elevation="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
+
+            <ImageView
+                android:id="@+id/iv_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="20dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:src="@drawable/icon_place_start"
+                app:layout_constraintStart_toStartOf="@id/layout_location"
+                app:layout_constraintTop_toTopOf="@id/layout_location" />
+
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_start"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="45dp"
+                android:text="출발지"
+                android:textColor="#535353"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_start"
+                app:layout_constraintEnd_toEndOf="@id/layout_location"
+                app:layout_constraintStart_toEndOf="@id/iv_start"
+                app:layout_constraintTop_toTopOf="@id/iv_start" />
+
+            <View
+                android:id="@+id/line1"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="#15A474"
+                app:layout_constraintEnd_toEndOf="@id/tv_start"
+                app:layout_constraintStart_toStartOf="@id/iv_start"
+                app:layout_constraintTop_toBottomOf="@id/iv_start" />
+
+            <ImageView
+                android:id="@+id/iv_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:src="@drawable/icon_place_end"
+                app:layout_constraintEnd_toStartOf="@id/tv_end"
+                app:layout_constraintStart_toStartOf="@id/iv_start"
+                app:layout_constraintTop_toBottomOf="@id/line1" />
+
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_end"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+
+                android:text="도착지"
+                android:textColor="#535353"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_end"
+                app:layout_constraintEnd_toEndOf="@id/tv_start"
+                app:layout_constraintStart_toEndOf="@id/iv_end"
+                app:layout_constraintTop_toTopOf="@id/iv_end" />
+
+            <View
+                android:id="@+id/line2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="#F0655C"
+                app:layout_constraintEnd_toEndOf="@id/tv_end"
+                app:layout_constraintStart_toStartOf="@id/iv_end"
+                app:layout_constraintTop_toBottomOf="@id/iv_end" />
+
+            <com.thustop_00.widgets.NotoButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/button_round_green"
+                android:paddingTop="17dp"
+                android:paddingBottom="17dp"
+                android:text="확인"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/layout_location"
+                app:layout_constraintEnd_toEndOf="@id/layout_location"
+                app:layout_constraintStart_toStartOf="@id/layout_location"
+                app:layout_constraintTop_toBottomOf="@id/line2" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

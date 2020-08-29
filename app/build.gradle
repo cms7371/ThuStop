@@ -12,7 +12,7 @@ android {
     defaultConfig {
         applicationId "com.thustop_00"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -56,6 +56,12 @@ dependencies {
 
     /* Implementation for kakao login*/
     implementation 'com.kakao.sdk:usermgmt:1.27.0'
+
+    /* Implemantation for kakao map library*/
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation fileTree(include:['*.jar'],dir:'libs')
+    implementation files('libs/libDaumMapAndroid.jar')
+
     /*butter Knife Library*/
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'

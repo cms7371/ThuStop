@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -81,8 +82,8 @@ public class MainFragment extends FragmentBase {
         _listener.showActionBar(true);
 
         RecyclerView mainRecycler = binding.rvRoutes;
-        RouteAdapter mainAdapter = new RouteAdapter(null);
-        mainRecycler.setAdapter(mainAdapter);
+        //RouteAdapter mainAdapter = new RouteAdapter(null);
+        //mainRecycler.setAdapter(mainAdapter);
         // Inflate the layout for this fragment
         return binding.getRoot();
     }
@@ -334,6 +335,8 @@ public class MainFragment extends FragmentBase {
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
+
+
 
 
 }
