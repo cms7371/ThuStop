@@ -27,8 +27,7 @@
                 android:textColor="#423f3f"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:text="@string/tv_intro_page3"
-                android:layout_alignLeft="@+id/iv_intro_page" />
+                android:text="@string/tv_intro_page3" />
 
             <ImageView
                 android:id="@+id/iv_intro_page"

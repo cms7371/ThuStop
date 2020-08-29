@@ -30,7 +30,6 @@
             android:layout_height="17dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
             android:background="#00FFFFFF"
             android:text="@string/bt_intro_later"
             android:textColor="#6d7278"

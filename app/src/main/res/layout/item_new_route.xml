@@ -5,13 +5,13 @@
     android:layout_height="136dp">
 
     <Button
-        android:id="@+id/bt_new_route1"
+        android:id="@+id/bt_new_route"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="match_parent"
         android:layout_height="104dp"
-        android:layout_marginLeft="27dp"
+        android:layout_marginStart="18dp"
         android:layout_marginTop="22dp"
-        android:layout_marginRight="27dp"
+        android:layout_marginEnd="18dp"
         android:background="@drawable/outline_gray"
         android:paddingTop="55dp"
         android:text="노선 생성하기"
@@ -23,14 +23,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/iv_route_plus1"
+        android:id="@+id/iv_route_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="10dp"
         android:paddingTop="26dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/bt_new_route1"
+        app:layout_constraintTop_toTopOf="@id/bt_new_route"
         app:srcCompat="@drawable/img_route_plus" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

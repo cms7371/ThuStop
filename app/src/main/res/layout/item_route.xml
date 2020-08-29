@@ -19,38 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/iv_main_departure"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_main_bus"
-            app:srcCompat="@drawable/icon_departure" />
-
-        <ImageView
-            android:id="@+id/iv_main_destination"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_main_departure"
-            app:srcCompat="@drawable/icon_destination" />
-
-        <TextView
-            android:id="@+id/tv_main_code"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_marginLeft="8dp"
-            android:text="A15"
-            android:textColor="#171d33"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@id/iv_main_bus"
-            app:layout_constraintStart_toEndOf="@id/iv_main_bus" />
-
-        <ImageView
-            android:id="@+id/iv_main_bus"
+            android:id="@+id/iv_mrv_bus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -58,6 +27,163 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/icon_bus_green" />
+
+        <TextView
+            android:id="@+id/tv_mrv_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/sarabun_bold"
+            android:text="A15"
+            android:textColor="#171d33"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_mrv_bus"
+            app:layout_constraintStart_toEndOf="@id/iv_mrv_bus"
+            app:layout_constraintTop_toTopOf="@id/iv_mrv_bus" />
+
+        <ImageView
+            android:id="@+id/iv_mrv_departure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_mrv_bus"
+            app:srcCompat="@drawable/icon_departure" />
+
+        <TextView
+            android:id="@+id/tv_mrv_stime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sarabun_regular"
+            android:text="7:15"
+            android:textColor="#171d33"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_mrv_departure"
+            app:layout_constraintStart_toEndOf="@id/iv_mrv_departure"
+            app:layout_constraintTop_toTopOf="@id/iv_mrv_departure" />
+
+        <TextView
+            android:id="@+id/tv_mrv_departure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/sarabun_regular"
+            android:text="선릉역 1번 출구"
+            android:textColor="#757f8c"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_mrv_departure"
+            app:layout_constraintStart_toEndOf="@id/tv_mrv_stime"
+            app:layout_constraintTop_toTopOf="@+id/iv_mrv_departure" />
+
+        <ImageView
+            android:id="@+id/iv_mrv_destination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_mrv_departure"
+            app:srcCompat="@drawable/icon_destination" />
+
+        <TextView
+            android:id="@+id/tv_mrv_etime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sarabun_regular"
+            android:text="7:15"
+            android:textColor="#171d33"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_mrv_destination"
+            app:layout_constraintStart_toEndOf="@id/iv_mrv_destination"
+            app:layout_constraintTop_toTopOf="@id/iv_mrv_destination" />
+
+        <TextView
+            android:id="@+id/tv_mrv_destination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/sarabun_regular"
+            android:text="수원 성균관대학교"
+            android:textColor="#757f8c"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_mrv_destination"
+            app:layout_constraintStart_toEndOf="@id/tv_mrv_etime"
+            app:layout_constraintTop_toTopOf="@+id/iv_mrv_destination" />
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_mrv_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="14dp"
+            android:text="운행중"
+            android:textColor=" #535353"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_mrv_destination"
+            app:notoTextStyle="regular"
+            tools:ignore="SmallSp" />
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_mrv_nump"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10/16"
+            android:textColor="#b4b4b4"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toTopOf="@id/pb_mrv_progress"
+            app:layout_constraintRight_toRightOf="@id/pb_mrv_progress"
+            app:notoTextStyle="medium" />
+
+        <ProgressBar
+            android:id="@+id/pb_mrv_progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"
+            android:max="16"
+            android:progress="10"
+            android:progressTint="@color/colorPrimary"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_mrv_state" />
+
+        <ImageView
+            android:id="@+id/iv_mrv_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pb_mrv_progress"
+            app:srcCompat="@drawable/icon_calendar" />
+
+        <TextView
+            android:id="@+id/tv_mrv_days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/sarabun_semibold"
+            android:text="월요일-금요일"
+            android:textColor=" #757f8c"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_mrv_calendar"
+            app:layout_constraintStart_toEndOf="@id/iv_mrv_calendar"
+            app:layout_constraintTop_toTopOf="@id/iv_mrv_calendar" />
+
+        <TextView
+            android:id="@+id/tv_mrv_running"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:fontFamily="@font/sarabun_regular"
+            android:text="운행"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_mrv_days"
+            app:layout_constraintStart_toEndOf="@id/tv_mrv_days"
+            app:layout_constraintTop_toTopOf="@id/tv_mrv_days" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

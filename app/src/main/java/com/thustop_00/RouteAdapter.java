@@ -1,8 +1,10 @@
 package com.thustop_00;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,7 +20,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private static final int VIEW_TYPE_TITLE = 1;
     private static final int VIEW_TYPE_ROUTE= 2;
 
-    RouteAdapter(List<Route> in) {
+    RouteAdapter(List<Route> in, Context ct) {
         this.data = in;
     }
 
@@ -64,16 +66,26 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     static class ButtonViewHolder extends RecyclerView.ViewHolder {
-        protected TextView title;
+        protected Button button;
+        protected OnFragmentInteractionListener _listener;
 
         public ButtonViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.title = (TextView) itemView.findViewById(R.id.tv_route_title);
+            this.button = (Button) itemView.findViewById(R.id.bt_new_route);
+            _listener = (OnFragmentInteractionListener) itemView.getContext();
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //_listener.setFragment();
+                }
+            });
+
         }
     }
 
     static class TitleViewHolder extends RecyclerView.ViewHolder {
         protected TextView title;
+
 
         public TitleViewHolder(@NonNull View itemView) {
             super(itemView);
