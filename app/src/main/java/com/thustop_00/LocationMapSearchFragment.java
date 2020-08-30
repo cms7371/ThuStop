@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.thustop_00.databinding.FragmentLocationMapSearchBinding;
 import com.thustop_00.model.Addr;
@@ -34,6 +35,8 @@ public class LocationMapSearchFragment extends FragmentBase implements MapView.M
     private Addr addr = new Addr();
     private GpsTracker gpsTracker;
     private MapReverseGeoCoder mapReverseGeoCoder;
+
+    private boolean bstart;
     double latitude;    //위도
     double longitude;   //경도
     String address;     //주소
@@ -65,8 +68,10 @@ public class LocationMapSearchFragment extends FragmentBase implements MapView.M
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentLocationMapSearchBinding.inflate(inflater);
+        binding.setMapSearchfrag(this);
         View v = binding.getRoot();
         _listener.showActionBar(false);
+        bstart = true;
 
 
         binding.map.setMapViewEventListener(this);
@@ -79,14 +84,6 @@ public class LocationMapSearchFragment extends FragmentBase implements MapView.M
         marker.setItemName("출발지");
         marker.setTag(1);
 
-
-        marker.setMapPoint(MapPoint.mapPointWithGeoCoord(latitude,longitude));
-        marker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
-        marker.setCustomImageResourceId(R.drawable.icon_place_start);
-        marker.setCustomImageAutoscale(false);
-        marker.setCustomImageAnchor(0.5f,1.0f);
-        binding.map.addPOIItem(marker);
-
         sel_point = binding.map.getMapCenterPoint();
 
 
@@ -96,6 +93,26 @@ public class LocationMapSearchFragment extends FragmentBase implements MapView.M
 
 
         return binding.getRoot();
+    }
+
+    public void onStartClick(View view) {
+        if(bstart){
+
+        } else {
+            binding.marker.setImageResource(R.drawable.icon_place_start);
+            bstart = true;
+
+        }
+    }
+
+    public void onEndClick(View view) {
+        if(!bstart){
+            _listener.setFragment(LocationSearchFragment.newInstance(addr.address));
+        } else {
+            bstart = false;
+            binding.marker.setImageResource(R.drawable.icon_place_end);
+
+        }
     }
 
     public void currentPosition() {

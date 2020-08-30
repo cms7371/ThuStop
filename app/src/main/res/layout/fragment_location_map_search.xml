@@ -2,6 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="mapSearchfrag"
+            type="com.thustop_00.LocationMapSearchFragment" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent">
@@ -14,6 +19,7 @@
             />
 
         <ImageView
+            android:id="@+id/marker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/icon_place_start"
@@ -70,16 +76,18 @@
             <com.thustop_00.widgets.NotoTextView
                 android:id="@+id/tv_start"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginEnd="45dp"
                 android:text="출발지"
                 android:textColor="#535353"
                 android:textSize="14sp"
+                android:gravity="bottom"
                 app:layout_constraintBottom_toBottomOf="@id/iv_start"
                 app:layout_constraintEnd_toEndOf="@id/layout_location"
                 app:layout_constraintStart_toEndOf="@id/iv_start"
-                app:layout_constraintTop_toTopOf="@id/iv_start" />
+                app:layout_constraintTop_toTopOf="@id/iv_start"
+                android:onClick="@{mapSearchfrag::onStartClick}"/>
 
             <View
                 android:id="@+id/line1"
@@ -106,16 +114,18 @@
             <com.thustop_00.widgets.NotoTextView
                 android:id="@+id/tv_end"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-
+                android:layout_height="0dp"
+                android:layout_marginStart="10dp"
+                android:gravity="bottom"
                 android:text="도착지"
                 android:textColor="#535353"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@id/iv_end"
                 app:layout_constraintEnd_toEndOf="@id/tv_start"
                 app:layout_constraintStart_toEndOf="@id/iv_end"
-                app:layout_constraintTop_toTopOf="@id/iv_end" />
+                app:layout_constraintTop_toTopOf="@id/iv_end"
+                android:clickable="true"
+                android:onClick="@{mapSearchfrag::onEndClick}"/>
 
             <View
                 android:id="@+id/line2"

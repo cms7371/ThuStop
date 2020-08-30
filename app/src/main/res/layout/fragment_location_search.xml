@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:background="@color/colorWhite">
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="11dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="?attr/actionBarSize" />
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            style="@style/EtStyle"
+            android:paddingStart="55dp"
+            android:background="@drawable/round_gray_e7"
+            android:text="경기도 하남시 미사강변지구"
+            app:layout_constraintBottom_toTopOf="@id/et_end"
+            app:layout_constraintTop_toTopOf="@id/guideline1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_place_start"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="@id/tv_start"
+            app:layout_constraintTop_toTopOf="@id/tv_start"
+            app:layout_constraintBottom_toBottomOf="@id/tv_start"/>
+
+        <com.thustop_00.widgets.NotoEditText
+            android:id="@+id/et_end"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            style="@style/EtStyle"
+            android:paddingStart="55dp"
+            android:background="@drawable/outline_red"
+            app:layout_constraintTop_toBottomOf="@id/tv_start"
+            app:layout_constraintStart_toStartOf="@id/tv_start"
+            app:layout_constraintEnd_toEndOf="@id/tv_start"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_place_end"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="@id/et_end"
+            app:layout_constraintTop_toTopOf="@id/et_end"
+            app:layout_constraintBottom_toBottomOf="@id/et_end"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="14dp"
+            android:id="@+id/rv"
+            app:layout_constraintTop_toBottomOf="@id/et_end"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_location_search"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
