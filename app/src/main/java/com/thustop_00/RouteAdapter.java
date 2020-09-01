@@ -80,8 +80,8 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
-    //The 3 classes fo view holder link their views with local variables. Plus, refine the interface
-    //for listener
+    //The 3 classes fo view holder link their views with local variables.
+    //Plus, refine the interface for listener
     public class ButtonViewHolder extends RecyclerView.ViewHolder {
         public ButtonViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -54,7 +54,7 @@ public class LocationSearchFragment extends FragmentBase {
         _listener.setToolbar(true,true,false);
         _listener.setTitle("");
         _listener.showActionBar(true);
-
+        //TODO 구글 주소 자동 완성 추가
         binding.tvStart.setText(start);
         return binding.getRoot();
     }

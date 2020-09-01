@@ -2,18 +2,15 @@ package com.thustop_00;
 
 import android.Manifest;
 import android.content.Context;
-import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.thustop_00.databinding.FragmentLocationMapSearchBinding;
 import com.thustop_00.model.Addr;
@@ -36,7 +33,7 @@ public class LocationMapSearchFragment extends FragmentBase implements MapView.M
     private GpsTracker gpsTracker;
     private MapReverseGeoCoder mapReverseGeoCoder;
 
-    private boolean bstart;
+    private boolean isStart;
     double latitude;    //위도
     double longitude;   //경도
     String address;     //주소
@@ -71,7 +68,7 @@ public class LocationMapSearchFragment extends FragmentBase implements MapView.M
         binding.setMapSearchfrag(this);
         View v = binding.getRoot();
         _listener.showActionBar(false);
-        bstart = true;
+        isStart = true;
 
 
         binding.map.setMapViewEventListener(this);
@@ -96,20 +93,17 @@ public class LocationMapSearchFragment extends FragmentBase implements MapView.M
     }
 
     public void onStartClick(View view) {
-        if(bstart){
-
-        } else {
+        if (!isStart) {
             binding.marker.setImageResource(R.drawable.icon_place_start);
-            bstart = true;
-
+            isStart = true;
         }
     }
 
     public void onEndClick(View view) {
-        if(!bstart){
+        if(!isStart){
             _listener.setFragment(LocationSearchFragment.newInstance(addr.address));
         } else {
-            bstart = false;
+            isStart = false;
             binding.marker.setImageResource(R.drawable.icon_place_end);
 
         }
@@ -129,7 +123,12 @@ public class LocationMapSearchFragment extends FragmentBase implements MapView.M
             public void onReverseGeoCoderFoundAddress(MapReverseGeoCoder mapReverseGeoCoder, String addressString) {
                 // 주소를 찾은 경우.
                 addr.address = addressString;
-                binding.tvStart.setText(addressString);
+                if (isStart) {
+                    binding.tvStart.setText(addressString);
+                } else {
+                    binding.tvEnd.setText(addressString);
+                }
+
             }
 
             @Override
