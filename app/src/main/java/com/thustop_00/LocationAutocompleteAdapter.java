@@ -151,7 +151,6 @@ public class LocationAutocompleteAdapter extends RecyclerView.Adapter<LocationAu
     public void onBindViewHolder(@NonNull PredictionHolder mPredictionHolder, final int i) {
         mPredictionHolder.address.setText(mResultList.get(i).address);
         mPredictionHolder.area.setText(mResultList.get(i).area);
-        mPredictionHolder.mRow.setText(mResultList.get(i).placeId);
     }
 
     @Override
@@ -164,7 +163,7 @@ public class LocationAutocompleteAdapter extends RecyclerView.Adapter<LocationAu
     }
 
     public class PredictionHolder extends RecyclerView.ViewHolder{
-        private TextView address, area, mRow;
+        private TextView address, area;
 
         PredictionHolder(View itemView) {
             super(itemView);
