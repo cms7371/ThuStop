@@ -44,6 +44,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     /* Handler for delay of splash fragment. It should be removed after loading delay added*/
     Handler H = new Handler(Looper.getMainLooper());
 
+    //private onBackPressedListener BackListener;
+    //private long pressedTime = 0;
+    /*public interface onBackPressedListener {
+        public void onBack();
+    }*/
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +94,33 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         }
         return super.onOptionsItemSelected(item);
     }
+    /*back button listener*/
+    /*
+    public void setOnBackPressedListener(onBackPressedListener listener) {
+        BackListener = listener;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(BackListener != null) {
+            BackListener.onBack();
+        } else { // 두번 누르면 어플종료
+            if(pressedTime == 0) {
+                Toast.makeText(this,"한번 더 누르면 종료됩니다",Toast.LENGTH_SHORT);
+                pressedTime=System.currentTimeMillis();
+            } else {
+                int seconds = (int) (System.currentTimeMillis()-pressedTime);
+                if (seconds > 2000) {
+                    pressedTime = 0;
+                } else {
+                    super.onBackPressed();;
+                    finish();
+                    android.os.Process.killProcess((android.os.Process.myPid()));
+                }
+            }
+        }
+    }*/
+
     /* This method links */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

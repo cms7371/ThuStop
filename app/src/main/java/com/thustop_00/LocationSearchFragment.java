@@ -1,16 +1,17 @@
 package com.thustop_00;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -65,13 +66,14 @@ public class LocationSearchFragment extends FragmentBase implements LocationAuto
         _listener.setToolbar(true,true,false);
         _listener.setTitle("");
         _listener.showActionBar(true);
-        binding.tvStart.setText(start);
+        binding.etStart.setText(start);
         //TODO 구글 주소 자동 완성 추가
         //apiKey로 구글 클라이언트 시작
         if (!Places.isInitialized()) {
             Places.initialize(getContext(), apiKey);
         }
         placesClient = Places.createClient(getContext());
+        binding.etStart.addTextChangedListener(filterTextWatcher);
         binding.etEnd.addTextChangedListener(filterTextWatcher);
         autocompleteAdapter = new LocationAutocompleteAdapter(getContext(), this);
         binding.rvLocationPrediction.setAdapter(autocompleteAdapter);
@@ -105,6 +107,9 @@ public class LocationSearchFragment extends FragmentBase implements LocationAuto
         });*/
 
 
+        binding.etStart.setText(start);
+        filled(binding.etStart, R.drawable.outline_green,R.drawable.round_gray_e7);
+        filled(binding.etEnd, R.drawable.outline_red,R.drawable.round_gray_e7);
         return binding.getRoot();
     }
 
@@ -173,4 +178,18 @@ public class LocationSearchFragment extends FragmentBase implements LocationAuto
         }
 
     }*/
+
+    private void filled(TextView textaddress, int drawblank, int drawfill) {
+        String s = textaddress.getText().toString();
+        Log.d("!!!",s);
+        Log.d("!!!",s);
+        if(!textaddress.isFocused()) {
+            if (s.length() != 0) {
+                textaddress.setBackgroundResource(drawfill);
+
+            }
+        } else {
+            textaddress.setBackgroundResource(drawblank);
+        }
+    }
 }

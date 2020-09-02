@@ -19,7 +19,7 @@
         android:textSize="14sp"
         android:textColor="#898a8d"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/bt_choice"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <com.thustop_00.widgets.NotoTextView
@@ -42,5 +42,17 @@
         app:layout_constraintStart_toStartOf="@id/tv_pred_name"
         app:layout_constraintEnd_toEndOf="@id/tv_pred_name"
         app:layout_constraintTop_toBottomOf="@id/tv_pred_address"/>
+
+    <com.thustop_00.widgets.NotoButton
+        android:id="@+id/bt_choice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:text="선택"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_pred_address"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

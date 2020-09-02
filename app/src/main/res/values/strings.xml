@@ -59,6 +59,10 @@
     <string name="et_phone_find">휴대폰 번호를 입력해주세요</string>
     <string name="bt_IssuePass_find">임시비밀번호 발급</string>
 
+    <!--Done Register Fragment-->
+    <string name="tv_done_reg">회원가입을 완료했습니다</string>
+    <string name="bt_done_reg">완료</string>
+    <string name="tv_continue">노선 신청을 이어서 진행하겠습니다</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 

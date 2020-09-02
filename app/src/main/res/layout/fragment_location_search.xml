@@ -14,8 +14,8 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="?attr/actionBarSize" />
 
-        <com.thustop_00.widgets.NotoTextView
-            android:id="@+id/tv_start"
+        <com.thustop_00.widgets.NotoEditText
+            android:id="@+id/et_start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -23,8 +23,10 @@
             android:layout_marginEnd="30dp"
             style="@style/EtStyle"
             android:paddingStart="55dp"
-            android:background="@drawable/round_gray_e7"
-            android:text="경기도 하남시 미사강변지구"
+            android:background="@drawable/outline_green"
+            android:text=""
+            android:maxLines="1"
+            android:imeOptions="actionSearch"
             app:layout_constraintBottom_toTopOf="@id/et_end"
             app:layout_constraintTop_toTopOf="@id/guideline1"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,9 +37,9 @@
             android:layout_height="wrap_content"
             android:src="@drawable/icon_place_start"
             android:layout_marginStart="20dp"
-            app:layout_constraintStart_toStartOf="@id/tv_start"
-            app:layout_constraintTop_toTopOf="@id/tv_start"
-            app:layout_constraintBottom_toBottomOf="@id/tv_start"/>
+            app:layout_constraintStart_toStartOf="@id/et_start"
+            app:layout_constraintTop_toTopOf="@id/et_start"
+            app:layout_constraintBottom_toBottomOf="@id/et_start"/>
 
         <com.thustop_00.widgets.NotoEditText
             android:id="@+id/et_end"
@@ -45,11 +47,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             style="@style/EtStyle"
+            android:text=""
             android:paddingStart="55dp"
+            android:maxLines="1"
             android:background="@drawable/outline_red"
-            app:layout_constraintTop_toBottomOf="@id/tv_start"
-            app:layout_constraintStart_toStartOf="@id/tv_start"
-            app:layout_constraintEnd_toEndOf="@id/tv_start"/>
+            app:layout_constraintTop_toBottomOf="@id/et_start"
+            app:layout_constraintStart_toStartOf="@id/et_start"
+            app:layout_constraintEnd_toEndOf="@id/et_start"/>
 
         <ImageView
             android:layout_width="wrap_content"

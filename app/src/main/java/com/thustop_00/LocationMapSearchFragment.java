@@ -96,6 +96,8 @@ public class LocationMapSearchFragment extends FragmentBase implements MapView.M
         if (!isStart) {
             binding.marker.setImageResource(R.drawable.icon_place_start);
             isStart = true;
+        } else {
+            _listener.setFragment(LocationSearchFragment.newInstance(addr.address));
         }
     }
 

@@ -22,24 +22,34 @@
             android:id="@+id/marker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_place_start"
-
+            android:src="@drawable/icon_pin_start"
+            android:layout_marginBottom="3dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/center"
-
             />
-
+        <com.thustop_00.widgets.NotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="출발"
+            android:textColor="@color/colorWhite"
+            android:textSize="8sp"
+            android:letterSpacing="-0.12"
+            app:layout_constraintTop_toTopOf="@id/marker"
+            app:layout_constraintBottom_toBottomOf="@id/marker"
+            app:layout_constraintStart_toStartOf="@id/marker"
+            app:layout_constraintEnd_toEndOf="@id/marker"/>
         <View
             android:id="@+id/center"
-            android:layout_width="1dp"
-            android:layout_height="1dp"
-            android:background="#E42F2F"
+            android:layout_width="2dp"
+            android:layout_height="21dp"
+            android:background="@android:color/black"
+            android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toBottomOf="@id/map"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:visibility="invisible"/>
+            app:layout_constraintTop_toBottomOf="@id/center" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="25dp"

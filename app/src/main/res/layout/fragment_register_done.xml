@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="RegDonefrag"
+            type="com.thustop_00.RegisterDoneFragment" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="11dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="?attr/actionBarSize" />
+
+        <ImageView
+            android:id="@+id/iv_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_done_reg"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_done"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintVertical_bias="0.45"/>
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:text="회원가입이 완료되었습니다"
+            android:textSize="18sp"
+            android:textColor="#565b59"
+            android:letterSpacing="-0.05"
+            app:notoTextStyle="medium"
+            app:layout_constraintTop_toBottomOf="@id/iv_done"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_continue"/>
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_continue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_continue"
+            android:textSize="14sp"
+            android:textColor="#565b59"
+            android:letterSpacing="-0.05"
+            app:notoTextStyle="medium"
+            app:layout_constraintTop_toBottomOf="@id/tv_done"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+        <com.thustop_00.widgets.NotoButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:paddingTop="17dp"
+            android:paddingBottom="17dp"
+            android:background="@drawable/button_round_green"
+            android:text="완료"
+            android:textSize="16sp"
+            android:textColor="@color/colorWhite"
+            app:notoTextStyle="medium"
+            app:layout_constraintTop_toBottomOf="@id/guideline1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.9"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
