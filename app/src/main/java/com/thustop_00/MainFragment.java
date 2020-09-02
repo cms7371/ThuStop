@@ -33,7 +33,7 @@ import static android.content.Context.LOCATION_SERVICE;
  * Use the {@link MainFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends FragmentBase implements RouteAdapter.OnListItemSelectedInterface {
+public class MainFragment extends FragmentBase implements MainRecyclerAdapter.OnListItemSelectedInterface {
     FragmentMainBinding binding;
     boolean toggle;
     boolean[] tog_local = {false, false, false} ;
@@ -81,7 +81,7 @@ public class MainFragment extends FragmentBase implements RouteAdapter.OnListIte
         _listener.showActionBar(true);
 
         RecyclerView mainRecycler = binding.rvRoutes;
-        RouteAdapter mainAdapter = new RouteAdapter(null, this);
+        MainRecyclerAdapter mainAdapter = new MainRecyclerAdapter(null, this);
         mainRecycler.setAdapter(mainAdapter);
 
         // Inflate the layout for this fragment

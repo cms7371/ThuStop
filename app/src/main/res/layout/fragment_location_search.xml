@@ -60,15 +60,16 @@
             app:layout_constraintTop_toTopOf="@id/et_end"
             app:layout_constraintBottom_toBottomOf="@id/et_end"/>
 
+
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_location_prediction"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="14dp"
-            android:id="@+id/rv"
-            app:layout_constraintTop_toBottomOf="@id/et_end"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_location_search"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_end"
+            tools:listitem="@layout/item_location_search" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

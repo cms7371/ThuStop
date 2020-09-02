@@ -14,7 +14,7 @@ import java.util.List;
 
 //Adapter for recyclerview in main fragment. There are 3 kinds of items, button for new route,
 //title to display current location, route for bus operation information
-public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     //It stores routes data to be displayed.
     private List<Route> data;
     //Parameters represent type of item
@@ -28,7 +28,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private OnListItemSelectedInterface mListener;
 
     //Adapter receives list of Routes and listener from target fragment
-    RouteAdapter(List<Route> in, OnListItemSelectedInterface listener) {
+    MainRecyclerAdapter(List<Route> in, OnListItemSelectedInterface listener) {
         this.data = in;
         this.mListener = listener;
     }
