@@ -2,28 +2,28 @@ package com.thustop_00;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.model.AutocompletePrediction;
-import com.google.android.libraries.places.api.model.AutocompleteSessionToken;
 import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.api.model.TypeFilter;
-import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
+import com.google.android.libraries.places.api.net.FetchPlaceRequest;
+import com.google.android.libraries.places.api.net.FetchPlaceResponse;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.thustop_00.databinding.FragmentLocationSearchBinding;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static com.thustop_00.Constant.apiKey;
 
@@ -32,9 +32,10 @@ import static com.thustop_00.Constant.apiKey;
  * Use the {@link LocationSearchFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LocationSearchFragment extends FragmentBase implements LocationAutocompleteAdapter.ClickListener {
+public class LocationSearchFragment extends FragmentBase implements LocationAutocompleteAdapter.OnListItemSelectedInterface {
     private FragmentLocationSearchBinding binding;
     private LocationAutocompleteAdapter autocompleteAdapter;
+    private PlacesClient placesClient;
     private String start;
 
     public LocationSearchFragment() {
@@ -70,9 +71,9 @@ public class LocationSearchFragment extends FragmentBase implements LocationAuto
         if (!Places.isInitialized()) {
             Places.initialize(getContext(), apiKey);
         }
+        placesClient = Places.createClient(getContext());
         binding.etEnd.addTextChangedListener(filterTextWatcher);
-        autocompleteAdapter = new LocationAutocompleteAdapter(getContext());
-        autocompleteAdapter.setClickListener(this);
+        autocompleteAdapter = new LocationAutocompleteAdapter(getContext(), this);
         binding.rvLocationPrediction.setAdapter(autocompleteAdapter);
         autocompleteAdapter.notifyDataSetChanged();
 
@@ -130,8 +131,24 @@ public class LocationSearchFragment extends FragmentBase implements LocationAuto
     };
 
     @Override
-    public void click(Place place) {
-        Toast.makeText(getContext(), place.getAddress()+", "+place.getLatLng().latitude+place.getLatLng().longitude, Toast.LENGTH_SHORT).show();
+    public void onItemSelected(View v, int position) {
+        String placeId = String.valueOf(autocompleteAdapter.mResultList.get(position).placeId);
+
+        List<Place.Field> placeFields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS);
+        FetchPlaceRequest request = FetchPlaceRequest.builder(placeId, placeFields).build();
+        placesClient.fetchPlace(request).addOnSuccessListener(new OnSuccessListener<FetchPlaceResponse>() {
+            @Override
+            public void onSuccess(FetchPlaceResponse response) {
+                binding.etEnd.setText(response.getPlace().getName());
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                if (exception instanceof ApiException) {
+                    Toast.makeText(getContext(), exception.getMessage() + "", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     /*

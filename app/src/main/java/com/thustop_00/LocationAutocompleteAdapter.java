@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,28 +39,25 @@ import java.util.concurrent.TimeoutException;
 
 public class LocationAutocompleteAdapter extends RecyclerView.Adapter<LocationAutocompleteAdapter.PredictionHolder> implements Filterable {
     private static final String TAG = "PlacesAutoAdapter";
-    private ArrayList<PlaceAutocomplete> mResultList = new ArrayList<>();
+    public ArrayList<PlaceAutocomplete> mResultList = new ArrayList<>();
 
     private Context mContext;
     private CharacterStyle STYLE_BOLD;
     private CharacterStyle STYLE_NORMAL;
     private final PlacesClient placesClient;
-    private ClickListener clickListener;
+    private OnListItemSelectedInterface mListener;
+    public interface OnListItemSelectedInterface {
+        void onItemSelected(View v, int position);
+    }
 
-    public LocationAutocompleteAdapter(Context context) {
+    public LocationAutocompleteAdapter(Context context, OnListItemSelectedInterface listener) {
         mContext = context;
+        mListener = listener;
         STYLE_BOLD = new StyleSpan(Typeface.BOLD);
         STYLE_NORMAL = new StyleSpan(Typeface.NORMAL);
         placesClient = com.google.android.libraries.places.api.Places.createClient(context);
     }
 
-    public void setClickListener(ClickListener clickListener) {
-        this.clickListener = clickListener;
-    }
-
-    public interface ClickListener {
-        void click(Place place);
-    }
 
     /**
      * Returns the filter for the current set of autocomplete results.
@@ -155,6 +151,7 @@ public class LocationAutocompleteAdapter extends RecyclerView.Adapter<LocationAu
     public void onBindViewHolder(@NonNull PredictionHolder mPredictionHolder, final int i) {
         mPredictionHolder.address.setText(mResultList.get(i).address);
         mPredictionHolder.area.setText(mResultList.get(i).area);
+        mPredictionHolder.mRow.setText(mResultList.get(i).placeId);
     }
 
     @Override
@@ -166,42 +163,22 @@ public class LocationAutocompleteAdapter extends RecyclerView.Adapter<LocationAu
         return mResultList.get(position);
     }
 
-    public class PredictionHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class PredictionHolder extends RecyclerView.ViewHolder{
         private TextView address, area, mRow;
 
         PredictionHolder(View itemView) {
             super(itemView);
             area = itemView.findViewById(R.id.tv_pred_name);
             address = itemView.findViewById(R.id.tv_pred_address);
-            mRow = itemView.findViewById(R.id.tv_pred_ID);
-            itemView.setOnClickListener(this);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mListener.onItemSelected(view, getAdapterPosition());
+                }
+            });
         }
 
-        @Override
-        public void onClick(View v) {
-            PlaceAutocomplete item = mResultList.get(getAdapterPosition());
-            if (v.getId() == R.id.tv_pred_ID) {
 
-                String placeId = String.valueOf(item.placeId);
-
-                List<Place.Field> placeFields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS);
-                FetchPlaceRequest request = FetchPlaceRequest.builder(placeId, placeFields).build();
-                placesClient.fetchPlace(request).addOnSuccessListener(new OnSuccessListener<FetchPlaceResponse>() {
-                    @Override
-                    public void onSuccess(FetchPlaceResponse response) {
-                        Place place = response.getPlace();
-                        clickListener.click(place);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        if (exception instanceof ApiException) {
-                            Toast.makeText(mContext, exception.getMessage() + "", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }
-        }
     }
 
     /**
