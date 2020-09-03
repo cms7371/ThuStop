@@ -14,6 +14,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.thustop_00.Agree_TermsFragment;
 import com.thustop_00.FragmentBase;
 import com.thustop_00.IdVerificationFragment;
 import com.thustop_00.LocationMapSearchFragment;
@@ -75,7 +76,7 @@ public class IntroBaseFragment extends FragmentBase {
         _listener.setFragment(MainFragment.newInstance());
     }
     public void onLaterClick(View view) {
-        _listener.setFragment(LocationMapSearchFragment.newInstance());
+        _listener.setFragment(Agree_TermsFragment.newInstance());
     }
     /*This method returns new instance of this fragment*/
     public static IntroBaseFragment newInstance() {

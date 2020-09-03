@@ -2,16 +2,17 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="oval">
-            <solid android:color="@color/colorPrimary"/>
+            <solid android:color="@android:color/transparent"/>
+
             <size android:height="19dp"/>
             <size android:width="19dp"/>
         </shape>
     </item>
     <item
-        android:drawable="@drawable/icon_check_white"
+        android:gravity="center"
+        android:drawable="@drawable/icon_check_gray"
         android:width="11dp"
         android:height="9dp"
-        android:gravity="center">
+        >
     </item>
-
 </layer-list>

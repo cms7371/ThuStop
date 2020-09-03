@@ -59,6 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:button="@drawable/custom_checkbox_2"
             android:text="@string/cb_agree1"
             android:paddingStart="10dp"
             app:layout_constraintTop_toBottomOf="@id/cb_agree_all"
@@ -70,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:button="@android:color/transparent"
+            android:button="@drawable/custom_checkbox_2"
             android:text="@string/cb_agree2"
             android:paddingStart="10dp"
             app:layout_constraintTop_toBottomOf="@id/cb_agree1"
@@ -82,7 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:button="@android:color/transparent"
+            android:button="@drawable/custom_checkbox_2"
             android:text="@string/cb_agree3"
             android:paddingStart="10dp"
             app:layout_constraintTop_toBottomOf="@id/cb_agree2"
@@ -94,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:button="@android:color/transparent"
+            android:button="@drawable/custom_checkbox_2"
             android:text="@string/cb_agree4"
             android:paddingStart="10dp"
             app:layout_constraintTop_toBottomOf="@id/cb_agree3"
@@ -106,7 +107,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:button="@android:color/transparent"
+            android:button="@drawable/custom_checkbox_2"
             android:text="@string/cb_agree5"
             android:paddingStart="10dp"
             app:layout_constraintTop_toBottomOf="@id/cb_agree4"
@@ -118,7 +119,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:button="@android:color/transparent"
+            android:button="@drawable/custom_checkbox_2"
             android:text="@string/cb_agree6"
             android:paddingStart="10dp"
             app:layout_constraintTop_toBottomOf="@id/cb_agree5"
@@ -127,12 +128,8 @@
 
         <com.thustop_00.widgets.NotoButton
             android:id="@+id/bt_agree"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginEnd="14dp"
-            android:layout_marginRight="14dp"
             android:layout_marginBottom="50dp"
             android:background="@drawable/button_round_green"
             android:text="@string/bt_agree"
@@ -140,8 +137,8 @@
             android:textStyle="bold"
             app:notoTextStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="@id/iv_agree"
+            app:layout_constraintStart_toStartOf="@id/iv_agree" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

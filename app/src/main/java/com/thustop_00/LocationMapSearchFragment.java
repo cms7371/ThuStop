@@ -94,7 +94,8 @@ public class LocationMapSearchFragment extends FragmentBase implements MapView.M
 
     public void onStartClick(View view) {
         if (!isStart) {
-            binding.marker.setImageResource(R.drawable.icon_place_start);
+            binding.marker.setImageResource(R.drawable.icon_pin_start);
+            binding.tvMarker.setText(R.string.tv_mark_start);
             isStart = true;
         } else {
             _listener.setFragment(LocationSearchFragment.newInstance(addr.address));
@@ -106,7 +107,8 @@ public class LocationMapSearchFragment extends FragmentBase implements MapView.M
             _listener.setFragment(LocationSearchFragment.newInstance(addr.address));
         } else {
             isStart = false;
-            binding.marker.setImageResource(R.drawable.icon_place_end);
+            binding.marker.setImageResource(R.drawable.icon_pin_end);
+            binding.tvMarker.setText(R.string.tv_mark_end);
 
         }
     }

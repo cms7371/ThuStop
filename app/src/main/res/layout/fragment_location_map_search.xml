@@ -29,6 +29,7 @@
             app:layout_constraintBottom_toBottomOf="@id/center"
             />
         <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_marker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="출발"
