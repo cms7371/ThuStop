@@ -1,47 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:background="@android:color/white"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:foreground="@drawable/selectable_item_background">
 
 
     <com.thustop_00.widgets.NotoTextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
         android:id="@+id/tv_pred_name"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginTop="8dp"
-        android:paddingStart="5dp"
-        tools:text="선릉역 1번출구"
-        android:textSize="14sp"
-        android:textColor="#898a8d"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/bt_choice"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <com.thustop_00.widgets.NotoTextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/tv_pred_name"
-        app:layout_constraintEnd_toEndOf="@id/tv_pred_name"
-        app:layout_constraintTop_toBottomOf="@id/tv_pred_name"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
+        android:paddingStart="5dp"
+        android:textColor="#898a8d"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@id/bt_choice"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="선릉역 1번출구" />
+
+    <com.thustop_00.widgets.NotoTextView
+        android:id="@+id/tv_pred_address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
         android:paddingStart="5dp"
-        android:id="@+id/tv_pred_address"
-        android:textSize="14sp"
         android:textColor="#898a8d"
-        tools:text="경기도 성남시 분당구"/>
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/tv_pred_name"
+        app:layout_constraintStart_toStartOf="@id/tv_pred_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_pred_name"
+        tools:text="경기도 성남시 분당구" />
+
     <View
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
         android:background="#c4c4c4"
-        app:layout_constraintStart_toStartOf="@id/tv_pred_name"
         app:layout_constraintEnd_toEndOf="@id/tv_pred_name"
-        app:layout_constraintTop_toBottomOf="@id/tv_pred_address"/>
+        app:layout_constraintStart_toStartOf="@id/tv_pred_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_pred_address" />
 
     <com.thustop_00.widgets.NotoButton
         android:id="@+id/bt_choice"
@@ -49,10 +50,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
         android:text="선택"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_pred_address"/>
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@id/tv_pred_address"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

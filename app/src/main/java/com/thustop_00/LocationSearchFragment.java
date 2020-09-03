@@ -67,7 +67,6 @@ public class LocationSearchFragment extends FragmentBase implements LocationAuto
         _listener.setTitle("");
         _listener.showActionBar(true);
         binding.etStart.setText(start);
-        //TODO 구글 주소 자동 완성 추가
         //apiKey로 구글 클라이언트 시작
         if (!Places.isInitialized()) {
             Places.initialize(getContext(), apiKey);
