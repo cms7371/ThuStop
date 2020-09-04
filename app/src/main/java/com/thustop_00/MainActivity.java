@@ -1,11 +1,13 @@
 package com.thustop_00;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -44,11 +46,11 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     /* Handler for delay of splash fragment. It should be removed after loading delay added*/
     Handler H = new Handler(Looper.getMainLooper());
 
-    //private onBackPressedListener BackListener;
+    private onBackPressedListener BackListener;
     //private long pressedTime = 0;
-    /*public interface onBackPressedListener {
+    public interface onBackPressedListener {
         public void onBack();
-    }*/
+    }
 
 
     @Override
@@ -95,11 +97,20 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         return super.onOptionsItemSelected(item);
     }
     /*back button listener*/
-    /*
     public void setOnBackPressedListener(onBackPressedListener listener) {
         BackListener = listener;
     }
 
+    @Override
+    public void onBackPressed() {
+        if(BackListener != null) {
+            BackListener.onBack();
+            BackListener = null;
+        } else {
+            super.onBackPressed();
+        }
+    }
+    /*
     @Override
     public void onBackPressed() {
         if(BackListener != null) {
@@ -121,6 +132,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         }
     }*/
 
+
+
     /* This method links */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -129,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         return true;
     }
     /*method of OnFragmentInteractionLister*/
-    /* Change fragment of frame in activity_main.*/
+    /*쌓여있는 BackStack 모두 날리고 fragment 바꿀때*/
     @Override
     public void setFragment(FragmentBase fr) {
         try {
@@ -140,13 +153,22 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                     .commit();
         } catch (IllegalStateException ignore) { }
     }
-
+    /*BackStack 쌓으면서 fragment 바꿀 때*/
     @Override
     public void addFragment(FragmentBase fr) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frMain, fr)
+                .addToBackStack(null)
+                .commit();
     }
-
+    /*BackStack 쌓지 않고 fragment 바꿀 때(돌아올 필요가 없는 fragment 갈 때*/
     @Override
     public void addFragmentNotBackStack(FragmentBase fr) {
+        getSupportFragmentManager().popBackStack();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frMain, fr)
+                .addToBackStack(null)
+                .commit();
 
     }
 
@@ -214,6 +236,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             findViewById(R.id.iv_title).setVisibility(View.GONE);
             findViewById(R.id.tv_title).setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void hideKeyBoard() {
+        InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
 

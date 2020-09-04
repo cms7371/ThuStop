@@ -22,9 +22,11 @@ import com.google.android.libraries.places.api.net.FetchPlaceRequest;
 import com.google.android.libraries.places.api.net.FetchPlaceResponse;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.thustop_00.databinding.FragmentLocationSearchBinding;
+import com.thustop_00.model.Address;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import static com.thustop_00.Constant.apiKey;
 
@@ -33,21 +35,24 @@ import static com.thustop_00.Constant.apiKey;
  * Use the {@link LocationSearchFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LocationSearchFragment extends FragmentBase implements LocationAutocompleteAdapter.OnListItemSelectedInterface {
+public class LocationSearchFragment extends FragmentBase implements LocationAutocompleteAdapter.OnListItemSelectedInterface, MainActivity.onBackPressedListener{
     private FragmentLocationSearchBinding binding;
     private LocationAutocompleteAdapter autocompleteAdapter;
     private PlacesClient placesClient;
-    private String start;
+    private static final String TAG = "LocationSearchFragment";
+    private Address startLocation;
+    private Address endLocation;
 
     public LocationSearchFragment() {
         // Required empty public constructor
     }
 
 
-    public static LocationSearchFragment newInstance(String start) {
+    public static LocationSearchFragment newInstance(Address startPosition, Address endPosition) {
         LocationSearchFragment fragment = new LocationSearchFragment();
         Bundle args = new Bundle();
-        fragment.start=start;
+        fragment.startLocation = startPosition;
+        fragment.endLocation = endPosition;
         return fragment;
     }
 
@@ -62,69 +67,41 @@ public class LocationSearchFragment extends FragmentBase implements LocationAuto
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentLocationSearchBinding.inflate(inflater);
-        View v = binding.getRoot();
+
         _listener.setToolbar(true,true,false);
         _listener.setTitle("");
         _listener.showActionBar(true);
-        binding.etStart.setText(start);
+        _listener.setOnBackPressedListener(this);
+
         //apiKey로 구글 클라이언트 시작
         if (!Places.isInitialized()) {
-            Places.initialize(getContext(), apiKey);
+            Places.initialize(Objects.requireNonNull(getContext()), apiKey);
         }
-        placesClient = Places.createClient(getContext());
-        binding.etStart.addTextChangedListener(filterTextWatcher);
-        binding.etEnd.addTextChangedListener(filterTextWatcher);
+        placesClient = Places.createClient(Objects.requireNonNull(getContext()));
         autocompleteAdapter = new LocationAutocompleteAdapter(getContext(), this);
         binding.rvLocationPrediction.setAdapter(autocompleteAdapter);
         autocompleteAdapter.notifyDataSetChanged();
 
+        binding.etStart.setText(startLocation.address);
+        binding.etEnd.setText(endLocation.address);
+        binding.etStart.addTextChangedListener(filterTextWatcher);
+        binding.etEnd.addTextChangedListener(filterTextWatcher);
+        setInitialColor(binding.etStart, R.drawable.outline_green);
+        setInitialColor(binding.etEnd, R.drawable.outline_red);
 
-
-/*        // Create a new Places client instance.
-        PlacesClient placesClient = Places.createClient(getContext());
-        // Initialize the AutocompleteSupportFragment.
-        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
-                getChildFragmentManager().findFragmentById(R.id.autocomplete_fragment);
-
-        // Specify the types of place data to return.
-        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
-        // Set up a PlaceSelectionListener to handle the response.
-        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(@NotNull Place place) {
-                // TODO: Get info about the selected place.
-                Log.i("AutoCompleteListener", "Place: " + place.getName() + ", " + place.getId());
-                binding.etEnd.setText(place.getName());
-            }
-
-
-            @Override
-            public void onError(@NotNull Status status) {
-                // TODO: Handle the error.
-                Log.i("AutoCompleteListener", "An error occurred: " + status);
-            }
-        });*/
-
-
-        binding.etStart.setText(start);
-        filled(binding.etStart, R.drawable.outline_green,R.drawable.round_gray_e7);
-        filled(binding.etEnd, R.drawable.outline_red,R.drawable.round_gray_e7);
         return binding.getRoot();
     }
 
     private TextWatcher filterTextWatcher = new TextWatcher() {
         @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-        }
-
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
         @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-        }
-
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
         @Override
         public void afterTextChanged(Editable s) {
+            if (binding.etStart.isFocused()){ binding.etStart.setBackgroundResource(R.drawable.outline_green);}
+            else {binding.etEnd.setBackgroundResource(R.drawable.outline_red);}
+
             if (!s.toString().equals("")) {
                 autocompleteAdapter.getFilter().filter(s.toString());
                 if (binding.rvLocationPrediction.getVisibility() == View.GONE) {binding.rvLocationPrediction.setVisibility(View.VISIBLE);}
@@ -143,7 +120,22 @@ public class LocationSearchFragment extends FragmentBase implements LocationAuto
         placesClient.fetchPlace(request).addOnSuccessListener(new OnSuccessListener<FetchPlaceResponse>() {
             @Override
             public void onSuccess(FetchPlaceResponse response) {
-                binding.etEnd.setText(response.getPlace().getName());
+                if (binding.etStart.isFocused()) {
+                    transferAddress(response.getPlace(), startLocation);
+                    binding.etStart.setText(startLocation.address);
+                    binding.etStart.setBackgroundResource(R.drawable.round_gray_e7);
+                    binding.etDummy.requestFocus();
+                    _listener.hideKeyBoard();
+                } else if (binding.etEnd.isFocused()) {
+                    transferAddress(response.getPlace(), endLocation);
+                    binding.etEnd.setText(endLocation.address);
+                    binding.etEnd.setBackgroundResource(R.drawable.round_gray_e7);
+                    binding.etDummy.requestFocus();
+                    _listener.hideKeyBoard();
+                }
+                binding.rvLocationPrediction.setVisibility(View.GONE);
+
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -154,6 +146,7 @@ public class LocationSearchFragment extends FragmentBase implements LocationAuto
             }
         });
     }
+
 
     /*
     private void search() {
@@ -177,18 +170,29 @@ public class LocationSearchFragment extends FragmentBase implements LocationAuto
         }
 
     }*/
+    private void transferAddress(Place place, Address position) {
+        position.address = place.getAddress().replace("대한민국 ", "");
+        position.latitude = place.getLatLng().latitude;
+        position.longitude = place.getLatLng().longitude;
+    }
 
-    private void filled(TextView textaddress, int drawblank, int drawfill) {
-        String s = textaddress.getText().toString();
-        Log.d("!!!",s);
-        Log.d("!!!",s);
-        if(!textaddress.isFocused()) {
+    private void setInitialColor(TextView textView, int onBlank) {
+        String s = textView.getText().toString();
+        Log.d(TAG, s);
+        Log.d(TAG, s);
+        if(!textView.isFocused()) {
             if (s.length() != 0) {
-                textaddress.setBackgroundResource(drawfill);
+                textView.setBackgroundResource(R.drawable.round_gray_e7);
 
             }
         } else {
-            textaddress.setBackgroundResource(drawblank);
+            textView.setBackgroundResource(onBlank);
         }
+    }
+
+
+    @Override
+    public void onBack() {
+        _listener.addFragmentNotBackStack(LocationMapSearchFragment.newInstance(startLocation, endLocation));
     }
 }

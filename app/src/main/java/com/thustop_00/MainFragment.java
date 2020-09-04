@@ -92,7 +92,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     @Override
     public void onItemSelected(View v, int position) {
         if (position == 0) {
-            _listener.setFragment(new LocationMapSearchFragment());
+            _listener.addFragment(LocationMapSearchFragment.newInstance(null, null));
         }
     }
 
@@ -101,9 +101,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     public void onSelLocalClick(View view) {
         if(!toggle) {
             binding.vPause.setVisibility(View.VISIBLE);
-
             binding.layoutLocal.setVisibility(View.VISIBLE);
-
             toggle = true;
         } else {
             binding.vPause.setVisibility(View.GONE);

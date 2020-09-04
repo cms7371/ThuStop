@@ -4,16 +4,15 @@ import android.Manifest;
 import android.content.Context;
 import android.location.LocationManager;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
 import com.thustop_00.databinding.FragmentLocationMapSearchBinding;
-import com.thustop_00.model.Addr;
+import com.thustop_00.model.Address;
 
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
@@ -27,16 +26,12 @@ import net.daum.mf.map.api.MapView;
  */
 public class LocationMapSearchFragment extends FragmentBase implements MapView.MapViewEventListener {
     private FragmentLocationMapSearchBinding binding;
-    private MapView mapView;
-    private MapPoint sel_point;
-    private Addr addr = new Addr();
-    private GpsTracker gpsTracker;
-    private MapReverseGeoCoder mapReverseGeoCoder;
+    private MapPoint centerPoint;
+    private Address startLocation = new Address();
+    private Address endLocation = new Address();
+    private static final String TAG = "LocationMapSearchFrag";
 
     private boolean isStart;
-    double latitude;    //위도
-    double longitude;   //경도
-    String address;     //주소
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
@@ -48,10 +43,11 @@ public class LocationMapSearchFragment extends FragmentBase implements MapView.M
     }
 
 
-    public static LocationMapSearchFragment newInstance() {
+    public static LocationMapSearchFragment newInstance(Address startLocation, Address endLocation) {
         LocationMapSearchFragment fragment = new LocationMapSearchFragment();
         Bundle args = new Bundle();
-
+        fragment.startLocation = startLocation;
+        fragment.endLocation = endLocation;
         fragment.setArguments(args);
         return fragment;
     }
@@ -66,27 +62,30 @@ public class LocationMapSearchFragment extends FragmentBase implements MapView.M
                              Bundle savedInstanceState) {
         binding = FragmentLocationMapSearchBinding.inflate(inflater);
         binding.setMapSearchfrag(this);
-        View v = binding.getRoot();
         _listener.showActionBar(false);
         isStart = true;
-
 
         binding.map.setMapViewEventListener(this);
 
         LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-        currentPosition();
-        binding.map.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(latitude,longitude),true);
+        if (startLocation == null) {
+            startLocation = new Address();
+            endLocation = new Address();
+            getCurrentLocation(startLocation);
+            getCurrentLocation(endLocation);
+        } else {
+            if (startLocation.address != "") {binding.tvStart.setText(startLocation.address);}
+            if (endLocation.address != "") {binding.tvEnd.setText(endLocation.address);}
+        }
+
+
+        binding.map.setMapCenterPoint(
+                MapPoint.mapPointWithGeoCoord(startLocation.latitude, startLocation.longitude),
+                true);
 
         MapPOIItem marker = new MapPOIItem();
         marker.setItemName("출발지");
         marker.setTag(1);
-
-        sel_point = binding.map.getMapCenterPoint();
-
-
-        addr.x = sel_point.getMapPointGeoCoord().latitude;
-        addr.y = sel_point.getMapPointGeoCoord().longitude;
-
 
 
         return binding.getRoot();
@@ -96,52 +95,62 @@ public class LocationMapSearchFragment extends FragmentBase implements MapView.M
         if (!isStart) {
             binding.marker.setImageResource(R.drawable.icon_pin_start);
             binding.tvMarker.setText(R.string.tv_mark_start);
+            binding.map.setMapCenterPoint(
+                    MapPoint.mapPointWithGeoCoord(startLocation.latitude, startLocation.longitude),
+                    true);
             isStart = true;
         } else {
-            _listener.setFragment(LocationSearchFragment.newInstance(addr.address));
+            _listener.addFragmentNotBackStack(LocationSearchFragment.newInstance(startLocation, endLocation));
         }
     }
 
     public void onEndClick(View view) {
-        if(!isStart){
-            _listener.setFragment(LocationSearchFragment.newInstance(addr.address));
+        if (!isStart) {
+            _listener.addFragmentNotBackStack(LocationSearchFragment.newInstance(startLocation, endLocation));
         } else {
             isStart = false;
             binding.marker.setImageResource(R.drawable.icon_pin_end);
             binding.tvMarker.setText(R.string.tv_mark_end);
-
+            binding.map.setMapCenterPoint(
+                    MapPoint.mapPointWithGeoCoord(endLocation.latitude, endLocation.longitude),
+                    true);
         }
     }
 
-    public void currentPosition() {
-        gpsTracker = new GpsTracker(getActivity());
-        latitude = gpsTracker.getLatitude();
-        longitude = gpsTracker.getLongitude();
+    public void getCurrentLocation(Address address) {
+        GpsTracker gpsTracker = new GpsTracker(getActivity());
+        address.latitude = gpsTracker.getLatitude();
+        address.longitude = gpsTracker.getLongitude();
         //address = getCurrentAddress(latitude, longitude);
         //Toast.makeText(getActivity(), "현재위치 \n위도 " + latitude + "\n경도 " + longitude, Toast.LENGTH_LONG).show();
     }
 
     public void getAddr() {
-        MapReverseGeoCoder reverseGeoCoder = new MapReverseGeoCoder(Constant.APP_KEY, sel_point, new MapReverseGeoCoder.ReverseGeoCodingResultListener() {
+        MapReverseGeoCoder reverseGeoCoder = new MapReverseGeoCoder(Constant.APP_KEY, centerPoint, new MapReverseGeoCoder.ReverseGeoCodingResultListener() {
             @Override
             public void onReverseGeoCoderFoundAddress(MapReverseGeoCoder mapReverseGeoCoder, String addressString) {
                 // 주소를 찾은 경우.
-                addr.address = addressString;
+
                 if (isStart) {
                     binding.tvStart.setText(addressString);
+                    startLocation.address = addressString;
+                    startLocation.latitude = centerPoint.getMapPointGeoCoord().latitude;
+                    startLocation.longitude = centerPoint.getMapPointGeoCoord().longitude;
+                    Log.d(TAG, "출발장소 변경됨");
                 } else {
                     binding.tvEnd.setText(addressString);
+                    endLocation.address = addressString;
+                    endLocation.latitude = centerPoint.getMapPointGeoCoord().latitude;
+                    endLocation.longitude = centerPoint.getMapPointGeoCoord().longitude;
+                    Log.d(TAG, "도착 장소 변경됨");
                 }
-
             }
-
             @Override
             public void onReverseGeoCoderFailedToFindAddress(MapReverseGeoCoder mapReverseGeoCoder) {
                 binding.tvStart.setText("실패^^");// 호출에 실패한 경우.
-                Log.d("여기", "여기");
+                Log.d(TAG, "여기");
             }
         }, getActivity());
-
         reverseGeoCoder.startFindingAddress();
     }
 
@@ -183,7 +192,7 @@ public class LocationMapSearchFragment extends FragmentBase implements MapView.M
 
     @Override
     public void onMapViewDragEnded(MapView mapView, MapPoint mapPoint) {
-        sel_point = binding.map.getMapCenterPoint();
+        centerPoint = binding.map.getMapCenterPoint();
         getAddr();
     }
 
