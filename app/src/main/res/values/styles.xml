@@ -13,4 +13,13 @@
         <item name="android:paddingStart">20dp</item>
         <item name="android:textSize">14sp</item>
     </style>
+
+    <style name="SpinnerTimePickerDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <!-- android:timePickerStyle was not added until API 21 -->
+        <item name="android:timePickerStyle">@style/TimePickerStyle</item>
+    </style>
+
+    <style name="TimePickerStyle" parent="@android:style/Widget.Material.Light.TimePicker">
+        <item name="android:timePickerMode">spinner</item>
+    </style>
 </resources>

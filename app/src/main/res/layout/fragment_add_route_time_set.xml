@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="AddRouteTimefrag"
+            type="com.thustop_00.AddRouteTimeSetFragment" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="11dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="?attr/actionBarSize" />
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="텍스트뷰 입니다 예ㅖㅖ"
+            android:textSize="15sp"
+            android:textColor="@color/colorPrimary"
+            app:notoTextStyle="medium"
+            app:layout_constraintTop_toTopOf="@id/guideline1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/layout_start"/>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:singleLine="true"
+            android:background="@drawable/outline_green"
+            app:layout_constraintTop_toBottomOf="@id/tv_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_start"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                style="@style/EtStyle"
+                android:text="일이삼사ddddddddddddddddddddddd"
+                android:textSize="14sp"
+                android:textColor="#535353"
+                app:layout_constraintTop_toTopOf="@id/layout_start"
+                app:layout_constraintStart_toEndOf="@id/iv_start"
+                app:layout_constraintEnd_toEndOf="@id/layout_start"
+                app:layout_constraintBottom_toBottomOf="@id/layout_start"/>
+
+            <ImageView
+                android:id="@+id/iv_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/icon_place_start"
+                app:layout_constraintBottom_toBottomOf="@id/layout_start"
+                app:layout_constraintEnd_toStartOf="@+id/tv_start"
+                app:layout_constraintStart_toStartOf="@id/layout_start"
+                app:layout_constraintTop_toTopOf="@id/layout_start" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_end"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/outline_red"
+            app:layout_constraintTop_toBottomOf="@id/layout_start"
+            app:layout_constraintStart_toStartOf="@id/layout_start"
+            app:layout_constraintEnd_toEndOf="@id/layout_start">
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_end"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                style="@style/EtStyle"
+                android:text="일이삼사ddddddddddddddddddddddd"
+                android:textSize="14sp"
+                android:textColor="#535353"
+                app:layout_constraintTop_toTopOf="@id/layout_end"
+                app:layout_constraintStart_toEndOf="@id/iv_end"
+                app:layout_constraintEnd_toEndOf="@id/layout_end"
+                app:layout_constraintBottom_toBottomOf="@id/layout_end"/>
+
+            <ImageView
+                android:id="@+id/iv_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/icon_place_end"
+                app:layout_constraintBottom_toBottomOf="@id/layout_end"
+                app:layout_constraintEnd_toStartOf="@+id/tv_end"
+                app:layout_constraintStart_toStartOf="@id/layout_end"
+                app:layout_constraintTop_toTopOf="@id/layout_end" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="38dp"
+            android:background="@drawable/round_gray_e7"
+            app:layout_constraintTop_toBottomOf="@id/layout_end"
+            app:layout_constraintStart_toStartOf="@id/layout_end"
+            app:layout_constraintEnd_toEndOf="@id/layout_end">
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                style="@style/EtStyle"
+                android:text="희망 도착 시간"
+                android:textSize="14sp"
+                android:textColor="#f0655c"
+
+                android:onClick="@{AddRouteTimefrag::onTimeSetClick}"
+                app:notoTextStyle="medium"
+
+                app:layout_constraintTop_toTopOf="@id/layout_time"
+                app:layout_constraintStart_toStartOf="@id/layout_time"
+                app:layout_constraintEnd_toEndOf="@id/layout_time"
+                app:layout_constraintBottom_toBottomOf="@id/layout_time"/>
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
