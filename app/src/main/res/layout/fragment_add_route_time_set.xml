@@ -23,7 +23,7 @@
             android:id="@+id/tv_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="텍스트뷰 입니다 예ㅖㅖ"
+            android:text="@string/tv_1"
             android:textSize="15sp"
             android:textColor="@color/colorPrimary"
             app:notoTextStyle="medium"
@@ -115,6 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="38dp"
             android:background="@drawable/round_gray_e7"
+            android:onClick="@{AddRouteTimefrag::onTimeSetClick}"
             app:layout_constraintTop_toBottomOf="@id/layout_end"
             app:layout_constraintStart_toStartOf="@id/layout_end"
             app:layout_constraintEnd_toEndOf="@id/layout_end">
@@ -124,20 +125,28 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 style="@style/EtStyle"
-                android:text="희망 도착 시간"
+                android:text="@string/tv_time"
                 android:textSize="14sp"
                 android:textColor="#f0655c"
-
-                android:onClick="@{AddRouteTimefrag::onTimeSetClick}"
                 app:notoTextStyle="medium"
-
                 app:layout_constraintTop_toTopOf="@id/layout_time"
                 app:layout_constraintStart_toStartOf="@id/layout_time"
-                app:layout_constraintEnd_toEndOf="@id/layout_time"
                 app:layout_constraintBottom_toBottomOf="@id/layout_time"/>
 
-
-
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_timePicker"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                style="@style/EtStyle"
+                android:text="오전     11시     25분"
+                android:textSize="14sp"
+                android:textColor="#595959"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@id/tv_time"
+                app:layout_constraintEnd_toEndOf="@id/layout_time"
+                app:layout_constraintTop_toTopOf="@id/layout_time"
+                app:layout_constraintBottom_toBottomOf="@id/layout_time"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

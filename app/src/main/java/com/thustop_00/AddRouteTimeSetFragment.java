@@ -1,6 +1,6 @@
 package com.thustop_00;
 
-import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,13 +8,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TimePicker;
 
 import com.thustop_00.databinding.FragmentAddRouteTimeSetBinding;
 
 import java.util.Calendar;
-
-import static android.R.style.Theme_Holo_Light_Dialog;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +21,8 @@ import static android.R.style.Theme_Holo_Light_Dialog;
 public class AddRouteTimeSetFragment extends FragmentBase {
     FragmentAddRouteTimeSetBinding binding;
 
+    int h, min;
+    String noon;
     final Calendar cal = Calendar.getInstance();
 
     // TODO: Rename parameter arguments, choose names that match
@@ -69,17 +68,47 @@ public class AddRouteTimeSetFragment extends FragmentBase {
                              Bundle savedInstanceState) {
         binding = FragmentAddRouteTimeSetBinding.inflate(inflater);
         binding.setAddRouteTimefrag(this);
-
-
+        //binding.tvTimePicker.setText((+String.valueOf(h)+"시 "+String.valueOf(min)+"분");)
+        setCurTime();
 
         // Inflate the layout for this fragment
         return binding.getRoot();
     }
 
+
     public void onTimeSetClick(View view) {
-        showTime();
+        CustomTimePickerDialog timePickerDialog = new CustomTimePickerDialog(getActivity());
+        timePickerDialog.setDialogListener(new CustomDialogListener() {
+            @Override
+            public void onOkClick(int hour, int minute, String n) {
+                h = hour;
+                min = minute;
+                noon = n;
+                binding.tvTimePicker.setText(noon+"     "+String.valueOf(h)+"시     "+String.valueOf(min)+"분");
+            }
+
+
+        });
+        timePickerDialog.show();
+
+
+        //timePickerDialog.callFunction(binding.tvTimePicker);
+        //showTime();
     }
 
+    private void setCurTime(){
+        String n;
+        if(cal.get(Calendar.AM_PM) == 0) {
+            n = "AM";
+        } else {
+            n = "PM";
+        }
+        int h = cal.get(Calendar.HOUR);
+        int m = (cal.get(Calendar.MINUTE)/10)*10;
+        binding.tvTimePicker.setText(n +"     "+String.valueOf(h)+"시     "+String.valueOf(m)+"분");
+
+    }
+    /*
     void showTime() {
 
         CustomTimePicker.OnTimeSetListener onTimeSetListener = new CustomTimePicker.OnTimeSetListener() {
@@ -94,7 +123,7 @@ public class AddRouteTimeSetFragment extends FragmentBase {
         timePickerDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         timePickerDialog.setMessage("희망 도착 시간");
         timePickerDialog.show();
-    }
+    }*/
 
 
 }

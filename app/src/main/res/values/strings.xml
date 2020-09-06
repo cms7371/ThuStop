@@ -69,4 +69,8 @@
     <string name="tv_mark_start">출발</string>
     <string name="tv_mark_end">도착</string>
 
+    <!--Add Route Time Set Fragment-->
+    <string name="tv_1">다음과 같은 노선을 생성할까요?</string>
+    <string name="tv_time">희망 도착 시간</string>
+
 </resources>
