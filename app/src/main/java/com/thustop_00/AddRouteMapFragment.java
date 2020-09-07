@@ -68,17 +68,15 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
         binding.map.setMapViewEventListener(this);
 
         LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        //입력이 null로 fragment가 선언되면(메인에서 넘어올 때) 현재 위치로 초기화 해줍니다.
         if (startLocation == null) {
             startLocation = new Address();
             endLocation = new Address();
             getCurrentLocation(startLocation);
             getCurrentLocation(endLocation);
-        } else {
-            if (startLocation.address != "") {binding.tvStart.setText(startLocation.address);}
-            if (endLocation.address != "") {binding.tvEnd.setText(endLocation.address);}
         }
-
-
+        binding.tvStart.setText(startLocation.address);
+        binding.tvEnd.setText(endLocation.address);
         binding.map.setMapCenterPoint(
                 MapPoint.mapPointWithGeoCoord(startLocation.latitude, startLocation.longitude),
                 true);
@@ -86,7 +84,6 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
         MapPOIItem marker = new MapPOIItem();
         marker.setItemName("출발지");
         marker.setTag(1);
-
 
         return binding.getRoot();
     }
@@ -145,10 +142,11 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
                     Log.d(TAG, "도착 장소 변경됨");
                 }
             }
+
             @Override
             public void onReverseGeoCoderFailedToFindAddress(MapReverseGeoCoder mapReverseGeoCoder) {
                 binding.tvStart.setText("실패^^");// 호출에 실패한 경우.
-                Log.d(TAG, "여기");
+                Log.d(TAG, "ReverseGeoCoder 호출 실패");
             }
         }, getActivity());
         reverseGeoCoder.startFindingAddress();

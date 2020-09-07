@@ -21,6 +21,8 @@ import androidx.fragment.app.FragmentManager;
 import com.thustop_00.databinding.ActivityMainBinding;
 import com.thustop_00.intro.IntroBaseFragment;
 
+import java.util.Objects;
+
 
 /*
  * Copyright (c) 2019 by ThusTop INC. all rights reserved
@@ -35,21 +37,22 @@ import com.thustop_00.intro.IntroBaseFragment;
  */
 
 
-public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener {
     /* Bind activity_main as variable*/
     private ActivityMainBinding binding;
     private Menu menu;
     private Toolbar toolbar;
     private ActionBar actionbar;
     /* Static variable indicates back button is available*/
-    private static boolean isbackenabled = false;
+    private static boolean isBackEnabled = false;
     /* Handler for delay of splash fragment. It should be removed after loading delay added*/
     Handler H = new Handler(Looper.getMainLooper());
 
     private onBackPressedListener BackListener;
+
     //private long pressedTime = 0;
     public interface onBackPressedListener {
-        public void onBack();
+        void onBack();
     }
 
 
@@ -68,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         actionbar.setDisplayHomeAsUpEnabled(false); //Set back button invisible to make hamburger button visible
         actionbar.setHomeAsUpIndicator(R.drawable.icon_back_green);
         toolbar.setNavigationIcon(R.drawable.icon_hamburger_white);
-
         /* At start, display splash fragment during loading*/
         actionbar.hide();
         setFragment(SplashFragment.newInstance());
@@ -85,17 +87,18 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home : {
-                if(isbackenabled) onBackPressed();
+            case android.R.id.home: {
+                if (isBackEnabled) onBackPressed();
                 else openDrawer();
                 return true;
             }
-            case R.id.bt_notification : {
+            case R.id.bt_notification: {
                 Toast.makeText(getApplicationContext(), "알림버튼 눌림", Toast.LENGTH_SHORT).show();
             }
         }
         return super.onOptionsItemSelected(item);
     }
+
     /*back button listener*/
     public void setOnBackPressedListener(onBackPressedListener listener) {
         BackListener = listener;
@@ -103,9 +106,10 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
 
     @Override
     public void onBackPressed() {
-        if(BackListener != null) {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)){
+            binding.drawerLayout.closeDrawer(GravityCompat.START);
+        } else if (BackListener != null) {
             BackListener.onBack();
-            BackListener = null;
         } else {
             super.onBackPressed();
         }
@@ -133,7 +137,6 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     }*/
 
 
-
     /* This method links */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -141,7 +144,9 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         this.menu = menu;
         return true;
     }
-    /*method of OnFragmentInteractionLister*/
+
+    /*Method of OnFragmentInteractionLister*/
+
     /*쌓여있는 BackStack 모두 날리고 fragment 바꿀때*/
     @Override
     public void setFragment(FragmentBase fr) {
@@ -151,8 +156,10 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             fm.beginTransaction()
                     .replace(R.id.frMain, fr)
                     .commit();
-        } catch (IllegalStateException ignore) { }
+        } catch (IllegalStateException ignore) {
+        }
     }
+
     /*BackStack 쌓으면서 fragment 바꿀 때*/
     @Override
     public void addFragment(FragmentBase fr) {
@@ -161,6 +168,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                 .addToBackStack(null)
                 .commit();
     }
+
     /*BackStack 쌓지 않고 fragment 바꿀 때(돌아올 필요가 없는 fragment 갈 때*/
     @Override
     public void addFragmentNotBackStack(FragmentBase fr) {
@@ -174,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
 
     @Override
     public void showActionBar(boolean b) {
-        if(b)
+        if (b)
             actionbar.show();
         else
             actionbar.hide();
@@ -228,7 +236,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                 menu.getItem(0).setIcon(R.drawable.icon_notification_white);
             }
         }
-        isbackenabled = back_en;
+        isBackEnabled = back_en;
         if (main_title) {
             findViewById(R.id.iv_title).setVisibility(View.VISIBLE);
             findViewById(R.id.tv_title).setVisibility(View.GONE);
@@ -241,7 +249,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     @Override
     public void hideKeyBoard() {
         InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        inputManager.hideSoftInputFromWindow(Objects.requireNonNull(getCurrentFocus()).getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
 

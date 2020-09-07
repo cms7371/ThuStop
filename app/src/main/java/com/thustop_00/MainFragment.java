@@ -33,10 +33,10 @@ import static android.content.Context.LOCATION_SERVICE;
  * Use the {@link MainFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends FragmentBase implements MainRecyclerAdapter.OnListItemSelectedInterface {
+public class MainFragment extends FragmentBase implements MainRecyclerAdapter.OnListItemSelectedInterface, MainActivity.onBackPressedListener {
     FragmentMainBinding binding;
     boolean toggle;
-    boolean[] tog_local = {false, false, false} ;
+    boolean[] tog_local = {false, false, false};
 
     private GpsTracker gpsTracker;
     double latitude;
@@ -45,7 +45,9 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
-    
+
+    long timeBackPressed = 0;
+
 
     public static MainFragment newInstance() {
         MainFragment fragment = new MainFragment();
@@ -68,10 +70,10 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         binding = FragmentMainBinding.inflate(inflater);
         binding.setMainfrag(this);
 
-        if(!checkLocationServicesStatus()) {
+        if (!checkLocationServicesStatus()) {
             showDialogForLocationServiceSetting();
-        }else {
-            checkRunTimePermission();;
+        } else {
+            checkRunTimePermission();
         }
 
         binding.vPause.setVisibility(View.GONE);
@@ -79,6 +81,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         toggle = false;
         _listener.setToolbar(false, false, true);
         _listener.showActionBar(true);
+        _listener.setOnBackPressedListener(this);
 
         RecyclerView mainRecycler = binding.rvRoutes;
         MainRecyclerAdapter mainAdapter = new MainRecyclerAdapter(null, this);
@@ -97,9 +100,8 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     }
 
 
-
     public void onSelLocalClick(View view) {
-        if(!toggle) {
+        if (!toggle) {
             binding.vPause.setVisibility(View.VISIBLE);
             binding.layoutLocal.setVisibility(View.VISIBLE);
             toggle = true;
@@ -124,7 +126,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         }
 
         tog_local[0] = !tog_local[0];
-        if(tog_local[0]) {
+        if (tog_local[0]) {
             binding.btLocal1.setBackgroundResource(R.drawable.button_round_light_gray_sel);
             binding.tvSelLocal.setText(R.string.bt_local1);
         } else {
@@ -134,7 +136,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     }
 
     public void onLocal2Click(View view) {
-        if(tog_local[0] || tog_local[2]) {
+        if (tog_local[0] || tog_local[2]) {
             if (tog_local[0]) {
                 tog_local[0] = false;
                 binding.btLocal1.setBackgroundResource(R.drawable.button_round_light_gray);
@@ -145,7 +147,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         }
 
         tog_local[1] = !tog_local[1];
-        if(tog_local[1]) {
+        if (tog_local[1]) {
             binding.btLocal2.setBackgroundResource(R.drawable.button_round_light_gray_sel);
             binding.tvSelLocal.setText(R.string.bt_local2);
         } else {
@@ -155,7 +157,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     }
 
     public void onLocal3Click(View view) {
-        if(tog_local[0] || tog_local[1]) {
+        if (tog_local[0] || tog_local[1]) {
             if (tog_local[0]) {
                 tog_local[0] = false;
                 binding.btLocal1.setBackgroundResource(R.drawable.button_round_light_gray);
@@ -166,7 +168,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         }
 
         tog_local[2] = !tog_local[2];
-        if(tog_local[2]) {
+        if (tog_local[2]) {
             binding.btLocal3.setBackgroundResource(R.drawable.button_round_light_gray_sel);
             binding.tvSelLocal.setText(R.string.bt_local3);
         } else {
@@ -186,7 +188,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     }
 
     public void onRequestPermissionsResult(int permsRequestCode, String[] permissions, int[] grandResults) {
-        if ( permsRequestCode == PERMISSIONS_REQUEST_CODE && grandResults.length == REQUIRED_PERMISSIONS.length) {
+        if (permsRequestCode == PERMISSIONS_REQUEST_CODE && grandResults.length == REQUIRED_PERMISSIONS.length) {
 
             // 요청 코드가 PERMISSIONS_REQUEST_CODE 이고, 요청한 퍼미션 개수만큼 수신되었다면
 
@@ -203,12 +205,11 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
             }
 
 
-            if ( check_result ) {
+            if (check_result) {
 
                 //위치 값을 가져올 수 있음
                 ;
-            }
-            else {
+            } else {
                 // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
 
                 if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), REQUIRED_PERMISSIONS[0])
@@ -218,7 +219,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
                     getActivity().finish();
 
 
-                }else {
+                } else {
 
                     Toast.makeText(getActivity(), "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
 
@@ -227,6 +228,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
 
         }
     }
+
     // method to convert location to address
     public String getCurrentAddress(double latitude, double longitude) {
         Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
@@ -248,10 +250,11 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         if (addresses == null || addresses.size() == 0) {
             Toast.makeText(getActivity(), "주소 미발견", Toast.LENGTH_LONG).show();
             showDialogForLocationServiceSetting();
-            return "주소 미발견"; }
+            return "주소 미발견";
+        }
 
         Address address = addresses.get(0);
-        return address.getAdminArea()+" "+address.getLocality()+" "+address.getSubLocality();
+        return address.getAdminArea() + " " + address.getLocality() + " " + address.getSubLocality();
 
     }
 
@@ -319,6 +322,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         });
         builder.create().show();
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -343,5 +347,18 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     }
 
 
-
+    @Override
+    public void onBack() {
+        if(timeBackPressed == 0){
+            Toast.makeText(getContext(), "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+            timeBackPressed = System.currentTimeMillis();
+        } else {
+            int ms = (int) (System.currentTimeMillis() - timeBackPressed);
+            if (ms > 2000) {
+                timeBackPressed = 0;
+            } else {
+                android.os.Process.killProcess(android.os.Process.myPid());
+            }
+        }
+    }
 }

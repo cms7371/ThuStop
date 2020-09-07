@@ -35,7 +35,7 @@ import static com.thustop_00.Constant.apiKey;
  * Use the {@link AddRouteSearchFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddRouteSearchFragment extends FragmentBase implements LocationAutocompleteAdapter.OnListItemSelectedInterface, MainActivity.onBackPressedListener{
+public class AddRouteSearchFragment extends FragmentBase implements LocationAutocompleteAdapter.OnListItemSelectedInterface, MainActivity.onBackPressedListener {
     private FragmentAddRouteSearchBinding binding;
     private LocationAutocompleteAdapter autocompleteAdapter;
     private PlacesClient placesClient;
@@ -68,7 +68,7 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
                              Bundle savedInstanceState) {
         binding = FragmentAddRouteSearchBinding.inflate(inflater);
 
-        _listener.setToolbar(true,true,false);
+        _listener.setToolbar(true, true, false);
         _listener.setTitle("");
         _listener.showActionBar(true);
         _listener.setOnBackPressedListener(this);
@@ -99,14 +99,23 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
         @Override
         public void afterTextChanged(Editable s) {
-            if (binding.etStart.isFocused()){ binding.etStart.setBackgroundResource(R.drawable.outline_green);}
-            else {binding.etEnd.setBackgroundResource(R.drawable.outline_red);}
-
-            if (!s.toString().equals("")) {
-                autocompleteAdapter.getFilter().filter(s.toString());
-                if (binding.rvLocationPrediction.getVisibility() == View.GONE) {binding.rvLocationPrediction.setVisibility(View.VISIBLE);}
+            if (binding.etStart.isFocused()) {
+                binding.etStart.setBackgroundResource(R.drawable.outline_green);
             } else {
-                if (binding.rvLocationPrediction.getVisibility() == View.VISIBLE) {binding.rvLocationPrediction.setVisibility(View.GONE);}
+                binding.etEnd.setBackgroundResource(R.drawable.outline_red);
+            }
+            //텍스트가 입력되어 공백이 아니면
+            if (!s.toString().equals("")) {
+                //자동 완성을 진행하고 RecyclerView 보이도록 만듭니다.
+                autocompleteAdapter.getFilter().filter(s.toString());
+                if (binding.rvLocationPrediction.getVisibility() == View.GONE) {
+                    binding.rvLocationPrediction.setVisibility(View.VISIBLE);
+                }
+            //공백이라면 안보이게 만듭니다.
+            } else {
+                if (binding.rvLocationPrediction.getVisibility() == View.VISIBLE) {
+                    binding.rvLocationPrediction.setVisibility(View.GONE);
+                }
             }
         }
     };
@@ -146,30 +155,7 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
             }
         });
     }
-
-
-    /*
-    private void search() {
-        String s = binding.etEnd.getText().toString();
-        //입력이 되었나
-        if(!s.isEmpty()){
-            if(getActivity() != null){
-                InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(INPUT_METHOD_SERVICE);
-                if(inputMethodManager != null)
-                    inputMethodManager.hideSoftInputFromWindow(binding.etEnd.getWindowToken(), 0);
-
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("https://dapi.kakao.com/")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-                RestApi api = retrofit.create(RestApi.class);
-
-
-            }
-
-        }
-
-    }*/
+    //Places API의 Place 클래스의 값을 Address 클래스로 옮겨주는 method
     private void transferAddress(Place place, Address position) {
         position.address = place.getAddress().replace("대한민국 ", "");
         position.latitude = place.getLatLng().latitude;
@@ -178,18 +164,12 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
 
     private void setInitialColor(TextView textView, int onBlank) {
         String s = textView.getText().toString();
-        Log.d(TAG, s);
-        Log.d(TAG, s);
-        if(!textView.isFocused()) {
-            if (s.length() != 0) {
-                textView.setBackgroundResource(R.drawable.round_gray_e7);
-
-            }
+        if (s.length() != 0) {
+            textView.setBackgroundResource(R.drawable.round_gray_e7);
         } else {
             textView.setBackgroundResource(onBlank);
         }
     }
-
 
     @Override
     public void onBack() {
