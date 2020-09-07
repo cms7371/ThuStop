@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-import com.thustop_00.databinding.FragmentLocationMapSearchBinding;
+import com.thustop_00.databinding.FragmentAddRouteMapBinding;
 import com.thustop_00.model.Address;
 
 import net.daum.mf.map.api.MapPOIItem;
@@ -21,11 +21,11 @@ import net.daum.mf.map.api.MapView;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link LocationMapSearchFragment#newInstance} factory method to
+ * Use the {@link AddRouteMapFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LocationMapSearchFragment extends FragmentBase implements MapView.MapViewEventListener {
-    private FragmentLocationMapSearchBinding binding;
+public class AddRouteMapFragment extends FragmentBase implements MapView.MapViewEventListener {
+    private FragmentAddRouteMapBinding binding;
     private MapPoint centerPoint;
     private Address startLocation = new Address();
     private Address endLocation = new Address();
@@ -38,13 +38,13 @@ public class LocationMapSearchFragment extends FragmentBase implements MapView.M
 
     MapReverseGeoCoder.ReverseGeoCodingResultListener resultListener;
 
-    public LocationMapSearchFragment() {
+    public AddRouteMapFragment() {
         // Required empty public constructor
     }
 
 
-    public static LocationMapSearchFragment newInstance(Address startLocation, Address endLocation) {
-        LocationMapSearchFragment fragment = new LocationMapSearchFragment();
+    public static AddRouteMapFragment newInstance(Address startLocation, Address endLocation) {
+        AddRouteMapFragment fragment = new AddRouteMapFragment();
         Bundle args = new Bundle();
         fragment.startLocation = startLocation;
         fragment.endLocation = endLocation;
@@ -60,7 +60,7 @@ public class LocationMapSearchFragment extends FragmentBase implements MapView.M
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentLocationMapSearchBinding.inflate(inflater);
+        binding = FragmentAddRouteMapBinding.inflate(inflater);
         binding.setMapSearchfrag(this);
         _listener.showActionBar(false);
         isStart = true;
@@ -100,13 +100,13 @@ public class LocationMapSearchFragment extends FragmentBase implements MapView.M
                     true);
             isStart = true;
         } else {
-            _listener.addFragmentNotBackStack(LocationSearchFragment.newInstance(startLocation, endLocation));
+            _listener.addFragmentNotBackStack(AddRouteSearchFragment.newInstance(startLocation, endLocation));
         }
     }
 
     public void onEndClick(View view) {
         if (!isStart) {
-            _listener.addFragmentNotBackStack(LocationSearchFragment.newInstance(startLocation, endLocation));
+            _listener.addFragmentNotBackStack(AddRouteSearchFragment.newInstance(startLocation, endLocation));
         } else {
             isStart = false;
             binding.marker.setImageResource(R.drawable.icon_pin_end);

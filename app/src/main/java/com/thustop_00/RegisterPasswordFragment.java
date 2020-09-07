@@ -11,14 +11,13 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.pixplicity.easyprefs.library.Prefs;
-import com.thustop_00.databinding.FragmentRegisterBinding;
+import com.thustop_00.databinding.FragmentRegisterPassowordBinding;
 import com.thustop_00.model.Token;
 import com.thustop_00.model.UserData;
 
 import org.jetbrains.annotations.NotNull;
 
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -29,11 +28,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link RegisterFragment#newInstance} factory method to
+ * Use the {@link RegisterPasswordFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RegisterFragment extends FragmentBase {
-    private FragmentRegisterBinding binding;
+public class RegisterPasswordFragment extends FragmentBase {
+    private FragmentRegisterPassowordBinding binding;
     private Context context;
 
 
@@ -84,8 +83,8 @@ public class RegisterFragment extends FragmentBase {
 
 
 
-    public static RegisterFragment newInstance() {
-        RegisterFragment fragment = new RegisterFragment();
+    public static RegisterPasswordFragment newInstance() {
+        RegisterPasswordFragment fragment = new RegisterPasswordFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -101,7 +100,7 @@ public class RegisterFragment extends FragmentBase {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         context = container.getContext();
-        binding = FragmentRegisterBinding.inflate(inflater);
+        binding = FragmentRegisterPassowordBinding.inflate(inflater);
         ButterKnife.bind(this,binding.getRoot());
         //_listener.showActionBar(true);
         _listener.setToolbar(true, false, false);

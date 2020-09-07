@@ -14,22 +14,21 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.thustop_00.databinding.FragmentIdVerificationBinding;
+import com.thustop_00.databinding.FragmentRegisterVerificationBinding;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link IdVerificationFragment#newInstance} factory method to
+ * Use the {@link RegisterVerificationFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class IdVerificationFragment extends FragmentBase {
+public class RegisterVerificationFragment extends FragmentBase {
     // Databinding
-    FragmentIdVerificationBinding binding;
+    FragmentRegisterVerificationBinding binding;
 
     InputMethodManager imm;
 
@@ -40,13 +39,13 @@ public class IdVerificationFragment extends FragmentBase {
     CountDownTimer countDownTimer;
 
 
-    public IdVerificationFragment() {
+    public RegisterVerificationFragment() {
         // Required empty public constructor
     }
 
 
-    public static IdVerificationFragment newInstance() {
-        IdVerificationFragment fragment = new IdVerificationFragment();
+    public static RegisterVerificationFragment newInstance() {
+        RegisterVerificationFragment fragment = new RegisterVerificationFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -61,7 +60,7 @@ public class IdVerificationFragment extends FragmentBase {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        binding=FragmentIdVerificationBinding.inflate(inflater);
+        binding=FragmentRegisterVerificationBinding.inflate(inflater);
         binding.setIDVerfrag(this);
 
         imm = (InputMethodManager)getActivity().getSystemService(INPUT_METHOD_SERVICE);
@@ -140,7 +139,7 @@ public class IdVerificationFragment extends FragmentBase {
     //완료버튼 누르면 이동
     //인증번호 유효시 작동하게 코드 수정 필요
     public void onDoneClick(View view) {
-        _listener.setFragment(RegisterFragment.newInstance());
+        _listener.setFragment(RegisterPasswordFragment.newInstance());
     }
 
     // custom spinner adapter

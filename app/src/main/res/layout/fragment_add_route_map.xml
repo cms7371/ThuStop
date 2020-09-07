@@ -5,7 +5,7 @@
     <data>
         <variable
             name="mapSearchfrag"
-            type="com.thustop_00.LocationMapSearchFragment" />
+            type="com.thustop_00.AddRouteMapFragment" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="match_parent"

@@ -92,7 +92,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     @Override
     public void onItemSelected(View v, int position) {
         if (position == 0) {
-            _listener.addFragment(LocationMapSearchFragment.newInstance(null, null));
+            _listener.addFragment(AddRouteMapFragment.newInstance(null, null));
         }
     }
 

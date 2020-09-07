@@ -21,7 +21,7 @@ import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.FetchPlaceRequest;
 import com.google.android.libraries.places.api.net.FetchPlaceResponse;
 import com.google.android.libraries.places.api.net.PlacesClient;
-import com.thustop_00.databinding.FragmentLocationSearchBinding;
+import com.thustop_00.databinding.FragmentAddRouteSearchBinding;
 import com.thustop_00.model.Address;
 
 import java.util.Arrays;
@@ -32,24 +32,24 @@ import static com.thustop_00.Constant.apiKey;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link LocationSearchFragment#newInstance} factory method to
+ * Use the {@link AddRouteSearchFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LocationSearchFragment extends FragmentBase implements LocationAutocompleteAdapter.OnListItemSelectedInterface, MainActivity.onBackPressedListener{
-    private FragmentLocationSearchBinding binding;
+public class AddRouteSearchFragment extends FragmentBase implements LocationAutocompleteAdapter.OnListItemSelectedInterface, MainActivity.onBackPressedListener{
+    private FragmentAddRouteSearchBinding binding;
     private LocationAutocompleteAdapter autocompleteAdapter;
     private PlacesClient placesClient;
     private static final String TAG = "LocationSearchFragment";
     private Address startLocation;
     private Address endLocation;
 
-    public LocationSearchFragment() {
+    public AddRouteSearchFragment() {
         // Required empty public constructor
     }
 
 
-    public static LocationSearchFragment newInstance(Address startPosition, Address endPosition) {
-        LocationSearchFragment fragment = new LocationSearchFragment();
+    public static AddRouteSearchFragment newInstance(Address startPosition, Address endPosition) {
+        AddRouteSearchFragment fragment = new AddRouteSearchFragment();
         Bundle args = new Bundle();
         fragment.startLocation = startPosition;
         fragment.endLocation = endPosition;
@@ -66,7 +66,7 @@ public class LocationSearchFragment extends FragmentBase implements LocationAuto
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentLocationSearchBinding.inflate(inflater);
+        binding = FragmentAddRouteSearchBinding.inflate(inflater);
 
         _listener.setToolbar(true,true,false);
         _listener.setTitle("");
@@ -193,6 +193,6 @@ public class LocationSearchFragment extends FragmentBase implements LocationAuto
 
     @Override
     public void onBack() {
-        _listener.addFragmentNotBackStack(LocationMapSearchFragment.newInstance(startLocation, endLocation));
+        _listener.addFragmentNotBackStack(AddRouteMapFragment.newInstance(startLocation, endLocation));
     }
 }

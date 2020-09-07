@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.thustop_00.databinding.FragmentFindPasswordBinding;
-import com.thustop_00.databinding.FragmentRegisterBinding;
 
 import butterknife.ButterKnife;
 

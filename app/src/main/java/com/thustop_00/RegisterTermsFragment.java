@@ -8,27 +8,26 @@ import android.widget.CompoundButton;
 
 import androidx.fragment.app.Fragment;
 
-import com.thustop_00.databinding.FragmentAgreeTermsBinding;
+import com.thustop_00.databinding.FragmentRegisterTermsBinding;
 
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Agree_TermsFragment#newInstance} factory method to
+ * Use the {@link RegisterTermsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Agree_TermsFragment extends FragmentBase implements CompoundButton.OnCheckedChangeListener {
-    FragmentAgreeTermsBinding binding;
+public class RegisterTermsFragment extends FragmentBase implements CompoundButton.OnCheckedChangeListener {
+    FragmentRegisterTermsBinding binding;
 
 
-    public Agree_TermsFragment() {
+    public RegisterTermsFragment() {
         // Required empty public constructor
     }
     //TODO 약관 보이는 뷰 클릭 연결하기!
 
-    public static Agree_TermsFragment newInstance() {
-        Agree_TermsFragment fragment = new Agree_TermsFragment();
+    public static RegisterTermsFragment newInstance() {
+        RegisterTermsFragment fragment = new RegisterTermsFragment();
         Bundle args = new Bundle();
 
         fragment.setArguments(args);
@@ -43,7 +42,7 @@ public class Agree_TermsFragment extends FragmentBase implements CompoundButton.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentAgreeTermsBinding.inflate(inflater);
+        binding = FragmentRegisterTermsBinding.inflate(inflater);
         ButterKnife.bind(this,binding.getRoot());
 
         _listener.setToolbar(true, true, false);
@@ -60,7 +59,7 @@ public class Agree_TermsFragment extends FragmentBase implements CompoundButton.
         return binding.getRoot();
     }
 
-    public void onAgreeClick(View view) {_listener.setFragment(IdVerificationFragment.newInstance());}
+    public void onAgreeClick(View view) {_listener.setFragment(RegisterVerificationFragment.newInstance());}
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
