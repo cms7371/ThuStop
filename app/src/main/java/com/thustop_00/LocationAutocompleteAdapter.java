@@ -33,7 +33,6 @@ public class LocationAutocompleteAdapter extends RecyclerView.Adapter<LocationAu
     public ArrayList<PlaceAutocomplete> mResultList = new ArrayList<>();
 
     private Context mContext;
-    private CharacterStyle STYLE_BOLD;
     private CharacterStyle STYLE_NORMAL;
     private final PlacesClient placesClient;
     private OnListItemSelectedInterface mListener;
@@ -44,7 +43,6 @@ public class LocationAutocompleteAdapter extends RecyclerView.Adapter<LocationAu
     public LocationAutocompleteAdapter(Context context, OnListItemSelectedInterface listener) {
         mContext = context;
         mListener = listener;
-        STYLE_BOLD = new StyleSpan(Typeface.BOLD);
         STYLE_NORMAL = new StyleSpan(Typeface.NORMAL);
         placesClient = com.google.android.libraries.places.api.Places.createClient(context);
     }
