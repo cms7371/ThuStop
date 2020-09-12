@@ -118,19 +118,19 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         if (tog_local[1] || tog_local[2]) {
             if (tog_local[1]) {
                 tog_local[1] = false;
-                binding.btLocal2.setBackgroundResource(R.drawable.button_round_light_gray);
+                binding.btLocal2.setBackgroundResource(R.drawable.button_local);
             } else {
                 tog_local[2] = false;
-                binding.btLocal3.setBackgroundResource(R.drawable.button_round_light_gray);
+                binding.btLocal3.setBackgroundResource(R.drawable.button_local);
             }
         }
 
         tog_local[0] = !tog_local[0];
         if (tog_local[0]) {
-            binding.btLocal1.setBackgroundResource(R.drawable.button_round_light_gray_sel);
+            binding.btLocal1.setBackgroundResource(R.drawable.button_local_sel);
             binding.tvSelLocal.setText(R.string.bt_local1);
         } else {
-            binding.btLocal1.setBackgroundResource(R.drawable.button_round_light_gray);
+            binding.btLocal1.setBackgroundResource(R.drawable.button_local);
             binding.tvSelLocal.setText(R.string.tvSelLocal);
         }
     }
@@ -139,19 +139,19 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         if (tog_local[0] || tog_local[2]) {
             if (tog_local[0]) {
                 tog_local[0] = false;
-                binding.btLocal1.setBackgroundResource(R.drawable.button_round_light_gray);
+                binding.btLocal1.setBackgroundResource(R.drawable.button_local);
             } else {
                 tog_local[2] = false;
-                binding.btLocal3.setBackgroundResource(R.drawable.button_round_light_gray);
+                binding.btLocal3.setBackgroundResource(R.drawable.button_local);
             }
         }
 
         tog_local[1] = !tog_local[1];
         if (tog_local[1]) {
-            binding.btLocal2.setBackgroundResource(R.drawable.button_round_light_gray_sel);
+            binding.btLocal2.setBackgroundResource(R.drawable.button_local_sel);
             binding.tvSelLocal.setText(R.string.bt_local2);
         } else {
-            binding.btLocal2.setBackgroundResource(R.drawable.button_round_light_gray);
+            binding.btLocal2.setBackgroundResource(R.drawable.button_local);
             binding.tvSelLocal.setText(R.string.tvSelLocal);
         }
     }
@@ -160,19 +160,19 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         if (tog_local[0] || tog_local[1]) {
             if (tog_local[0]) {
                 tog_local[0] = false;
-                binding.btLocal1.setBackgroundResource(R.drawable.button_round_light_gray);
+                binding.btLocal1.setBackgroundResource(R.drawable.button_local);
             } else {
                 tog_local[1] = false;
-                binding.btLocal2.setBackgroundResource(R.drawable.button_round_light_gray);
+                binding.btLocal2.setBackgroundResource(R.drawable.button_local);
             }
         }
 
         tog_local[2] = !tog_local[2];
         if (tog_local[2]) {
-            binding.btLocal3.setBackgroundResource(R.drawable.button_round_light_gray_sel);
+            binding.btLocal3.setBackgroundResource(R.drawable.button_local_sel);
             binding.tvSelLocal.setText(R.string.bt_local3);
         } else {
-            binding.btLocal3.setBackgroundResource(R.drawable.button_round_light_gray);
+            binding.btLocal3.setBackgroundResource(R.drawable.button_local);
             binding.tvSelLocal.setText(R.string.tvSelLocal);
         }
 

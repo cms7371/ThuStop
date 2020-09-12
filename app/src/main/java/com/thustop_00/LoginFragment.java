@@ -20,10 +20,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginFragment extends FragmentBase {
     private FragmentLoginBinding binding;
-    @OnClick(R.id.bt_register)
-    void goLogin() {
+    //@OnClick(R.id.bt_register)
+    /*void goLogin() {
         _listener.setFragment(RegisterTermsFragment.newInstance());
-    }
+    }*/
 
    /*@OnClick(R.id.bt_login)
    void startlogin() {

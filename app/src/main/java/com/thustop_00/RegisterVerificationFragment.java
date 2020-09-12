@@ -98,15 +98,15 @@ public class RegisterVerificationFragment extends FragmentBase {
         });
 
         // link ID number edit text views(생년월일 입력후 바로 7번째 자리 focus 이동)
-        binding.etIdnum1.addTextChangedListener(new TextWatcher() {
+        binding.etIdNum1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int before, int count) {
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String input=binding.etIdnum1.getText().toString();
+                String input=binding.etIdNum1.getText().toString();
                 if(input.length() == 6) {
-                    binding.etIdnum2.requestFocus();
+                    binding.etIdNum2.requestFocus();
                 }
             }
             @Override

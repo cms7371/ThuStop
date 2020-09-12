@@ -20,8 +20,9 @@
     <string name="bt_local1">호매실동</string>
     <string name="bt_local2">하남</string>
     <string name="bt_local3">동탄</string>
-    <string name="tv_local1">서비스 지역 확대 예정입니다</string>
-    <string name="tv_local2">더욱 개선되는 이번정류장 앱이 될게요:)</string>
+    <string name="tv_local1">확장을 원하시는 서비스 지역을 요청해 주세요.</string>
+    <string name="tv_local2">서비스 이용 시작이 빨라질 수 있습니다</string>
+    <string name="tv_request"><u>요청하러가기</u></string>
     <string name="bt_new_route">노선 생성하기</string>
     <!--fragment login-->
     <string name="tv_login_title">로그인</string>

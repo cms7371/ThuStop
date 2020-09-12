@@ -36,202 +36,189 @@
 
         <com.thustop_00.widgets.NotoTextView
             android:id="@+id/tv_nation"
+            style="@style/EtRegStyle"
             android:layout_width="125dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/button_round_light_gray"
+            android:layout_marginStart="18dp"
+            android:background="@drawable/round_gray_f5"
             android:gravity="center_vertical"
-            android:paddingStart="20dp"
-            android:textSize="14sp"
+            android:paddingStart="21dp"
             android:text="내국인"
             app:layout_constraintBottom_toBottomOf="@id/et_name"
             app:layout_constraintEnd_toStartOf="@id/et_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/et_name"
-
-            />
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <com.thustop_00.widgets.NotoEditText
             android:id="@+id/et_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/button_round_light_gray"
+            style="@style/EtRegStyle"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="18dp"
+            android:background="@drawable/round_gray_f5"
             android:hint="이름"
             android:inputType="textPersonName"
             android:maxLines="1"
-            style="@style/EtStyle"
-            android:textColorHint="#979797"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@id/layout_idnum"
+            android:paddingStart="21dp"
+            app:layout_constraintBottom_toTopOf="@id/layout_idNum"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_nation"
             app:layout_constraintTop_toTopOf="@id/guideline1"
-            app:layout_constraintVertical_bias="0.20"
+            app:layout_constraintVertical_bias="0.13999999"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_idnum"
-            android:layout_width="0dp"
+            android:id="@+id/layout_idNum"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/button_round_light_gray"
-            app:layout_constraintBottom_toTopOf="@id/layout_phonenum"
+            android:layout_width="0dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/round_gray_f5"
+            app:layout_constraintBottom_toTopOf="@id/layout_phoneNum"
             app:layout_constraintEnd_toEndOf="@id/et_name"
             app:layout_constraintStart_toStartOf="@id/tv_nation"
             app:layout_constraintTop_toBottomOf="@id/et_name">
 
             <com.thustop_00.widgets.NotoTextView
-                android:id="@+id/tv_idnum"
+                android:id="@+id/tv_idNum"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_round_light_gray"
+                android:background="@drawable/round_gray_f5"
                 android:letterSpacing="0.2"
                 android:paddingTop="15dp"
                 android:paddingEnd="25dp"
                 android:paddingBottom="15dp"
                 android:text="●●●●●●"
-                android:textColor="@color/colorTextGray"
+                android:textColor="#c4c4c4"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@id/layout_idnum"
-                app:layout_constraintEnd_toEndOf="@id/layout_idnum"
-                app:layout_constraintTop_toTopOf="@id/layout_idnum" />
+                app:layout_constraintBottom_toBottomOf="@id/layout_idNum"
+                app:layout_constraintEnd_toEndOf="@id/layout_idNum"
+                app:layout_constraintTop_toTopOf="@id/layout_idNum" />
 
             <View
                 android:id="@+id/hyphen"
                 android:layout_width="20dp"
                 android:layout_height="1dp"
                 android:background="@color/colorTextGray"
-                app:layout_constraintBottom_toBottomOf="@id/layout_idnum"
-                app:layout_constraintEnd_toEndOf="@id/layout_idnum"
-                app:layout_constraintStart_toStartOf="@id/layout_idnum"
-                app:layout_constraintTop_toTopOf="@id/layout_idnum" />
+                app:layout_constraintBottom_toBottomOf="@id/layout_idNum"
+                app:layout_constraintEnd_toEndOf="@id/layout_idNum"
+                app:layout_constraintStart_toStartOf="@id/layout_idNum"
+                app:layout_constraintTop_toTopOf="@id/layout_idNum" />
 
             <com.thustop_00.widgets.NotoEditText
-                android:id="@+id/et_idnum1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:id="@+id/et_idNum1"
+                style="@style/EtRegStyle"
+                android:layout_marginStart="27dp"
                 android:background="@android:color/transparent"
                 android:hint="생년월일"
                 android:maxLength="6"
                 android:maxLines="1"
                 android:inputType="numberDecimal"
-                android:nextFocusRight="@id/et_idnum2"
+                android:nextFocusRight="@id/et_idNum2"
                 android:letterSpacing="0.2"
-                style="@style/EtStyle"
-                app:layout_constraintBottom_toBottomOf="@id/layout_idnum"
+                app:layout_constraintBottom_toBottomOf="@id/layout_idNum"
                 app:layout_constraintEnd_toStartOf="@id/hyphen"
-                app:layout_constraintStart_toStartOf="@id/layout_idnum"
-                app:layout_constraintTop_toTopOf="@id/layout_idnum" />
+                app:layout_constraintStart_toStartOf="@id/layout_idNum"
+                app:layout_constraintTop_toTopOf="@id/layout_idNum" />
 
             <com.thustop_00.widgets.NotoEditText
-                android:id="@+id/et_idnum2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:id="@+id/et_idNum2"
                 android:background="@android:color/transparent"
                 android:inputType="numberDecimal"
-                style="@style/EtStyle"
+                style="@style/EtRegStyle"
                 android:layout_marginStart="10dp"
-                app:layout_constraintBottom_toBottomOf="@id/layout_idnum"
-                app:layout_constraintEnd_toEndOf="@id/tv_idnum"
+                app:layout_constraintBottom_toBottomOf="@id/layout_idNum"
+                app:layout_constraintEnd_toEndOf="@id/tv_idNum"
                 app:layout_constraintStart_toEndOf="@id/hyphen"
-                app:layout_constraintTop_toTopOf="@id/layout_idnum" />
+                app:layout_constraintTop_toTopOf="@id/layout_idNum" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_phonenum"
+            android:id="@+id/layout_phoneNum"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/button_round_light_gray"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/round_gray_f5"
+            app:layout_constraintBottom_toTopOf="@id/et_code"
             app:layout_constraintEnd_toStartOf="@id/bt_send"
-            app:layout_constraintStart_toStartOf="@id/layout_idnum"
-            app:layout_constraintTop_toBottomOf="@id/layout_idnum">
+            app:layout_constraintStart_toStartOf="@id/layout_idNum"
+            app:layout_constraintTop_toBottomOf="@id/layout_idNum">
 
             <Spinner
                 android:id="@+id/sp_agency"
                 android:layout_width="90dp"
-                android:layout_height="0dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
+                style="@style/EtRegStyle"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:dropDownWidth="90dp"
                 android:overlapAnchor="false"
-                app:layout_constraintBottom_toBottomOf="@id/layout_phonenum"
-                app:layout_constraintStart_toStartOf="@id/layout_phonenum"
-                app:layout_constraintTop_toTopOf="@id/layout_phonenum" />
+                app:layout_constraintBottom_toBottomOf="@id/layout_phoneNum"
+                app:layout_constraintStart_toStartOf="@id/layout_phoneNum"
+                app:layout_constraintTop_toTopOf="@id/layout_phoneNum" />
 
             <com.thustop_00.widgets.NotoTextView
                 android:id="@+id/tv_agency"
                 android:layout_width="90dp"
-                android:layout_height="wrap_content"
+                style="@style/EtRegStyle"
                 android:paddingStart="20dp"
-                android:paddingTop="17dp"
-                android:paddingBottom="17dp"
+                android:gravity="center_vertical"
                 android:text="통신사"
                 android:textSize="14sp"
-                android:background="@drawable/button_round_light_gray"
-                app:layout_constraintBottom_toBottomOf="@id/layout_phonenum"
-                app:layout_constraintStart_toStartOf="@id/layout_phonenum"
-                app:layout_constraintTop_toTopOf="@id/layout_phonenum" />
+                android:background="@drawable/round_gray_f5"
+                app:layout_constraintBottom_toBottomOf="@id/layout_phoneNum"
+                app:layout_constraintStart_toStartOf="@id/layout_phoneNum"
+                app:layout_constraintTop_toTopOf="@id/layout_phoneNum" />
 
             <com.thustop_00.widgets.NotoEditText
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:hint="휴대폰 번호"
                 android:paddingStart="12dp"
-                style="@style/EtStyle"
-                android:textSize="14sp"
+                style="@style/EtRegStyle"
+                android:hint="휴대폰 번호"
                 android:inputType="numberDecimal"
                 android:maxLength="11"
                 android:maxLines="1"
-                app:layout_constraintBottom_toBottomOf="@id/layout_phonenum"
-                app:layout_constraintEnd_toEndOf="@id/layout_phonenum"
+                app:layout_constraintBottom_toBottomOf="@id/layout_phoneNum"
+                app:layout_constraintEnd_toEndOf="@id/layout_phoneNum"
                 app:layout_constraintStart_toEndOf="@id/sp_agency"
-                app:layout_constraintTop_toTopOf="@id/layout_phonenum" />
+                app:layout_constraintTop_toTopOf="@id/layout_phoneNum" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.thustop_00.widgets.NotoButton
             android:id="@+id/bt_send"
-            android:layout_width="wrap_content"
+            android:layout_width="66dp"
             android:layout_height="0dp"
-            android:layout_marginStart="15dp"
-            android:background="@drawable/button_round_green"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/round_green"
             android:text="전송"
             android:textColor="@android:color/white"
             android:textSize="14dp"
-            app:layout_constraintBottom_toBottomOf="@id/layout_phonenum"
-            app:layout_constraintEnd_toEndOf="@id/layout_idnum"
-            app:layout_constraintStart_toEndOf="@id/layout_phonenum"
-            app:layout_constraintTop_toTopOf="@id/layout_phonenum"
+            app:layout_constraintBottom_toBottomOf="@id/layout_phoneNum"
+            app:layout_constraintEnd_toEndOf="@id/layout_idNum"
+            app:layout_constraintStart_toEndOf="@id/layout_phoneNum"
+            app:layout_constraintTop_toTopOf="@id/layout_phoneNum"
             android:onClick="@{IDVerfrag::onSendClick}"/>
 
         <com.thustop_00.widgets.NotoEditText
             android:id="@+id/et_code"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/button_round_outlineb6"
-            style="@style/EtStyle"
+            android:layout_marginTop="15dp"
+            android:paddingStart="42dp"
+            android:background="@drawable/outline_gray_b6"
+            style="@style/EtRegStyle"
             android:inputType="numberDecimal"
             android:maxLength="11"
             android:maxLines="1"
             app:layout_constraintEnd_toEndOf="@id/bt_send"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@id/layout_phonenum"
-            app:layout_constraintTop_toBottomOf="@id/bt_send" />
+            app:layout_constraintStart_toStartOf="@id/layout_phoneNum"
+            app:layout_constraintTop_toBottomOf="@id/layout_phoneNum"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <com.thustop_00.widgets.NotoTextView
             android:id="@+id/tv_timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="25dp"
+            android:layout_marginEnd="27dp"
             android:text="03:00"
             android:letterSpacing="0.15"
             android:textSize="14sp"
@@ -242,22 +229,18 @@
 
         <com.thustop_00.widgets.NotoButton
             android:id="@+id/bt_done"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_round_c4"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
+            style="@style/btStyle"
+            android:background="@drawable/round_gray_c4"
+            android:onClick="@{IDVerfrag::onDoneClick}"
             android:text="완료"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/bt_send"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@id/layout_phonenum"
-            app:layout_constraintTop_toTopOf="@id/guideline1"
-            app:layout_constraintVertical_bias="0.915"
-            app:notoTextStyle="medium"
-            android:onClick="@{IDVerfrag::onDoneClick}"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_code"
+            app:layout_constraintVertical_bias="0.24"
+            app:notoTextStyle="medium" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

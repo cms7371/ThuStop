@@ -91,9 +91,10 @@
 
         <com.thustop_00.widgets.NotoButton
             android:id="@+id/bt_intro_start"
-            android:layout_width="196dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
-            android:background="@drawable/button_round_green"
+            app:layout_constraintWidth_percent="0.55"
+            android:background="@drawable/round_green"
             android:text="@string/bt_intro_start"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
