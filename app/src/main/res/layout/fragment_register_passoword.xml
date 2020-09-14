@@ -25,7 +25,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guideline1"
-            app:layout_constraintVertical_bias="0.13"
+            app:layout_constraintVertical_bias="0.15"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <com.thustop_00.widgets.NotoEditText
@@ -42,7 +42,6 @@
         <com.thustop_00.widgets.NotoButton
             android:id="@+id/bt_confirm"
             style="@style/btStyle"
-            android:layout_marginBottom="30dp"
             android:background="@drawable/round_gray_c4"
             android:text="@string/bt_confirm"
             app:notoTextStyle="medium"
@@ -50,7 +49,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/guideline1"
-            app:layout_constraintVertical_bias="0.95" />
+            app:layout_constraintVertical_bias="0.92" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

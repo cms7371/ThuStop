@@ -16,18 +16,11 @@
 
         <com.thustop_00.widgets.NotoEditText
             android:id="@+id/et_start"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
             android:singleLine="true"
-            style="@style/EtStyle"
-            android:paddingStart="55dp"
+            style="@style/EtAddRouteStyle"
             android:background="@drawable/outline_green"
             android:text=""
-            android:maxLines="1"
-            android:imeOptions="actionSearch"
             app:layout_constraintBottom_toTopOf="@id/et_end"
             app:layout_constraintTop_toTopOf="@id/guideline1"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,18 +37,15 @@
 
         <com.thustop_00.widgets.NotoEditText
             android:id="@+id/et_end"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            style="@style/EtStyle"
+            style="@style/EtAddRouteStyle"
             android:singleLine="true"
             android:text=""
-            android:paddingStart="55dp"
             android:maxLines="1"
             android:background="@drawable/outline_red"
             app:layout_constraintTop_toBottomOf="@id/et_start"
-            app:layout_constraintStart_toStartOf="@id/et_start"
-            app:layout_constraintEnd_toEndOf="@id/et_start"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <ImageView
             android:layout_width="wrap_content"

@@ -9,6 +9,9 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.thustop_00.databinding.FragmentMainBinding;
+import com.thustop_00.widgets.NotoTextView;
 
 import java.io.IOException;
 import java.util.List;
@@ -78,6 +82,8 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
 
         binding.vPause.setVisibility(View.GONE);
         binding.layoutLocal.setVisibility(View.GONE);
+        // binding이 text로 인식이 안됨..string으로 인식됨..
+        colorText(binding.tvLocal1, R.string.tv_local1_color, "#15a474");
         toggle = false;
         _listener.setToolbar(false, false, true);
         _listener.showActionBar(true);

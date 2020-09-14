@@ -23,6 +23,7 @@
             android:id="@+id/tv_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="@string/tv_1"
             android:textSize="15sp"
             android:textColor="@color/colorPrimary"
@@ -30,83 +31,53 @@
             app:layout_constraintTop_toTopOf="@id/guideline1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/layout_start"/>
+            app:layout_constraintBottom_toTopOf="@id/tv_start"/>
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_start"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_start"
+            style="@style/tvAddRouteStyle"
             android:layout_marginTop="36dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:singleLine="true"
             android:background="@drawable/outline_green"
+            android:text="확인중확인중"
+            android:textSize="14sp"
+            android:textColor="#535353"
             app:layout_constraintTop_toBottomOf="@id/tv_1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent" />
 
-            <com.thustop_00.widgets.NotoTextView
-                android:id="@+id/tv_start"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                style="@style/EtStyle"
-                android:text="일이삼사ddddddddddddddddddddddd"
-                android:textSize="14sp"
-                android:textColor="#535353"
-                app:layout_constraintTop_toTopOf="@id/layout_start"
-                app:layout_constraintStart_toEndOf="@id/iv_start"
-                app:layout_constraintEnd_toEndOf="@id/layout_start"
-                app:layout_constraintBottom_toBottomOf="@id/layout_start"/>
-
-            <ImageView
-                android:id="@+id/iv_start"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:src="@drawable/icon_place_start"
-                app:layout_constraintBottom_toBottomOf="@id/layout_start"
-                app:layout_constraintEnd_toStartOf="@+id/tv_start"
-                app:layout_constraintStart_toStartOf="@id/layout_start"
-                app:layout_constraintTop_toTopOf="@id/layout_start" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_end"
-            android:layout_width="0dp"
+        <ImageView
+            android:id="@+id/iv_start"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:src="@drawable/icon_place_start"
+            app:layout_constraintBottom_toBottomOf="@id/tv_start"
+            app:layout_constraintStart_toStartOf="@id/tv_start"
+            app:layout_constraintTop_toTopOf="@id/tv_start" />
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_end"
+            style="@style/tvAddRouteStyle"
             android:layout_marginTop="12dp"
             android:background="@drawable/outline_red"
-            app:layout_constraintTop_toBottomOf="@id/layout_start"
-            app:layout_constraintStart_toStartOf="@id/layout_start"
-            app:layout_constraintEnd_toEndOf="@id/layout_start">
-            <com.thustop_00.widgets.NotoTextView
-                android:id="@+id/tv_end"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                style="@style/EtStyle"
-                android:text="일이삼사ddddddddddddddddddddddd"
-                android:textSize="14sp"
-                android:textColor="#535353"
-                app:layout_constraintTop_toTopOf="@id/layout_end"
-                app:layout_constraintStart_toEndOf="@id/iv_end"
-                app:layout_constraintEnd_toEndOf="@id/layout_end"
-                app:layout_constraintBottom_toBottomOf="@id/layout_end"/>
+            android:text="확인중확인중"
+            android:textSize="14sp"
+            android:textColor="#535353"
+            app:layout_constraintTop_toBottomOf="@id/tv_start"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-            <ImageView
-                android:id="@+id/iv_end"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:src="@drawable/icon_place_end"
-                app:layout_constraintBottom_toBottomOf="@id/layout_end"
-                app:layout_constraintEnd_toStartOf="@+id/tv_end"
-                app:layout_constraintStart_toStartOf="@id/layout_end"
-                app:layout_constraintTop_toTopOf="@id/layout_end" />
+        <ImageView
+            android:id="@+id/iv_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:src="@drawable/icon_place_end"
+            app:layout_constraintBottom_toBottomOf="@id/tv_end"
+            app:layout_constraintStart_toStartOf="@id/tv_end"
+            app:layout_constraintTop_toTopOf="@id/tv_end" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -116,9 +87,9 @@
             android:layout_marginTop="38dp"
             android:background="@drawable/round_gray_e7"
             android:onClick="@{AddRouteTimefrag::onTimeSetClick}"
-            app:layout_constraintTop_toBottomOf="@id/layout_end"
-            app:layout_constraintStart_toStartOf="@id/layout_end"
-            app:layout_constraintEnd_toEndOf="@id/layout_end">
+            app:layout_constraintTop_toBottomOf="@id/tv_end"
+            app:layout_constraintStart_toStartOf="@id/tv_end"
+            app:layout_constraintEnd_toEndOf="@id/tv_end">
             <com.thustop_00.widgets.NotoTextView
                 android:id="@+id/tv_time"
                 android:layout_width="0dp"
@@ -148,8 +119,20 @@
                 app:layout_constraintTop_toTopOf="@id/layout_time"
                 app:layout_constraintBottom_toBottomOf="@id/layout_time"/>
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:background="@color/colorPrimary"
+            android:text="노선 생성하기"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:gravity="center"
+            app:notoTextStyle="medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
 
 

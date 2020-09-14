@@ -10,13 +10,37 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent">
+
         <net.daum.mf.map.api.MapView
             android:id="@+id/map"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:background="@color/colorPrimary"
-            android:layout_marginBottom="180dp"
-            />
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <ImageView
+            android:id="@+id/bt_back"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/circle_white_back"
+            android:elevation="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/bt_gps"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="17dp"
+            android:src="@drawable/circle_white_gps"
+            android:elevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/layout_location"/>
+
 
         <ImageView
             android:id="@+id/marker"
@@ -51,19 +75,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/center" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:background="@color/colorWhite"
-            android:elevation="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/round_white"
+            android:background="@drawable/roundup_white"
             android:elevation="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -77,9 +93,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="45dp"
-                android:layout_marginTop="20dp"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
+                android:layout_marginTop="27dp"
+                android:paddingStart="3dp"
                 android:src="@drawable/icon_place_start"
                 app:layout_constraintStart_toStartOf="@id/layout_location"
                 app:layout_constraintTop_toTopOf="@id/layout_location" />
@@ -88,17 +103,17 @@
                 android:id="@+id/tv_start"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginEnd="45dp"
-                android:text="출발지"
-                android:textColor="#535353"
-                android:textSize="14sp"
                 android:gravity="bottom"
+                android:onClick="@{mapSearchfrag::onStartClick}"
+                android:text="출발지를 입력해주세요."
+                android:textColor="#c3c3c3"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@id/iv_start"
                 app:layout_constraintEnd_toEndOf="@id/layout_location"
                 app:layout_constraintStart_toEndOf="@id/iv_start"
-                app:layout_constraintTop_toTopOf="@id/iv_start"
-                android:onClick="@{mapSearchfrag::onStartClick}"/>
+                app:layout_constraintTop_toTopOf="@id/iv_start" />
 
             <View
                 android:id="@+id/line1"
@@ -115,8 +130,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
+                android:paddingStart="3dp"
+
                 android:src="@drawable/icon_place_end"
                 app:layout_constraintEnd_toStartOf="@id/tv_end"
                 app:layout_constraintStart_toStartOf="@id/iv_start"
@@ -126,17 +141,17 @@
                 android:id="@+id/tv_end"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="24dp"
+                android:clickable="true"
                 android:gravity="bottom"
-                android:text="도착지"
-                android:textColor="#535353"
+                android:onClick="@{mapSearchfrag::onEndClick}"
+                android:text="도착지를 입력해주세요."
+                android:textColor="#c3c3c3"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@id/iv_end"
                 app:layout_constraintEnd_toEndOf="@id/tv_start"
                 app:layout_constraintStart_toEndOf="@id/iv_end"
-                app:layout_constraintTop_toTopOf="@id/iv_end"
-                android:clickable="true"
-                android:onClick="@{mapSearchfrag::onEndClick}"/>
+                app:layout_constraintTop_toTopOf="@id/iv_end" />
 
             <View
                 android:id="@+id/line2"
@@ -149,18 +164,12 @@
                 app:layout_constraintTop_toBottomOf="@id/iv_end" />
 
             <com.thustop_00.widgets.NotoButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="15dp"
+                style="@style/btStyle"
+                android:layout_marginTop="23dp"
                 android:layout_marginBottom="30dp"
                 android:background="@drawable/round_green"
-                android:paddingTop="17dp"
-                android:paddingBottom="17dp"
                 android:text="확인"
-                android:textColor="@color/colorWhite"
-                android:textSize="16sp"
+                app:notoTextStyle="medium"
                 app:layout_constraintBottom_toBottomOf="@id/layout_location"
                 app:layout_constraintEnd_toEndOf="@id/layout_location"
                 app:layout_constraintStart_toStartOf="@id/layout_location"
