@@ -60,6 +60,7 @@
             android:textColor="@color/colorWhite"
             android:textSize="8sp"
             android:letterSpacing="-0.12"
+            app:notoTextStyle="regular"
             app:layout_constraintTop_toTopOf="@id/marker"
             app:layout_constraintBottom_toBottomOf="@id/marker"
             app:layout_constraintStart_toStartOf="@id/marker"
@@ -108,8 +109,9 @@
                 android:gravity="bottom"
                 android:onClick="@{mapSearchfrag::onStartClick}"
                 android:text="출발지를 입력해주세요."
-                android:textColor="#c3c3c3"
+                android:textColor="#979797"
                 android:textSize="14sp"
+                app:notoTextStyle="regular"
                 app:layout_constraintBottom_toBottomOf="@id/iv_start"
                 app:layout_constraintEnd_toEndOf="@id/layout_location"
                 app:layout_constraintStart_toEndOf="@id/iv_start"
@@ -146,12 +148,14 @@
                 android:gravity="bottom"
                 android:onClick="@{mapSearchfrag::onEndClick}"
                 android:text="도착지를 입력해주세요."
-                android:textColor="#c3c3c3"
+                android:textColor="#979797"
                 android:textSize="14sp"
+                app:notoTextStyle="regular"
                 app:layout_constraintBottom_toBottomOf="@id/iv_end"
                 app:layout_constraintEnd_toEndOf="@id/tv_start"
                 app:layout_constraintStart_toEndOf="@id/iv_end"
-                app:layout_constraintTop_toTopOf="@id/iv_end" />
+                app:layout_constraintTop_toTopOf="@id/iv_end"
+                android:focusable="true" />
 
             <View
                 android:id="@+id/line2"
@@ -164,16 +168,19 @@
                 app:layout_constraintTop_toBottomOf="@id/iv_end" />
 
             <com.thustop_00.widgets.NotoButton
+                android:id="@+id/bt_confirm"
                 style="@style/btStyle"
                 android:layout_marginTop="23dp"
                 android:layout_marginBottom="30dp"
                 android:background="@drawable/round_green"
                 android:text="확인"
-                app:notoTextStyle="medium"
+                android:onClick="@{mapSearchfrag::onConfirmClick}"
+                app:notoTextStyle="regular"
                 app:layout_constraintBottom_toBottomOf="@id/layout_location"
                 app:layout_constraintEnd_toEndOf="@id/layout_location"
                 app:layout_constraintStart_toStartOf="@id/layout_location"
-                app:layout_constraintTop_toBottomOf="@id/line2" />
+                app:layout_constraintTop_toBottomOf="@id/line2"
+                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

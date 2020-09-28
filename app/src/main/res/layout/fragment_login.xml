@@ -22,6 +22,7 @@
             android:id="@+id/et_phone"
             style="@style/EtLoginStyle"
             android:hint="@string/etv_login_phone"
+            app:notoTextStyle="regular"
             app:layout_constraintBottom_toTopOf="@id/et_pass"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,6 +36,7 @@
             android:layout_marginTop="15dp"
             style="@style/EtLoginStyle"
             android:hint="@string/etv_login_pass"
+            app:notoTextStyle="regular"
             app:layout_constraintTop_toBottomOf="@id/et_phone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -52,6 +54,7 @@
             android:text="로그인 정보 기억하기"
             android:textColor="#979797"
             android:textSize="12sp"
+            app:notoTextStyle="regular"
             app:layout_constraintStart_toStartOf="@id/et_pass"
             app:layout_constraintTop_toBottomOf="@id/et_pass"
             app:layout_constraintBottom_toTopOf="@id/bt_login"/>
@@ -78,6 +81,7 @@
             android:text="비밀번호찾기"
             android:textSize="11sp"
             android:textColor="#646464"
+            app:notoTextStyle="regular"
             app:layout_constraintStart_toStartOf="@id/bt_login"
             app:layout_constraintTop_toBottomOf="@id/bt_login"
             app:layout_constraintBottom_toBottomOf="parent"/>
@@ -99,6 +103,7 @@
             android:text="회원가입"
             android:textSize="11sp"
             android:textColor="#646464"
+            app:notoTextStyle="regular"
             app:layout_constraintEnd_toEndOf="@id/bt_login"
             app:layout_constraintTop_toTopOf="@id/tv_passFind"
             app:layout_constraintBottom_toBottomOf="@id/tv_passFind"/>
@@ -107,6 +112,7 @@
             style="@style/btStyle"
             android:layout_marginBottom="40dp"
             android:background="@drawable/round_kakao"
+            app:notoTextStyle="medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>

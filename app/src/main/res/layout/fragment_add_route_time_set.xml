@@ -38,9 +38,10 @@
             style="@style/tvAddRouteStyle"
             android:layout_marginTop="36dp"
             android:background="@drawable/outline_green"
-            android:text="확인중확인중"
+            android:text="출발지"
             android:textSize="14sp"
             android:textColor="#535353"
+            app:notoTextStyle="regular"
             app:layout_constraintTop_toBottomOf="@id/tv_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -60,9 +61,10 @@
             style="@style/tvAddRouteStyle"
             android:layout_marginTop="12dp"
             android:background="@drawable/outline_red"
-            android:text="확인중확인중"
+            android:text="도착지"
             android:textSize="14sp"
             android:textColor="#535353"
+            app:notoTextStyle="regular"
             app:layout_constraintTop_toBottomOf="@id/tv_start"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -133,11 +135,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
-
-
-
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

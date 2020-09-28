@@ -50,7 +50,7 @@
             android:textSize="14sp"
             android:textColor="#565b59"
             android:letterSpacing="-0.05"
-            app:notoTextStyle="medium"
+            app:notoTextStyle="regular"
             app:layout_constraintTop_toBottomOf="@id/tv_done"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

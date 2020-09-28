@@ -43,6 +43,7 @@
                     android:textSize="18sp"
                     android:textStyle="normal"
                     android:visibility="gone"
+                    app:notoTextStyle="bold"
                     tools:layout_editor_absoluteX="163dp"
                     tools:layout_editor_absoluteY="18dp" />
 

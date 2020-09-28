@@ -44,6 +44,7 @@
             android:gravity="center_vertical"
             android:paddingStart="21dp"
             android:text="@string/tv_verification_nation"
+            app:notoTextStyle="regular"
             app:layout_constraintBottom_toBottomOf="@id/et_name"
             app:layout_constraintEnd_toStartOf="@id/et_name"
             app:layout_constraintStart_toStartOf="parent"

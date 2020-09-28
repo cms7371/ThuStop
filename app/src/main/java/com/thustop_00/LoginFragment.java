@@ -11,7 +11,6 @@ import com.thustop_00.model.Token;
 import com.thustop_00.model.UserData;
 
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,14 +46,12 @@ public class LoginFragment extends FragmentBase {
         _listener.setTitle("로그인");
         _listener.showActionBar(true);
         return binding.getRoot();
-
     }
 
     private void login(String phone_num, String password) {
         UserData user = new UserData();
         user.password1 = password;
         user.username = phone_num;
-
 
         //retrofit 객체 선언
         Retrofit retrofit = new Retrofit.Builder()
