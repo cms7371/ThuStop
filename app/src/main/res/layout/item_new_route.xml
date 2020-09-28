@@ -19,16 +19,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <com.thustop_00.widgets.NotoTextView
             android:id="@+id/tv_route_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
-            android:fontFamily="@font/sarabun_medium"
-
             android:text="노선 생성하기"
             android:textColor=" #757f8c"
             android:textSize="10sp"
+            app:notoTextStyle="medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_route_plus" />

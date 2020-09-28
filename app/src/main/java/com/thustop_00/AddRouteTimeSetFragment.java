@@ -1,15 +1,14 @@
 package com.thustop_00;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
 import com.thustop_00.databinding.FragmentAddRouteTimeSetBinding;
+import com.thustop_00.model.Address;
 
 import java.util.Calendar;
 
@@ -18,12 +17,13 @@ import java.util.Calendar;
  * Use the {@link AddRouteTimeSetFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddRouteTimeSetFragment extends FragmentBase {
+public class AddRouteTimeSetFragment extends FragmentBase implements MainActivity.onBackPressedListener {
     FragmentAddRouteTimeSetBinding binding;
 
     int h, min;
     String noon;
     final Calendar cal = Calendar.getInstance();
+    Address startLocation, endLocation;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -47,10 +47,12 @@ public class AddRouteTimeSetFragment extends FragmentBase {
         return fragment;
     }*/
 
-    public static AddRouteTimeSetFragment newInstance() {
+    public static AddRouteTimeSetFragment newInstance(Address startLocation, Address endLocation) {
         AddRouteTimeSetFragment fragment = new AddRouteTimeSetFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
+        fragment.startLocation = startLocation;
+        fragment.endLocation = endLocation;
         return fragment;
     }
 
@@ -70,6 +72,10 @@ public class AddRouteTimeSetFragment extends FragmentBase {
         binding.setAddRouteTimefrag(this);
         //binding.tvTimePicker.setText((+String.valueOf(h)+"시 "+String.valueOf(min)+"분");)
         setCurTime();
+        binding.tvStart.setText(startLocation.getAddress());
+        binding.tvEnd.setText(endLocation.getAddress());
+        _listener.setOnBackPressedListener(this);
+        _listener.setToolbar(true, true, false);
 
         // Inflate the layout for this fragment
         return binding.getRoot();
@@ -107,6 +113,11 @@ public class AddRouteTimeSetFragment extends FragmentBase {
         int m = (cal.get(Calendar.MINUTE)/10)*10;
         binding.tvTimePicker.setText(n +"     "+String.valueOf(h)+"시     "+String.valueOf(m)+"분");
 
+    }
+
+    @Override
+    public void onBack() {
+        _listener.addFragmentNotBackStack(AddRouteMapFragment.newInstance(startLocation, endLocation));
     }
     /*
     void showTime() {

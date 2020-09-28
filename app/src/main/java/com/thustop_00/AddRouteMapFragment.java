@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -69,16 +70,17 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
 
         LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         //입력이 null로 fragment가 선언되면(메인에서 넘어올 때) 현재 위치로 초기화 해줍니다.
+        //TODO : 비어있을 시 출발지를 입력해주세요, 도착지를 입력해주세요 추가 및 글씨 색상 변경
         if (startLocation == null) {
             startLocation = new Address();
             endLocation = new Address();
             getCurrentLocation(startLocation);
             //getCurrentLocation(endLocation);
         }
-        binding.tvStart.setText(startLocation.address);
-        binding.tvEnd.setText(endLocation.address);
+        binding.tvStart.setText(startLocation.getAddress());
+        binding.tvEnd.setText(endLocation.getAddress());
         binding.map.setMapCenterPoint(
-                MapPoint.mapPointWithGeoCoord(startLocation.latitude, startLocation.longitude),
+                MapPoint.mapPointWithGeoCoord(startLocation.getLatitude(), startLocation.getLongitude()),
                 true);
 
         MapPOIItem marker = new MapPOIItem();
@@ -93,7 +95,7 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
             binding.marker.setImageResource(R.drawable.icon_pin_start);
             binding.tvMarker.setText(R.string.tv_mark_start);
             binding.map.setMapCenterPoint(
-                    MapPoint.mapPointWithGeoCoord(startLocation.latitude, startLocation.longitude),
+                    MapPoint.mapPointWithGeoCoord(startLocation.getLatitude(), startLocation.getLongitude()),
                     true);
             isStart = true;
         } else {
@@ -109,15 +111,25 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
             binding.marker.setImageResource(R.drawable.icon_pin_end);
             binding.tvMarker.setText(R.string.tv_mark_end);
             binding.map.setMapCenterPoint(
-                    MapPoint.mapPointWithGeoCoord(endLocation.latitude, endLocation.longitude),
+                    MapPoint.mapPointWithGeoCoord(endLocation.getLatitude(), endLocation.getLongitude()),
                     true);
+        }
+    }
+
+    public void onConfirmClick(View view) {
+        if (startLocation.getAddress() == "") {
+            Toast.makeText(getContext(), "지도를 이동시켜 출발지를 선택해주세요.", Toast.LENGTH_SHORT).show();
+        } else if (endLocation.getAddress() == "") {
+            Toast.makeText(getContext(), "지도를 끌어 도착지를 선택해주세요.", Toast.LENGTH_SHORT).show();
+        } else {
+            _listener.addFragmentNotBackStack(AddRouteTimeSetFragment.newInstance(startLocation, endLocation));
         }
     }
 
     public void getCurrentLocation(Address address) {
         GpsTracker gpsTracker = new GpsTracker(getActivity());
-        address.latitude = gpsTracker.getLatitude();
-        address.longitude = gpsTracker.getLongitude();
+        address.setLatitude(gpsTracker.getLatitude());
+        address.setLongitude(gpsTracker.getLongitude());
         //address = getCurrentAddress(latitude, longitude);
         //Toast.makeText(getActivity(), "현재위치 \n위도 " + latitude + "\n경도 " + longitude, Toast.LENGTH_LONG).show();
     }
@@ -130,15 +142,15 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
 
                 if (isStart) {
                     binding.tvStart.setText(addressString);
-                    startLocation.address = addressString;
-                    startLocation.latitude = centerPoint.getMapPointGeoCoord().latitude;
-                    startLocation.longitude = centerPoint.getMapPointGeoCoord().longitude;
+                    startLocation.setAddress(addressString);
+                    startLocation.setLatitude(centerPoint.getMapPointGeoCoord().latitude);
+                    startLocation.setLongitude(centerPoint.getMapPointGeoCoord().longitude);
                     Log.d(TAG, "출발장소 변경됨");
                 } else {
                     binding.tvEnd.setText(addressString);
-                    endLocation.address = addressString;
-                    endLocation.latitude = centerPoint.getMapPointGeoCoord().latitude;
-                    endLocation.longitude = centerPoint.getMapPointGeoCoord().longitude;
+                    endLocation.setAddress(addressString);
+                    endLocation.setLatitude(centerPoint.getMapPointGeoCoord().latitude);
+                    endLocation.setLongitude(centerPoint.getMapPointGeoCoord().longitude);
                     Log.d(TAG, "도착 장소 변경됨");
                 }
             }

@@ -3,7 +3,6 @@ package com.thustop_00;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,8 +81,8 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
         binding.rvLocationPrediction.setAdapter(autocompleteAdapter);
         autocompleteAdapter.notifyDataSetChanged();
 
-        binding.etStart.setText(startLocation.address);
-        binding.etEnd.setText(endLocation.address);
+        binding.etStart.setText(startLocation.getAddress());
+        binding.etEnd.setText(endLocation.getAddress());
         binding.etStart.addTextChangedListener(filterTextWatcher);
         binding.etEnd.addTextChangedListener(filterTextWatcher);
         setInitialColor(binding.etStart, R.drawable.outline_green);
@@ -131,13 +130,13 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
             public void onSuccess(FetchPlaceResponse response) {
                 if (binding.etStart.isFocused()) {
                     transferAddress(response.getPlace(), startLocation);
-                    binding.etStart.setText(startLocation.address);
+                    binding.etStart.setText(startLocation.getAddress());
                     binding.etStart.setBackgroundResource(R.drawable.round_gray_e7);
                     binding.etDummy.requestFocus();
                     _listener.hideKeyBoard();
                 } else if (binding.etEnd.isFocused()) {
                     transferAddress(response.getPlace(), endLocation);
-                    binding.etEnd.setText(endLocation.address);
+                    binding.etEnd.setText(endLocation.getAddress());
                     binding.etEnd.setBackgroundResource(R.drawable.round_gray_e7);
                     binding.etDummy.requestFocus();
                     _listener.hideKeyBoard();
@@ -157,9 +156,9 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
     }
     //Places API의 Place 클래스의 값을 Address 클래스로 옮겨주는 method
     private void transferAddress(Place place, Address position) {
-        position.address = place.getAddress().replace("대한민국 ", "");
-        position.latitude = place.getLatLng().latitude;
-        position.longitude = place.getLatLng().longitude;
+        position.setAddress(place.getAddress().replace("대한민국 ", ""));
+        position.setLatitude(place.getLatLng().latitude);
+        position.setLongitude(place.getLatLng().longitude);
     }
 
     private void setInitialColor(TextView textView, int onBlank) {
