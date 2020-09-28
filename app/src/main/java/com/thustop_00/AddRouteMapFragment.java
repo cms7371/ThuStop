@@ -73,7 +73,7 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
             startLocation = new Address();
             endLocation = new Address();
             getCurrentLocation(startLocation);
-            getCurrentLocation(endLocation);
+            //getCurrentLocation(endLocation);
         }
         binding.tvStart.setText(startLocation.address);
         binding.tvEnd.setText(endLocation.address);
@@ -145,12 +145,14 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
 
             @Override
             public void onReverseGeoCoderFailedToFindAddress(MapReverseGeoCoder mapReverseGeoCoder) {
-                binding.tvStart.setText("실패^^");// 호출에 실패한 경우.
+                //binding.tvStart.setText("실패^^");// 호출에 실패한 경우.
                 Log.d(TAG, "ReverseGeoCoder 호출 실패");
             }
         }, getActivity());
         reverseGeoCoder.startFindingAddress();
     }
+
+
 
 
     @Override

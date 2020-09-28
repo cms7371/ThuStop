@@ -50,6 +50,14 @@ public class LoginFragment extends FragmentBase {
 
     }
 
+    public void OnFindPassClick(View view){
+        _listener.addFragment(FindPasswordFragment.newInstance());
+    }
+
+    public void OnRegisterClick(View view){
+        _listener.addFragment(RegisterTermsFragment.newInstance());
+    }
+
     private void login(String phone_num, String password) {
         UserData user = new UserData();
         user.password1 = password;

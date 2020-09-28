@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="RequestTownFrag"
+            type="com.thustop_00.RequestTownServiceFragment" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff">
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="11dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="?attr/actionBarSize" />
+
+
+        <ImageView
+            android:id="@+id/iv_town"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_intro1"
+            app:layout_constraintTop_toTopOf="@id/guideline1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_town_1"
+            app:layout_constraintTop_toBottomOf="@id/iv_town"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_town_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_1"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_townSel"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:background="@drawable/outline_green"
+            android:paddingEnd="50dp"
+            android:paddingStart="50dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_townSel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/tv_townSel"
+                android:gravity="center"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.thustop_00.widgets.NotoCheckBox
+            android:id="@+id/cb_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cb_town_message"
+            android:button="@drawable/checkbox_round_sel"
+            app:layout_constraintTop_toBottomOf="@id/layout_townSel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <com.thustop_00.widgets.NotoEditText
+            android:id="@+id/et_phoneNum"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:paddingStart="30dp"
+            android:background="@drawable/round_gray_f5"
+            android:hint="@string/et_town_hint"
+            android:textSize="14dp"
+            android:inputType="numberDecimal"
+            android:maxLength="11"
+            android:maxLines="1"
+            app:layout_constraintTop_toBottomOf="@id/cb_message"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_town_notice"
+            android:textSize="10dp"
+            app:layout_constraintTop_toBottomOf="@id/et_phoneNum"
+            app:layout_constraintStart_toStartOf="@id/et_phoneNum"
+            app:layout_constraintEnd_toEndOf="@id/et_phoneNum"/>
+
+        <com.thustop_00.widgets.NotoButton
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/round_green"
+            android:text="@string/bt_town_request"
+            android:onClick="@{RequestTownFrag::onRequestClick}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

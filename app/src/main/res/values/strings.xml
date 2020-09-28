@@ -82,7 +82,16 @@
     <string name="bt_verification_send">전송</string>
     <string name="bt_verification_done">완료</string>
 
-
+    <!-- Request Town Service fragment-->
+    <string name="tv_town_1">원하는 지역을 알려주세요!</string>
+    <string name="tv_town_2">우리동네에도 노선이 개설될 수 있어요</string>
+    <string name="tv_townSel">서비스 지역 선택</string>
+    <string name="cb_town_message">선택한 지역이 개설 되었을 때, 문자메세지를 받고싶어요!</string>
+    <string name="et_town_hint">휴대폰 번호</string>
+    <string name="tv_town_notice">휴대폰 번호는 알림 문자 메세지 전송 이외의 용도로 사용되지 않습니다.</string>
+    <string name="bt_town_request">신청하기</string>
+    <string name="tv_request_done">우리 동네 서비스 요청이 완료되었습니다</string>
+    <string name="tv_request_continue">우리동네 수요조사에 참여해주셔서 감사합니다!</string>
     <!--fragment splash-->
     <string name="app_name">ThuStop_00</string>
     <string name="tv_splash_subtitle">신개념 출퇴근 버스 노선 공유 버스</string>

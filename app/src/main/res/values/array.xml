@@ -12,5 +12,34 @@
         <item>통신사</item>
     </string-array>
 
+    <string-array name="city">
+        <item>서울</item>
+        <item>경기</item>
+        <item>인천</item>
+        <item>강원</item>
+        <item>대전</item>
+        <item>세종</item>
+        <item>충남</item>
+        <item>충북</item>
+        <item>부산</item>
+        <item>울산</item>
+        <item>경남</item>
+        <item>경북</item>
+    </string-array>
+
+    <string-array name="seoul">
+        <item>강남구</item>
+        <item>강동구</item>
+        <item>강북구</item>
+        <item>강서구</item>
+        <item>관악구</item>
+        <item>광진구</item>
+        <item>구로구</item>
+        <item>금천구</item>
+        <item>노원구</item>
+        <item>도봉구</item>
+        <item>동대문구</item>
+    </string-array>
+
 
 </resources>

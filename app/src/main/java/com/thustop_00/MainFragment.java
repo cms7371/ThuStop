@@ -82,7 +82,6 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
 
         binding.vPause.setVisibility(View.GONE);
         binding.layoutLocal.setVisibility(View.GONE);
-        // binding이 text로 인식이 안됨..string으로 인식됨..
         colorText(binding.tvLocal1, R.string.tv_local1_color, "#15a474");
         toggle = false;
         _listener.setToolbar(false, false, true);
@@ -116,6 +115,10 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
             binding.layoutLocal.setVisibility(View.GONE);
             toggle = false;
         }
+    }
+
+    public void onTownRequestClick(View view) {
+        _listener.addFragment(RequestTownServiceFragment.newInstance());
     }
 
 
