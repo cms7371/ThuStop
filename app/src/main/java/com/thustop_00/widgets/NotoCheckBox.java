@@ -34,10 +34,13 @@ public class NotoCheckBox extends AppCompatCheckBox {
         switch (attr.getInt(R.styleable.NotoStyle_notoTextStyle, 1)) {
             case 1: //When option is 'regular'
                 this.setTypeface(Typeface.createFromAsset(context.getAssets(), "NotoSansKR-Regular-Hestia.otf"));
+                break;
             case 2: //When option is 'medium'
                 this.setTypeface(Typeface.createFromAsset(context.getAssets(), "NotoSansKR-Medium-Hestia.otf"));
+                break;
             case 3: //When option is 'bold'
                 this.setTypeface(Typeface.createFromAsset(context.getAssets(), "NotoSansKR-Bold-Hestia.otf"));
+                break;
 
         }
         attr.recycle();

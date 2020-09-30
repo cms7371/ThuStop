@@ -27,6 +27,7 @@
             android:layout_marginStart="20dp"
             android:src="@drawable/circle_white_back"
             android:elevation="4dp"
+            android:onClick="@{mapSearchfrag::onBackClick}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -81,7 +82,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/roundup_white"
+            android:clickable="true"
             android:elevation="10dp"
+            android:focusable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -108,14 +111,15 @@
                 android:layout_marginEnd="45dp"
                 android:gravity="bottom"
                 android:onClick="@{mapSearchfrag::onStartClick}"
+                android:singleLine="true"
                 android:text="출발지를 입력해주세요."
                 android:textColor="#979797"
                 android:textSize="14sp"
-                app:notoTextStyle="regular"
                 app:layout_constraintBottom_toBottomOf="@id/iv_start"
                 app:layout_constraintEnd_toEndOf="@id/layout_location"
                 app:layout_constraintStart_toEndOf="@id/iv_start"
-                app:layout_constraintTop_toTopOf="@id/iv_start" />
+                app:layout_constraintTop_toTopOf="@id/iv_start"
+                app:notoTextStyle="regular" />
 
             <View
                 android:id="@+id/line1"
@@ -145,17 +149,18 @@
                 android:layout_height="0dp"
                 android:layout_marginStart="24dp"
                 android:clickable="true"
+                android:focusable="true"
                 android:gravity="bottom"
                 android:onClick="@{mapSearchfrag::onEndClick}"
+                android:singleLine="true"
                 android:text="도착지를 입력해주세요."
                 android:textColor="#979797"
                 android:textSize="14sp"
-                app:notoTextStyle="regular"
                 app:layout_constraintBottom_toBottomOf="@id/iv_end"
                 app:layout_constraintEnd_toEndOf="@id/tv_start"
                 app:layout_constraintStart_toEndOf="@id/iv_end"
                 app:layout_constraintTop_toTopOf="@id/iv_end"
-                android:focusable="true" />
+                app:notoTextStyle="regular" />
 
             <View
                 android:id="@+id/line2"
@@ -173,14 +178,13 @@
                 android:layout_marginTop="23dp"
                 android:layout_marginBottom="30dp"
                 android:background="@drawable/round_green"
-                android:text="확인"
                 android:onClick="@{mapSearchfrag::onConfirmClick}"
-                app:notoTextStyle="regular"
+                android:text="확인"
                 app:layout_constraintBottom_toBottomOf="@id/layout_location"
                 app:layout_constraintEnd_toEndOf="@id/layout_location"
                 app:layout_constraintStart_toStartOf="@id/layout_location"
                 app:layout_constraintTop_toBottomOf="@id/line2"
-                />
+                app:notoTextStyle="regular" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

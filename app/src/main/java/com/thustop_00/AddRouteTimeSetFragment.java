@@ -117,7 +117,7 @@ public class AddRouteTimeSetFragment extends FragmentBase implements MainActivit
 
     @Override
     public void onBack() {
-        _listener.addFragmentNotBackStack(AddRouteMapFragment.newInstance(startLocation, endLocation));
+        _listener.addFragmentNotBackStack(AddRouteMapFragment.newInstance(startLocation, endLocation, false));
     }
     /*
     void showTime() {

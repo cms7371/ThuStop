@@ -37,7 +37,7 @@
             android:text="A15"
             android:textColor="#171d33"
             android:textSize="18sp"
-            app:notoTextStyle="regular"
+            app:notoTextStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/iv_mrv_bus"
             app:layout_constraintStart_toEndOf="@id/iv_mrv_bus"
             app:layout_constraintTop_toTopOf="@id/iv_mrv_bus" />
@@ -72,7 +72,7 @@
             android:text="선릉역 1번 출구"
             android:textColor="#757f8c"
             android:textSize="13sp"
-            app:notoTextStyle="bold"
+            app:notoTextStyle="regular"
             app:layout_constraintBottom_toBottomOf="@+id/iv_mrv_departure"
             app:layout_constraintStart_toEndOf="@id/tv_mrv_stime"
             app:layout_constraintTop_toTopOf="@+id/iv_mrv_departure" />

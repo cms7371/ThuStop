@@ -35,15 +35,17 @@ public class NotoEditText extends AppCompatEditText {
      * From attribute(res/values/attrs) NotoStyle's notoTextStyle, set font depend on integer.
      */
     private void setType(Context context, AttributeSet attrs) {
-        //TODO : 글씨체 안바뀌는 이유 찾기
         TypedArray attr = context.obtainStyledAttributes(attrs, R.styleable.NotoStyle);
         switch (attr.getInt(R.styleable.NotoStyle_notoTextStyle, 1)) {
             case 1: //When option is 'regular'
                 this.setTypeface(Typeface.createFromAsset(context.getAssets(), "NotoSansKR-Regular-Hestia.otf"));
+                break;
             case 2: //When option is 'medium'
                 this.setTypeface(Typeface.createFromAsset(context.getAssets(), "NotoSansKR-Medium-Hestia.otf"));
+                break;
             case 3: //When option is 'bold'
                 this.setTypeface(Typeface.createFromAsset(context.getAssets(), "NotoSansKR-Bold-Hestia.otf"));
+                break;
         }
         attr.recycle();
 

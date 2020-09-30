@@ -9,9 +9,6 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +21,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.thustop_00.databinding.FragmentMainBinding;
-import com.thustop_00.widgets.NotoTextView;
 
 import java.io.IOException;
 import java.util.List;
@@ -100,7 +96,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     @Override
     public void onItemSelected(View v, int position) {
         if (position == 0) {
-            _listener.addFragment(AddRouteMapFragment.newInstance(null, null));
+            _listener.addFragment(AddRouteMapFragment.newInstance(null, null, false));
         }
     }
 

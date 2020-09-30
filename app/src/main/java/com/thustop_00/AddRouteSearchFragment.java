@@ -172,6 +172,6 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
 
     @Override
     public void onBack() {
-        _listener.addFragmentNotBackStack(AddRouteMapFragment.newInstance(startLocation, endLocation));
+        _listener.addFragmentNotBackStack(AddRouteMapFragment.newInstance(startLocation, endLocation, true));
     }
 }

@@ -2,6 +2,7 @@ package com.thustop_00;
 
 import android.Manifest;
 import android.content.Context;
+import android.graphics.Color;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +34,7 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
     private static final String TAG = "LocationMapSearchFrag";
 
     private boolean isStart;
+    private boolean isEndFocus;
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
@@ -44,11 +46,12 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
     }
 
 
-    public static AddRouteMapFragment newInstance(Address startLocation, Address endLocation) {
+    public static AddRouteMapFragment newInstance(Address startLocation, Address endLocation, boolean isEndFocus) {
         AddRouteMapFragment fragment = new AddRouteMapFragment();
         Bundle args = new Bundle();
         fragment.startLocation = startLocation;
         fragment.endLocation = endLocation;
+        fragment.isEndFocus = isEndFocus;
         fragment.setArguments(args);
         return fragment;
     }
@@ -70,19 +73,29 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
 
         LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         //입력이 null로 fragment가 선언되면(메인에서 넘어올 때) 현재 위치로 초기화 해줍니다.
-        //TODO : 비어있을 시 출발지를 입력해주세요, 도착지를 입력해주세요 추가 및 글씨 색상 변경
         if (startLocation == null) {
             startLocation = new Address();
             endLocation = new Address();
             getCurrentLocation(startLocation);
-            //getCurrentLocation(endLocation);
+            getCurrentLocation(endLocation);
         }
-        binding.tvStart.setText(startLocation.getAddress());
-        binding.tvEnd.setText(endLocation.getAddress());
-        binding.map.setMapCenterPoint(
-                MapPoint.mapPointWithGeoCoord(startLocation.getLatitude(), startLocation.getLongitude()),
-                true);
-
+        //TODO 포커스 이동 말고 핀도 바꿀 것!
+        if (!startLocation.getAddress().equals("")) {
+            binding.tvStart.setText(startLocation.getAddress());
+            binding.tvStart.setTextColor(Color.parseColor("#535353"));
+        }
+        if (!endLocation.getAddress().equals("")) {
+            binding.tvEnd.setText(endLocation.getAddress());
+            binding.tvEnd.setTextColor(Color.parseColor("#535353"));
+        }
+        if (isEndFocus){
+            binding.map.setMapCenterPoint(
+                    MapPoint.mapPointWithGeoCoord(endLocation.getLatitude(), endLocation.getLongitude()), true);
+        }
+        else {
+            binding.map.setMapCenterPoint(
+                    MapPoint.mapPointWithGeoCoord(startLocation.getLatitude(), startLocation.getLongitude()), true);
+        }
         MapPOIItem marker = new MapPOIItem();
         marker.setItemName("출발지");
         marker.setTag(1);
@@ -117,13 +130,17 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
     }
 
     public void onConfirmClick(View view) {
-        if (startLocation.getAddress() == "") {
-            Toast.makeText(getContext(), "지도를 이동시켜 출발지를 선택해주세요.", Toast.LENGTH_SHORT).show();
-        } else if (endLocation.getAddress() == "") {
+        if (startLocation.getAddress().equals("")) {
+            Toast.makeText(getContext(), "지도를 끌어 출발지를 선택해주세요.", Toast.LENGTH_SHORT).show();
+        } else if (endLocation.getAddress().equals("")) {
             Toast.makeText(getContext(), "지도를 끌어 도착지를 선택해주세요.", Toast.LENGTH_SHORT).show();
         } else {
             _listener.addFragmentNotBackStack(AddRouteTimeSetFragment.newInstance(startLocation, endLocation));
         }
+    }
+
+    public void onBackClick(View view) {
+        _listener.setFragment(MainFragment.newInstance());
     }
 
     public void getCurrentLocation(Address address) {
@@ -142,12 +159,14 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
 
                 if (isStart) {
                     binding.tvStart.setText(addressString);
+                    binding.tvStart.setTextColor(Color.parseColor("#535353"));
                     startLocation.setAddress(addressString);
                     startLocation.setLatitude(centerPoint.getMapPointGeoCoord().latitude);
                     startLocation.setLongitude(centerPoint.getMapPointGeoCoord().longitude);
                     Log.d(TAG, "출발장소 변경됨");
                 } else {
                     binding.tvEnd.setText(addressString);
+                    binding.tvEnd.setTextColor(Color.parseColor("#535353"));
                     endLocation.setAddress(addressString);
                     endLocation.setLatitude(centerPoint.getMapPointGeoCoord().latitude);
                     endLocation.setLongitude(centerPoint.getMapPointGeoCoord().longitude);
@@ -163,6 +182,7 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
         }, getActivity());
         reverseGeoCoder.startFindingAddress();
     }
+
 
 
 
