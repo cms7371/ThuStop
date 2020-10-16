@@ -34,7 +34,6 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
     private static final String TAG = "LocationMapSearchFrag";
 
     private boolean isStart;
-    private boolean isEndFocus;
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
@@ -46,12 +45,11 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
     }
 
 
-    public static AddRouteMapFragment newInstance(Address startLocation, Address endLocation, boolean isEndFocus) {
+    public static AddRouteMapFragment newInstance(Address startLocation, Address endLocation) {
         AddRouteMapFragment fragment = new AddRouteMapFragment();
         Bundle args = new Bundle();
         fragment.startLocation = startLocation;
         fragment.endLocation = endLocation;
-        fragment.isEndFocus = isEndFocus;
         fragment.setArguments(args);
         return fragment;
     }
@@ -79,7 +77,6 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
             getCurrentLocation(startLocation);
             getCurrentLocation(endLocation);
         }
-        //TODO 포커스 이동 말고 핀도 바꿀 것!
         if (!startLocation.getAddress().equals("")) {
             binding.tvStart.setText(startLocation.getAddress());
             binding.tvStart.setTextColor(Color.parseColor("#535353"));
@@ -87,15 +84,14 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
         if (!endLocation.getAddress().equals("")) {
             binding.tvEnd.setText(endLocation.getAddress());
             binding.tvEnd.setTextColor(Color.parseColor("#535353"));
-        }
-        if (isEndFocus){
             binding.map.setMapCenterPoint(
                     MapPoint.mapPointWithGeoCoord(endLocation.getLatitude(), endLocation.getLongitude()), true);
-        }
-        else {
+            onEndClick(binding.tvEnd);
+        } else {
             binding.map.setMapCenterPoint(
                     MapPoint.mapPointWithGeoCoord(startLocation.getLatitude(), startLocation.getLongitude()), true);
         }
+
         MapPOIItem marker = new MapPOIItem();
         marker.setItemName("출발지");
         marker.setTag(1);

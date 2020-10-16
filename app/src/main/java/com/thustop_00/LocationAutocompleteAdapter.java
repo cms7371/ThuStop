@@ -90,7 +90,7 @@ public class LocationAutocompleteAdapter extends RecyclerView.Adapter<LocationAu
 
         // Create a new token for the autocomplete session. Pass this to FindAutocompletePredictionsRequest,
         // and once again when the user makes a selection (for example when calling fetchPlace()).
-        //TODO 세션 줄이기 위해서 token을 하나로 유지할 수 있도록 코드 변경 하기
+        //TODO : 세션 줄이기 위해서 token을 하나로 유지할 수 있도록 코드 변경 하기
         AutocompleteSessionToken token = AutocompleteSessionToken.newInstance();
         //https://gist.github.com/graydon/11198540
         // Use the builder to create a FindAutocompletePredictionsRequest.

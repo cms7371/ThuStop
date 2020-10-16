@@ -24,7 +24,7 @@ public class RegisterTermsFragment extends FragmentBase implements CompoundButto
     public RegisterTermsFragment() {
         // Required empty public constructor
     }
-    //TODO 약관 보이는 뷰 클릭 연결하기!
+    //TODO : 약관 보이는 뷰 클릭 연결하기!
 
     public static RegisterTermsFragment newInstance() {
         RegisterTermsFragment fragment = new RegisterTermsFragment();

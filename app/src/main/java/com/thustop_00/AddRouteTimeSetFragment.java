@@ -25,15 +25,6 @@ public class AddRouteTimeSetFragment extends FragmentBase implements MainActivit
     final Calendar cal = Calendar.getInstance();
     Address startLocation, endLocation;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     public AddRouteTimeSetFragment() {
         // Required empty public constructor
     }
@@ -85,6 +76,7 @@ public class AddRouteTimeSetFragment extends FragmentBase implements MainActivit
     public void onTimeSetClick(View view) {
         CustomTimePickerDialog timePickerDialog = new CustomTimePickerDialog(getActivity());
         timePickerDialog.setDialogListener(new CustomDialogListener() {
+            //TODO Bug : 처음 키자마자 클릭하면 0시 0분으로 찍힘
             @Override
             public void onOkClick(int hour, int minute, String n) {
                 h = hour;
@@ -117,7 +109,7 @@ public class AddRouteTimeSetFragment extends FragmentBase implements MainActivit
 
     @Override
     public void onBack() {
-        _listener.addFragmentNotBackStack(AddRouteMapFragment.newInstance(startLocation, endLocation, false));
+        _listener.addFragmentNotBackStack(AddRouteMapFragment.newInstance(startLocation, endLocation));
     }
     /*
     void showTime() {

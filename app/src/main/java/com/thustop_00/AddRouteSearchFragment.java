@@ -119,6 +119,7 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
         }
     };
 
+    //TODO Exception : position이 index를 넘어가는 경우가 생김
     @Override
     public void onItemSelected(View v, int position) {
         String placeId = String.valueOf(autocompleteAdapter.mResultList.get(position).placeId);
@@ -172,6 +173,6 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
 
     @Override
     public void onBack() {
-        _listener.addFragmentNotBackStack(AddRouteMapFragment.newInstance(startLocation, endLocation, true));
+        _listener.addFragmentNotBackStack(AddRouteMapFragment.newInstance(startLocation, endLocation));
     }
 }

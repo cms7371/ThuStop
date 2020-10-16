@@ -17,5 +17,6 @@ public interface RestApi {
     Call<Token> login(@Body UserData userData);
     @POST("api/devices/")
     Call<FCMReg> registerDevice(@Header("Authorization") String auth, @Body FCMReg reg);
+
 }
 
