@@ -65,8 +65,11 @@ public class AddRouteTimeSetFragment extends FragmentBase implements MainActivit
         setCurTime();
         binding.tvStart.setText(startLocation.getAddress());
         binding.tvEnd.setText(endLocation.getAddress());
+
         _listener.setOnBackPressedListener(this);
-        _listener.setToolbar(true, true, false);
+        _listener.setToolbar(true, true);
+        _listener.setTitle(false, "");
+        _listener.showActionBar(true);
 
         // Inflate the layout for this fragment
         return binding.getRoot();

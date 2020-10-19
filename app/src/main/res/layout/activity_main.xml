@@ -3,6 +3,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="activity_main"
+            type="com.thustop_00.MainActivity" />
+    </data>
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
@@ -63,12 +68,43 @@
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"
-            android:layout_width="232dp"
+            android:layout_width="256dp"
             android:layout_height="match_parent"
             android:layout_gravity="start|center_horizontal|center_vertical"
-            android:fitsSystemWindows="true"
-            app:headerLayout="@layout/navi_header"
-            app:menu="@menu/navi_menu" />
+            android:fitsSystemWindows="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/iv_navi_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="31dp"
+                    android:layout_marginStart="26dp"
+                    app:srcCompat="@drawable/img_title_green" />
+
+                <ImageButton
+                    android:id="@+id/bt_navi_exit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="93dp"
+                    android:layout_marginTop="26dp"
+                    app:layout_constraintStart_toEndOf="@id/iv_navi_title"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icon_exit"
+                    android:onClick="@{activity_main::onNavigationExitClick}"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.navigation.NavigationView>
+
+<!--            app:headerLayout="@layout/navi_header"-->
+<!--            app:menu="@menu/navi_menu" -->
+
 
     </androidx.drawerlayout.widget.DrawerLayout>
 

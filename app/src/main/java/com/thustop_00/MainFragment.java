@@ -80,8 +80,9 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         binding.layoutLocal.setVisibility(View.GONE);
         colorText(binding.tvLocal1, R.string.tv_local1_color, "#15a474");
         toggle = false;
-        _listener.setToolbar(false, false, true);
+        _listener.setToolbar(false, false);
         _listener.showActionBar(true);
+        _listener.setTitle(true, "");
         _listener.setOnBackPressedListener(this);
 
         RecyclerView mainRecycler = binding.rvRoutes;

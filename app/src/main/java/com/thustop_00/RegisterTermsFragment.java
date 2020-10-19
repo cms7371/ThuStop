@@ -45,8 +45,8 @@ public class RegisterTermsFragment extends FragmentBase implements CompoundButto
         binding = FragmentRegisterTermsBinding.inflate(inflater);
         ButterKnife.bind(this,binding.getRoot());
 
-        _listener.setToolbar(true, true, false);
-        _listener.setTitle("");
+        _listener.setToolbar(true, true);
+        _listener.setTitle(false, "");
 
         binding.cbAgreeAll.setOnCheckedChangeListener(this);
         binding.cbAgree1.setOnCheckedChangeListener(this);

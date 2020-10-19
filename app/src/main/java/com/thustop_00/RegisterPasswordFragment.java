@@ -103,8 +103,8 @@ public class RegisterPasswordFragment extends FragmentBase {
         binding = FragmentRegisterPassowordBinding.inflate(inflater);
         ButterKnife.bind(this,binding.getRoot());
         //_listener.showActionBar(true);
-        _listener.setToolbar(true, false, false);
-        _listener.setTitle("회원가입");
+        _listener.setToolbar(true, false);
+        _listener.setTitle(false,"회원가입");
 
 
         return binding.getRoot();

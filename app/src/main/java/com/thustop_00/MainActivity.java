@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         super.onCreate(savedInstanceState);
         /* Link activity_main as binding, with doing setContentView(R.layout.activity_main);*/
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding.setActivityMain(this);
 
         /* Setting toolbar referred  https://blog.naver.com/qbxlvnf11/221328098468*/
         toolbar = binding.tbMain;
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
 
     @Override
     public void onBackPressed() {
-        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.closeDrawer(GravityCompat.START);
         } else if (BackListener != null) {
             BackListener.onBack();
@@ -114,30 +115,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             super.onBackPressed();
         }
     }
-    /*
-    @Override
-    public void onBackPressed() {
-        if(BackListener != null) {
-            BackListener.onBack();
-        } else { // 두번 누르면 어플종료
-            if(pressedTime == 0) {
-                Toast.makeText(this,"한번 더 누르면 종료됩니다",Toast.LENGTH_SHORT);
-                pressedTime=System.currentTimeMillis();
-            } else {
-                int seconds = (int) (System.currentTimeMillis()-pressedTime);
-                if (seconds > 2000) {
-                    pressedTime = 0;
-                } else {
-                    super.onBackPressed();;
-                    finish();
-                    android.os.Process.killProcess((android.os.Process.myPid()));
-                }
-            }
-        }
-    }*/
 
-
-    /* This method links */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -145,7 +123,11 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         return true;
     }
 
-    /*Method of OnFragmentInteractionLister*/
+    public void onNavigationExitClick(View view) {
+        binding.drawerLayout.closeDrawer(GravityCompat.START);
+    }
+
+    /*OnFragmentInteractionLister override 메소드들*/
 
     /*쌓여있는 BackStack 모두 날리고 fragment 바꿀때*/
     @Override
@@ -194,29 +176,29 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     }
 
     @Override
-    public void setTitle(String s) {
-        getSupportActionBar().show();
+    public void setTitle(boolean isMainTitle, String s) {
+        if (isMainTitle) {
+            findViewById(R.id.iv_title).setVisibility(View.VISIBLE);
+            findViewById(R.id.tv_title).setVisibility(View.GONE);
+        } else {
+            findViewById(R.id.iv_title).setVisibility(View.GONE);
+            findViewById(R.id.tv_title).setVisibility(View.VISIBLE);
+        }
         binding.tvTitle.setText(s);
     }
+
 
     /* This method changes color and status of toolbar
      * If 'white' is true, background color will be white, else, green. Buttons colors will also change depend on background.
      * If 'back_en' is true, back button is enabled, hamburger button and notification button will disappear.
      * If 'main_title' is true, TextView title will be disable, and main title will be visible*/
     @Override
-    public void setToolbar(boolean white, boolean back_en, boolean main_title) {
+    public void setToolbar(boolean white, boolean back_en) {
         if (white) {
             toolbar.setBackground(getDrawable(R.color.colorWhite));
             binding.tvTitle.setTextColor(getResources().getColor(R.color.colorPrimary));
             actionbar.setHomeAsUpIndicator(R.drawable.icon_back_green);
-            if (back_en) {
-                actionbar.setDisplayHomeAsUpEnabled(true);
-                menu.getItem(0).setEnabled(false);
-                menu.getItem(0).setVisible(false);
-            } else {
-                actionbar.setDisplayHomeAsUpEnabled(false);
-                menu.getItem(0).setEnabled(true);
-                menu.getItem(0).setVisible(true);
+            if (!back_en) {
                 toolbar.setNavigationIcon(R.drawable.icon_hamburger_green);
                 menu.getItem(0).setIcon(R.drawable.icon_notification_green);
             }
@@ -224,26 +206,21 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             toolbar.setBackground(getDrawable(R.color.colorPrimary));
             binding.tvTitle.setTextColor(getResources().getColor(R.color.colorWhite));
             actionbar.setHomeAsUpIndicator(R.drawable.icon_back_white);
-            if (back_en) {
-                actionbar.setDisplayHomeAsUpEnabled(true);
-                menu.getItem(0).setEnabled(false);
-                menu.getItem(0).setVisible(false);
-            } else {
-                actionbar.setDisplayHomeAsUpEnabled(false);
-                menu.getItem(0).setEnabled(true);
-                menu.getItem(0).setVisible(true);
+            if (!back_en) {
                 toolbar.setNavigationIcon(R.drawable.icon_hamburger_white);
                 menu.getItem(0).setIcon(R.drawable.icon_notification_white);
             }
         }
-        isBackEnabled = back_en;
-        if (main_title) {
-            findViewById(R.id.iv_title).setVisibility(View.VISIBLE);
-            findViewById(R.id.tv_title).setVisibility(View.GONE);
+        if (back_en) {
+            actionbar.setDisplayHomeAsUpEnabled(true);
+            menu.getItem(0).setEnabled(false);
+            menu.getItem(0).setVisible(false);
         } else {
-            findViewById(R.id.iv_title).setVisibility(View.GONE);
-            findViewById(R.id.tv_title).setVisibility(View.VISIBLE);
+            actionbar.setDisplayHomeAsUpEnabled(false);
+            menu.getItem(0).setEnabled(true);
+            menu.getItem(0).setVisible(true);
         }
+        isBackEnabled = back_en;
     }
 
     @Override

@@ -1,12 +1,11 @@
 package com.thustop_00;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
 
 import com.thustop_00.databinding.FragmentFindPasswordBinding;
 
@@ -44,8 +43,8 @@ public class FindPasswordFragment extends FragmentBase {
         binding = FragmentFindPasswordBinding.inflate(inflater);
         ButterKnife.bind(this,binding.getRoot());
         //_listener.showActionBar(true);
-        _listener.setToolbar(true, false, false);
-        _listener.setTitle("비밀번호 찾기");
+        _listener.setToolbar(true, false);
+        _listener.setTitle(false,"비밀번호 찾기");
 
 
         return binding.getRoot();

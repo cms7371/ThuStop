@@ -2,9 +2,6 @@ package com.thustop_00;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import com.thustop_00.databinding.FragmentRegisterVerificationBinding;
 
@@ -115,8 +114,8 @@ public class RegisterVerificationFragment extends FragmentBase {
             }
         });
 
-        _listener.setToolbar(true, true, false);
-        _listener.setTitle("휴대폰 본인인증");
+        _listener.setToolbar(true, true);
+        _listener.setTitle(false,"휴대폰 본인인증");
         _listener.showActionBar(true);
 
         // Inflate the layout for this fragment

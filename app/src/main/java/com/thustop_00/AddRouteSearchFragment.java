@@ -9,16 +9,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.FetchPlaceRequest;
-import com.google.android.libraries.places.api.net.FetchPlaceResponse;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.thustop_00.databinding.FragmentAddRouteSearchBinding;
 import com.thustop_00.model.Address;
@@ -67,8 +63,8 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
                              Bundle savedInstanceState) {
         binding = FragmentAddRouteSearchBinding.inflate(inflater);
 
-        _listener.setToolbar(true, true, false);
-        _listener.setTitle("");
+        _listener.setToolbar(true, true);
+        _listener.setTitle(false, "");
         _listener.showActionBar(true);
         _listener.setOnBackPressedListener(this);
 
@@ -126,32 +122,24 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
 
         List<Place.Field> placeFields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS);
         FetchPlaceRequest request = FetchPlaceRequest.builder(placeId, placeFields).build();
-        placesClient.fetchPlace(request).addOnSuccessListener(new OnSuccessListener<FetchPlaceResponse>() {
-            @Override
-            public void onSuccess(FetchPlaceResponse response) {
-                if (binding.etStart.isFocused()) {
-                    transferAddress(response.getPlace(), startLocation);
-                    binding.etStart.setText(startLocation.getAddress());
-                    binding.etStart.setBackgroundResource(R.drawable.round_gray_e7);
-                    binding.etDummy.requestFocus();
-                    _listener.hideKeyBoard();
-                } else if (binding.etEnd.isFocused()) {
-                    transferAddress(response.getPlace(), endLocation);
-                    binding.etEnd.setText(endLocation.getAddress());
-                    binding.etEnd.setBackgroundResource(R.drawable.round_gray_e7);
-                    binding.etDummy.requestFocus();
-                    _listener.hideKeyBoard();
-                }
-                binding.rvLocationPrediction.setVisibility(View.GONE);
-
-
+        placesClient.fetchPlace(request).addOnSuccessListener(response -> {
+            if (binding.etStart.isFocused()) {
+                transferAddress(response.getPlace(), startLocation);
+                binding.etStart.setText(startLocation.getAddress());
+                binding.etStart.setBackgroundResource(R.drawable.round_gray_e7);
+                binding.etDummy.requestFocus();
+                _listener.hideKeyBoard();
+            } else if (binding.etEnd.isFocused()) {
+                transferAddress(response.getPlace(), endLocation);
+                binding.etEnd.setText(endLocation.getAddress());
+                binding.etEnd.setBackgroundResource(R.drawable.round_gray_e7);
+                binding.etDummy.requestFocus();
+                _listener.hideKeyBoard();
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                if (exception instanceof ApiException) {
-                    Toast.makeText(getContext(), exception.getMessage() + "", Toast.LENGTH_SHORT).show();
-                }
+            binding.rvLocationPrediction.setVisibility(View.GONE);
+        }).addOnFailureListener(exception -> {
+            if (exception instanceof ApiException) {
+                Toast.makeText(getContext(), exception.getMessage() + "", Toast.LENGTH_SHORT).show();
             }
         });
     }

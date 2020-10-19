@@ -1,14 +1,12 @@
 package com.thustop_00;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.thustop_00.databinding.FragmentMainBinding;
+import androidx.fragment.app.Fragment;
+
 import com.thustop_00.databinding.FragmentRequestTownServiceBinding;
 
 /**
@@ -44,8 +42,8 @@ public class RequestTownServiceFragment extends FragmentBase {
                              Bundle savedInstanceState) {
         _binding = FragmentRequestTownServiceBinding.inflate(inflater);
         _binding.setRequestTownFrag(this);
-        _listener.setToolbar(true, true, false);
-        _listener.setTitle("우리 동네 서비스 요청");
+        _listener.setToolbar(true, true);
+        _listener.setTitle(false,"우리 동네 서비스 요청");
         _listener.showActionBar(true);
         return _binding.getRoot();
 
