@@ -20,7 +20,7 @@
             tools:context=".MainActivity">
 
             <FrameLayout
-                android:id="@+id/frMain"
+                android:id="@+id/fr_main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -67,10 +67,10 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.navigation.NavigationView
-            android:id="@+id/nav_view"
+            android:id="@+id/nv_view"
             android:layout_width="256dp"
             android:layout_height="match_parent"
-            android:layout_gravity="start|center_horizontal|center_vertical"
+            android:layout_gravity="left"
             android:fitsSystemWindows="true">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -78,25 +78,139 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/iv_navi_title"
+                    android:id="@+id/iv_drawer_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginTop="31dp"
                     android:layout_marginStart="26dp"
+                    android:layout_marginTop="31dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/img_title_green" />
 
                 <ImageButton
-                    android:id="@+id/bt_navi_exit"
+                    android:id="@+id/bt_drawer_exit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="93dp"
-                    android:layout_marginTop="26dp"
-                    app:layout_constraintStart_toEndOf="@id/iv_navi_title"
+                    android:layout_marginStart="92dp"
+                    android:layout_marginTop="24dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:onClick="@{activity_main::onNavigationExitClick}"
+                    app:layout_constraintStart_toEndOf="@id/iv_drawer_title"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_exit"
-                    android:onClick="@{activity_main::onNavigationExitClick}"/>
+                    app:srcCompat="@drawable/icon_exit" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_drawer_head"
+                    android:layout_width="match_parent"
+                    android:layout_height="37dp"
+                    android:layout_marginTop="76dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_drawer_title">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/ci_drawer_head_member"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/iv_member"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/icon_portrait_big" />
+
+                        <com.thustop_00.widgets.NotoTextView
+                            android:id="@+id/tv_member_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="7dp"
+                            android:text="홍길동"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/iv_member"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:notoTextStyle="bold" />
+
+                        <com.thustop_00.widgets.NotoTextView
+                            android:id="@+id/tv_member_nim"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="3dp"
+                            android:text="님"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/tv_member_name"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:notoTextStyle="regular" />
+
+                        <com.thustop_00.widgets.NotoTextView
+                            android:id="@+id/tv_member_point"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="63dp"
+                            android:text="1200P"
+                            android:textColor="#ff6c2e"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/tv_member_nim"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:notoTextStyle="medium" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/ci_drawer_head_guest"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/selectable_item_background"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="onLoginClick"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/iv_guest"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="33dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/icon_portrait_small" />
+
+                        <com.thustop_00.widgets.NotoTextView
+                            android:id="@+id/tv_guest"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="3dp"
+                            android:text="로그인을 해주세요."
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/iv_guest"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:notoTextStyle="regular" />
+
+                        <ImageView
+                            android:id="@+id/iv_login"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/tv_guest"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/icon_login" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

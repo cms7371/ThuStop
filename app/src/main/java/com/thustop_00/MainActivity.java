@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
 import com.thustop_00.databinding.ActivityMainBinding;
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     @Override
     public void onBackPressed() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            binding.drawerLayout.closeDrawer(GravityCompat.START);
+            closeDrawer();
         } else if (BackListener != null) {
             BackListener.onBack();
         } else {
@@ -124,7 +125,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     }
 
     public void onNavigationExitClick(View view) {
-        binding.drawerLayout.closeDrawer(GravityCompat.START);
+        closeDrawer();
+    }
+
+    public void onLoginClick(View view) {
+        addFragment(LoginFragment.newInstance());
+        closeDrawer();
     }
 
     /*OnFragmentInteractionLister override 메소드들*/
@@ -136,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             FragmentManager fm = getSupportFragmentManager();
             fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             fm.beginTransaction()
-                    .replace(R.id.frMain, fr)
+                    .replace(R.id.fr_main, fr)
                     .commit();
         } catch (IllegalStateException ignore) {
         }
@@ -146,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     @Override
     public void addFragment(FragmentBase fr) {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frMain, fr)
+                .replace(R.id.fr_main, fr)
                 .addToBackStack(null)
                 .commit();
     }
@@ -156,14 +162,13 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     public void addFragmentNotBackStack(FragmentBase fr) {
         getSupportFragmentManager().popBackStack();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frMain, fr)
+                .replace(R.id.fr_main, fr)
                 .addToBackStack(null)
                 .commit();
-
     }
 
     @Override
-    public void showActionBar(boolean b) {
+    public void showToolbarVisibility(boolean b) {
         if (b)
             actionbar.show();
         else
@@ -173,6 +178,20 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     @Override
     public void openDrawer() {
         binding.drawerLayout.openDrawer(GravityCompat.START);
+    }
+
+    @Override
+    public void closeDrawer() {
+        binding.drawerLayout.closeDrawer(GravityCompat.START);
+    }
+
+    @Override
+    public void lockDrawer(boolean isLocked) {
+        if (isLocked) {
+            binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        } else {
+            binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        }
     }
 
     @Override
@@ -193,12 +212,19 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
      * If 'back_en' is true, back button is enabled, hamburger button and notification button will disappear.
      * If 'main_title' is true, TextView title will be disable, and main title will be visible*/
     @Override
-    public void setToolbar(boolean white, boolean back_en) {
+    public void setToolbarStyle(boolean white, boolean back_en) {
         if (white) {
             toolbar.setBackground(getDrawable(R.color.colorWhite));
             binding.tvTitle.setTextColor(getResources().getColor(R.color.colorPrimary));
             actionbar.setHomeAsUpIndicator(R.drawable.icon_back_green);
-            if (!back_en) {
+            if (back_en) {
+                actionbar.setDisplayHomeAsUpEnabled(true);
+                menu.getItem(0).setEnabled(false);
+                menu.getItem(0).setVisible(false);
+            } else {
+                actionbar.setDisplayHomeAsUpEnabled(false);
+                menu.getItem(0).setEnabled(true);
+                menu.getItem(0).setVisible(true);
                 toolbar.setNavigationIcon(R.drawable.icon_hamburger_green);
                 menu.getItem(0).setIcon(R.drawable.icon_notification_green);
             }
@@ -206,19 +232,17 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             toolbar.setBackground(getDrawable(R.color.colorPrimary));
             binding.tvTitle.setTextColor(getResources().getColor(R.color.colorWhite));
             actionbar.setHomeAsUpIndicator(R.drawable.icon_back_white);
-            if (!back_en) {
+            if (back_en) {
+                actionbar.setDisplayHomeAsUpEnabled(true);
+                menu.getItem(0).setEnabled(false);
+                menu.getItem(0).setVisible(false);
+            } else {
+                actionbar.setDisplayHomeAsUpEnabled(false);
+                menu.getItem(0).setEnabled(true);
+                menu.getItem(0).setVisible(true);
                 toolbar.setNavigationIcon(R.drawable.icon_hamburger_white);
                 menu.getItem(0).setIcon(R.drawable.icon_notification_white);
             }
-        }
-        if (back_en) {
-            actionbar.setDisplayHomeAsUpEnabled(true);
-            menu.getItem(0).setEnabled(false);
-            menu.getItem(0).setVisible(false);
-        } else {
-            actionbar.setDisplayHomeAsUpEnabled(false);
-            menu.getItem(0).setEnabled(true);
-            menu.getItem(0).setVisible(true);
         }
         isBackEnabled = back_en;
     }

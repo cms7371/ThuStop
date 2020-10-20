@@ -64,10 +64,11 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
                              Bundle savedInstanceState) {
         binding = FragmentAddRouteMapBinding.inflate(inflater);
         binding.setMapSearchfrag(this);
-        _listener.showActionBar(false);
+        _listener.showToolbarVisibility(false);
         isStart = true;
 
         binding.map.setMapViewEventListener(this);
+
 
         LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         //입력이 null로 fragment가 선언되면(메인에서 넘어올 때) 현재 위치로 초기화 해줍니다.

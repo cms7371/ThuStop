@@ -2,15 +2,13 @@ package com.thustop_00;
 
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
 import com.thustop_00.databinding.FragmentDoneBinding;
-import com.thustop_00.databinding.FragmentRequestTownServiceBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,7 +58,7 @@ public class DoneFragment extends FragmentBase {
                              Bundle savedInstanceState) {
         binding = FragmentDoneBinding.inflate(inflater);
         binding.setDonefrag(this);
-        _listener.showActionBar(false);
+        _listener.showToolbarVisibility(false);
         setText();
         return binding.getRoot();
     }

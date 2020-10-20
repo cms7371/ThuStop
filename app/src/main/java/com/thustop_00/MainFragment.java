@@ -1,6 +1,7 @@
 package com.thustop_00;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -56,13 +57,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         return fragment;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-
-    }
-
+    @SuppressLint("ResourceType")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -78,13 +73,15 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
 
         binding.vPause.setVisibility(View.GONE);
         binding.layoutLocal.setVisibility(View.GONE);
-        colorText(binding.tvLocal1, R.string.tv_local1_color, "#15a474");
+        colorText(binding.tvLocal1, R.string.tv_local1_color, getResources().getString(R.color.colorPrimary));
         toggle = false;
-        _listener.setToolbar(false, false);
-        _listener.showActionBar(true);
+        //Activity 기본 세팅
+        _listener.setToolbarStyle(false, false);
+        _listener.showToolbarVisibility(true);
         _listener.setTitle(true, "");
         _listener.setOnBackPressedListener(this);
-
+        _listener.lockDrawer(false);
+        //Recycler view 호출 및 어댑터와 연결, 데이터 할당
         RecyclerView mainRecycler = binding.rvRoutes;
         MainRecyclerAdapter mainAdapter = new MainRecyclerAdapter(null, this);
         mainRecycler.setAdapter(mainAdapter);

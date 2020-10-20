@@ -42,9 +42,9 @@ public class LoginFragment extends FragmentBase {
         binding = FragmentLoginBinding.inflate(inflater);
         ButterKnife.bind(this,binding.getRoot());
 
-        _listener.setToolbar(true, false);
+        _listener.setToolbarStyle(true, false);
         _listener.setTitle(false,"로그인");
-        _listener.showActionBar(true);
+        _listener.showToolbarVisibility(true);
         return binding.getRoot();
     }
 

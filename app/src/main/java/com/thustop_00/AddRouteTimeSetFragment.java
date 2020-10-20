@@ -67,9 +67,9 @@ public class AddRouteTimeSetFragment extends FragmentBase implements MainActivit
         binding.tvEnd.setText(endLocation.getAddress());
 
         _listener.setOnBackPressedListener(this);
-        _listener.setToolbar(true, true);
+        _listener.setToolbarStyle(true, true);
         _listener.setTitle(false, "");
-        _listener.showActionBar(true);
+        _listener.showToolbarVisibility(true);
 
         // Inflate the layout for this fragment
         return binding.getRoot();

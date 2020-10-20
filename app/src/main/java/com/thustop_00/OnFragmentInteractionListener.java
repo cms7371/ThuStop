@@ -6,10 +6,12 @@ public interface OnFragmentInteractionListener {
     void setFragment(FragmentBase fr);
     void setOnBackPressedListener(MainActivity.onBackPressedListener listener);
 
-    void showActionBar(boolean b);
+    void showToolbarVisibility(boolean b);
     void openDrawer();
+    void closeDrawer();
+    void lockDrawer(boolean isLocked);
     void setTitle(boolean isMainTitle,String s);
-    void setToolbar(boolean white, boolean back_en);
+    void setToolbarStyle(boolean white, boolean back_en);
     void hideKeyBoard();
 
 }

@@ -33,8 +33,6 @@ public class RequestTownServiceFragment extends FragmentBase {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
     }
 
     @Override
@@ -42,11 +40,12 @@ public class RequestTownServiceFragment extends FragmentBase {
                              Bundle savedInstanceState) {
         _binding = FragmentRequestTownServiceBinding.inflate(inflater);
         _binding.setRequestTownFrag(this);
-        _listener.setToolbar(true, true);
-        _listener.setTitle(false,"우리 동네 서비스 요청");
-        _listener.showActionBar(true);
-        return _binding.getRoot();
 
+        _listener.setToolbarStyle(true, true);
+        _listener.setTitle(false,"우리 동네 서비스 요청");
+        _listener.showToolbarVisibility(true);
+
+        return _binding.getRoot();
     }
 
     public void onRequestClick(View view){

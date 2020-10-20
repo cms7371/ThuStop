@@ -29,7 +29,9 @@ public class IntroBaseFragment extends FragmentBase {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_intro_base, container, false);
-        binding.setIntro(this); //
+        binding.setIntro(this);
+
+        _listener.lockDrawer(true);
 
         /* Adapter for viewpager which wraps intro fragments and add new intro pages */
         MyAdapter pagerAdapter = new MyAdapter(getChildFragmentManager(),getLifecycle());
