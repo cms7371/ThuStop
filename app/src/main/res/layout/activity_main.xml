@@ -3,7 +3,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="activity_main"
             type="com.thustop_00.MainActivity" />
@@ -102,15 +104,15 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_drawer_head"
                     android:layout_width="match_parent"
-                    android:layout_height="37dp"
+                    android:layout_height="55dp"
                     android:layout_marginTop="76dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/iv_drawer_title">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/ci_drawer_head_member"
+                        android:id="@+id/cl_drawer_head_member"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="37dp"
                         android:visibility="gone"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -165,9 +167,9 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/ci_drawer_head_guest"
+                        android:id="@+id/cl_drawer_head_guest"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="37dp"
                         android:background="@drawable/selectable_item_background"
                         android:clickable="true"
                         android:focusable="true"
@@ -212,12 +214,109 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_my_page"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_drawer_head">
+
+                    <com.thustop_00.widgets.NotoTextView
+                        android:id="@+id/tv_my_page"
+                        style="@style/tvToolbarCategory"
+                        android:text="마이페이지"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.thustop_00.widgets.NotoTextView
+                        android:id="@+id/tv_personal_modify"
+                        style="@style/tvToolbarComponent"
+                        android:text="개인정보 수정"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_my_page" />
+
+                    <com.thustop_00.widgets.NotoTextView
+                        android:id="@+id/tv_personal_history"
+                        style="@style/tvToolbarComponent"
+                        android:text="이용내역"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_personal_modify" />
+
+                    <com.thustop_00.widgets.NotoTextView
+                        android:id="@+id/tv_personal_point"
+                        style="@style/tvToolbarComponent"
+                        android:text="포인트"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_personal_history" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_event"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_my_page">
+
+                    <com.thustop_00.widgets.NotoTextView
+                        android:id="@+id/tv_event"
+                        style="@style/tvToolbarCategory"
+                        android:text="이벤트"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.thustop_00.widgets.NotoTextView
+                        android:id="@+id/tv_new_coupons"
+                        style="@style/tvToolbarComponent"
+                        android:text="새쿠폰"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_event" />
+
+                    <com.thustop_00.widgets.NotoTextView
+                        android:id="@+id/tv_used_coupons"
+                        style="@style/tvToolbarComponent"
+                        android:text="사용한 쿠폰"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_new_coupons" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_customer_center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_event">
+
+                    <com.thustop_00.widgets.NotoTextView
+                        android:id="@+id/tv_customer_center"
+                        style="@style/tvToolbarCategory"
+                        android:text="고객센터"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.thustop_00.widgets.NotoTextView
+                        android:id="@+id/tv_FAQ"
+                        style="@style/tvToolbarComponent"
+                        android:text="FAQ"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_customer_center" />
+
+                    <com.thustop_00.widgets.NotoTextView
+                        android:id="@+id/tv_consultation"
+                        style="@style/tvToolbarComponent"
+                        android:onClick="testToolbarLogin"
+                        android:text="상담 1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_FAQ" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.navigation.NavigationView>
 
-<!--            app:headerLayout="@layout/navi_header"-->
-<!--            app:menu="@menu/navi_menu" -->
+        <!--            app:headerLayout="@layout/navi_header"-->
+        <!--            app:menu="@menu/navi_menu" -->
 
 
     </androidx.drawerlayout.widget.DrawerLayout>

@@ -133,7 +133,17 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         closeDrawer();
     }
 
-    /*OnFragmentInteractionLister override 메소드들*/
+    public void testToolbarLogin(View view) {
+        binding.clDrawerHeadGuest.setVisibility(View.GONE);
+        binding.clDrawerHeadMember.setVisibility(View.VISIBLE);
+        binding.clMyPage.setVisibility(View.VISIBLE);
+    }
+
+
+    /***********************************************************************************************
+    ----------------------OnFragmentInteractionLister override 메소드들------------------------------
+    ***********************************************************************************************/
+
 
     /*쌓여있는 BackStack 모두 날리고 fragment 바꿀때*/
     @Override
@@ -205,7 +215,6 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         }
         binding.tvTitle.setText(s);
     }
-
 
     /* This method changes color and status of toolbar
      * If 'white' is true, background color will be white, else, green. Buttons colors will also change depend on background.
