@@ -90,7 +90,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         return binding.getRoot();
     }
 
-    //Listener for RecyclerView item selection.
+    /**노선 추가 버튼 눌렀을 때.*/
     @Override
     public void onItemSelected(View v, int position) {
         if (position == 0) {

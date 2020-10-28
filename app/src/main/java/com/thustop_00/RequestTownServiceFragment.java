@@ -22,7 +22,6 @@ public class RequestTownServiceFragment extends FragmentBase {
         // Required empty public constructor
     }
 
-
     public static RequestTownServiceFragment newInstance() {
         RequestTownServiceFragment fragment = new RequestTownServiceFragment();
         Bundle args = new Bundle();
@@ -42,13 +41,19 @@ public class RequestTownServiceFragment extends FragmentBase {
         _binding.setRequestTownFrag(this);
 
         _listener.setToolbarStyle(true, true);
-        _listener.setTitle(false,"우리 동네 서비스 요청");
+        _listener.setTitle(false, "우리 동네 서비스 요청");
         _listener.showToolbarVisibility(true);
 
         return _binding.getRoot();
     }
 
-    public void onRequestClick(View view){
-        _listener.setFragment(DoneFragment.newInstance(getString(R.string.tv_request_done), getString(R.string.tv_request_continue),true));
+    public void onRequestClick(View view) {
+        _listener.setFragment(DoneFragment.newInstance(getString(R.string.tv_request_done), getString(R.string.tv_request_continue), true));
+    }
+
+    public void onRegionSelectClick(View view) {
+        CustomRegionSelectorDialog regionSelectorDialog = new CustomRegionSelectorDialog(getContext());
+        regionSelectorDialog.show();
+        //regionSelectorDialog.getWindow().setBackgroundDrawable(ColorDrawable.);
     }
 }

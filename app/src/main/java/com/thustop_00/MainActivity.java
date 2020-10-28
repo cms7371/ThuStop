@@ -137,6 +137,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         binding.clDrawerHeadGuest.setVisibility(View.GONE);
         binding.clDrawerHeadMember.setVisibility(View.VISIBLE);
         binding.clMyPage.setVisibility(View.VISIBLE);
+        binding.btLogout.setVisibility(View.VISIBLE);
+        binding.tvLogout.setVisibility(View.VISIBLE);
     }
 
 

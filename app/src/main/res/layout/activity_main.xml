@@ -95,11 +95,51 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="92dp"
                     android:layout_marginTop="24dp"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:onClick="@{activity_main::onNavigationExitClick}"
                     app:layout_constraintStart_toEndOf="@id/iv_drawer_title"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/icon_exit" />
+
+                <ImageView
+                    android:id="@+id/bt_logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="34dp"
+                    android:layout_marginBottom="35dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/icon_logout" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="로그아웃"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/bt_logout"
+                    app:layout_constraintStart_toStartOf="@id/bt_logout"
+                    app:layout_constraintTop_toBottomOf="@id/bt_logout"
+                    app:notoTextStyle="regular" />
+
+                <ImageView
+                    android:id="@+id/bt_setting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="27dp"
+                    android:layout_marginBottom="32dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:srcCompat="@drawable/icon_setting" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_drawer_head"
@@ -264,6 +304,16 @@
                         android:text="이벤트"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="71dp"
+                        android:layout_marginTop="20dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_event"
+                        app:srcCompat="@drawable/img_event_new_member" />
 
                     <com.thustop_00.widgets.NotoTextView
                         android:id="@+id/tv_new_coupons"

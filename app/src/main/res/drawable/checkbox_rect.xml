@@ -11,8 +11,6 @@
     </item>
     <item
         android:drawable="@drawable/icon_check_green"
-        android:width="11dp"
-        android:height="9dp"
         android:gravity="center">
     </item>
 

@@ -106,6 +106,7 @@
             android:clickable="true"
             android:elevation="2dp"
             android:focusable="auto"
+            android:onClick="@{mainfrag::onSelLocalClick}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -114,75 +115,78 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/outline_gray_fa_ee"
+            android:clickable="true"
+            android:elevation="11dp"
+            android:focusable="true"
             app:layout_constraintEnd_toEndOf="@id/tvSelLocal"
             app:layout_constraintStart_toStartOf="@id/tvSelLocal"
-            app:layout_constraintTop_toBottomOf="@id/tvSelLocal"
-            android:elevation="11dp">
+            app:layout_constraintTop_toBottomOf="@id/tvSelLocal">
 
             <com.thustop_00.widgets.NotoButton
                 android:id="@+id/bt_local1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintDimensionRatio="1"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="22dp"
                 android:background="@drawable/button_local"
+                android:onClick="@{mainfrag::onLocal1Click}"
                 android:text="@string/bt_local1"
                 android:textColor="#454545"
                 android:textSize="13sp"
+                app:layout_constraintDimensionRatio="1"
                 app:layout_constraintEnd_toStartOf="@id/bt_local2"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toStartOf="@id/layout_local"
-                app:layout_constraintTop_toTopOf="@id/layout_local"
-                android:onClick="@{mainfrag::onLocal1Click}"/>
+                app:layout_constraintTop_toTopOf="@id/layout_local" />
 
             <com.thustop_00.widgets.NotoButton
                 android:id="@+id/bt_local2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintDimensionRatio="1"
                 android:layout_marginStart="27dp"
                 android:background="@drawable/button_local"
+                android:onClick="@{mainfrag::onLocal2Click}"
                 android:text="@string/bt_local2"
                 android:textColor="#454545"
                 android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@id/bt_local1"
+                app:layout_constraintDimensionRatio="1"
                 app:layout_constraintEnd_toStartOf="@id/bt_local3"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toEndOf="@id/bt_local1"
-                app:layout_constraintTop_toTopOf="@id/bt_local1"
-                app:layout_constraintBottom_toBottomOf="@id/bt_local1"
-                android:onClick="@{mainfrag::onLocal2Click}"/>
+                app:layout_constraintTop_toTopOf="@id/bt_local1" />
 
             <com.thustop_00.widgets.NotoButton
                 android:id="@+id/bt_local3"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintDimensionRatio="1"
                 android:layout_marginStart="27dp"
                 android:layout_marginEnd="25dp"
                 android:background="@drawable/button_local"
+                android:onClick="@{mainfrag::onLocal3Click}"
                 android:text="@string/bt_local3"
                 android:textColor="#454545"
                 android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@id/bt_local2"
+                app:layout_constraintDimensionRatio="1"
                 app:layout_constraintEnd_toEndOf="@id/layout_local"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toEndOf="@id/bt_local2"
-                app:layout_constraintTop_toTopOf="@id/bt_local2"
-                app:layout_constraintBottom_toBottomOf="@id/bt_local2"
-                android:onClick="@{mainfrag::onLocal3Click}"/>
+                app:layout_constraintTop_toTopOf="@id/bt_local2" />
 
             <com.thustop_00.widgets.NotoTextView
                 android:id="@+id/tv_local1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:bufferType="spannable"
                 android:text="@string/tv_local1"
                 android:textColor="#535353"
                 android:textSize="13sp"
-                android:bufferType="spannable"
                 app:layout_constraintEnd_toEndOf="@id/layout_local"
                 app:layout_constraintStart_toStartOf="@id/layout_local"
                 app:layout_constraintTop_toBottomOf="@id/bt_local2" />
+
             <com.thustop_00.widgets.NotoTextView
                 android:id="@+id/tv_local2"
                 android:layout_width="wrap_content"
@@ -190,24 +194,25 @@
                 android:layout_marginTop="3dp"
                 android:text="@string/tv_local2"
                 android:textSize="9sp"
-                app:layout_constraintStart_toStartOf="@id/layout_local"
+                app:layout_constraintBottom_toTopOf="@id/tv_request"
                 app:layout_constraintEnd_toEndOf="@id/layout_local"
-                app:layout_constraintTop_toBottomOf="@id/tv_local1"
-                app:layout_constraintBottom_toTopOf="@id/tv_request"/>
+                app:layout_constraintStart_toStartOf="@id/layout_local"
+                app:layout_constraintTop_toBottomOf="@id/tv_local1" />
+
             <com.thustop_00.widgets.NotoTextView
                 android:id="@+id/tv_request"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="29dp"
                 android:layout_marginBottom="28dp"
-                android:text="@string/tv_request"
-                android:textSize="10sp"
-                android:textColor="@color/colorPrimary"
                 android:onClick="@{mainfrag::onTownRequestClick}"
-                app:layout_constraintTop_toBottomOf="@id/tv_local2"
-                app:layout_constraintStart_toStartOf="@id/layout_local"
+                android:text="@string/tv_request"
+                android:textColor="@color/colorPrimary"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@id/layout_local"
                 app:layout_constraintEnd_toEndOf="@id/layout_local"
-                app:layout_constraintBottom_toBottomOf="@id/layout_local"/>
+                app:layout_constraintStart_toStartOf="@id/layout_local"
+                app:layout_constraintTop_toBottomOf="@id/tv_local2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
