@@ -2,15 +2,13 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="oval">
-            <solid android:color="#ffffff"/>
+            <solid android:color="@color/White"/>
             <size android:height="36dp"/>
             <size android:width="36dp"/>
         </shape>
     </item>
     <item
         android:drawable="@drawable/gps_add_route"
-        android:width="18dp"
-        android:height="18dp"
         android:gravity="center">
     </item>
 

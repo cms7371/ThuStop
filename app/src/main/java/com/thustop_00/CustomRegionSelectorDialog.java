@@ -14,31 +14,48 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 public class CustomRegionSelectorDialog extends Dialog {
-    StateAdapter stateAdapter;
+    private String[] states = getContext().getResources().getStringArray(R.array.state);
+    private RegionSelectorListener listener;
+    private CityAdapter cityAdapter;
+    private int stateFocus = 0;
+    private long clickedTime = System.currentTimeMillis();
+    private int clickInterval;
+    private boolean isErrorOccurred = false;
 
 
     public CustomRegionSelectorDialog(@NonNull Context context) {
         super(context);
     }
 
+    public interface RegionSelectorListener {
+        void onSelect(String state, String city);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.region_select_dialog);
+        setContentView(R.layout.dialog_region_select);
         String[] States = getContext().getResources().getStringArray(R.array.state);
-        stateAdapter = new StateAdapter(States);
-        RecyclerView rv = findViewById(R.id.rv_state);
-        rv.setAdapter(stateAdapter);
+        StateAdapter stateAdapter = new StateAdapter(States);
+        cityAdapter = new CityAdapter();
+        RecyclerView rvState = findViewById(R.id.rv_state);
+        RecyclerView rvCity = findViewById(R.id.rv_city);
+        rvState.setAdapter(stateAdapter);
+        rvCity.setAdapter(cityAdapter);
     }
 
-    private class StateAdapter extends RecyclerView.Adapter<StateAdapter.ListViewHolder>{
-        private String[] data;
-        private int focus = -1;
+    public void setDialogListener(RegionSelectorListener listener) {
+        this.listener = listener;
+    }
 
-        StateAdapter(String[] states){
+    private class StateAdapter extends RecyclerView.Adapter<StateAdapter.ListViewHolder> {
+        private String[] data;
+
+        StateAdapter(String[] states) {
             this.data = states;
         }
+
         @NonNull
         @Override
         public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -52,17 +69,21 @@ public class CustomRegionSelectorDialog extends Dialog {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    focus = position;
-                    notifyDataSetChanged();
+                    clickInterval = (int) (System.currentTimeMillis() - clickedTime);
+                    clickedTime = System.currentTimeMillis();
+                    if (clickInterval > 50) {
+                        stateFocus = position;
+                        cityAdapter.updateCityList();
+                        notifyDataSetChanged();
+                    }
                 }
             });
             // TODO : 딜레이 줘서 오동작 방지하기
-            if (position == focus) {
-                holder.tv.setTextColor(getContext().getResources().getColor(R.color.colorPrimary));
+            if (position == stateFocus) {
+                holder.tv.setTextColor(getContext().getResources().getColor(R.color.Primary));
                 holder.tv.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "NotoSansKR-Bold-Hestia.otf"));
             }
         }
-
 
         @Override
         public int getItemCount() {
@@ -71,10 +92,78 @@ public class CustomRegionSelectorDialog extends Dialog {
 
         public class ListViewHolder extends RecyclerView.ViewHolder {
             protected TextView tv;
+
             public ListViewHolder(@NonNull View itemView) {
                 super(itemView);
-                this.tv = (TextView) itemView.findViewById(R.id.tv_region);
+                this.tv = itemView.findViewById(R.id.tv_region);
             }
         }
+    }
+
+    private class CityAdapter extends RecyclerView.Adapter<CityAdapter.ListViewHolder> {
+        private String[] cities;
+
+        CityAdapter(){
+            this.cities = getCities(stateFocus);
+        }
+
+
+        @NonNull
+        @Override
+        public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_region, parent, false);
+            return new ListViewHolder(itemView);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
+            holder.tv.setText(cities[position]);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!isErrorOccurred){
+                        listener.onSelect(states[stateFocus], cities[position]);
+                        dismiss();
+                    }
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            return cities.length;
+        }
+
+        public class ListViewHolder extends RecyclerView.ViewHolder {
+            protected TextView tv;
+
+            public ListViewHolder(@NonNull View itemView) {
+                super(itemView);
+                this.tv = itemView.findViewById(R.id.tv_region);
+            }
+        }
+
+        public void updateCityList(){
+            this.cities = getCities(stateFocus);
+            notifyDataSetChanged();
+        }
+    }
+
+    public String[] getCities(int position) {
+        String state = states[position];
+        isErrorOccurred = false;
+        switch (state) {
+            case "서울":
+                return getStringArray(R.array.seoul);
+            case "경기":
+                return getStringArray(R.array.gyeonggi);
+            default:
+                isErrorOccurred = true;
+                return getStringArray(R.array.error);
+        }
+    }
+
+    public String[] getStringArray(int id) {
+        return getContext().getResources().getStringArray(id);
     }
 }

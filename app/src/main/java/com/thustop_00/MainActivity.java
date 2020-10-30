@@ -225,8 +225,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     @Override
     public void setToolbarStyle(boolean white, boolean back_en) {
         if (white) {
-            toolbar.setBackground(getDrawable(R.color.colorWhite));
-            binding.tvTitle.setTextColor(getResources().getColor(R.color.colorPrimary));
+            toolbar.setBackground(getDrawable(R.color.White));
+            binding.tvTitle.setTextColor(getResources().getColor(R.color.Primary));
             actionbar.setHomeAsUpIndicator(R.drawable.icon_back_green);
             if (back_en) {
                 actionbar.setDisplayHomeAsUpEnabled(true);
@@ -240,8 +240,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                 menu.getItem(0).setIcon(R.drawable.icon_notification_green);
             }
         } else {
-            toolbar.setBackground(getDrawable(R.color.colorPrimary));
-            binding.tvTitle.setTextColor(getResources().getColor(R.color.colorWhite));
+            toolbar.setBackground(getDrawable(R.color.Primary));
+            binding.tvTitle.setTextColor(getResources().getColor(R.color.White));
             actionbar.setHomeAsUpIndicator(R.drawable.icon_back_white);
             if (back_en) {
                 actionbar.setDisplayHomeAsUpEnabled(true);

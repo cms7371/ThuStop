@@ -13,7 +13,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="12dp"
         android:text="전체 노선표"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/Primary"
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"

@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape android:shape="oval">
-            <solid android:color="@color/colorPrimary"/>
-            <size android:height="19dp"/>
-            <size android:width="19dp"/>
-        </shape>
-    </item>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:drawable="@drawable/icon_check_white"
-        android:width="11dp"
-        android:height="9dp"
-        android:gravity="center">
-    </item>
-
-</layer-list>
+        android:drawable="@drawable/checkbox_round_un"
+        android:state_checked="false"/>
+    <item
+        android:drawable="@drawable/checkbox_round_sel"
+        android:state_checked="true"/>
+    <item android:drawable="@drawable/checkbox_round_un"/>
+</selector>

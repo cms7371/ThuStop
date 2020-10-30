@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="oval">
-            <solid android:color="#c4c4c4"/>
+            <solid android:color="@color/ButtonGray"/>
 
             <size android:height="19dp"/>
             <size android:width="19dp"/>
@@ -11,8 +11,6 @@
     <item
         android:gravity="center"
         android:drawable="@drawable/icon_check_white"
-        android:width="11dp"
-        android:height="9dp"
         >
     </item>
 </layer-list>

@@ -51,7 +51,7 @@
             android:layout_marginStart="18dp"
             android:layout_marginTop="10dp"
             android:paddingStart="5dp"
-            android:button="@drawable/checkbox_rect_sel"
+            android:button="@drawable/checkbox_rect"
             android:text="로그인 정보 기억하기"
             android:textColor="#979797"
             android:textSize="12sp"

@@ -11,14 +11,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorWhite">
+        android:background="@color/White">
 
 
         <View
             android:id="@+id/top_layout"
             android:layout_width="match_parent"
             android:layout_height="112dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/Primary"
             android:elevation="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -46,7 +46,7 @@
             android:paddingEnd="5dp"
             android:paddingBottom="9dp"
             android:text="@string/tvSelLocal"
-            android:textColor="@color/colorTextGray"
+            android:textColor="@color/TextGray"
             android:textSize="13sp"
             android:onClick="@{mainfrag::onSelLocalClick}"
             android:clickable="true"
@@ -131,7 +131,7 @@
                 android:background="@drawable/button_local"
                 android:onClick="@{mainfrag::onLocal1Click}"
                 android:text="@string/bt_local1"
-                android:textColor="#454545"
+                android:textColor="@color/TextBlack"
                 android:textSize="13sp"
                 app:layout_constraintDimensionRatio="1"
                 app:layout_constraintEnd_toStartOf="@id/bt_local2"
@@ -147,7 +147,7 @@
                 android:background="@drawable/button_local"
                 android:onClick="@{mainfrag::onLocal2Click}"
                 android:text="@string/bt_local2"
-                android:textColor="#454545"
+                android:textColor="@color/TextBlack"
                 android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="@id/bt_local1"
                 app:layout_constraintDimensionRatio="1"
@@ -165,7 +165,7 @@
                 android:background="@drawable/button_local"
                 android:onClick="@{mainfrag::onLocal3Click}"
                 android:text="@string/bt_local3"
-                android:textColor="#454545"
+                android:textColor="@color/TextBlack"
                 android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="@id/bt_local2"
                 app:layout_constraintDimensionRatio="1"
@@ -181,7 +181,7 @@
                 android:layout_marginTop="30dp"
                 android:bufferType="spannable"
                 android:text="@string/tv_local1"
-                android:textColor="#535353"
+                android:textColor="@color/TextBlack"
                 android:textSize="13sp"
                 app:layout_constraintEnd_toEndOf="@id/layout_local"
                 app:layout_constraintStart_toStartOf="@id/layout_local"
@@ -207,7 +207,7 @@
                 android:layout_marginBottom="28dp"
                 android:onClick="@{mainfrag::onTownRequestClick}"
                 android:text="@string/tv_request"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/Primary"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="@id/layout_local"
                 app:layout_constraintEnd_toEndOf="@id/layout_local"

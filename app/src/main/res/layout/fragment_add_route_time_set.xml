@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorWhite">
+        android:background="@color/White">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline1"
@@ -26,7 +26,7 @@
             android:layout_marginTop="10dp"
             android:text="@string/tv_1"
             android:textSize="15sp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/Primary"
             app:notoTextStyle="medium"
             app:layout_constraintTop_toTopOf="@id/guideline1"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +40,7 @@
             android:background="@drawable/outline_green"
             android:text="출발지"
             android:textSize="14sp"
-            android:textColor="#535353"
+            android:textColor="@color/TextGray"
             app:notoTextStyle="regular"
             app:layout_constraintTop_toBottomOf="@id/tv_1"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +63,7 @@
             android:background="@drawable/outline_red"
             android:text="도착지"
             android:textSize="14sp"
-            android:textColor="#535353"
+            android:textColor="@color/TextGray"
             app:notoTextStyle="regular"
             app:layout_constraintTop_toBottomOf="@id/tv_start"
             app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +100,7 @@
                 style="@style/EtStyle"
                 android:text="@string/tv_time"
                 android:textSize="14sp"
-                android:textColor="#f0655c"
+                android:textColor="@color/Accent"
                 app:notoTextStyle="medium"
                 app:layout_constraintTop_toTopOf="@id/layout_time"
                 app:layout_constraintStart_toStartOf="@id/layout_time"
@@ -114,7 +114,7 @@
                 style="@style/EtStyle"
                 android:text="오전     11시     25분"
                 android:textSize="14sp"
-                android:textColor="#595959"
+                android:textColor="@color/TextBlack"
                 android:gravity="center"
                 app:layout_constraintStart_toEndOf="@id/tv_time"
                 app:layout_constraintEnd_toEndOf="@id/layout_time"
@@ -126,9 +126,9 @@
         <com.thustop_00.widgets.NotoTextView
             android:layout_width="match_parent"
             android:layout_height="69dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/Primary"
             android:text="노선 생성하기"
-            android:textColor="#ffffff"
+            android:textColor="@color/White"
             android:textSize="16sp"
             android:gravity="center"
             app:notoTextStyle="medium"

@@ -33,7 +33,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="15dp"
             android:text="확인"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/White"
             style="@style/EtStyle"
             android:background="@drawable/round_green"
 
@@ -52,7 +52,7 @@
         android:textColor="#ffffff"
         android:textSize="16dp"
         android:text="시간 설정"
-        android:background="@color/colorPrimary"
+        android:background="@color/Primary"
         android:layout_gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"

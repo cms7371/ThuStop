@@ -73,7 +73,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
 
         binding.vPause.setVisibility(View.GONE);
         binding.layoutLocal.setVisibility(View.GONE);
-        colorText(binding.tvLocal1, R.string.tv_local1_color, getResources().getString(R.color.colorPrimary));
+        colorText(binding.tvLocal1, R.string.tv_local1_color, getResources().getString(R.color.Primary));
         toggle = false;
         //Activity 기본 세팅
         _listener.setToolbarStyle(false, false);
@@ -359,6 +359,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
             int ms = (int) (System.currentTimeMillis() - timeBackPressed);
             if (ms > 2000) {
                 timeBackPressed = 0;
+                onBack();
             } else {
                 android.os.Process.killProcess(android.os.Process.myPid());
             }

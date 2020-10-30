@@ -25,7 +25,7 @@
                 app:notoTextStyle="bold"
 
                 android:bufferType="spannable"
-                android:textColor="#423f3f"
+                android:textColor="@color/TextBlack"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:text="@string/tv_intro_page3" />

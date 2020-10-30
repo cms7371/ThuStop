@@ -18,8 +18,6 @@ import com.thustop_00.R;
 import com.thustop_00.databinding.FragmentIntroChildBinding;
 import com.thustop_00.widgets.NotoTextView;
 
-import java.lang.reflect.TypeVariable;
-
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link IntroChildFragment#newInstance} factory method to
@@ -76,10 +74,10 @@ public class IntroChildFragment extends FragmentBase {
         binding.tvIntroPage.setText(text);
         binding.ivIntroPage.setImageResource(res);
         switch (position) {
-            case 0 : colorText(binding.tvIntroPage, R.string.tv_intro_page1_green , R.color.colorPrimary);
+            case 0 : colorText(binding.tvIntroPage, R.string.tv_intro_page1_green , R.color.Primary);
             case 1 : break;
-            default: colorText(binding.tvIntroPage, R.string.tv_intro_page3_green1, R.color.colorPrimary);
-                     colorText(binding.tvIntroPage, R.string.tv_intro_page3_green2, R.color.colorPrimary);
+            default: colorText(binding.tvIntroPage, R.string.tv_intro_page3_green1, R.color.Primary);
+                     colorText(binding.tvIntroPage, R.string.tv_intro_page3_green2, R.color.Primary);
                      RelativeLayout.LayoutParams paramControl = (RelativeLayout.LayoutParams) binding.ivIntroPage.getLayoutParams();
                      paramControl.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40,getResources().getDisplayMetrics());
                      paramControl.bottomMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 35,getResources().getDisplayMetrics());

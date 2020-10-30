@@ -53,6 +53,13 @@ public class RequestTownServiceFragment extends FragmentBase {
 
     public void onRegionSelectClick(View view) {
         CustomRegionSelectorDialog regionSelectorDialog = new CustomRegionSelectorDialog(getContext());
+        regionSelectorDialog.setDialogListener(new CustomRegionSelectorDialog.RegionSelectorListener() {
+            @Override
+            public void onSelect(String state, String city) {
+                _binding.tvTownSel.setText(String.format("%s %s", state, city));
+                _binding.tvTownSel.setTextColor(getResources().getColor(R.color.TextBlack));
+            }
+        });
         regionSelectorDialog.show();
         //regionSelectorDialog.getWindow().setBackgroundDrawable(ColorDrawable.);
     }

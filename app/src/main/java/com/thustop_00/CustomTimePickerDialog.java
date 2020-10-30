@@ -1,25 +1,19 @@
 package com.thustop_00;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
-import android.widget.TextView;
 import android.widget.TimePicker;
 
+import androidx.annotation.NonNull;
 
 import com.thustop_00.widgets.NotoButton;
 
 import java.text.DecimalFormat;
-import java.util.Calendar;
 
 public class CustomTimePickerDialog extends Dialog {
     private Context context;
@@ -50,7 +44,7 @@ public class CustomTimePickerDialog extends Dialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.time_picker_dialog);
+        setContentView(R.layout.dialog_time_picker);
 
         btOk = findViewById(R.id.bt_ok);
         timePicker = findViewById(R.id.timePicker);
