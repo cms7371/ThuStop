@@ -102,10 +102,10 @@ public class RegisterTermsFragment extends FragmentBase implements CompoundButto
 
     public void Clickable(boolean b) {
         if(b) {
-            binding.btAgree.setBackgroundResource(R.drawable.round_green);
+            binding.btAgree.setBackgroundResource(R.drawable.bg_round_green);
             binding.btAgree.setEnabled(true);
         } else {
-            binding.btAgree.setBackgroundResource(R.drawable.round_gray_c4);
+            binding.btAgree.setBackgroundResource(R.drawable.bg_round_gray_c4);
             binding.btAgree.setEnabled(false);
         }
 

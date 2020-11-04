@@ -62,7 +62,7 @@
             android:layout_marginEnd="15dp"
             android:paddingTop="17dp"
             android:paddingBottom="17dp"
-            android:background="@drawable/round_green"
+            android:background="@drawable/bg_round_green"
             android:text="@string/bt_done_reg"
             android:textSize="16sp"
             android:textColor="@color/White"

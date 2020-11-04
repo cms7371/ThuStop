@@ -81,8 +81,8 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
         binding.etEnd.setText(endLocation.getAddress());
         binding.etStart.addTextChangedListener(filterTextWatcher);
         binding.etEnd.addTextChangedListener(filterTextWatcher);
-        setInitialColor(binding.etStart, R.drawable.outline_green);
-        setInitialColor(binding.etEnd, R.drawable.outline_red);
+        setInitialColor(binding.etStart, R.drawable.bg_outline_green);
+        setInitialColor(binding.etEnd, R.drawable.bg_outline_red);
 
         return binding.getRoot();
     }
@@ -95,9 +95,9 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
         @Override
         public void afterTextChanged(Editable s) {
             if (binding.etStart.isFocused()) {
-                binding.etStart.setBackgroundResource(R.drawable.outline_green);
+                binding.etStart.setBackgroundResource(R.drawable.bg_outline_green);
             } else {
-                binding.etEnd.setBackgroundResource(R.drawable.outline_red);
+                binding.etEnd.setBackgroundResource(R.drawable.bg_outline_red);
             }
             //텍스트가 입력되어 공백이 아니면
             if (!s.toString().equals("")) {
@@ -126,13 +126,13 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
             if (binding.etStart.isFocused()) {
                 transferAddress(response.getPlace(), startLocation);
                 binding.etStart.setText(startLocation.getAddress());
-                binding.etStart.setBackgroundResource(R.drawable.round_gray_e7);
+                binding.etStart.setBackgroundResource(R.drawable.bg_round_gray_e7);
                 binding.etDummy.requestFocus();
                 _listener.hideKeyBoard();
             } else if (binding.etEnd.isFocused()) {
                 transferAddress(response.getPlace(), endLocation);
                 binding.etEnd.setText(endLocation.getAddress());
-                binding.etEnd.setBackgroundResource(R.drawable.round_gray_e7);
+                binding.etEnd.setBackgroundResource(R.drawable.bg_round_gray_e7);
                 binding.etDummy.requestFocus();
                 _listener.hideKeyBoard();
             }
@@ -153,7 +153,7 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
     private void setInitialColor(TextView textView, int onBlank) {
         String s = textView.getText().toString();
         if (s.length() != 0) {
-            textView.setBackgroundResource(R.drawable.round_gray_e7);
+            textView.setBackgroundResource(R.drawable.bg_round_gray_e7);
         } else {
             textView.setBackgroundResource(onBlank);
         }

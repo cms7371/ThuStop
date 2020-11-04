@@ -64,7 +64,7 @@
             style="@style/btStyle"
             app:layout_constraintWidth_percent="0.6"
             android:layout_marginTop="65dp"
-            android:background="@drawable/round_green"
+            android:background="@drawable/bg_round_green"
             android:text="@string/bt_login"
             app:notoTextStyle="medium"
             app:layout_constraintTop_toBottomOf="@id/cb_login"
@@ -113,7 +113,7 @@
         <com.thustop_00.widgets.NotoButton
             style="@style/btStyle"
             android:layout_marginBottom="40dp"
-            android:background="@drawable/round_kakao"
+            android:background="@drawable/bg_kakao_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
