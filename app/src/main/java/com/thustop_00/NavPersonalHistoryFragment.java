@@ -30,7 +30,7 @@ public class NavPersonalHistoryFragment extends FragmentBase {
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
+
     public static NavPersonalHistoryFragment newInstance() {
         NavPersonalHistoryFragment fragment = new NavPersonalHistoryFragment();
         Bundle args = new Bundle();
@@ -54,11 +54,13 @@ public class NavPersonalHistoryFragment extends FragmentBase {
         _listener.showToolbarVisibility(true);
         _listener.setToolbarStyle(true,true);
         _listener.setTitle(false, "이용 내역");
-        callFragment(FRAGMENT_HISTORY);
 
+        callFragment(FRAGMENT_HISTORY);
+        // TODO: 네비게이션에서 넘어올때 창이 안닫혀서 강제로 닫고 프래그먼트 전환해놓음, 그랬더니 백버튼 눌러도 다시 네비게이션 안열려서 x버튼이랑 차이가 없음
         return binding.getRoot();
     }
 
+    // 클릭시 탭 색과 배경 변경(좌우 방향 있어서 메소드 사용 안함)
     public void onHistoryClick(View view) {
         binding.btHistory.setBackgroundResource(R.drawable.bg_tap_right);
         binding.btHistory.setTextColor(getResources().getColor(R.color.Primary));
@@ -75,6 +77,7 @@ public class NavPersonalHistoryFragment extends FragmentBase {
         callFragment(FRAGMENT_TICKET);
     }
 
+    // 탭별로 하위 프래그먼트 지정
     private void callFragment(int fragmentName) {
         FragmentManager fragmentManager = getChildFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
