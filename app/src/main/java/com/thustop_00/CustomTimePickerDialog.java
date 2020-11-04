@@ -3,6 +3,8 @@ package com.thustop_00;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,6 +16,7 @@ import androidx.annotation.NonNull;
 import com.thustop_00.widgets.NotoButton;
 
 import java.text.DecimalFormat;
+import java.util.Objects;
 
 public class CustomTimePickerDialog extends Dialog {
     private Context context;
@@ -45,10 +48,9 @@ public class CustomTimePickerDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_time_picker);
-
+        Objects.requireNonNull(getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         btOk = findViewById(R.id.bt_ok);
         timePicker = findViewById(R.id.timePicker);
-        back = findViewById(R.id.iv_back);
         timePicker.setIs24HourView(false);
         setMinutePicker();
 
@@ -75,12 +77,6 @@ public class CustomTimePickerDialog extends Dialog {
                 //time = (noon+" "+String.valueOf(h)+"시 "+String.valueOf(min)+"분");
                 // 커스텀 다이얼로그를 종료한다.
                 dismiss();
-            }
-        });
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cancel();
             }
         });
     }

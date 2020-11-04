@@ -1,6 +1,7 @@
 package com.thustop_00;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -48,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     private static boolean isBackEnabled = false;
     /* Handler for delay of splash fragment. It should be removed after loading delay added*/
     Handler H = new Handler(Looper.getMainLooper());
+    //for checking first run
+    public SharedPreferences prefs;
 
     private onBackPressedListener BackListener;
 
@@ -63,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         /* Link activity_main as binding, with doing setContentView(R.layout.activity_main);*/
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setActivityMain(this);
-
+        prefs = getSharedPreferences("Pref", MODE_PRIVATE);  // check first run
         /* Setting toolbar referred  https://blog.naver.com/qbxlvnf11/221328098468*/
         toolbar = binding.tbMain;
         setSupportActionBar(toolbar);
@@ -77,12 +80,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         actionbar.hide();
         setFragment(SplashFragment.newInstance());
 
-        H.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                setFragment(IntroBaseFragment.newInstance());
-            }
-        }, 1000);
+        checkFirstRun();
+
     }
 
     /* Toolbar hamburger button click listener*/
@@ -132,6 +131,10 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         addFragment(LoginFragment.newInstance());
         closeDrawer();
     }
+    public void onNavPersonalHistoryClick(View view) {
+        closeDrawer();
+        addFragment(NavPersonalHistoryFragment.newInstance());
+    }
 
     public void testToolbarLogin(View view) {
         binding.clDrawerHeadGuest.setVisibility(View.GONE);
@@ -141,6 +144,27 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         binding.tvLogout.setVisibility(View.VISIBLE);
     }
 
+    public void checkFirstRun() {
+        boolean isFirstRun = prefs.getBoolean("isFirstRun", true);
+        if (isFirstRun) {
+            prefs.edit().putBoolean("isFirstRun", false).apply();
+            H.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    setFragment(IntroBaseFragment.newInstance());
+                }
+            }, 1000);
+
+        } else {
+            H.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    setFragment(MainFragment.newInstance());
+                }
+            }, 1000);
+        }
+
+    }
 
     /***********************************************************************************************
     ----------------------OnFragmentInteractionLister override 메소드들------------------------------

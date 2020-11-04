@@ -73,9 +73,8 @@ public class IntroBaseFragment extends FragmentBase {
     public void onStartClick(View view) {
         _listener.setFragment(MainFragment.newInstance());
     }
-    public void onLaterClick(View view) {
-        //_listener.setFragment(AddRouteTimeSetFragment.newInstance());
-    }
+    public void onLaterClick(View view) { _listener.setFragment(MainFragment.newInstance()); }
+
     /*This method returns new instance of this fragment*/
     public static IntroBaseFragment newInstance() {
         Bundle args = new Bundle();

@@ -81,7 +81,7 @@
             android:id="@+id/layout_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_roundup_white"
+            android:background="@drawable/bg_round_top_white"
             android:clickable="true"
             android:elevation="10dp"
             android:focusable="true"

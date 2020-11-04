@@ -182,6 +182,7 @@
                 android:bufferType="spannable"
                 android:text="@string/tv_local1"
                 android:textColor="@color/TextBlack"
+                app:notoTextStyle="bold"
                 android:textSize="13sp"
                 app:layout_constraintEnd_toEndOf="@id/layout_local"
                 app:layout_constraintStart_toStartOf="@id/layout_local"
