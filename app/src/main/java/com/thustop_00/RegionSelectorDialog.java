@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ public class RegionSelectorDialog extends Dialog {
     private long clickedTime = System.currentTimeMillis();
     private int clickInterval;
     private boolean isErrorOccurred = false;
+    private final String TAG = "RegionSelectorDialog";
 
 
     public RegionSelectorDialog(@NonNull Context context) {
@@ -71,21 +73,12 @@ public class RegionSelectorDialog extends Dialog {
         @Override
         public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
             holder.tv.setText(data[position]);
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    clickInterval = (int) (System.currentTimeMillis() - clickedTime);
-                    clickedTime = System.currentTimeMillis();
-                    if (clickInterval > 50) {
-                        stateFocus = position;
-                        cityAdapter.updateCityList();
-                        notifyDataSetChanged();
-                    }
-                }
-            });
+            holder.tv.setTextColor(getContext().getResources().getColor(R.color.TextGray));
+            holder.tv.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "NotoSansKR-Regular-Hestia.otf"));
             if (position == stateFocus) {
                 holder.tv.setTextColor(getContext().getResources().getColor(R.color.Primary));
                 holder.tv.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "NotoSansKR-Bold-Hestia.otf"));
+                Log.w(TAG, "Current focus = " + Integer.toString(stateFocus) + ", Colored index = " + Integer.toString(position));
             }
         }
 
@@ -100,6 +93,18 @@ public class RegionSelectorDialog extends Dialog {
             public ListViewHolder(@NonNull View itemView) {
                 super(itemView);
                 this.tv = itemView.findViewById(R.id.tv_region);
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        clickInterval = (int) (System.currentTimeMillis() - clickedTime);
+                        clickedTime = System.currentTimeMillis();
+                        if (clickInterval > 50) {
+                            stateFocus = getAdapterPosition();
+                            cityAdapter.updateCityList();
+                            notifyDataSetChanged();
+                        }
+                    }
+                });
             }
         }
     }
