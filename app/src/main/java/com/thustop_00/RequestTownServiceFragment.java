@@ -52,8 +52,8 @@ public class RequestTownServiceFragment extends FragmentBase {
     }
     // TODO 말 안듣는 모서리 자식 둥글게 해야함
     public void onRegionSelectClick(View view) {
-        CustomRegionSelectorDialog regionSelectorDialog = new CustomRegionSelectorDialog(getContext());
-        regionSelectorDialog.setDialogListener(new CustomRegionSelectorDialog.RegionSelectorListener() {
+        RegionSelectorDialog regionSelectorDialog = new RegionSelectorDialog(getContext());
+        regionSelectorDialog.setDialogListener(new RegionSelectorDialog.RegionSelectorListener() {
             @Override
             public void onSelect(String state, String city) {
                 _binding.tvTownSel.setText(String.format("%s %s", state, city));

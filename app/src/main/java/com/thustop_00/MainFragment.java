@@ -83,8 +83,10 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         _listener.lockDrawer(false);
         //Recycler view 호출 및 어댑터와 연결, 데이터 할당
         RecyclerView mainRecycler = binding.rvRoutes;
-        MainRecyclerAdapter mainAdapter = new MainRecyclerAdapter(null, this);
+        MainRecyclerAdapter mainAdapter = new MainRecyclerAdapter(getContext(),null, this);
         mainRecycler.setAdapter(mainAdapter);
+/*        PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
+        pagerSnapHelper.attachToRecyclerView(mainRecycler);*/
 
         // Inflate the layout for this fragment
         return binding.getRoot();

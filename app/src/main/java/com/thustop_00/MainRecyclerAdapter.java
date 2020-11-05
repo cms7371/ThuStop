@@ -1,5 +1,6 @@
 package com.thustop_00;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.thustop_00.model.Route;
+import com.thustop_00.model.Ticket;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //Adapter for recyclerview in main fragment. There are 3 kinds of items, button for new route,
@@ -17,10 +20,12 @@ import java.util.List;
 public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     //It stores routes data to be displayed.
     private List<Route> data;
+    private Context context;
     //Parameters represent type of item
     private static final int VIEW_TYPE_BUTTON = 0;
     private static final int VIEW_TYPE_TITLE = 1;
     private static final int VIEW_TYPE_ROUTE= 2;
+
     //Interface for external listener for recyclerview
     public interface OnListItemSelectedInterface {
         void onItemSelected(View v, int position);
@@ -28,7 +33,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private OnListItemSelectedInterface mListener;
 
     //Adapter receives list of Routes and listener from target fragment
-    MainRecyclerAdapter(List<Route> in, OnListItemSelectedInterface listener) {
+    MainRecyclerAdapter(Context context, List<Route> in, OnListItemSelectedInterface listener) {
+        this.context = context;
         this.data = in;
         this.mListener = listener;
     }
@@ -119,6 +125,69 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                    mListener.onItemSelected(view, getAdapterPosition());
                }
            });
+        }
+    }
+
+    private static class TicketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+        private static final int VIEW_TYPE_BUTTON = 0;
+        private static final int VIEW_TYPE_TICKET = 1;
+        private ArrayList<Ticket> tickets;
+        private OnTicketSelectedInterface listener;
+
+        TicketAdapter(ArrayList<Ticket> in, OnTicketSelectedInterface listener){
+            this.tickets = in;
+            this.listener = listener;
+
+        }
+
+        public interface OnTicketSelectedInterface {
+            void onItemSelected(View v, int position);
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            if (tickets == null){
+                return VIEW_TYPE_BUTTON;
+            } else {
+                if (position == (tickets.size() - 1)){
+                    return VIEW_TYPE_BUTTON;
+                }
+                else {
+                    return VIEW_TYPE_TICKET;
+                }
+            }
+        }
+
+        @NonNull
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            if (viewType == VIEW_TYPE_BUTTON){
+                //Parent가 recycler라서 에러 발생할 확률 높음
+                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_new_route, parent, false);
+            }
+            return null;
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return 0;
+        }
+
+        public class ButtonViewHolder extends RecyclerView.ViewHolder {
+            public ButtonViewHolder(@NonNull View itemView) {
+                super(itemView);
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        listener.onItemSelected(view, getAdapterPosition());
+                    }
+                });
+            }
         }
     }
 

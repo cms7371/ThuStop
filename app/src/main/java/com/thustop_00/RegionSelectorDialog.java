@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-public class CustomRegionSelectorDialog extends Dialog {
+public class RegionSelectorDialog extends Dialog {
     private String[] states = getContext().getResources().getStringArray(R.array.state);
     private RegionSelectorListener listener;
     private CityAdapter cityAdapter;
@@ -23,7 +23,7 @@ public class CustomRegionSelectorDialog extends Dialog {
     private boolean isErrorOccurred = false;
 
 
-    public CustomRegionSelectorDialog(@NonNull Context context) {
+    public RegionSelectorDialog(@NonNull Context context) {
         super(context);
     }
 
@@ -78,7 +78,6 @@ public class CustomRegionSelectorDialog extends Dialog {
                     }
                 }
             });
-            // TODO : 딜레이 줘서 오동작 방지하기
             if (position == stateFocus) {
                 holder.tv.setTextColor(getContext().getResources().getColor(R.color.Primary));
                 holder.tv.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "NotoSansKR-Bold-Hestia.otf"));
