@@ -2,16 +2,14 @@ package com.thustop_00;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.thustop_00.databinding.FragmentDoneBinding;
 import com.thustop_00.databinding.FragmentNavPersonalHistoryBinding;
 
 /**
@@ -19,7 +17,7 @@ import com.thustop_00.databinding.FragmentNavPersonalHistoryBinding;
  * Use the {@link NavPersonalHistoryFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NavPersonalHistoryFragment extends FragmentBase {
+public class NavPersonalHistoryFragment extends FragmentBase implements MainActivity.onBackPressedListener{
 
     FragmentNavPersonalHistoryBinding binding;
 
@@ -54,6 +52,7 @@ public class NavPersonalHistoryFragment extends FragmentBase {
         _listener.showToolbarVisibility(true);
         _listener.setToolbarStyle(true,true);
         _listener.setTitle(false, "이용 내역");
+        _listener.setOnBackPressedListener(this);
 
         callFragment(FRAGMENT_HISTORY);
         // TODO: 네비게이션에서 넘어올때 창이 안닫혀서 강제로 닫고 프래그먼트 전환해놓음, 그랬더니 백버튼 눌러도 다시 네비게이션 안열려서 x버튼이랑 차이가 없음
@@ -96,5 +95,12 @@ public class NavPersonalHistoryFragment extends FragmentBase {
                 break;
 
         }
+    }
+
+    @Override
+    public void onBack() {
+        _listener.setFragment(MainFragment.newInstance());
+        // TODO : 딜레이 넣어서 자연스럽게 만들기
+        _listener.openDrawer();
     }
 }
