@@ -2,7 +2,9 @@ package com.thustop_00;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.Objects;
 
 
 public class RegionSelectorDialog extends Dialog {
@@ -36,6 +40,7 @@ public class RegionSelectorDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_region_select);
+        Objects.requireNonNull(getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         String[] States = getContext().getResources().getStringArray(R.array.state);
         StateAdapter stateAdapter = new StateAdapter(States);
         cityAdapter = new CityAdapter();
