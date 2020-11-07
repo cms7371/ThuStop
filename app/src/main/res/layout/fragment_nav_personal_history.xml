@@ -32,7 +32,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guideline1" />
         <View
-            android:id="@+id/line1"
+            android:id="@+id/stroke1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="13dp"
@@ -41,7 +41,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
         <View
-            android:id="@+id/line2"
+            android:id="@+id/stroke2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="49dp"
@@ -62,7 +62,7 @@
             android:onClick="@{NavPersonalHistoryFrag::onHistoryClick}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/bt_ticket"
-            app:layout_constraintTop_toBottomOf="@id/line1"
+            app:layout_constraintTop_toBottomOf="@id/stroke1"
             app:layout_constraintBottom_toTopOf="@id/frame1"/>
         <com.thustop_00.widgets.NotoButton
             android:id="@+id/bt_ticket"

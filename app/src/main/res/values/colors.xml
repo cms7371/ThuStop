@@ -2,10 +2,22 @@
 <resources>
     <color name="Primary">#15a474</color>
     <color name="PrimaryDark">#00574B</color>
-    <color name="Accent">#F0655C</color>
+    <color name="Red">#F0655C</color>
+    <color name="Yellow">#FFD600</color>
+    <color name="Orange">#FF6C2E</color>
 
     <color name="White">#ffffff</color>
+    <color name="AchF5">#F5F5F5</color>
+    <color name="AchE7">#E7E7E7</color>
+    <color name="AchCF">#CFCFCF</color>
+    <color name="AchAD">#ADADAD</color>
+    <color name="Ach97">#979797</color>
+    <color name="Ach53">#535353</color>
+    <color name="Ach3F">#3F3F3F</color>
+    <color name="Ach20">#202020</color>
     <color name="Black">#000000</color>
+
+    <color name="Stroke">#F3F3F3</color>
 
     <color name="TextBlack">#535353</color>
     <color name="TextGray">#979797</color>

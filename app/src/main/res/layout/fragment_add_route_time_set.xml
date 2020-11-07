@@ -100,7 +100,7 @@
                 style="@style/EtStyle"
                 android:text="@string/tv_time"
                 android:textSize="14sp"
-                android:textColor="@color/Accent"
+                android:textColor="@color/Red"
                 app:notoTextStyle="medium"
                 app:layout_constraintTop_toTopOf="@id/layout_time"
                 app:layout_constraintStart_toStartOf="@id/layout_time"

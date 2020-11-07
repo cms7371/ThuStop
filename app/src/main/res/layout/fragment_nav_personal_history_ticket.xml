@@ -39,7 +39,7 @@
             android:layout_marginTop="5dp"
             android:text="-"
             android:textSize="12sp"
-            android:textColor="@color/Accent"
+            android:textColor="@color/Red"
             app:layout_constraintTop_toBottomOf="@id/tv_title_left_ticket"
             app:layout_constraintBottom_toBottomOf="@id/line1"
             app:layout_constraintStart_toStartOf="parent"
@@ -72,19 +72,162 @@
             android:layout_marginTop="5dp"
             android:text="-"
             android:textSize="12sp"
-            android:textColor="@color/Accent"
+            android:textColor="@color/Red"
             app:layout_constraintTop_toBottomOf="@id/tv_title_due_date"
             app:layout_constraintBottom_toBottomOf="@id/line1"
             app:layout_constraintStart_toEndOf="@id/line1"
             app:layout_constraintEnd_toEndOf="parent"/>
         <View
+            android:id="@+id/stroke1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="11dp"
-            android:background="#f3f3f3"
+            android:background="@color/Stroke"
             app:layout_constraintTop_toBottomOf="@id/line1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_recruit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/stroke1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_cancel_route"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:padding="10dp"
+                android:text="노선요청 취소"
+                android:textColor="@color/TextBlack"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/stroke_recruit"/>
+            <View
+                android:id="@+id/stroke_recruit"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/Stroke"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_before_payment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/cl_recruit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_payment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:padding="10dp"
+                android:text="결제하기"
+                android:textColor="@color/TextBlack"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/stroke_payment"/>
+            <View
+                android:id="@+id/stroke_payment"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/Stroke"
+                app:layout_constraintTop_toBottomOf="@id/tv_payment"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_change_route"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:padding="10dp"
+                android:text="출 · 도착지 변경"
+                android:textColor="@color/TextBlack"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stroke_payment"
+                app:layout_constraintBottom_toTopOf="@id/stroke_change_route"/>
+            <View
+                android:id="@+id/stroke_change_route"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/Stroke"
+                app:layout_constraintTop_toBottomOf="@id/tv_change_route"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_complete_payment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/cl_before_payment"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_convert_point"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:padding="10dp"
+                android:text="티켓 포인트로 전환"
+                android:textColor="@color/TextBlack"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/stroke_convert_point"/>
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginEnd="23dp"
+                android:src="@drawable/icon_help"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_convert_point"
+                app:layout_constraintBottom_toBottomOf="@id/tv_convert_point"/>
+            <View
+                android:id="@+id/stroke_convert_point"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/Stroke"
+                app:layout_constraintTop_toBottomOf="@id/tv_convert_point"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_refund"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:padding="10dp"
+                android:text="환불하기"
+                android:textColor="@color/TextBlack"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stroke_convert_point"
+                app:layout_constraintBottom_toTopOf="@id/stroke_refund"/>
+            <View
+                android:id="@+id/stroke_refund"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/Stroke"
+                app:layout_constraintTop_toBottomOf="@id/tv_refund"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
             
 
     </androidx.constraintlayout.widget.ConstraintLayout>

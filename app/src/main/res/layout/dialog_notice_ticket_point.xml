@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/transparent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="316dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_round_white_12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:text="티켓포인트로 전환이란?"
+            android:textColor="@color/TextBlack"
+            android:textSize="18sp"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_explain1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_explain1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:text="불가피한 상황으로 버스 탑승을\n하지 못했을 때 티켓을 포인트로 전환하는 제도입니다."
+            android:textColor="@color/TextGray"
+            android:textSize="13sp"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@id/tv_explain2"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_explain2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="티켓 포인트 전환은 1일 1회만 가능하며,\n총 2회 사용할 수 있어요"
+            android:textColor="@color/TextGray"
+            android:textSize="13sp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/tv_explain1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <ImageView
+            android:id="@+id/iv_touch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="46dp"
+            android:layout_marginStart="80dp"
+            android:src="@drawable/icon_touch_app"
+            app:layout_constraintTop_toBottomOf="@id/tv_explain2"
+            app:layout_constraintStart_toStartOf="parent" />
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_touch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="1.'티켓 포인트로 전환'\n클릭!"
+            android:textColor="@color/TextGray"
+            android:textSize="11sp"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="@id/iv_touch"
+            app:layout_constraintEnd_toEndOf="@id/iv_touch"
+            app:layout_constraintTop_toBottomOf="@id/iv_touch"/>
+        <ImageView
+            android:id="@+id/iv_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="74dp"
+            android:src="@drawable/icon_calendar_green"
+            app:layout_constraintTop_toTopOf="@id/iv_touch"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2.달력에서 날짜\n선택!"
+            android:textColor="@color/TextGray"
+            android:textSize="11sp"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="@id/iv_calendar"
+            app:layout_constraintEnd_toEndOf="@id/iv_calendar"
+            app:layout_constraintTop_toTopOf="@id/tv_touch"/>
+
+        <ImageView
+            android:id="@+id/iv_spell_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34dp"
+            android:src="@drawable/icon_spell_check"
+            app:layout_constraintTop_toBottomOf="@id/tv_touch"
+            app:layout_constraintStart_toStartOf="@id/tv_touch"
+            app:layout_constraintEnd_toEndOf="@id/tv_touch"/>
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_spell_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="33dp"
+            android:text="3.전환 포인트 확인"
+            android:textColor="@color/TextGray"
+            android:textSize="11sp"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="@id/iv_spell_check"
+            app:layout_constraintEnd_toEndOf="@id/iv_spell_check"
+            app:layout_constraintTop_toBottomOf="@id/iv_spell_check"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+        <ImageView
+            android:id="@+id/iv_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="1dp"
+            android:src="@drawable/icon_done_24"
+            app:layout_constraintTop_toTopOf="@id/iv_spell_check"
+            app:layout_constraintStart_toStartOf="@id/tv_calendar"
+            app:layout_constraintEnd_toEndOf="@id/tv_calendar"/>
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4.완료!!"
+            android:textColor="@color/TextGray"
+            android:textSize="11sp"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="@id/iv_done"
+            app:layout_constraintEnd_toEndOf="@id/iv_done"
+            app:layout_constraintTop_toTopOf="@id/tv_spell_check"/>
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

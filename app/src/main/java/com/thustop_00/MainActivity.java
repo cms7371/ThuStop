@@ -135,6 +135,10 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         closeDrawer();
         addFragment(NavPersonalHistoryFragment.newInstance());
     }
+    public void onNavPersonalPointClick(View view) {
+        closeDrawer();
+        addFragment(NavPointFragment.newInstance());
+    }
 
     public void testToolbarLogin(View view) {
         binding.clDrawerHeadGuest.setVisibility(View.GONE);
