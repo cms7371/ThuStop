@@ -5,5 +5,4 @@ public class Ticket {
     String userID;
     String routeID;
     String status;
-
 }

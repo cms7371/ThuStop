@@ -5,7 +5,7 @@ import org.parceler.Parcel;
 @Parcel
 public class Stop {
     String name;
-    String time;
+    int id;
     float latitude;
     float longitude;
 }

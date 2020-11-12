@@ -12,7 +12,7 @@ public class Route {
     public float distance;
     public int max_passenger;
     public int cnt_passenger;
-    public int capacity;
+    public int spec;
     public String status;
     public int price;
     public List<Stop> boarding_stops;
