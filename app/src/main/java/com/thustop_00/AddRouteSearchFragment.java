@@ -63,9 +63,10 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
                              Bundle savedInstanceState) {
         binding = FragmentAddRouteSearchBinding.inflate(inflater);
 
-        _listener.setToolbarStyle(true, true);
+        _listener.setToolbarStyle(_listener.WHITE_BACK, "");
+/*        _listener.setToolbarStyle(true, true);
         _listener.setTitle(false, "");
-        _listener.showToolbarVisibility(true);
+        _listener.showToolbarVisibility(true);*/
         _listener.setOnBackPressedListener(this);
 
         //apiKey로 구글 클라이언트 시작
@@ -126,13 +127,13 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
             if (binding.etStart.isFocused()) {
                 transferAddress(response.getPlace(), startLocation);
                 binding.etStart.setText(startLocation.getAddress());
-                binding.etStart.setBackgroundResource(R.drawable.bg_round_gray_e7);
+                binding.etStart.setBackgroundResource(R.drawable.bg_round25_graye7);
                 binding.etDummy.requestFocus();
                 _listener.hideKeyBoard();
             } else if (binding.etEnd.isFocused()) {
                 transferAddress(response.getPlace(), endLocation);
                 binding.etEnd.setText(endLocation.getAddress());
-                binding.etEnd.setBackgroundResource(R.drawable.bg_round_gray_e7);
+                binding.etEnd.setBackgroundResource(R.drawable.bg_round25_graye7);
                 binding.etDummy.requestFocus();
                 _listener.hideKeyBoard();
             }
@@ -153,7 +154,7 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
     private void setInitialColor(TextView textView, int onBlank) {
         String s = textView.getText().toString();
         if (s.length() != 0) {
-            textView.setBackgroundResource(R.drawable.bg_round_gray_e7);
+            textView.setBackgroundResource(R.drawable.bg_round25_graye7);
         } else {
             textView.setBackgroundResource(onBlank);
         }

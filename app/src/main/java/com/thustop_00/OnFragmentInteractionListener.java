@@ -1,17 +1,22 @@
 package com.thustop_00;
 
 public interface OnFragmentInteractionListener {
+    int INVISIBLE = 0;
+    int GREEN_HAMBURGER = 1;
+    int GREEN_BACK = 2;
+    int GREEN_BACK_EXIT = 3;
+    int WHITE_HAMBURGER = 4;
+    int WHITE_BACK = 5;
+    int WHITE_BACK_EXIT = 6;
     void addFragment(FragmentBase fr);
     void addFragmentNotBackStack(FragmentBase fr);
     void setFragment(FragmentBase fr);
     void setOnBackPressedListener(MainActivity.onBackPressedListener listener);
 
-    void showToolbarVisibility(boolean b);
     void openDrawer();
     void closeDrawer();
     void lockDrawer(boolean isLocked);
-    void setTitle(boolean isMainTitle,String s);
-    void setToolbarStyle(boolean white, boolean back_en);
+    void setToolbarStyle(int state, String title);
     void hideKeyBoard();
 
 }

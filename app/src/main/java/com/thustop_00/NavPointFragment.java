@@ -1,12 +1,11 @@
 package com.thustop_00;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
 
 import com.thustop_00.databinding.FragmentNavPointBinding;
 
@@ -42,9 +41,8 @@ public class NavPointFragment extends FragmentBase implements MainActivity.onBac
                              Bundle savedInstanceState) {
         binding = FragmentNavPointBinding.inflate(inflater);
         binding.setNavPointFrag(this);
-        _listener.showToolbarVisibility(true);
-        _listener.setToolbarStyle(true,true);
-        _listener.setTitle(false, "이용 내역");
+        _listener.setToolbarStyle(_listener.WHITE_BACK_EXIT, "포인트");
+
         _listener.setOnBackPressedListener(this);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_nav_point, container, false);

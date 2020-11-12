@@ -48,9 +48,11 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     //We can add condition depending on date too
     @Override
     public int getItemViewType(int position) {
-        if (position == 0) {
+        if (position == 1) {
             return VIEW_TYPE_TICKET; //TODO 티켓 class에 따라 버튼을 만들어야 할 수도 있음
-        } else if (position == 1) {
+        } else if (position == 0) {
+            return VIEW_TYPE_BUTTON;
+        } else if (position == 2) {
             return VIEW_TYPE_TITLE;
         } else {
             return VIEW_TYPE_ROUTE;

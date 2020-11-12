@@ -64,7 +64,7 @@
             style="@style/btStyle"
             app:layout_constraintWidth_percent="0.6"
             android:layout_marginTop="65dp"
-            android:background="@drawable/bg_round_green"
+            android:background="@drawable/bg_round25_green"
             android:text="@string/bt_login"
             app:notoTextStyle="medium"
             app:layout_constraintTop_toBottomOf="@id/cb_login"

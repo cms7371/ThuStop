@@ -94,7 +94,7 @@
             android:id="@+id/bt_intro_start"
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:background="@drawable/bg_round_green"
+            android:background="@drawable/bg_round25_green"
             android:text="@string/bt_intro_start"
             android:visibility="invisible"
             android:textColor="@color/White"

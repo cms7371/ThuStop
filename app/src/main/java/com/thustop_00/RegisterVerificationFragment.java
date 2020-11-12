@@ -114,9 +114,7 @@ public class RegisterVerificationFragment extends FragmentBase {
             }
         });
 
-        _listener.setToolbarStyle(true, true);
-        _listener.setTitle(false,"휴대폰 본인인증");
-        _listener.showToolbarVisibility(true);
+        _listener.setToolbarStyle(_listener.WHITE_BACK, "휴대폰 본인인증");
 
         // Inflate the layout for this fragment
         return binding.getRoot();

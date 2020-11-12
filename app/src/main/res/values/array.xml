@@ -12,7 +12,8 @@
         <item>통신사</item>
     </string-array>
     <string-array name="error">
-        <item>이런 고장이 나버렸네요!</item>
+        <item>이런 고장이 나버렸네요</item>
+        <item>게으른 개발자가 일을 안하는군요</item>
         <item>다시 도를 선택해주세요.</item>
     </string-array>
 
