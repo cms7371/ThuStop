@@ -42,7 +42,7 @@
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="#f3f3f3"
+            android:background="@color/Stroke"
             app:layout_constraintStart_toEndOf="@id/rv_state"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -64,7 +64,7 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
                              Bundle savedInstanceState) {
         binding = FragmentAddRouteMapBinding.inflate(inflater);
         binding.setMapSearchfrag(this);
-        _listener.showToolbarVisibility(false);
+        _listener.setToolbarStyle(_listener.INVISIBLE, "");
         isStart = true;
 
         binding.map.setMapViewEventListener(this);

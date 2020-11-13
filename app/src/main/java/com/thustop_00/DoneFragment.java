@@ -58,7 +58,7 @@ public class DoneFragment extends FragmentBase {
                              Bundle savedInstanceState) {
         binding = FragmentDoneBinding.inflate(inflater);
         binding.setDonefrag(this);
-        _listener.showToolbarVisibility(false);
+        _listener.setToolbarStyle(_listener.INVISIBLE, "");
         setText();
         return binding.getRoot();
     }

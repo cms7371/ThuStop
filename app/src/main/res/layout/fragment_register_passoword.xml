@@ -44,7 +44,7 @@
         <com.thustop_00.widgets.NotoButton
             android:id="@+id/bt_confirm"
             style="@style/btStyle"
-            android:background="@drawable/bg_round_gray_c4"
+            android:background="@drawable/bg_round25_grayc4"
             android:text="@string/bt_confirm"
             app:notoTextStyle="medium"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -110,5 +110,8 @@
     <string name="tv_splash_subtitle">신개념 출퇴근 버스 노선 공유 버스</string>
     <string name="tv_splash_copyright">ⓒ2019. ThusTop INC. all rights reserved</string>
 
+    <!--fragment route inquiry-->
+    <string name="tv_route_caution">• 탑승 당일, 도로상황 및 기상환경에 따른 일부 지연이 발생할 수도 있습니다.(±5~10분)\n• 하차 시간은 희망 도착 시간보다 빠를 수 있습니다.\n• 차량 정보와 기사님 정보는 결제 후에 안내됩니다.</string>
+
 
 </resources>

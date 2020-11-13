@@ -49,9 +49,8 @@ public class NavPersonalHistoryFragment extends FragmentBase implements MainActi
                              Bundle savedInstanceState) {
         binding = FragmentNavPersonalHistoryBinding.inflate(inflater);
         binding.setNavPersonalHistoryFrag(this);
-        _listener.showToolbarVisibility(true);
-        _listener.setToolbarStyle(true,true);
-        _listener.setTitle(false, "이용 내역");
+        _listener.setToolbarStyle(_listener.WHITE_BACK_EXIT, "이용 내역");
+
         _listener.setOnBackPressedListener(this);
 
         callFragment(FRAGMENT_HISTORY);

@@ -76,9 +76,8 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         colorText(binding.tvLocal1, R.string.tv_local1_color, getResources().getString(R.color.Primary));
         toggle = false;
         //Activity 기본 세팅
-        _listener.setToolbarStyle(false, false);
-        _listener.showToolbarVisibility(true);
-        _listener.setTitle(true, "");
+        _listener.setToolbarStyle(_listener.GREEN_HAMBURGER, null);
+
         _listener.setOnBackPressedListener(this);
         _listener.lockDrawer(false);
         //Recycler view 호출 및 어댑터와 연결, 데이터 할당
@@ -94,9 +93,13 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
 
     /**노선 추가 버튼 눌렀을 때.*/
     @Override
-    public void onItemSelected(View v, int position) {
+    public void onItemSelected(View v, int position, int ticket_position) {
         if (position == 0) {
-            _listener.addFragment(AddRouteMapFragment.newInstance(null, null));
+            if (ticket_position == -1){
+                _listener.addFragment(AddRouteMapFragment.newInstance(null, null));
+            } else {
+                Toast.makeText(getContext(), ticket_position + "번째 티켓 눌림", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

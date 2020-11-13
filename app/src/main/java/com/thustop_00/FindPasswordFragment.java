@@ -42,9 +42,7 @@ public class FindPasswordFragment extends FragmentBase {
                              Bundle savedInstanceState) {
         binding = FragmentFindPasswordBinding.inflate(inflater);
         ButterKnife.bind(this,binding.getRoot());
-        //_listener.showActionBar(true);
-        _listener.setToolbarStyle(true, false);
-        _listener.setTitle(false,"비밀번호 찾기");
+        _listener.setToolbarStyle(_listener.GREEN_HAMBURGER, "비밀번호 찾기");
 
 
         return binding.getRoot();
