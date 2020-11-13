@@ -1,47 +1,36 @@
 package com.thustop_00;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.thustop_00.databinding.FragmentNavPersonalHistoryTicketBinding;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link NavPersonalHistoryTicketFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NavPersonalHistoryTicketFragment extends Fragment {
+public class NavPersonalHistoryTicketFragment extends FragmentBase {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    FragmentNavPersonalHistoryTicketBinding binding;
 
     public NavPersonalHistoryTicketFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment NavPersonalHistoryTicketFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static NavPersonalHistoryTicketFragment newInstance(String param1, String param2) {
         NavPersonalHistoryTicketFragment fragment = new NavPersonalHistoryTicketFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -50,15 +39,24 @@ public class NavPersonalHistoryTicketFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_nav_personal_history_ticket, container, false);
+        binding=FragmentNavPersonalHistoryTicketBinding.inflate(inflater);
+        binding.setNavPersonalHistoryTicketFrag(this);
+
+        return binding.getRoot();
+
     }
+
+    public void onTransformInfoClick(View view) {
+        Log.d("ㅇㅇ","눌렸음");
+        NoticeTicketPointDialog noticeTicketPointDialog = new NoticeTicketPointDialog(getContext());
+        noticeTicketPointDialog.show();
+    }
+
+
 }

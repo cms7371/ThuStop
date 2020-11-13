@@ -2,6 +2,19 @@
     <!--Fragment 이름 순으로 적어주세요-->
     <!--이름이 앞에 fragment가 뒤로 오게 합시다 ex) main fragment!-->
 
+    <!-- Notice Ticket Point Dialog-->
+    <string name="tv_notice_title">티켓포인트로 전환이란?</string>
+    <string name="tv_explain1">불가피한 상황으로 버스 탑승을\n하지 못했을 때 티켓을 포인트로 전환하는 제도입니다.</string>
+    <string name="tv_explain2">티켓 포인트 전환은 1회 1일만 가능하며,\n총 2회 사용할 수 있어요.</string>
+    <string name="tv_explain1_colored">불가피한 상황</string>
+    <string name="tv_explain2_colored_1">1회 1일</string>
+    <string name="tv_explain2_colored_2">총 2회</string>
+    <string name="tv_touch">1.\'티켓 포인트로 전환\'\n클릭</string>
+    <string name="tv_calendar">2.달력에서 날짜\n선택</string>
+    <string name="tv_spell_check">3.전환 포인트 확인</string>
+    <string name="tv_done">4.완료!!</string>
+
+
     <!--Add Route Map Search Fragment-->
     <string name="tv_mark_start">출발</string>
     <string name="tv_mark_end">도착</string>
