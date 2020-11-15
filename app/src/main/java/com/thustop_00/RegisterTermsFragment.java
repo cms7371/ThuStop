@@ -104,7 +104,7 @@ public class RegisterTermsFragment extends FragmentBase implements CompoundButto
             binding.btAgree.setBackgroundResource(R.drawable.bg_round25_green);
             binding.btAgree.setEnabled(true);
         } else {
-            binding.btAgree.setBackgroundResource(R.drawable.bg_round25_grayc4);
+            binding.btAgree.setBackgroundResource(R.drawable.bg_round25_graycf);
             binding.btAgree.setEnabled(false);
         }
 

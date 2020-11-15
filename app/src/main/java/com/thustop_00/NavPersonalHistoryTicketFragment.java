@@ -51,7 +51,9 @@ public class NavPersonalHistoryTicketFragment extends FragmentBase {
         return binding.getRoot();
 
     }
-
+    public void onTicketPointClick(View view) {
+        _listener.addFragment(NavPersonalHistoryTicketPointFragment.newInstance());
+    }
     public void onTransformInfoClick(View view) {
         Log.d("ㅇㅇ","눌렸음");
         NoticeTicketPointDialog noticeTicketPointDialog = new NoticeTicketPointDialog(getContext());

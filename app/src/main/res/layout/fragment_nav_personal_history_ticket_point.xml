@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="NavPersonalHistoryTicketPointFrag"
+            type="com.thustop_00.NavPersonalHistoryTicketPointFragment" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:background="@color/White">
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="11dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="?attr/actionBarSize" />
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="31sp"
+            android:layout_marginTop="20dp"
+            android:text="티켓 포인트로 전환"
+            android:textSize="24sp"
+            android:textColor="@color/TextBlack"
+            app:notoTextStyle="medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline1" />
+        <View
+            android:id="@+id/stroke"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="13dp"
+            android:background="@color/Stroke"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_date"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/bg_round25_grayf5"
+            android:onClick="@{NavPersonalHistoryTicketPointFrag::onDatePickerClick}"
+            app:layout_constraintTop_toBottomOf="@id/stroke"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <ImageView
+                android:id="@+id/iv_date_range"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/ic_date_range"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_year_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="44dp"
+                android:text="2020"
+                android:textSize="18sp"
+                android:textColor="@color/TextBlack"
+                app:layout_constraintStart_toEndOf="@id/iv_date_range"
+
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="년"
+                android:textSize="14sp"
+                android:textColor="@color/TextBlack"
+                app:layout_constraintStart_toEndOf="@id/tv_year_value"
+                app:layout_constraintBottom_toBottomOf="@id/tv_year_value"/>
+
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_month_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11"
+                android:textColor="@color/TextBlack"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_day_value"
+                app:layout_constraintHorizontal_bias="0.464"
+                app:layout_constraintStart_toEndOf="@id/tv_year"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="월"
+                android:textSize="14sp"
+                android:textColor="@color/TextBlack"
+                app:layout_constraintStart_toEndOf="@id/tv_month_value"
+
+                app:layout_constraintBottom_toBottomOf="@id/tv_month_value"/>
+
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_day_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11"
+                android:textColor="@color/TextBlack"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_day"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginEnd="33dp"
+                android:text="일"
+                android:textSize="14sp"
+                android:textColor="@color/TextBlack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/tv_day_value"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="5dp"
+            android:text="탑승 불가능한 날짜를 선택해 주세요"
+            android:textColor="@color/TextGray"
+            android:textSize="10sp"
+            app:layout_constraintTop_toBottomOf="@id/layout_date"
+            app:layout_constraintStart_toStartOf="@id/layout_date"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="174dp"
+            android:layout_height="174dp"
+            android:layout_marginTop="49dp"
+            android:background="@drawable/circle_outline_green"
+            app:layout_constraintTop_toBottomOf="@id/layout_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_point_notice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="51dp"
+                android:text="전환 가능 포인트"
+                android:textColor="@color/TextBlack"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/tv_point_value"/>
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_point_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1300 P"
+                android:textColor="@color/Primary"
+                android:textSize="30sp"
+                app:notoTextStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.thustop_00.widgets.NotoButton
+            style="@style/btStyle"
+            android:background="@drawable/bg_round25_graycf"
+            android:text="확인"
+            app:notoTextStyle="medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</layout>

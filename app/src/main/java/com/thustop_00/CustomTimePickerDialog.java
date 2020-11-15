@@ -27,14 +27,14 @@ public class CustomTimePickerDialog extends Dialog {
     private int h, min;
     private String time;
 
-    private CustomDialogListener dialogListener;
+    private CustomTimePickerDialogListener dialogListener;
     private static final int INTERVAL = 10;
     private static final DecimalFormat FORMATTER = new DecimalFormat("00");
 
 
     private NumberPicker minutePicker;
 
-    public void setDialogListener(CustomDialogListener dialogListener){
+    public void setDialogListener(CustomTimePickerDialogListener dialogListener){
         this.dialogListener = dialogListener;
     }
 
@@ -106,6 +106,10 @@ public class CustomTimePickerDialog extends Dialog {
         } else {
             return timePicker.getCurrentMinute();
         }
+    }
+
+    public interface CustomTimePickerDialogListener {
+        void onOkClick(int hour, int minute, String noon);
     }
 
 

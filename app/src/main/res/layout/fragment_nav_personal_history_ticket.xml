@@ -188,7 +188,8 @@
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/stroke_convert_point"/>
+                app:layout_constraintBottom_toTopOf="@id/stroke_convert_point"
+                android:onClick="@{NavPersonalHistoryTicketFrag::onTicketPointClick}"/>/>
             <ImageView
                 android:id="@+id/iv_transform_info"
                 android:layout_width="18dp"

@@ -76,7 +76,7 @@ public class AddRouteTimeSetFragment extends FragmentBase implements MainActivit
 
     public void onTimeSetClick(View view) {
         CustomTimePickerDialog timePickerDialog = new CustomTimePickerDialog(getActivity());
-        timePickerDialog.setDialogListener(new CustomDialogListener() {
+        timePickerDialog.setDialogListener(new CustomTimePickerDialog.CustomTimePickerDialogListener() {
             //TODO Bug : 처음 키자마자 클릭하면 0시 0분으로 찍힘
             @Override
             public void onOkClick(int hour, int minute, String n) {

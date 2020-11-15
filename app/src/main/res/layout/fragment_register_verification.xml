@@ -234,7 +234,7 @@
         <com.thustop_00.widgets.NotoButton
             android:id="@+id/bt_done"
             style="@style/btStyle"
-            android:background="@drawable/bg_round25_grayc4"
+            android:background="@drawable/bg_round25_graycf"
             android:onClick="@{IDVerfrag::onDoneClick}"
             android:text="@string/bt_verification_done"
             android:textColor="@android:color/white"
