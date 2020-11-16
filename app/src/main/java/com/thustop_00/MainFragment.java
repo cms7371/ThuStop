@@ -22,8 +22,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.thustop_00.databinding.FragmentMainBinding;
+import com.thustop_00.model.Route;
+import com.thustop_00.model.Stop;
+import com.thustop_00.model.Via;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -40,6 +44,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     boolean[] tog_local = {false, false, false};
 
     private GpsTracker gpsTracker;
+    private ArrayList<Route> test_route_list;
     double latitude;
     double longitude;
     String address;
@@ -80,9 +85,35 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
 
         _listener.setOnBackPressedListener(this);
         _listener.lockDrawer(false);
+
+        //Test Routes
+        Route route1 = new Route("A15", "수원", 123, 52.34f, 35, 13, 45, "운행중", 99000);
+        Stop stop1_0 = new Stop("수원역 1번 출구", 0, 37.266260f, 127.001412f);
+        Via via1_0 = new Via(0, stop1_0, "07:30");
+        Stop stop1_1 = new Stop("이춘택 병원", 1, 37.272110f, 127.015525f);
+        Via via1_1 = new Via(1, stop1_1, "07:45");
+        Stop stop1_2 = new Stop("성빈센트 병원", 2, 37.277585f, 127.028323f);
+        Via via1_2 = new Via(2, stop1_2, "08:00");
+        Stop stop1_3 = new Stop("정자역 1번 출구", 3, 37.366200f, 127.108386f);
+        Via via1_3 = new Via(3, stop1_3, "08:45");
+        Stop stop1_4 = new Stop("정자역 5번 출구", 4, 37.368213f, 127.108262f);
+        Via via1_4 = new Via(4, stop1_4, "08:50");
+        Stop stop1_5 = new Stop("두산위브파빌리온 오피스텔", 5, 37.371521f, 127.108274f);
+        Via via1_5 = new Via(5, stop1_5, "09:00");
+        route1.boarding_stops.add(via1_0);
+        route1.boarding_stops.add(via1_1);
+        route1.boarding_stops.add(via1_2);
+        route1.alighting_stops.add(via1_3);
+        route1.alighting_stops.add(via1_4);
+        route1.alighting_stops.add(via1_5);
+        test_route_list = new ArrayList<Route>();
+        test_route_list.add(route1);
+        route1.status = "모집중";
+        test_route_list.add(route1);
+
         //Recycler view 호출 및 어댑터와 연결, 데이터 할당
         RecyclerView mainRecycler = binding.rvRoutes;
-        MainRecyclerAdapter mainAdapter = new MainRecyclerAdapter(getContext(),null, this);
+        MainRecyclerAdapter mainAdapter = new MainRecyclerAdapter(getContext(),test_route_list, this);
         mainRecycler.setAdapter(mainAdapter);
 /*        PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
         pagerSnapHelper.attachToRecyclerView(mainRecycler);*/
@@ -100,6 +131,8 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
             } else {
                 Toast.makeText(getContext(), ticket_position + "번째 티켓 눌림", Toast.LENGTH_SHORT).show();
             }
+        } else if (position >= 2){
+            _listener.addFragment(RouteDetailFragment.newInstance(test_route_list.get(position - 2)));
         }
     }
 

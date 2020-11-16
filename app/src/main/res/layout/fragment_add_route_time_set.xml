@@ -93,7 +93,7 @@
             app:layout_constraintStart_toStartOf="@id/tv_end"
             app:layout_constraintEnd_toEndOf="@id/tv_end">
             <com.thustop_00.widgets.NotoTextView
-                android:id="@+id/tv_time"
+                android:id="@+id/tv_rd_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
@@ -116,7 +116,7 @@
                 android:textSize="14sp"
                 android:textColor="@color/TextBlack"
                 android:gravity="center"
-                app:layout_constraintStart_toEndOf="@id/tv_time"
+                app:layout_constraintStart_toEndOf="@id/tv_rd_time"
                 app:layout_constraintEnd_toEndOf="@id/layout_time"
                 app:layout_constraintTop_toTopOf="@id/layout_time"
                 app:layout_constraintBottom_toBottomOf="@id/layout_time"/>

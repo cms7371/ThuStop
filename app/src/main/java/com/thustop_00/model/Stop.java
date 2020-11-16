@@ -1,11 +1,15 @@
 package com.thustop_00.model;
 
-import org.parceler.Parcel;
-
-@Parcel
 public class Stop {
-    String name;
-    int id;
-    float latitude;
-    float longitude;
+    public String name;
+    public int id;
+    public float latitude;
+    public float longitude;
+
+    public Stop(String name, int id, float latitude, float longitude) {
+        this.name = name;
+        this.id = id;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 }

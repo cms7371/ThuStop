@@ -14,13 +14,12 @@ import com.thustop_00.model.Route;
 import com.thustop_00.model.Ticket;
 
 import java.util.ArrayList;
-import java.util.List;
 
 //Adapter for recyclerview in main fragment. There are 3 kinds of items, button for new route,
 //title to display current location, route for bus operation information
 public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     //It stores routes data to be displayed.
-    private List<Route> data;
+    private ArrayList<Route> data;
     private Context context;
     //Parameters represent type of item
     private static final int VIEW_TYPE_BUTTON = 0;
@@ -36,7 +35,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private OnListItemSelectedInterface mListener;
 
     //Adapter receives list of Routes and listener from target fragment
-    MainRecyclerAdapter(Context context, List<Route> in, OnListItemSelectedInterface listener) {
+    MainRecyclerAdapter(Context context, ArrayList<Route> in, OnListItemSelectedInterface listener) {
         this.context = context;
         this.data = in;
         this.mListener = listener;
@@ -48,15 +47,15 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     //We can add condition depending on date too
     @Override
     public int getItemViewType(int position) {
-        if (position == 1) {
+        if (position == 0) {
             return VIEW_TYPE_TICKET; //TODO 티켓 class에 따라 버튼을 만들어야 할 수도 있음
-        } else if (position == 0) {
+        } /*else if (position == 0) {
             return VIEW_TYPE_BUTTON;
-        } else if (position == 2) {
+        }*/ else if (position == 1) {
             return VIEW_TYPE_TITLE;
-        } else {
+        } else if (position >= 2){
             return VIEW_TYPE_ROUTE;
-        }
+        } return 0;
     }
 
     //This method gives layout of item according to the viewtype value
@@ -81,6 +80,33 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof RouteViewHolder){
+            Route cnt_route = data.get(position - 2);
+            int boarding_stop_num = cnt_route.boarding_stops.size();
+            int alighting_stop_num = cnt_route.alighting_stops.size();
+            ((RouteViewHolder) holder).tvID.setText(cnt_route.id);
+            ((RouteViewHolder) holder).tvStatus.setText(cnt_route.status);
+            ((RouteViewHolder) holder).tvPeople.setText(String.format("%d/%d",cnt_route.cnt_passenger,cnt_route.max_passenger));
+            if (cnt_route.status.equals("모집중")){
+                ((RouteViewHolder) holder).tvStatus.setBackground(context.getDrawable(R.drawable.bg_round12_red));
+            }
+            //시간 반영
+            ((RouteViewHolder) holder).tvDepartureTime.setText(cnt_route.boarding_stops.get(0).time);
+            ((RouteViewHolder) holder).tvDestinationTime.setText(cnt_route.alighting_stops.get(alighting_stop_num - 1).time);
+
+            ((RouteViewHolder) holder).tvDeparture1.setText(cnt_route.getBoardingStopName(0));
+            if (boarding_stop_num != 2){
+                ((RouteViewHolder) holder).tvDeparture2.setText(cnt_route.getBoardingStopName(boarding_stop_num / 2));
+            }
+            ((RouteViewHolder) holder).tvDeparture3.setText(cnt_route.getBoardingStopName(boarding_stop_num - 1));
+
+            ((RouteViewHolder) holder).tvDestination1.setText(cnt_route.getAlightingStopName(0));
+            if (alighting_stop_num != 2){
+                ((RouteViewHolder) holder).tvDestination2.setText(cnt_route.getAlightingStopName(alighting_stop_num / 2));
+            }
+            ((RouteViewHolder) holder).tvDestination3.setText(cnt_route.getAlightingStopName(boarding_stop_num - 1));
+
+        }
     }
 
 
@@ -90,7 +116,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         if (data == null) {
             return 5; //TODO 이 값은 테스트를 위한 값임 route 클래스 넣고 나중에 지울 수 있도록 합니다.
         } else {
-            return data.size() + 1;
+            return data.size() + 2;
         }
     }
 
@@ -140,9 +166,32 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     public class RouteViewHolder extends RecyclerView.ViewHolder {
+        public TextView tvID;
+        public TextView tvStatus;
+        public TextView tvPeople;
+        public TextView tvDepartureTime;
+        public TextView tvDeparture1;
+        public TextView tvDeparture2;
+        public TextView tvDeparture3;
+        public TextView tvDestinationTime;
+        public TextView tvDestination1;
+        public TextView tvDestination2;
+        public TextView tvDestination3;
+
         public RouteViewHolder(@NonNull View itemView) {
             super(itemView);
             //TODO view 의 이름을 자리에 맞는 클래스에 따라 바꿔주기
+            this.tvID = itemView.findViewById(R.id.tv_mrv_code);
+            this.tvStatus = itemView.findViewById(R.id.tv_mrv_state);
+            this.tvPeople = itemView.findViewById(R.id.tv_mrv_num);
+            this.tvDepartureTime = itemView.findViewById(R.id.tv_mrv_time_departure);
+            this.tvDeparture1 = itemView.findViewById(R.id.tv_mrv_departure1);
+            this.tvDeparture2 = itemView.findViewById(R.id.tv_mrv_departure2);
+            this.tvDeparture3 = itemView.findViewById(R.id.tv_mrv_departure3);
+            this.tvDestinationTime = itemView.findViewById(R.id.tv_mrv_time_arrive);
+            this.tvDestination1 = itemView.findViewById(R.id.tv_mrv_destination1);
+            this.tvDestination2 = itemView.findViewById(R.id.tv_mrv_destination2);
+            this.tvDestination3 = itemView.findViewById(R.id.tv_mrv_destination3);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -157,13 +206,6 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         TicketAdapter(ArrayList<Ticket> in) {
             this.tickets = in;
-        }
-
-        @NonNull
-        @Override
-        public TicketAdapter.TicketViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View itemView = LayoutInflater.from(context).inflate(R.layout.item_ticket, parent, false);
-            return new TicketViewHolder(itemView);
         }
 
         @Override
@@ -182,6 +224,13 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 });
                 //TODO 아이템들 로컬 변수로 묶어줄 것
             }
+        }
+
+        @NonNull
+        @Override
+        public TicketViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View itemView = LayoutInflater.from(context).inflate(R.layout.item_ticket, parent, false);
+            return new TicketViewHolder(itemView);
         }
 
         @Override

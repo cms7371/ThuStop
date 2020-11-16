@@ -5,4 +5,9 @@ public class Via {
     public Stop stop;
     public String time;
 
+    public Via(int id, Stop stop, String time) {
+        this.id = id;
+        this.stop = stop;
+        this.time = time;
+    }
 }

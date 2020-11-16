@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingTop="@dimen/toolbar_height"
+            app:layout_constraintBottom_toTopOf="@id/tv_rd_ok"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_bus_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="21dp"
+                    android:layout_marginTop="21dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icon_bus_green" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_bus_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="A15"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_bus_icon"
+                    app:layout_constraintStart_toEndOf="@id/iv_bus_icon"
+                    app:layout_constraintTop_toTopOf="@+id/iv_bus_icon"
+                    app:notoTextStyle="bold" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_departure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:text="수원역"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="@id/iv_bus_icon"
+                    app:layout_constraintTop_toBottomOf="@id/iv_bus_icon"
+                    app:notoTextStyle="regular" />
+
+                <ImageView
+                    android:id="@+id/iv_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_departure"
+                    app:layout_constraintStart_toEndOf="@id/tv_departure"
+                    app:layout_constraintTop_toTopOf="@+id/tv_departure"
+                    app:srcCompat="@drawable/icon_small_arrow_black" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_destination"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:text="잠실역 2번출구"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_departure"
+                    app:layout_constraintStart_toEndOf="@id/iv_arrow"
+                    app:layout_constraintTop_toTopOf="@id/tv_departure"
+                    app:notoTextStyle="regular" />
+
+                <View
+                    android:id="@+id/v_map_stroke"
+                    android:layout_width="1dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="60dp"
+                    android:background="@color/AchCF"
+                    app:layout_constraintBottom_toTopOf="@id/rv_vias"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_map"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="5dp"
+                    app:layout_constraintBottom_toTopOf="@id/rv_vias"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/v_map_stroke"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icon_map_black" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_vias"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/tv_departure"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/item_via_list">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_bus_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="40dp"
+                    android:text="차량종류"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_vias"
+                    app:notoTextStyle="medium" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_nop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="탑승객"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@id/tv_how_far"
+                    app:layout_constraintStart_toEndOf="@id/tv_bus_type"
+                    app:layout_constraintTop_toBottomOf="@id/rv_vias"
+                    app:notoTextStyle="medium" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_how_far"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="32dp"
+                    android:text="운행거리"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_vias"
+                    app:notoTextStyle="medium" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_capacity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="25인승"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="@id/tv_bus_type"
+                    app:layout_constraintStart_toStartOf="@id/tv_bus_type"
+                    app:layout_constraintTop_toBottomOf="@id/tv_bus_type"
+                    app:notoTextStyle="regular" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_passengers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="16/25"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="@id/tv_nop"
+                    app:layout_constraintStart_toStartOf="@id/tv_nop"
+                    app:layout_constraintTop_toBottomOf="@id/tv_nop"
+                    app:notoTextStyle="regular" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="25.12km"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="@id/tv_how_far"
+                    app:layout_constraintStart_toStartOf="@id/tv_how_far"
+                    app:layout_constraintTop_toBottomOf="@id/tv_how_far"
+                    app:notoTextStyle="regular" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_precaution"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="40dp"
+                    android:text="주의사항"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_capacity"
+                    app:notoTextStyle="medium" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_caution_list"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="20dp"
+                    android:paddingBottom="30dp"
+                    android:text="@string/tv_route_caution"
+                    android:textColor="@color/TextGray"
+                    android:textSize="11sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_precaution" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_rd_ok"
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:background="@color/Primary"
+            android:gravity="center"
+            android:text="노선 신청하기"
+            android:textColor="@color/White"
+            android:textSize="16sp"
+            app:notoTextStyle="medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
