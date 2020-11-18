@@ -38,6 +38,7 @@ public class RouteDetailFragment extends FragmentBase {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentRouteDetailBinding.inflate(inflater);
+        binding.setRouteDetailFrag(this);
         binding.tvBusId.setText(route.id);
         binding.tvDeparture.setText(route.getBoardingStopName(0));
         binding.tvDestination.setText(route.getAlightingStopName(alighting_stop_num - 1));
@@ -49,6 +50,13 @@ public class RouteDetailFragment extends FragmentBase {
 
         return binding.getRoot();
     }
+
+    public void onMapIconClick(View view){
+        RouteStopMapDialog dialog = new RouteStopMapDialog(getContext(), getActivity(), route.boarding_stops, route.alighting_stops);
+        dialog.show();
+
+    }
+
 
     private class RouteDetailAdapter extends RecyclerView.Adapter<RouteDetailAdapter.RouteDetailHolder>{
         int dp10ToPixel = (int) (10 * getContext().getResources().getDisplayMetrics().density + 0.5);

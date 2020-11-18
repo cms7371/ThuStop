@@ -88,17 +88,17 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
 
         //Test Routes
         Route route1 = new Route("A15", "수원", 123, 52.34f, 35, 13, 45, "운행중", 99000);
-        Stop stop1_0 = new Stop("수원역 1번 출구", 0, 37.266260f, 127.001412f);
+        Stop stop1_0 = new Stop("수원역 1번 출구", 0, "경기도 수원시 팔달구 매산동 103",37.266260f, 127.001412f);
         Via via1_0 = new Via(0, stop1_0, "07:30");
-        Stop stop1_1 = new Stop("이춘택 병원", 1, 37.272110f, 127.015525f);
+        Stop stop1_1 = new Stop("이춘택 병원", 1, "경기도 수원시 팔달구 교동 매산로 138", 37.272110f, 127.015525f);
         Via via1_1 = new Via(1, stop1_1, "07:45");
-        Stop stop1_2 = new Stop("성빈센트 병원", 2, 37.277585f, 127.028323f);
+        Stop stop1_2 = new Stop("성빈센트 병원", 2, "경기도 수원시 팔달구 지동 중부대로 93",37.277585f, 127.028323f);
         Via via1_2 = new Via(2, stop1_2, "08:00");
-        Stop stop1_3 = new Stop("정자역 1번 출구", 3, 37.366200f, 127.108386f);
+        Stop stop1_3 = new Stop("정자역 1번 출구", 3, "성남시 정자동", 37.366200f, 127.108386f);
         Via via1_3 = new Via(3, stop1_3, "08:45");
-        Stop stop1_4 = new Stop("정자역 5번 출구", 4, 37.368213f, 127.108262f);
+        Stop stop1_4 = new Stop("정자역 5번 출구", 4, "성남시 정자동", 37.368213f, 127.108262f);
         Via via1_4 = new Via(4, stop1_4, "08:50");
-        Stop stop1_5 = new Stop("두산위브파빌리온 오피스텔", 5, 37.371521f, 127.108274f);
+        Stop stop1_5 = new Stop("두산위브파빌리온 오피스텔", 5, "경기도 성남시 분당구 정자동 7", 37.371521f, 127.108274f);
         Via via1_5 = new Via(5, stop1_5, "09:00");
         route1.boarding_stops.add(via1_0);
         route1.boarding_stops.add(via1_1);
