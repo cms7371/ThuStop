@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="routeDetailFrag"
+            name="RouteDetailFrag"
             type="com.thustop_00.RouteDetailFragment" />
     </data>
 
@@ -101,7 +101,7 @@
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
                     android:focusable="true"
-                    android:onClick="@{routeDetailFrag::onMapIconClick}"
+                    android:onClick="@{RouteDetailFrag::onMapIconClick}"
                     android:padding="5dp"
                     app:layout_constraintBottom_toTopOf="@id/rv_vias"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -237,6 +237,7 @@
             android:layout_height="69dp"
             android:background="@color/Primary"
             android:gravity="center"
+            android:onClick="@{RouteDetailFrag::onApplicationClick}"
             android:text="노선 신청하기"
             android:textColor="@color/White"
             android:textSize="16sp"

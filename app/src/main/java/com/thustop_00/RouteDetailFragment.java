@@ -54,7 +54,11 @@ public class RouteDetailFragment extends FragmentBase {
     public void onMapIconClick(View view){
         RouteStopMapDialog dialog = new RouteStopMapDialog(getContext(), getActivity(), route.boarding_stops, route.alighting_stops);
         dialog.show();
+    }
 
+    public void onApplicationClick(View view){
+        //TODO 로그인 안했을 때 로그인창으로 보내야함
+        _listener.addFragment(BoardingApplicationFragment.newInstance(route));
     }
 
 

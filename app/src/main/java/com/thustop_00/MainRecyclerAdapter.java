@@ -63,7 +63,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_BUTTON) {
-            View itemView = LayoutInflater.from(context).inflate(R.layout.item_new_route, parent, false);
+            View itemView = LayoutInflater.from(context).inflate(R.layout.item_add_route_button, parent, false);
             return new ButtonViewHolder(itemView);
         } else if (viewType == VIEW_TYPE_TICKET) {
             View itemView = LayoutInflater.from(context).inflate(R.layout.item_ticket_holder, parent, false);
