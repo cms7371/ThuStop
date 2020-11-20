@@ -78,7 +78,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
 
         binding.vPause.setVisibility(View.GONE);
         binding.layoutLocal.setVisibility(View.GONE);
-        colorText(binding.tvLocal1, R.string.tv_local1_color, getResources().getString(R.color.Primary));
+        colorText(binding.tvLocal1, R.string.tv_local1_color, getResources().getColor(R.color.Primary));
         toggle = false;
         //Activity 기본 세팅
         _listener.setToolbarStyle(_listener.GREEN_HAMBURGER, null);

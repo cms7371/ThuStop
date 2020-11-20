@@ -31,7 +31,7 @@
         android:background="@drawable/bg_round12_graycf"
         android:translationY="-2dp"
         app:layout_constraintBottom_toBottomOf="@id/gl_iss_upper"
-        app:layout_constraintEnd_toStartOf="@+id/tv_iss_stop"
+        app:layout_constraintEnd_toStartOf="@+id/tv_iss_name"
         app:layout_constraintStart_toEndOf="@id/tv_iss_time"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,16 +49,17 @@
         android:background="@drawable/bg_round12_graycf"
         android:translationY="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tv_iss_stop"
+        app:layout_constraintEnd_toStartOf="@+id/tv_iss_name"
         app:layout_constraintStart_toEndOf="@id/tv_iss_time"
         app:layout_constraintTop_toBottomOf="@id/gl_iss_lower" />
 
     <com.thustop_00.widgets.NotoTextView
-        android:id="@+id/tv_iss_stop"
+        android:id="@+id/tv_iss_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
         android:layout_marginEnd="24dp"
+        android:bufferType="spannable"
         android:maxLines="1"
         android:text="수원역"
         android:textColor="@color/TextBlack"
@@ -68,11 +69,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/iv_iss_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tv_iss_stop"
+        app:layout_constraintEnd_toStartOf="@+id/tv_iss_name"
         app:layout_constraintStart_toEndOf="@+id/tv_iss_time"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icon_stop_selector_empty" />

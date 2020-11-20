@@ -36,7 +36,7 @@
                     app:layout_constraintGuide_begin="@dimen/toolbar_height" />
 
                 <com.thustop_00.widgets.NotoTextView
-                    android:id="@+id/tv_fba_progress1"
+                    android:id="@+id/tv_fba_phase1"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginStart="50dp"
@@ -46,7 +46,7 @@
                     android:text="1"
                     android:textColor="@color/White"
                     android:textSize="9sp"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_fba_progress2"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_fba_phase2"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,7 @@
                     app:notoTextStyle="bold" />
 
                 <com.thustop_00.widgets.NotoTextView
-                    android:id="@+id/tv_fba_progress2"
+                    android:id="@+id/tv_fba_phase2"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginTop="33dp"
@@ -63,14 +63,14 @@
                     android:text="2"
                     android:textColor="@color/White"
                     android:textSize="9sp"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_fba_progress3"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_fba_phase3"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/tv_fba_progress1"
+                    app:layout_constraintStart_toEndOf="@+id/tv_fba_phase1"
                     app:layout_constraintTop_toTopOf="@+id/guideline4"
                     app:notoTextStyle="bold" />
 
                 <com.thustop_00.widgets.NotoTextView
-                    android:id="@+id/tv_fba_progress3"
+                    android:id="@+id/tv_fba_phase3"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginTop="33dp"
@@ -82,7 +82,7 @@
                     android:textSize="9sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/tv_fba_progress2"
+                    app:layout_constraintStart_toEndOf="@+id/tv_fba_phase2"
                     app:layout_constraintTop_toTopOf="@+id/guideline4"
                     app:notoTextStyle="bold" />
 
@@ -90,20 +90,20 @@
                     android:id="@+id/iv_fba_left_dots"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_fba_progress1"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_fba_progress2"
-                    app:layout_constraintStart_toEndOf="@+id/tv_fba_progress1"
-                    app:layout_constraintTop_toTopOf="@+id/tv_fba_progress1"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_fba_phase1"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_fba_phase2"
+                    app:layout_constraintStart_toEndOf="@+id/tv_fba_phase1"
+                    app:layout_constraintTop_toTopOf="@+id/tv_fba_phase1"
                     app:srcCompat="@drawable/icon_3dots_gray" />
 
                 <ImageView
                     android:id="@+id/iv_fba_left_dots2"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_fba_progress2"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_fba_progress3"
-                    app:layout_constraintStart_toEndOf="@+id/tv_fba_progress2"
-                    app:layout_constraintTop_toTopOf="@+id/tv_fba_progress2"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_fba_phase2"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_fba_phase3"
+                    app:layout_constraintStart_toEndOf="@+id/tv_fba_phase2"
+                    app:layout_constraintTop_toTopOf="@+id/tv_fba_phase2"
                     app:srcCompat="@drawable/icon_3dots_gray" />
 
                 <com.thustop_00.widgets.NotoTextView
@@ -111,12 +111,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="31dp"
+                    android:bufferType="spannable"
                     android:text="탑승하실 정거장을 선택해주세요"
                     android:textColor="@color/TextBlack"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_fba_progress2"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_fba_phase2"
                     app:notoTextStyle="medium" />
 
                 <com.thustop_00.widgets.NotoTextView
@@ -124,8 +125,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
+                    android:bufferType="spannable"
                     android:text="회원님과 가장 가까운 위치의 정거장을 선택해주세요"
                     android:textSize="10sp"
+                    android:letterSpacing="-0.1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_fba_big" />

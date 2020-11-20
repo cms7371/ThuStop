@@ -33,8 +33,14 @@ public class Route {
     public String getBoardingStopName(int index){
         return this.boarding_stops.get(index).stop.name;
     }
+    public String getBoardingStopTime(int index){
+        return this.boarding_stops.get(index).time;
+    }
     public String getAlightingStopName(int index){
         return this.alighting_stops.get(index).stop.name;
+    }
+    public String getAlightingStopTime(int index){
+        return this.alighting_stops.get(index).time;
     }
 
 }

@@ -39,6 +39,8 @@ public class RouteDetailFragment extends FragmentBase {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentRouteDetailBinding.inflate(inflater);
         binding.setRouteDetailFrag(this);
+        _listener.setToolbarStyle(_listener.GREEN_HAMBURGER, null);
+
         binding.tvBusId.setText(route.id);
         binding.tvDeparture.setText(route.getBoardingStopName(0));
         binding.tvDestination.setText(route.getAlightingStopName(alighting_stop_num - 1));
