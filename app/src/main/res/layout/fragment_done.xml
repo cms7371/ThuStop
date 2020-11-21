@@ -56,22 +56,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
         <com.thustop_00.widgets.NotoButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:paddingTop="17dp"
-            android:paddingBottom="17dp"
+            android:id="@+id/bt_done"
+            style="@style/btStyle"
             android:background="@drawable/bg_round25_green"
-            android:text="@string/bt_done_reg"
-            android:textSize="16sp"
-            android:textColor="@color/White"
+            android:text="완료"
             app:notoTextStyle="medium"
-            app:layout_constraintTop_toBottomOf="@id/guideline1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.9"/>
+            android:onClick="@{Donefrag::onDoneClick}"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

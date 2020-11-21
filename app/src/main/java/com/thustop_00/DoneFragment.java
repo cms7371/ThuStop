@@ -71,4 +71,8 @@ public class DoneFragment extends FragmentBase {
         if(green)
             binding.tvContinue.setTextColor(Color.parseColor(colorGreen));
     }
+
+    public void onDoneClick(View view) {
+        _listener.setFragment(MainFragment.newInstance());
+    }
 }

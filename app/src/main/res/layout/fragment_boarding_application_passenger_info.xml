@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="BoardingApplicationPassengerInfoFrag"
+            type="com.thustop_00.BoardingApplicationPassengerInfoFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/White">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/bt_fbapi_ok">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="@dimen/toolbar_height" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fbapi_phase1"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="33dp"
+                    android:background="@drawable/bg_round12_green"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="@color/White"
+                    android:textSize="9sp"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_fbapi_phase2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline4"
+                    app:notoTextStyle="bold" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fbapi_phase2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="33dp"
+                    android:background="@drawable/bg_round12_green"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textColor="@color/White"
+                    android:textSize="9sp"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_fbapi_phase3"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/tv_fbapi_phase1"
+                    app:layout_constraintTop_toTopOf="@+id/guideline4"
+                    app:notoTextStyle="bold" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fbapi_phase3"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="33dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@drawable/bg_round12_green"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textColor="@color/White"
+                    android:textSize="9sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/tv_fbapi_phase2"
+                    app:layout_constraintTop_toTopOf="@+id/guideline4"
+                    app:notoTextStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/iv_fbapi_left_dots"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_fbapi_phase1"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_fbapi_phase2"
+                    app:layout_constraintStart_toEndOf="@+id/tv_fbapi_phase1"
+                    app:layout_constraintTop_toTopOf="@+id/tv_fbapi_phase1"
+                    app:srcCompat="@drawable/icon_3dots_green" />
+
+                <ImageView
+                    android:id="@+id/iv_fbapi_right_dots"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_fbapi_phase2"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_fbapi_phase3"
+                    app:layout_constraintStart_toEndOf="@+id/tv_fbapi_phase2"
+                    app:layout_constraintTop_toTopOf="@+id/tv_fbapi_phase2"
+                    app:srcCompat="@drawable/icon_3dots_green" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fbapi_boarding_stop"
+                    android:layout_width="match_parent"
+                    android:layout_height="59dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="18dp"
+                    android:gravity="center"
+                    android:text="미사강변지구"
+                    android:textSize="14sp"
+                    android:textColor="@color/TextBlack"
+                    android:background="@drawable/bg_round35_container"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_fbapi_departure"/>
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fbapi_departure"
+                    android:layout_width="89dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="28dp"
+                    android:background="@drawable/bg_round25_green"
+                    android:gravity="center"
+                    android:text="출발"
+                    android:textColor="@color/White"
+                    app:layout_constraintStart_toStartOf="@id/tv_fbapi_boarding_stop"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fbapi_phase2"
+                    app:notoTextStyle="medium" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fbapi_alighting_stop"
+                    android:layout_width="0dp"
+                    android:layout_height="59dp"
+                    android:layout_marginTop="18dp"
+                    android:gravity="center"
+                    android:text="잠실역 2번 출구"
+                    android:textSize="14sp"
+                    android:textColor="@color/TextBlack"
+                    android:background="@drawable/bg_round35_container"
+                    app:layout_constraintEnd_toEndOf="@id/tv_fbapi_boarding_stop"
+                    app:layout_constraintStart_toStartOf="@id/tv_fbapi_boarding_stop"
+                    app:layout_constraintTop_toTopOf="@id/tv_fbapi_arrival"/>
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fbapi_arrival"
+                    android:layout_width="89dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/bg_round25_red"
+                    android:gravity="center"
+                    android:text="도착"
+                    android:textColor="@color/White"
+                    app:layout_constraintStart_toStartOf="@id/tv_fbapi_alighting_stop"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fbapi_boarding_stop"
+                    app:notoTextStyle="medium" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fbapi_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26dp"
+                    android:layout_marginStart="16dp"
+                    android:text="탑승객 성함"
+                    android:textSize="14sp"
+                    android:textColor="@color/TextBlack"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fbapi_alighting_stop"
+                    app:layout_constraintStart_toStartOf="@id/etv_fbapi_name"
+                    app:notoTextStyle="medium"/>
+
+                <com.thustop_00.widgets.NotoEditText
+                    android:id="@+id/etv_fbapi_name"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="12dp"
+                    android:paddingStart="36dp"
+                    android:hint="이름"
+                    android:inputType="textPersonName"
+                    android:textColorHint="@color/TextGray"
+                    android:textSize="14sp"
+                    android:textColor="@color/TextBlack"
+                    android:background="@drawable/bg_round25_grayf5"
+                    android:imeOptions="actionDone"
+                    app:layout_constraintStart_toStartOf="@id/tv_fbapi_alighting_stop"
+                    app:layout_constraintEnd_toEndOf="@id/tv_fbapi_alighting_stop"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fbapi_name"/>
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fbapi_boarding_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginStart="16dp"
+                    android:text="탑승 시작일"
+                    android:textSize="14sp"
+                    android:textColor="@color/TextBlack"
+                    app:layout_constraintTop_toBottomOf="@id/etv_fbapi_name"
+                    app:layout_constraintStart_toStartOf="@id/etv_fbapi_boarding_date"
+                    app:notoTextStyle="medium"/>
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/etv_fbapi_boarding_date"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_round25_grayf5"
+                    android:paddingStart="36dp"
+                    android:gravity="center_vertical"
+                    android:hint="yyyy/mm/dd"
+                    android:textColorHint="@color/TextGray"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="14sp"
+                    android:focusable="false"
+                    android:clickable="false"
+                    app:layout_constraintEnd_toEndOf="@id/etv_fbapi_name"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@id/etv_fbapi_name"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fbapi_boarding_date"
+                    android:onClick="@{BoardingApplicationPassengerInfoFrag::onCalendarClick}"/>
+
+                <ImageView
+                    android:id="@+id/iv_fbapi_calendar"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/icon_calendar"
+                    app:layout_constraintEnd_toEndOf="@id/etv_fbapi_boarding_date"
+                    app:layout_constraintTop_toTopOf="@id/etv_fbapi_boarding_date"
+                    app:layout_constraintBottom_toBottomOf="@id/etv_fbapi_boarding_date"
+                    />
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fbapi_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginStart="16dp"
+                    android:text="결제 금액"
+                    android:textSize="14sp"
+                    android:textColor="@color/TextBlack"
+                    app:layout_constraintTop_toBottomOf="@id/etv_fbapi_boarding_date"
+                    app:layout_constraintStart_toStartOf="@id/tv_fbapi_price_value"
+                    app:notoTextStyle="medium"/>
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fbapi_price_value"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="12dp"
+                    android:paddingStart="36dp"
+                    android:gravity="center_vertical"
+                    android:text="월 88,000~99,000 원"
+                    android:textSize="14sp"
+                    android:textColor="@color/TextBlack"
+                    android:background="@drawable/bg_round25_grayf5"
+                    app:layout_constraintStart_toStartOf="@id/etv_fbapi_boarding_date"
+                    app:layout_constraintEnd_toEndOf="@id/etv_fbapi_boarding_date"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fbapi_price"/>
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fbapi_notice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="16dp"
+                    android:gravity="center_vertical"
+                    android:text="*탑승 신청 후 노선이 확정되어야 결제 신청이 가능합니다"
+                    android:textSize="10sp"
+                    android:textColor="@color/Primary"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fbapi_price_value"
+                    app:layout_constraintStart_toStartOf="@id/tv_fbapi_price_value"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/bt_fbapi_ok"
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:background="@color/ButtonGray"
+            android:gravity="center"
+            android:text="결제 하기"
+            android:textColor="@color/White"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:notoTextStyle="medium"
+            android:onClick="@{BoardingApplicationPassengerInfoFrag::onBtOkClick}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

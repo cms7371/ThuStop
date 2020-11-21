@@ -57,7 +57,6 @@ public class NavPersonalHistoryTicketPointFragment extends FragmentBase {
     public void onDatePickerClick(View view) {
         CustomDatePickerDialog datePickerDialog = new CustomDatePickerDialog(getContext());
         datePickerDialog.setDialogListener(new CustomDatePickerDialog.CustomDatePickerDialogListener() {
-            //TODO Bug : 처음 키자마자 클릭하면 0시 0분으로 찍힘
             @Override
             public void onOkClick(int year_picker, int month_picker, int day_picker) {
                 year = year_picker;

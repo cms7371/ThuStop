@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,7 +19,7 @@ import com.thustop_00.model.Route;
 import com.thustop_00.model.Via;
 
 
-public class BoardingApplicationFragment extends FragmentBase {
+public class BoardingApplicationFragment extends FragmentBase implements MainActivity.onBackPressedListener{
     private FragmentBoardingApplicationBinding binding;
     private Route route;
     private int boarding_stop_num;
@@ -55,6 +56,11 @@ public class BoardingApplicationFragment extends FragmentBase {
         return binding.getRoot();
     }
 
+    public void onBtIssOkClick(View view) {
+        Toast.makeText(getContext(), "버튼 활성화", Toast.LENGTH_SHORT).show();
+        _listener.addFragment(BoardingApplicationPassengerInfoFragment.newInstance(route, start_focus, end_focus-boarding_stop_num));
+    }
+
     private void updateFragmentPhase() {
         adapter.notifyDataSetChanged();
         if (phase == 0){
@@ -66,6 +72,9 @@ public class BoardingApplicationFragment extends FragmentBase {
             colorText(binding.tvFbaSmall, R.string.tv_fba_small_boarding, getResources().getColor(R.color.Primary));
             binding.tvFbaStage.setBackground(getContext().getDrawable(R.drawable.bg_round25_green));
             binding.tvFbaStage.setText("출발");
+
+            binding.btIssOk.setBackgroundColor(getResources().getColor(R.color.ButtonGray));
+            binding.btIssOk.setEnabled(false);
         } else if (phase == 1){
             binding.ivFbaLeftDots.setImageDrawable(getContext().getDrawable(R.drawable.icon_3dots_green));
             binding.ivFbaRightDots.setImageDrawable(getContext().getDrawable(R.drawable.icon_3dots_gray));
@@ -76,8 +85,16 @@ public class BoardingApplicationFragment extends FragmentBase {
             colorText(binding.tvFbaSmall, R.string.tv_fba_small_alighting, getResources().getColor(R.color.Red));
             binding.tvFbaStage.setBackground(getContext().getDrawable(R.drawable.bg_round25_red));
             binding.tvFbaStage.setText("도착");
+            binding.btIssOk.setBackgroundColor(getResources().getColor(R.color.ButtonGray));
+            binding.btIssOk.setEnabled(false);
+        } else {
+            // phase == 2, active ok button
+            binding.btIssOk.setBackgroundColor(getResources().getColor(R.color.Primary));
+            binding.btIssOk.setEnabled(true);
         }
     }
+
+
 
     private class StopSelectorAdapter extends RecyclerView.Adapter<StopSelectorAdapter.StopViewHolder> {
 
@@ -100,6 +117,8 @@ public class BoardingApplicationFragment extends FragmentBase {
                         //position에 따라 출발 via 도착 via 중 하나 반환하여
                         if (position < boarding_stop_num){
                             currentVia = route.boarding_stops.get(position);
+
+
                         } else {
                             currentVia = route.alighting_stops.get(position - boarding_stop_num);
                         }
@@ -115,6 +134,7 @@ public class BoardingApplicationFragment extends FragmentBase {
                             }
                         });
                         dialog.show();
+
                     //출발지가 선택된 경우에 눌렸을 때
                     } else if (phase == 1) {
                         //출발지를 다시한번 누르면 선택 취소함
@@ -229,5 +249,13 @@ public class BoardingApplicationFragment extends FragmentBase {
                 this.iv_checkbox = itemView.findViewById(R.id.iv_iss_checkbox);
             }
         }
+    }
+
+    @Override
+    public void onBack() {
+        //TODO: 뒤로갔다가 올떄 선택된거 그대로 있음(오작동 재정의 부분이 안먹히는 듯?)
+        //TODO: phase 1에서 0으로 넘어갈 수 있어야 할 것 같음
+
+
     }
 }

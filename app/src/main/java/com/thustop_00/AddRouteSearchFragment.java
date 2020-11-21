@@ -82,8 +82,8 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
         binding.etEnd.setText(endLocation.getAddress());
         binding.etStart.addTextChangedListener(filterTextWatcher);
         binding.etEnd.addTextChangedListener(filterTextWatcher);
-        setInitialColor(binding.etStart, R.drawable.bg_outline_green);
-        setInitialColor(binding.etEnd, R.drawable.bg_outline_red);
+        setInitialColor(binding.etStart, R.drawable.bg_outline25_green);
+        setInitialColor(binding.etEnd, R.drawable.bg_outline25_red);
 
         return binding.getRoot();
     }
@@ -96,9 +96,9 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
         @Override
         public void afterTextChanged(Editable s) {
             if (binding.etStart.isFocused()) {
-                binding.etStart.setBackgroundResource(R.drawable.bg_outline_green);
+                binding.etStart.setBackgroundResource(R.drawable.bg_outline25_green);
             } else {
-                binding.etEnd.setBackgroundResource(R.drawable.bg_outline_red);
+                binding.etEnd.setBackgroundResource(R.drawable.bg_outline25_red);
             }
             //텍스트가 입력되어 공백이 아니면
             if (!s.toString().equals("")) {

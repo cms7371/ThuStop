@@ -186,6 +186,7 @@
             android:text="확인"
             android:textColor="@color/White"
             android:textSize="16sp"
+            android:onClick="@{BoardingApplicationFrag::onBtIssOkClick}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:notoTextStyle="medium" />

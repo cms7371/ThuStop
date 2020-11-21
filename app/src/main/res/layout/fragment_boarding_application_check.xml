@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="BoardingApplicationCheckFrag"
+            type="com.thustop_00.BoardingApplicationCheckFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:background="@color/White">
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/toolbar_height" />
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_fbac_big"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:text="한번 더 확인해주세요!"
+            android:textColor="@color/TextBlack"
+            android:textSize="16sp"
+            app:notoTextStyle="medium"
+            app:layout_constraintTop_toBottomOf="@id/guideline4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_fbac_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="다음과 같은 정보로 신청을 완료합니다"
+            android:textColor="@color/Primary"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_fbac_big"/>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_fbac_boarding_stop"
+            android:layout_width="133dp"
+            android:layout_height="119dp"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/bg_outline35_green"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="@color/TextBlack"
+            app:layout_constraintEnd_toStartOf="@id/tv_fbac_alighting_stop"
+            app:layout_constraintTop_toTopOf="@id/tv_fbac_departure"
+            app:layout_constraintStart_toStartOf="@id/tv_fbac_small"
+            />
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_fbac_departure"
+            android:layout_width="65dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="75dp"
+            android:gravity="center"
+            android:text="출발"
+            android:textColor="@color/White"
+            android:textSize="14sp"
+            android:background="@drawable/bg_round25_green"
+            app:notoTextStyle="medium"
+            app:layout_constraintStart_toStartOf="@id/tv_fbac_boarding_stop"
+            app:layout_constraintEnd_toEndOf="@id/tv_fbac_boarding_stop"
+            app:layout_constraintTop_toBottomOf="@id/tv_fbac_small"/>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_fbac_alighting_stop"
+            android:layout_width="133dp"
+            android:layout_height="119dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginStart="14dp"
+            android:gravity="center"
+            android:background="@drawable/bg_outline35_red"
+            android:textSize="14sp"
+            android:textColor="@color/TextBlack"
+            app:layout_constraintStart_toEndOf="@id/tv_fbac_boarding_stop"
+            app:layout_constraintTop_toTopOf="@id/tv_fbac_arrival"
+            app:layout_constraintEnd_toEndOf="@id/tv_fbac_small"
+            />
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_fbac_arrival"
+            android:layout_width="65dp"
+            android:layout_height="26dp"
+            android:gravity="center"
+            android:text="출발"
+            android:textColor="@color/White"
+            android:textSize="14sp"
+            android:background="@drawable/bg_round25_red"
+            app:notoTextStyle="medium"
+            app:layout_constraintStart_toStartOf="@id/tv_fbac_alighting_stop"
+            app:layout_constraintEnd_toEndOf="@id/tv_fbac_alighting_stop"
+            app:layout_constraintTop_toTopOf="@id/tv_fbac_departure"/>
+
+        <com.thustop_00.widgets.NotoButton
+            android:id="@+id/bt_fbac_ok"
+            style="@style/btStyle"
+            android:background="@drawable/bg_round25_green"
+            android:text="확인"
+            app:notoTextStyle="medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:onClick="@{BoardingApplicationCheckFrag::onBtOkClick}"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
