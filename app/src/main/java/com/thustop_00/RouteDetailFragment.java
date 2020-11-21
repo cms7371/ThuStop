@@ -49,7 +49,6 @@ public class RouteDetailFragment extends FragmentBase {
         binding.tvDistance.setText(String.format("%.2fkm", route.distance));
         RouteDetailAdapter adapter = new RouteDetailAdapter();
         binding.rvVias.setAdapter(adapter);
-
         return binding.getRoot();
     }
 

@@ -48,7 +48,6 @@ public class RequestTownServiceFragment extends FragmentBase {
     public void onRequestClick(View view) {
         _listener.setFragment(DoneFragment.newInstance(getString(R.string.tv_request_done), getString(R.string.tv_request_continue), true));
     }
-    // TODO 말 안듣는 모서리 자식 둥글게 해야함
     public void onRegionSelectClick(View view) {
         RegionSelectorDialog regionSelectorDialog = new RegionSelectorDialog(getContext());
         regionSelectorDialog.setDialogListener(new RegionSelectorDialog.RegionSelectorListener() {
