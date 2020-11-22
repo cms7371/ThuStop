@@ -34,14 +34,13 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
     private Ticket ticket;
 
 
-
     public static BoardingApplicationPassengerInfoFragment newInstance(Route route, int boarding_stop_position, int alighting_stop_position) {
         BoardingApplicationPassengerInfoFragment fragment = new BoardingApplicationPassengerInfoFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         fragment.route = route;
-        fragment.boarding_stop_position=boarding_stop_position;
-        fragment.alighting_stop_position=alighting_stop_position;
+        fragment.boarding_stop_position = boarding_stop_position;
+        fragment.alighting_stop_position = alighting_stop_position;
         return fragment;
     }
 
@@ -60,10 +59,11 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
+
             @Override
             public void afterTextChanged(Editable editable) {
-                if(editable.length() > 1 ) {
-                    if(binding.etvFbapiBoardingDate.length() > 0) {
+                if (editable.length() > 1) {
+                    if (binding.etvFbapiBoardingDate.length() > 0) {
                         binding.btFbapiOk.setBackgroundColor(getResources().getColor(R.color.Primary));
                         binding.btFbapiOk.setEnabled(true);
                     }
@@ -83,10 +83,11 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
+
             @Override
             public void afterTextChanged(Editable editable) {
-                if(editable.length() > 0 ) {
-                    if(binding.etvFbapiName.length() > 1) {
+                if (editable.length() > 0) {
+                    if (binding.etvFbapiName.length() > 1) {
                         binding.btFbapiOk.setBackgroundColor(getResources().getColor(R.color.Primary));
                         binding.btFbapiOk.setEnabled(true);
                     }
@@ -108,9 +109,9 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
             @Override
             public void onOkClick(int year_picker, int month_picker, int day_picker) {
                 year = year_picker;
-                month = month_picker+1;
+                month = month_picker + 1;
                 day = day_picker;
-                date = String.format("%d/%d/%d", year , month, day);
+                date = String.format("%d/%d/%d", year, month, day);
                 binding.etvFbapiBoardingDate.setTextColor(getResources().getColor(R.color.TextBlack));
                 binding.etvFbapiBoardingDate.setText(date);
 

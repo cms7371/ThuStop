@@ -24,9 +24,9 @@ public class BoardingApplicationFragment extends FragmentBase implements MainAct
     private Route route;
     private int boarding_stop_num;
     private int alighting_stop_num;
-    private static int phase = 0; //0이면 선택  X, 1이면 출발지 선택완료, 2면 도착지 선택 완료
-    private static int start_focus = -1;
-    private static int end_focus = -1;
+    private static int phase; //0이면 선택  X, 1이면 출발지 선택완료, 2면 도착지 선택 완료
+    private static int start_focus;
+    private static int end_focus;
     private StopSelectorAdapter adapter;
 
 
@@ -45,6 +45,10 @@ public class BoardingApplicationFragment extends FragmentBase implements MainAct
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentBoardingApplicationBinding.inflate(inflater);
         binding.setBoardingApplicationFrag(this);
+
+        phase = 0;
+        start_focus = -1;
+        end_focus = -1;
 
         _listener.setToolbarStyle(_listener.GREEN_BACK, "출발 위치 선택");
         colorText(binding.tvFbaBig, R.string.tv_fba_big_boarding_colored, getResources().getColor(R.color.Primary));
