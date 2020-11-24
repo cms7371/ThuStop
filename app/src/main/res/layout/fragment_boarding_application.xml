@@ -19,7 +19,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/bt_iss_ok">
+            app:layout_constraintBottom_toTopOf="@id/bt_fba_ok">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -178,7 +178,7 @@
         </androidx.core.widget.NestedScrollView>
 
         <com.thustop_00.widgets.NotoTextView
-            android:id="@+id/bt_iss_ok"
+            android:id="@+id/bt_fba_ok"
             android:layout_width="match_parent"
             android:layout_height="69dp"
             android:background="@color/ButtonGray"

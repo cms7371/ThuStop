@@ -88,11 +88,11 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
 
         //Test Routes
         Route route1 = new Route("A15", "수원", 123, 52.34f, 35, 13, 45, "운행중", 99000);
-        Stop stop1_0 = new Stop("수원역 1번 출구", 0, "경기도 수원시 팔달구 매산동 103",37.266260f, 127.001412f);
+        Stop stop1_0 = new Stop("수원역 1번 출구", 0, "경기도 수원시 팔달구 매산동 103", 37.266260f, 127.001412f);
         Via via1_0 = new Via(0, stop1_0, "07:30");
         Stop stop1_1 = new Stop("이춘택 병원", 1, "경기도 수원시 팔달구 교동 매산로 138", 37.272110f, 127.015525f);
         Via via1_1 = new Via(1, stop1_1, "07:45");
-        Stop stop1_2 = new Stop("성빈센트 병원", 2, "경기도 수원시 팔달구 지동 중부대로 93",37.277585f, 127.028323f);
+        Stop stop1_2 = new Stop("성빈센트 병원", 2, "경기도 수원시 팔달구 지동 중부대로 93", 37.277585f, 127.028323f);
         Via via1_2 = new Via(2, stop1_2, "08:00");
         Stop stop1_3 = new Stop("정자역 1번 출구", 3, "성남시 정자동", 37.366200f, 127.108386f);
         Via via1_3 = new Via(3, stop1_3, "08:45");
@@ -113,7 +113,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
 
         //Recycler view 호출 및 어댑터와 연결, 데이터 할당
         RecyclerView mainRecycler = binding.rvRoutes;
-        MainRecyclerAdapter mainAdapter = new MainRecyclerAdapter(getContext(),test_route_list, this);
+        MainRecyclerAdapter mainAdapter = new MainRecyclerAdapter(getContext(), test_route_list, this);
         mainRecycler.setAdapter(mainAdapter);
 /*        PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
         pagerSnapHelper.attachToRecyclerView(mainRecycler);*/
@@ -122,17 +122,19 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         return binding.getRoot();
     }
 
-    /**노선 추가 버튼 눌렀을 때.*/
+    /**
+     * 노선 추가 버튼 눌렀을 때.
+     */
     @Override
     public void onItemSelected(View v, int position, int ticket_position) {
         if (position == 0) {
-            if (ticket_position == -1){
+            if (ticket_position == -1) {
                 _listener.addFragment(AddRouteMapFragment.newInstance(null, null));
             } else {
                 Toast.makeText(getContext(), ticket_position + "번째 티켓 눌림", Toast.LENGTH_SHORT).show();
             }
-        } else if (position >= 2){
-            _listener.addFragment(RouteDetailFragment.newInstance(test_route_list.get(position - 2)));
+        } else if (position >= 2) {
+            _listener.addFragment(BoardingApplicationDetailFragment.newInstance(test_route_list.get(position - 2)));
         }
     }
 
@@ -390,7 +392,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
 
     @Override
     public void onBack() {
-        if(timeBackPressed == 0){
+        if (timeBackPressed == 0) {
             Toast.makeText(getContext(), "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
             timeBackPressed = System.currentTimeMillis();
         } else {

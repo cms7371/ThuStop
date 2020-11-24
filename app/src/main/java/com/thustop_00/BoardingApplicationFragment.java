@@ -1,6 +1,5 @@
 package com.thustop_00;
 
-import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -77,8 +76,8 @@ public class BoardingApplicationFragment extends FragmentBase implements MainAct
             binding.tvFbaStage.setBackground(getContext().getDrawable(R.drawable.bg_round25_green));
             binding.tvFbaStage.setText("출발");
 
-            binding.btIssOk.setBackgroundColor(getResources().getColor(R.color.ButtonGray));
-            binding.btIssOk.setEnabled(false);
+            binding.btFbaOk.setBackgroundColor(getResources().getColor(R.color.ButtonGray));
+            binding.btFbaOk.setEnabled(false);
         } else if (phase == 1){
             binding.ivFbaLeftDots.setImageDrawable(getContext().getDrawable(R.drawable.icon_3dots_green));
             binding.ivFbaRightDots.setImageDrawable(getContext().getDrawable(R.drawable.icon_3dots_gray));
@@ -89,12 +88,12 @@ public class BoardingApplicationFragment extends FragmentBase implements MainAct
             colorText(binding.tvFbaSmall, R.string.tv_fba_small_alighting, getResources().getColor(R.color.Red));
             binding.tvFbaStage.setBackground(getContext().getDrawable(R.drawable.bg_round25_red));
             binding.tvFbaStage.setText("도착");
-            binding.btIssOk.setBackgroundColor(getResources().getColor(R.color.ButtonGray));
-            binding.btIssOk.setEnabled(false);
+            binding.btFbaOk.setBackgroundColor(getResources().getColor(R.color.ButtonGray));
+            binding.btFbaOk.setEnabled(false);
         } else {
             // phase == 2, active ok button
-            binding.btIssOk.setBackgroundColor(getResources().getColor(R.color.Primary));
-            binding.btIssOk.setEnabled(true);
+            binding.btFbaOk.setBackgroundColor(getResources().getColor(R.color.Primary));
+            binding.btFbaOk.setEnabled(true);
         }
     }
 

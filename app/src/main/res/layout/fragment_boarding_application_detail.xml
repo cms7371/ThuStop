@@ -7,7 +7,7 @@
 
         <variable
             name="RouteDetailFrag"
-            type="com.thustop_00.RouteDetailFragment" />
+            type="com.thustop_00.BoardingApplicationDetailFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

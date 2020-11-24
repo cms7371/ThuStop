@@ -13,18 +13,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.thustop_00.databinding.FragmentRouteDetailBinding;
+import com.thustop_00.databinding.FragmentBoardingApplicationDetailBinding;
 import com.thustop_00.model.Route;
 
-public class RouteDetailFragment extends FragmentBase {
-    FragmentRouteDetailBinding binding;
+public class BoardingApplicationDetailFragment extends FragmentBase {
+    FragmentBoardingApplicationDetailBinding binding;
     private Route route;
     private int boarding_stop_num;
     private int alighting_stop_num;
 
 
-    public static RouteDetailFragment newInstance(Route route){
-        RouteDetailFragment fragment = new RouteDetailFragment();
+    public static BoardingApplicationDetailFragment newInstance(Route route){
+        BoardingApplicationDetailFragment fragment = new BoardingApplicationDetailFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         fragment.route = route;
@@ -37,7 +37,7 @@ public class RouteDetailFragment extends FragmentBase {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentRouteDetailBinding.inflate(inflater);
+        binding = FragmentBoardingApplicationDetailBinding.inflate(inflater);
         binding.setRouteDetailFrag(this);
         _listener.setToolbarStyle(_listener.GREEN_HAMBURGER, null);
 
