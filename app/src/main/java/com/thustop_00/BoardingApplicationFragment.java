@@ -116,27 +116,22 @@ public class BoardingApplicationFragment extends FragmentBase implements MainAct
                 public void onClick(View view) {
                     //아무것도 선택되지 않았을 때 -> 시작점으로 지정됨
                     if (phase == 0) {
-                        Via currentVia;
                         //position에 따라 출발 via 도착 via 중 하나 반환하여
                         if (position < boarding_stop_num){
-                            currentVia = route.boarding_stops.get(position);
-
-
-                        } else {
-                            currentVia = route.alighting_stops.get(position - boarding_stop_num);
+                            Via currentVia = route.boarding_stops.get(position);
+                            //정류장 위치 보여주는 다이어로그를 띄움
+                            BoardingApplicationMapDialog dialog = new BoardingApplicationMapDialog(getContext(), getActivity(), currentVia, false);
+                            dialog.setDialogListener(new BoardingApplicationMapDialog.StopMapListener() {
+                                @Override
+                                public void onConfirm() {
+                                    //확인을 누르면 phase와 focus 바꿔주고 화면 업데이트
+                                    phase = 1;
+                                    start_focus = position;
+                                    updateFragmentPhase();
+                                }
+                            });
+                            dialog.show();
                         }
-                        //정류장 위치 보여주는 다이어로그를 띄움
-                        RouteStopMapDialog dialog = new RouteStopMapDialog(getContext(), getActivity(), currentVia, false);
-                        dialog.setDialogListener(new RouteStopMapDialog.StopMapListener() {
-                            @Override
-                            public void onConfirm() {
-                                //확인을 누르면 phase와 focus 바꿔주고 화면 업데이트
-                                phase = 1;
-                                start_focus = position;
-                                updateFragmentPhase();
-                            }
-                        });
-                        dialog.show();
 
                     //출발지가 선택된 경우에 눌렸을 때
                     } else if (phase == 1) {
@@ -146,17 +141,13 @@ public class BoardingApplicationFragment extends FragmentBase implements MainAct
                             start_focus = -1;
                             updateFragmentPhase();
                         //출발지보다 뒤에 있는 정거장 눌렀을 때는 선택되도록 함
-                        } else if (position > start_focus) {
+                        } else if (position > boarding_stop_num) {
                             Via currentVia;
                             //위치에 따른 출발 정거장 또는 도착 정거장을 선택하여
-                            if (position < boarding_stop_num){
-                                currentVia = route.boarding_stops.get(position);
-                            } else {
-                                currentVia = route.alighting_stops.get(position - boarding_stop_num);
-                            }
+                            currentVia = route.alighting_stops.get(position - boarding_stop_num);
                             //다이어로그를 띄움
-                            RouteStopMapDialog dialog = new RouteStopMapDialog(getContext(), getActivity(), currentVia, true);
-                            dialog.setDialogListener(new RouteStopMapDialog.StopMapListener() {
+                            BoardingApplicationMapDialog dialog = new BoardingApplicationMapDialog(getContext(), getActivity(), currentVia, true);
+                            dialog.setDialogListener(new BoardingApplicationMapDialog.StopMapListener() {
                                 //확인하면 포커스와 페이즈 업데이트
                                 @Override
                                 public void onConfirm() {
@@ -203,12 +194,16 @@ public class BoardingApplicationFragment extends FragmentBase implements MainAct
                 holder.tv_name.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "NotoSansKR-Bold-Hestia.otf"));
             }
             //Phase에 따른 외관 구성
-            if (phase == 1) {
-                if (position < start_focus) {
-                    holder.iv_checkbox.setVisibility(View.GONE);
-                } else if (position == start_focus) {
+            if (phase == 0) {
+              if (position >= boarding_stop_num) {
+                  holder.iv_checkbox.setVisibility(View.GONE);
+              }
+            } else if (phase == 1) {
+                if (position == start_focus) {
                     holder.iv_checkbox.setImageDrawable(getContext().getDrawable(R.drawable.icon_stop_selector_green));
                     holder.tv_name.setTextColor(getContext().getResources().getColor(R.color.Primary));
+                } else if (position < boarding_stop_num) {
+                    holder.iv_checkbox.setVisibility(View.GONE);
                 }
             } else if (phase == 2) {
                 if (position < start_focus) {
@@ -227,6 +222,9 @@ public class BoardingApplicationFragment extends FragmentBase implements MainAct
                     holder.iv_checkbox.setImageDrawable(getContext().getDrawable(R.drawable.icon_stop_selector_red));
                     holder.v_upper_line.setBackground(getContext().getDrawable(R.color.Primary));
                     holder.tv_name.setTextColor(getContext().getResources().getColor(R.color.Red));
+                } else {
+                    holder.iv_checkbox.setVisibility(View.GONE);
+                    holder.tv_name.setTextColor(getContext().getResources().getColor(R.color.TextGray));
                 }
             }
         }

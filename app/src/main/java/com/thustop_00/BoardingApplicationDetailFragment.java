@@ -53,7 +53,7 @@ public class BoardingApplicationDetailFragment extends FragmentBase {
     }
 
     public void onMapIconClick(View view){
-        RouteStopMapDialog dialog = new RouteStopMapDialog(getContext(), getActivity(), route.boarding_stops, route.alighting_stops);
+        BoardingApplicationMapDialog dialog = new BoardingApplicationMapDialog(getContext(), getActivity(), route.boarding_stops, route.alighting_stops);
         dialog.show();
     }
 

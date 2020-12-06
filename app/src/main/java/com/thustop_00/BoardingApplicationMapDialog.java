@@ -19,7 +19,7 @@ import net.daum.mf.map.api.MapView;
 
 import java.util.ArrayList;
 
-public class RouteStopMapDialog extends Dialog implements MapView.POIItemEventListener {
+public class BoardingApplicationMapDialog extends Dialog implements MapView.POIItemEventListener {
     private MapView mapView;
     private Activity activity;
     private StopMapListener listener;
@@ -38,7 +38,7 @@ public class RouteStopMapDialog extends Dialog implements MapView.POIItemEventLi
 
 
 
-    public RouteStopMapDialog(@NonNull Context context, Activity activity, ArrayList<Via>boarding_stops, ArrayList<Via> alighting_stops) {
+    public BoardingApplicationMapDialog(@NonNull Context context, Activity activity, ArrayList<Via>boarding_stops, ArrayList<Via> alighting_stops) {
         super(context, R.style.CustomFullDialog);//화면을 꽉 채울 수 있도록 스타일 지정
         this.activity = activity;
         this.boarding_stops = boarding_stops;
@@ -46,7 +46,7 @@ public class RouteStopMapDialog extends Dialog implements MapView.POIItemEventLi
         this.op_mod = MULTIPLE;
     }
 
-    public RouteStopMapDialog(Context context, Activity activity, Via via, boolean isDestination){
+    public BoardingApplicationMapDialog(Context context, Activity activity, Via via, boolean isDestination){
         super(context, R.style.CustomFullDialog);
         this.activity = activity;
         this.via = via;
