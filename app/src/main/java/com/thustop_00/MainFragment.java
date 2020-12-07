@@ -389,7 +389,6 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
 
-
     @Override
     public void onBack() {
         if (timeBackPressed == 0) {
@@ -401,7 +400,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
                 timeBackPressed = 0;
                 onBack();
             } else {
-                android.os.Process.killProcess(android.os.Process.myPid());
+                _listener.finishActivity();
             }
         }
     }

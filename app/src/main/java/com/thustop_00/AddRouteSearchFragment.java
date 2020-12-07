@@ -3,6 +3,7 @@ package com.thustop_00;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -116,33 +117,36 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
         }
     };
 
-    //TODO Exception : position이 index를 넘어가는 경우가 생김
     @Override
     public void onItemSelected(View v, int position) {
-        String placeId = String.valueOf(autocompleteAdapter.mResultList.get(position).placeId);
-
-        List<Place.Field> placeFields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS);
-        FetchPlaceRequest request = FetchPlaceRequest.builder(placeId, placeFields).build();
-        placesClient.fetchPlace(request).addOnSuccessListener(response -> {
-            if (binding.etStart.isFocused()) {
-                transferAddress(response.getPlace(), startLocation);
-                binding.etStart.setText(startLocation.getAddress());
-                binding.etStart.setBackgroundResource(R.drawable.bg_round25_graye7);
-                binding.etDummy.requestFocus();
-                _listener.hideKeyBoard();
-            } else if (binding.etEnd.isFocused()) {
-                transferAddress(response.getPlace(), endLocation);
-                binding.etEnd.setText(endLocation.getAddress());
-                binding.etEnd.setBackgroundResource(R.drawable.bg_round25_graye7);
-                binding.etDummy.requestFocus();
-                _listener.hideKeyBoard();
-            }
-            binding.rvLocationPrediction.setVisibility(View.GONE);
-        }).addOnFailureListener(exception -> {
-            if (exception instanceof ApiException) {
-                Toast.makeText(getContext(), exception.getMessage() + "", Toast.LENGTH_SHORT).show();
-            }
-        });
+        try {
+            String placeId = String.valueOf(autocompleteAdapter.mResultList.get(position).placeId);
+            List<Place.Field> placeFields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS);
+            FetchPlaceRequest request = FetchPlaceRequest.builder(placeId, placeFields).build();
+            placesClient.fetchPlace(request).addOnSuccessListener(response -> {
+                if (binding.etStart.isFocused()) {
+                    transferAddress(response.getPlace(), startLocation);
+                    binding.etStart.setText(startLocation.getAddress());
+                    binding.etStart.setBackgroundResource(R.drawable.bg_round25_graye7);
+                    binding.etDummy.requestFocus();
+                    _listener.hideKeyBoard();
+                } else if (binding.etEnd.isFocused()) {
+                    transferAddress(response.getPlace(), endLocation);
+                    binding.etEnd.setText(endLocation.getAddress());
+                    binding.etEnd.setBackgroundResource(R.drawable.bg_round25_graye7);
+                    binding.etDummy.requestFocus();
+                    _listener.hideKeyBoard();
+                }
+                binding.rvLocationPrediction.setVisibility(View.GONE);
+            }).addOnFailureListener(exception -> {
+                if (exception instanceof ApiException) {
+                    Toast.makeText(getContext(), exception.getMessage() + "", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e){
+            Log.e(TAG, Objects.requireNonNull(e.getMessage()));
+            Toast.makeText(getContext(), "이런 에러가 발생했네요! 다시 선택해주세요.", Toast.LENGTH_SHORT).show();
+        }
     }
     //Places API의 Place 클래스의 값을 Address 클래스로 옮겨주는 method
     private void transferAddress(Place place, Address position) {

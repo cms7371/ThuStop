@@ -120,4 +120,9 @@
     <string name="tv_fba_big_alighting">하차하실 정거장을 선택해주세요</string>
     <string name="tv_fba_big_alighting_colored">하차하실 정거장</string>
     <string name="tv_fba_small_alighting">목적지와 가장 가까운 위치의 정거장을 선택해주세요</string>
+
+    <!--fragment counselling-->
+    <string name="tv_fc_recommendation">실시간으로 깃플이 고객님의 문제를 도와드립니다.\n아래 상담하기를 눌러 상담을 시작해보세요!</string>
+    <string name="tv_fc_description">월/화/수/목/금 : 오전 9시 ~ 오후 6시\n점심시간 : 12시 ~ 1시</string>
+
 </resources>

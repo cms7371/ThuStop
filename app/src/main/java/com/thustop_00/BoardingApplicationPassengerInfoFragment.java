@@ -1,23 +1,17 @@
 package com.thustop_00;
 
-import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 
-import com.thustop_00.databinding.FragmentBoardingApplicationBinding;
+import androidx.fragment.app.Fragment;
+
 import com.thustop_00.databinding.FragmentBoardingApplicationPassengerInfoBinding;
 import com.thustop_00.model.Route;
 import com.thustop_00.model.Ticket;
-
-import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -76,12 +70,10 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
         binding.etvFbapiBoardingDate.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
@@ -114,16 +106,13 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
                 date = String.format("%d/%d/%d", year, month, day);
                 binding.etvFbapiBoardingDate.setTextColor(getResources().getColor(R.color.TextBlack));
                 binding.etvFbapiBoardingDate.setText(date);
-
             }
         });
         datePickerDialog.show();
     }
 
     public void onBtOkClick(View view) {
+        // TODO 확인 화면 다이얼로그로 바꾸고 결제화면 연결해야함
         _listener.addFragment(BoardingApplicationCheckFragment.newInstance(route.getBoardingStopName(boarding_stop_position), route.getAlightingStopName(alighting_stop_position)));
-
     }
-
-
 }

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="CounselFrag"
+            type="com.thustop_00.CounsellingFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/White">
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/toolbar_height" />
+
+        <ImageView
+            android:id="@+id/iv_fc_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline5"
+            app:srcCompat="@drawable/img_counselling" />
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_fc_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:text="무엇을 도와드릴까요?"
+            android:textColor="@color/Primary"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_fc_img"
+            app:notoTextStyle="medium" />
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_fc_recommendation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:lineSpacingExtra="6sp"
+            android:text="@string/tv_fc_recommendation"
+            android:textAlignment="center"
+            android:textColor="@color/TextBlack"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_fc_title" />
+
+        <com.thustop_00.widgets.NotoButton
+            android:id="@+id/bt_fc_counsel"
+            style="@style/btStyle"
+            android:background="@drawable/bg_round25_green"
+            android:onClick="@{CounselFrag::onCounselClick}"
+            android:text="1:1 상담하기"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:notoTextStyle="medium" />
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_fc_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="20dp"
+            android:lineSpacingExtra="5sp"
+            android:text="@string/tv_fc_description"
+            android:textColor="@color/TextGray"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toTopOf="@+id/bt_fc_counsel"
+            app:layout_constraintStart_toStartOf="@+id/bt_fc_counsel" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_fc_description"
+            app:layout_constraintStart_toStartOf="@+id/bt_fc_counsel"
+            app:srcCompat="@drawable/icon_exclamation_mark" />
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/notoTextView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="상담가능시간"
+            android:textColor="@color/Primary"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toTopOf="@+id/imageView4"
+            app:notoTextStyle="medium" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+
+

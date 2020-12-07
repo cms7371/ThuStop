@@ -98,7 +98,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                 return true;
             }
             case R.id.bt_notification: {
-                Toast.makeText(getApplicationContext(), "알림버튼 눌림", Toast.LENGTH_SHORT).show();
+                if (isExitEnabled) setFragment(MainFragment.newInstance());
+                else Toast.makeText(getApplicationContext(), "알림버튼 눌림", Toast.LENGTH_SHORT).show();
             }
         }
         return super.onOptionsItemSelected(item);
@@ -150,6 +151,10 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         binding.clMyPage.setVisibility(View.VISIBLE);
         binding.btLogout.setVisibility(View.VISIBLE);
         binding.tvLogout.setVisibility(View.VISIBLE);
+    }
+
+    public void onCounselClick(View view) {
+        addFragment(CounsellingFragment.newInstance());
     }
 
     public void checkFirstRun() {
@@ -211,6 +216,10 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                 .commit();
     }
 
+    @Override
+    public void finishActivity() {
+        finish();
+    }
 
     @Override
     public void openDrawer() {

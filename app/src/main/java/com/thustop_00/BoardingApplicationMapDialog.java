@@ -36,7 +36,9 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
     private final static boolean SINGLE = false;
     private final static boolean MULTIPLE = true;
 
-
+    public interface StopMapListener {
+        void onConfirm();
+    }
 
     public BoardingApplicationMapDialog(@NonNull Context context, Activity activity, ArrayList<Via>boarding_stops, ArrayList<Via> alighting_stops) {
         super(context, R.style.CustomFullDialog);//화면을 꽉 채울 수 있도록 스타일 지정
@@ -71,7 +73,6 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
             }
         });
 
-
         //동작 모드에 따른 정의
         MapPOIItem marker;
         if(op_mod == MULTIPLE){
@@ -84,7 +85,7 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
                 marker.setTag(i);
                 marker.setItemName(boarding_stops.get(i - 1).stop.name);
                 marker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
-                marker.setCustomImageResourceId(R.drawable.icon_departure);//TODO 핀 모양 바꿔야함
+                marker.setCustomImageResourceId(R.drawable.icon_pin_green);//TODO 핀 모양 바꿔야함
                 marker.setCustomImageAutoscale(true);
                 marker.setCustomImageAnchor(0.5f, 1.0f);
                 marker.setMapPoint(getMapPointWithVia(boarding_stops.get(i - 1)));
@@ -96,7 +97,7 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
                 marker.setTag(-i);
                 marker.setItemName(alighting_stops.get(i - 1).stop.name);
                 marker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
-                marker.setCustomImageResourceId(R.drawable.icon_destination);// TODO 이놈도 바꿔야함
+                marker.setCustomImageResourceId(R.drawable.icon_pin_red);// TODO 이놈도 바꿔야함
                 marker.setCustomImageAutoscale(true);
                 marker.setCustomImageAnchor(0.5f, 1.0f);
                 marker.setMapPoint(getMapPointWithVia(alighting_stops.get(i - 1)));
@@ -119,9 +120,9 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
             marker.setItemName(via.stop.name);
             marker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
             if (isDestination) {
-                marker.setCustomImageResourceId(R.drawable.icon_destination);
+                marker.setCustomImageResourceId(R.drawable.icon_pin_red);
             } else {
-                marker.setCustomImageResourceId(R.drawable.icon_departure);
+                marker.setCustomImageResourceId(R.drawable.icon_pin_green);
             }
             marker.setCustomImageAutoscale(true);
             marker.setCustomImageAnchor(0.5f, 1.0f);
@@ -130,10 +131,6 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
             mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(centerLatitude,centerLongitude), 5, true);
 
         }
-    }
-
-    public interface StopMapListener {
-        void onConfirm();
     }
 
     public void setDialogListener(StopMapListener listener) {

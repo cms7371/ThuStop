@@ -288,14 +288,15 @@
             android:layout_width="match_parent"
             android:layout_height="69dp"
             android:background="@color/ButtonGray"
+            android:enabled="false"
             android:gravity="center"
+            android:onClick="@{BoardingApplicationPassengerInfoFrag::onBtOkClick}"
             android:text="결제 하기"
             android:textColor="@color/White"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:notoTextStyle="medium"
-            android:onClick="@{BoardingApplicationPassengerInfoFrag::onBtOkClick}"/>
+            app:notoTextStyle="medium" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

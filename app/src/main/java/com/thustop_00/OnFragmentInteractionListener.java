@@ -12,6 +12,7 @@ public interface OnFragmentInteractionListener {
     void addFragmentNotBackStack(FragmentBase fr);
     void setFragment(FragmentBase fr);
     void setOnBackPressedListener(MainActivity.onBackPressedListener listener);
+    void finishActivity();
 
     void openDrawer();
     void closeDrawer();

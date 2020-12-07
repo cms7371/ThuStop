@@ -121,7 +121,6 @@ public class LocationAutocompleteAdapter extends RecyclerView.Adapter<LocationAu
                     resultList.add(new PlaceAutocomplete(prediction.getPlaceId(), prediction.getPrimaryText(STYLE_NORMAL).toString(),
                             prediction.getSecondaryText(STYLE_NORMAL).toString().replace("대한민국 ", "")));
                 }
-
             return resultList;
         } else {
             return resultList;

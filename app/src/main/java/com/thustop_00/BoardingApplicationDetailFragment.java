@@ -22,7 +22,6 @@ public class BoardingApplicationDetailFragment extends FragmentBase {
     private int boarding_stop_num;
     private int alighting_stop_num;
 
-
     public static BoardingApplicationDetailFragment newInstance(Route route){
         BoardingApplicationDetailFragment fragment = new BoardingApplicationDetailFragment();
         Bundle args = new Bundle();
@@ -61,7 +60,6 @@ public class BoardingApplicationDetailFragment extends FragmentBase {
         //TODO 로그인 안했을 때 로그인창으로 보내야함
         _listener.addFragment(BoardingApplicationFragment.newInstance(route));
     }
-
 
     private class RouteDetailAdapter extends RecyclerView.Adapter<RouteDetailAdapter.RouteDetailHolder>{
         int dp10ToPixel = (int) (10 * getContext().getResources().getDisplayMetrics().density + 0.5);
