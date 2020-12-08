@@ -1,0 +1,121 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="@dimen/toolbar_height" />
+
+    <com.thustop_00.widgets.NotoTextView
+        android:id="@+id/tv_dbc_big"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="한번 더 확인해주세요!"
+        android:textColor="@color/TextBlack"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline4"
+        app:notoTextStyle="medium" />
+
+    <com.thustop_00.widgets.NotoTextView
+        android:id="@+id/tv_dbc_small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="다음과 같은 정보로 신청을 완료합니다"
+        android:textColor="@color/Primary"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_dbc_big" />
+
+    <com.thustop_00.widgets.NotoTextView
+        android:id="@+id/tv_dbc_boarding_stop"
+        android:layout_width="133dp"
+        android:layout_height="119dp"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/bg_outline35_green"
+        android:gravity="center"
+        android:textColor="@color/TextBlack"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@id/tv_dbc_alighting_stop"
+        app:layout_constraintStart_toStartOf="@id/tv_dbc_small"
+        app:layout_constraintTop_toTopOf="@id/tv_dbc_departure" />
+
+    <com.thustop_00.widgets.NotoTextView
+        android:id="@+id/tv_dbc_departure"
+        android:layout_width="65dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="75dp"
+        android:background="@drawable/bg_round25_green"
+        android:gravity="center"
+        android:text="출발"
+        android:textColor="@color/White"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/tv_dbc_boarding_stop"
+        app:layout_constraintStart_toStartOf="@id/tv_dbc_boarding_stop"
+        app:layout_constraintTop_toBottomOf="@id/tv_dbc_small"
+        app:notoTextStyle="medium" />
+
+    <com.thustop_00.widgets.NotoTextView
+        android:id="@+id/tv_dbc_alighting_stop"
+        android:layout_width="133dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/bg_outline35_red"
+        android:gravity="center"
+        android:textColor="@color/TextBlack"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/tv_dbc_small"
+        app:layout_constraintStart_toEndOf="@id/tv_dbc_boarding_stop"
+        app:layout_constraintTop_toTopOf="@id/tv_dbc_arrival" />
+
+    <com.thustop_00.widgets.NotoTextView
+        android:id="@+id/tv_dbc_arrival"
+        android:layout_width="65dp"
+        android:layout_height="26dp"
+        android:background="@drawable/bg_round25_red"
+        android:gravity="center"
+        android:text="출발"
+        android:textColor="@color/White"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/tv_dbc_alighting_stop"
+        app:layout_constraintStart_toStartOf="@id/tv_dbc_alighting_stop"
+        app:layout_constraintTop_toTopOf="@id/tv_dbc_departure"
+        app:notoTextStyle="medium" />
+
+    <com.thustop_00.widgets.NotoButton
+        android:id="@+id/bt_dbc_ok"
+        style="@style/btStyle"
+        android:background="@drawable/bg_round25_green"
+        android:text="확인"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:notoTextStyle="medium" />
+
+    <ImageView
+        android:id="@+id/bt_dbc_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_back_green" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

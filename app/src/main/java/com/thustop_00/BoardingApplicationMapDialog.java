@@ -85,7 +85,7 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
                 marker.setTag(i);
                 marker.setItemName(boarding_stops.get(i - 1).stop.name);
                 marker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
-                marker.setCustomImageResourceId(R.drawable.icon_pin_green);//TODO 핀 모양 바꿔야함
+                marker.setCustomImageResourceId(R.drawable.icon_pin_green);
                 marker.setCustomImageAutoscale(true);
                 marker.setCustomImageAnchor(0.5f, 1.0f);
                 marker.setMapPoint(getMapPointWithVia(boarding_stops.get(i - 1)));
@@ -97,7 +97,7 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
                 marker.setTag(-i);
                 marker.setItemName(alighting_stops.get(i - 1).stop.name);
                 marker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
-                marker.setCustomImageResourceId(R.drawable.icon_pin_red);// TODO 이놈도 바꿔야함
+                marker.setCustomImageResourceId(R.drawable.icon_pin_red);
                 marker.setCustomImageAutoscale(true);
                 marker.setCustomImageAnchor(0.5f, 1.0f);
                 marker.setMapPoint(getMapPointWithVia(alighting_stops.get(i - 1)));
