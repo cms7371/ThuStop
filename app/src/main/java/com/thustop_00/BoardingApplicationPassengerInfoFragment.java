@@ -1,6 +1,8 @@
 package com.thustop_00;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -113,6 +115,22 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
 
     public void onBtOkClick(View view) {
         // TODO 확인 화면 다이얼로그로 바꾸고 결제화면 연결해야함
-        _listener.addFragment(BoardingApplicationCheckFragment.newInstance(route.getBoardingStopName(boarding_stop_position), route.getAlightingStopName(alighting_stop_position)));
+
+        BoardingApplicationCheckDialog dialog = new BoardingApplicationCheckDialog(getContext() ,route.getBoardingStopName(boarding_stop_position), route.getAlightingStopName(alighting_stop_position));
+        dialog.setListener(new BoardingApplicationCheckDialog.BoardingCheckDialogListener() {
+            @Override
+            public void onBoardingConfirm() {
+                //TODO 결제 프로세스 연결 또는 탑승 신청 완료로 연결
+                _listener.setFragment(DoneFragment.newInstance("탑승 신청이 완료되었습니다.", "배차가 확정되면 푸시알림, 또는 문자를 드립니다.",true));
+                Handler H = new Handler(Looper.getMainLooper());
+                H.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        dialog.dismiss();
+                    }
+                }, 500);
+            }
+        });
+        dialog.show();
     }
 }
