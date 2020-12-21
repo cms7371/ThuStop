@@ -55,6 +55,8 @@ public class RequestTownServiceFragment extends FragmentBase {
             public void onSelect(String state, String city) {
                 _binding.tvTownSel.setText(String.format("%s %s", state, city));
                 _binding.tvTownSel.setTextColor(getResources().getColor(R.color.TextBlack));
+                _binding.btRequest.setBackgroundResource(R.drawable.bg_round25_green);
+                _binding.btRequest.setClickable(true);
             }
         });
         regionSelectorDialog.show();

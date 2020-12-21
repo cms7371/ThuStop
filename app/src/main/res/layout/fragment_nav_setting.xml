@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="NavSettingFrag"
+            type="com.thustop_00.NavSettingFragment" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/White">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/toolbar_height" />
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_push_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/tv_push_alarm"
+            android:textColor="@color/Primary"
+            android:textSize="11sp"
+            app:notoTextStyle="medium"
+            app:layout_constraintTop_toBottomOf="@id/guideline"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_marketing_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:text="@string/tv_marketing_alarm"
+            android:textColor="@color/TextBlack"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/tv_push_alarm"
+            app:layout_constraintTop_toBottomOf="@id/tv_push_alarm"/>
+        
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_all_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/tv_all_alarm"
+            android:textColor="@color/TextBlack"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/tv_push_alarm"
+            app:layout_constraintTop_toBottomOf="@id/tv_marketing_alarm"/>
+
+        <Switch
+            android:id="@+id/sw_all_alarm"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="20dp"
+            android:paddingEnd="3dp"
+            android:track="@drawable/switch_track"
+            android:thumb="@drawable/switch_thumb"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_all_alarm"
+            app:layout_constraintBottom_toBottomOf="@id/tv_all_alarm"/>
+        
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_gps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/tv_gps"
+            android:textColor="@color/Primary"
+            android:textSize="11sp"
+            app:notoTextStyle="medium"
+            app:layout_constraintTop_toBottomOf="@id/tv_all_alarm"
+            app:layout_constraintStart_toStartOf="@id/tv_push_alarm"/>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_current_location_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:text="@string/tv_current_location_search"
+            android:textColor="@color/TextBlack"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/tv_push_alarm"
+            app:layout_constraintTop_toBottomOf="@id/tv_gps"/>
+
+        <Switch
+            android:id="@+id/sw_current_location_search"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="20dp"
+            android:paddingEnd="3dp"
+            android:track="@drawable/switch_track"
+            android:thumb="@drawable/switch_thumb"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_current_location_search"
+            app:layout_constraintBottom_toBottomOf="@id/tv_current_location_search"/>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_terms_policies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/tv_terms_policies"
+            android:textColor="@color/Primary"
+            android:textSize="11sp"
+            app:notoTextStyle="medium"
+            app:layout_constraintStart_toStartOf="@id/tv_push_alarm"
+            app:layout_constraintTop_toBottomOf="@id/tv_current_location_search"/>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_service_terms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:text="@string/tv_service_terms"
+            android:textColor="@color/TextBlack"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/tv_push_alarm"
+            app:layout_constraintTop_toBottomOf="@id/tv_terms_policies"/>
+
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_location_terms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/tv_location_terms"
+            android:textColor="@color/TextBlack"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/tv_push_alarm"
+            app:layout_constraintTop_toBottomOf="@id/tv_service_terms"/>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_personal_data_policies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/tv_personal_data_policies"
+            android:textColor="@color/TextBlack"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/tv_push_alarm"
+            app:layout_constraintTop_toBottomOf="@id/tv_location_terms"/>
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_operational_policies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/tv_operational_policies"
+            android:textColor="@color/TextBlack"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/tv_push_alarm"
+            app:layout_constraintTop_toBottomOf="@id/tv_personal_data_policies"/>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_version_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:text="@string/tv_version_info"
+            android:textColor="@color/Primary"
+            android:textSize="11sp"
+            app:notoTextStyle="medium"
+            app:layout_constraintStart_toStartOf="@id/tv_push_alarm"
+            app:layout_constraintTop_toBottomOf="@id/tv_operational_policies"/>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_app_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:text="@string/tv_app_title"
+            android:textColor="@color/TextBlack"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/tv_push_alarm"
+            app:layout_constraintTop_toBottomOf="@id/tv_version_info"/>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:text="@string/tv_current_version"
+            android:textSize="11sp"
+            android:textColor="@color/Primary"
+            app:notoTextStyle="medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_app_title"
+            app:layout_constraintBottom_toBottomOf="@id/tv_app_title"/>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_account_management"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/tv_account_management"
+            android:textColor="@color/Primary"
+            android:textSize="11sp"
+            app:notoTextStyle="medium"
+            app:layout_constraintStart_toStartOf="@id/tv_push_alarm"
+            app:layout_constraintTop_toBottomOf="@id/tv_app_title"/>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_leave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:text="@string/tv_leave"
+            android:textColor="@color/TextBlack"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/tv_push_alarm"
+            app:layout_constraintTop_toBottomOf="@id/tv_account_management"/>
+
+        <Switch
+            android:id="@+id/sw_marketing_alarm"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="20dp"
+            android:paddingEnd="3dp"
+            android:track="@drawable/switch_track"
+            android:thumb="@drawable/switch_thumb"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_marketing_alarm"
+            app:layout_constraintBottom_toBottomOf="@id/tv_marketing_alarm"/>
+
+
+        <ImageView
+            android:id="@+id/bt_service_terms"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="5dp"
+            android:src="@drawable/ic_thin_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_service_terms"
+            app:layout_constraintBottom_toBottomOf="@id/tv_service_terms"/>
+
+        <ImageView
+            android:id="@+id/bt_location_terms"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="5dp"
+            android:src="@drawable/ic_thin_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_location_terms"
+            app:layout_constraintBottom_toBottomOf="@id/tv_location_terms"/>
+
+        <ImageView
+            android:id="@+id/bt_personal_data_policies"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="5dp"
+            android:src="@drawable/ic_thin_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_personal_data_policies"
+            app:layout_constraintBottom_toBottomOf="@id/tv_personal_data_policies"/>
+
+        <ImageView
+            android:id="@+id/bt_operational_policies"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="5dp"
+            android:src="@drawable/ic_thin_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_operational_policies"
+            app:layout_constraintBottom_toBottomOf="@id/tv_operational_policies"/>
+
+
+
+        
+        
+
+
+
+
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+        
+</layout>

@@ -2,17 +2,7 @@
     <!--Fragment 이름 순으로 적어주세요-->
     <!--이름이 앞에 fragment가 뒤로 오게 합시다 ex) main fragment!-->
 
-    <!-- Notice Ticket Point Dialog-->
-    <string name="tv_notice_title">티켓포인트로 전환이란?</string>
-    <string name="tv_explain1">불가피한 상황으로 버스 탑승을\n하지 못했을 때 티켓을 포인트로 전환하는 제도입니다.</string>
-    <string name="tv_explain2">티켓 포인트 전환은 1회 1일만 가능하며,\n총 2회 사용할 수 있어요.</string>
-    <string name="tv_explain1_colored">불가피한 상황</string>
-    <string name="tv_explain2_colored_1">1회 1일</string>
-    <string name="tv_explain2_colored_2">총 2회</string>
-    <string name="tv_touch">1.\'티켓 포인트로 전환\'\n클릭</string>
-    <string name="tv_calendar">2.달력에서 날짜\n선택</string>
-    <string name="tv_spell_check">3.전환 포인트 확인</string>
-    <string name="tv_done">4.완료!!</string>
+
 
 
     <!--Add Route Map Search Fragment-->
@@ -22,6 +12,14 @@
     <!--Add Route Time Set Fragment-->
     <string name="tv_1">다음과 같은 노선을 생성할까요?</string>
     <string name="tv_time">희망 도착 시간</string>
+
+    <!--boarding application fragment-->
+    <string name="tv_fba_big_boarding">탑승하실 정거장을 선택해주세요</string>
+    <string name="tv_fba_big_boarding_colored">탑승하실 정거장</string>
+    <string name="tv_fba_small_boarding">회원님과 가장 가까운 위치의 정거장을 선택해주세요</string>
+    <string name="tv_fba_big_alighting">하차하실 정거장을 선택해주세요</string>
+    <string name="tv_fba_big_alighting_colored">하차하실 정거장</string>
+    <string name="tv_fba_small_alighting">목적지와 가장 가까운 위치의 정거장을 선택해주세요</string>
 
     <!--Find Password Fragment-->
     <string name="et_name_find">이름을 입력해주세요</string>
@@ -64,6 +62,38 @@
     <string name="tv_request"><u>요청하러가기</u></string>
     <string name="bt_new_route">노선 생성하기</string>
 
+    <!--NavSetting Fragment-->
+    <string name="tv_setting">설정</string>
+    <string name="tv_push_alarm">PUSH 알림 설정</string>
+    <string name="tv_marketing_alarm">마케팅/혜택 알림</string>
+    <string name="tv_all_alarm">전체 알림</string>
+    <string name="tv_gps">GPS 설정</string>
+    <string name="tv_current_location_search">앱 실행시 현위치 탐색</string>
+    <string name="tv_terms_policies">약관 및 정책</string>
+    <string name="tv_service_terms">서비스 이용약관</string>
+    <string name="tv_location_terms">위치기반서비스 이용약관</string>
+    <string name="tv_personal_data_policies">개인정보 처리방침</string>
+    <string name="tv_operational_policies">운영 정책</string>
+    <string name="tv_version_info">버전정보</string>
+    <string name="tv_app_title">이번정류장</string>
+    <string name="tv_current_version">ver.0.01.1</string>
+    <string name="tv_account_management">계정관리</string>
+    <string name="tv_leave">탈퇴하기</string>
+
+
+
+    <!-- Notice Ticket Point Dialog-->
+    <string name="tv_notice_title">티켓포인트로 전환이란?</string>
+    <string name="tv_explain1">불가피한 상황으로 버스 탑승을\n하지 못했을 때 티켓을 포인트로 전환하는 제도입니다.</string>
+    <string name="tv_explain2">티켓 포인트 전환은 1회 1일만 가능하며,\n총 2회 사용할 수 있어요.</string>
+    <string name="tv_explain1_colored">불가피한 상황</string>
+    <string name="tv_explain2_colored_1">1회 1일</string>
+    <string name="tv_explain2_colored_2">총 2회</string>
+    <string name="tv_touch">1.\'티켓 포인트로 전환\'\n클릭</string>
+    <string name="tv_calendar">2.달력에서 날짜\n선택</string>
+    <string name="tv_spell_check">3.전환 포인트 확인</string>
+    <string name="tv_done">4.완료!!</string>
+
     <!--Register done fragment-->
     <string name="tv_done_reg">회원가입을 완료했습니다</string>
     <string name="bt_done_reg">완료</string>
@@ -97,14 +127,15 @@
 
     <!-- Request Town Service fragment-->
     <string name="tv_town_1">원하는 지역을 알려주세요!</string>
-    <string name="tv_town_2">우리동네에도 노선이 개설될 수 있어요</string>
+    <string name="tv_town_2">신청 인원 수에 따라 신규노선이 개설될 수 있어요</string>
     <string name="tv_townSel">서비스 지역 선택</string>
     <string name="cb_town_message">선택한 지역이 개설 되었을 때, 문자메세지를 받고싶어요!</string>
     <string name="et_town_hint">휴대폰 번호</string>
     <string name="tv_town_notice">휴대폰 번호는 알림 문자 메세지 전송 이외의 용도로 사용되지 않습니다.</string>
-    <string name="bt_town_request">신청하기</string>
+    <string name="bt_town_request">제출하기</string>
     <string name="tv_request_done">우리 동네 서비스 요청이 완료되었습니다</string>
     <string name="tv_request_continue">우리동네 수요조사에 참여해주셔서 감사합니다!</string>
+
     <!--fragment splash-->
     <string name="app_name">ThuStop_00</string>
     <string name="tv_splash_subtitle">신개념 출퇴근 버스 노선 공유 버스</string>
@@ -113,15 +144,9 @@
     <!--dialog route detail-->
     <string name="tv_route_caution">• 탑승 당일, 도로상황 및 기상환경에 따른 일부 지연이\n    발생할 수도 있습니다.(±5~10분)\n• 하차 시간은 희망 도착 시간보다 빠를 수 있습니다.\n• 차량 정보와 기사님 정보는 결제 후에 안내됩니다.</string>
 
-    <!--fragment boarding application-->
-    <string name="tv_fba_big_boarding">탑승하실 정거장을 선택해주세요</string>
-    <string name="tv_fba_big_boarding_colored">탑승하실 정거장</string>
-    <string name="tv_fba_small_boarding">회원님과 가장 가까운 위치의 정거장을 선택해주세요</string>
-    <string name="tv_fba_big_alighting">하차하실 정거장을 선택해주세요</string>
-    <string name="tv_fba_big_alighting_colored">하차하실 정거장</string>
-    <string name="tv_fba_small_alighting">목적지와 가장 가까운 위치의 정거장을 선택해주세요</string>
 
-    <!--fragment counselling-->
+
+    <!--counselling fragment-->
     <string name="tv_fc_recommendation">실시간으로 깃플이 고객님의 문제를 도와드립니다.\n아래 상담하기를 눌러 상담을 시작해보세요!</string>
     <string name="tv_fc_description">월/화/수/목/금 : 오전 9시 ~ 오후 6시\n점심시간 : 12시 ~ 1시</string>
 
