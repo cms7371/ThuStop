@@ -20,4 +20,6 @@ public interface OnFragmentInteractionListener {
     void setToolbarStyle(int state, String title);
     void hideKeyBoard();
 
+    void showLocationServiceSettingDialog();
+
 }

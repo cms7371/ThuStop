@@ -1,11 +1,17 @@
 package com.thustop_00;
 
+import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -18,6 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -54,8 +61,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     /* Handler for delay of splash fragment. It should be removed after loading delay added*/
     Handler H = new Handler(Looper.getMainLooper());
     //for checking first run
+    private static final int GPS_ENABLE_REQUEST_CODE = 2001;
+    private static final int PERMISSIONS_REQUEST_CODE = 100;
+    String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     public SharedPreferences prefs;
     private onBackPressedListener BackListener;
+    private final static String TAG = "MainActivity";
 
 
     //private long pressedTime = 0;
@@ -136,10 +147,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         addFragment(LoginFragment.newInstance());
         closeDrawer();
     }
+
     public void onNavPersonalHistoryClick(View view) {
         closeDrawer();
         addFragment(NavPersonalHistoryFragment.newInstance());
     }
+
     public void onNavPersonalPointClick(View view) {
         closeDrawer();
         addFragment(NavPointFragment.newInstance());
@@ -184,9 +197,39 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
 
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        Log.d(TAG, "onRequestPermissionsResult: 권한 결과 확인 함수 호출");
+        if (requestCode == PERMISSIONS_REQUEST_CODE && grantResults.length == REQUIRED_PERMISSIONS.length) {
+            // 요청 코드가 PERMISSIONS_REQUEST_CODE 이고, 요청한 퍼미션 개수만큼 수신되었다면
+            boolean check_result = true;
+            // 모든 퍼미션을 허용했는지 체크합니다.
+            for (int result : grantResults) {
+                if (result != PackageManager.PERMISSION_GRANTED) {
+                    check_result = false;
+                    break;
+                }
+            }
+            if (check_result) {
+                Log.d(TAG, "onRequestPermissionsResult: GPS is permitted");
+                //위치 값을 가져올 수 있음
+            } else {
+                // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])
+                        || ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[1])) {
+                    Toast.makeText(this, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this, "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
+                }
+            }
+
+        }
+    }
+
     /***********************************************************************************************
-    ----------------------OnFragmentInteractionLister override 메소드들------------------------------
-    ***********************************************************************************************/
+     ----------------------OnFragmentInteractionLister override 메소드들------------------------------
+     ***********************************************************************************************/
 
 
     /*쌓여있는 BackStack 모두 날리고 fragment 바꿀때*/
@@ -249,11 +292,11 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
      * setToolbarStyle 메소드
      * - toolbarState : 이름 그대로 _listener에 정의된 변수 이용하여 하면 됨
      * - title : 공백 시 없음, null 시 메인 타이틀, 입력하면 그대로 제목이 됨
-     * */
+     */
     @Override
-    public void setToolbarStyle(int toolbarState, String title){
+    public void setToolbarStyle(int toolbarState, String title) {
         //제목을 설정하는 부분 null일 시 메인 타이틀
-        if (title == null){
+        if (title == null) {
             findViewById(R.id.iv_title).setVisibility(View.VISIBLE);
             findViewById(R.id.tv_title).setVisibility(View.GONE);
         } else {
@@ -265,7 +308,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         isExitEnabled = false;
         isBackEnabled = false;
         actionbar.show();
-        switch (toolbarState){
+        switch (toolbarState) {
             case INVISIBLE:
                 actionbar.hide();
             case GREEN_HAMBURGER:
@@ -349,8 +392,29 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         return super.dispatchTouchEvent(ev);
     }
 
+    @Override
+    public void showLocationServiceSettingDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("위치 서비스 비활성화");
+        builder.setMessage("앱을 사용하기 위해서는 위치 서비스가 필요합니다.\n" + "위치 설정을 수정하실래요?");
+        builder.setCancelable(true);
+        builder.setPositiveButton("설정", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                Intent callGPSSettingIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivityForResult(callGPSSettingIntent, GPS_ENABLE_REQUEST_CODE);
+            }
+        });
+        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+        builder.create().show();
+    }
 
-//해시키 필요할 때
+    //해시키 필요할 때
 /*    private void getAppKeyHash() {
         try {
             PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);

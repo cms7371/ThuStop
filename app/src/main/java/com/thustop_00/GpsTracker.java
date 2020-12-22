@@ -2,17 +2,12 @@ package com.thustop_00;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Build;
-import android.os.IBinder;
 
 import androidx.core.content.ContextCompat;
-
-import butterknife.OnClick;
 
 import static android.content.Context.LOCATION_SERVICE;
 
@@ -42,7 +37,7 @@ public class GpsTracker implements LocationListener {
         getLocation();
     }
 
-    public Location getLocation() {
+    public void getLocation() {
         try {
             locationManager = (LocationManager) mContext.getSystemService(LOCATION_SERVICE);
             isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -56,7 +51,7 @@ public class GpsTracker implements LocationListener {
                 int hasCoarseLocationPermission = ContextCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION);
                 if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED && hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED) {
                 } else
-                    return null;
+                    return;
 
 
                 if(isNetworkEnabled) {
@@ -86,13 +81,10 @@ public class GpsTracker implements LocationListener {
                         }
                     }
                 }
-
-
             }
         } catch (Exception e) {
             e.printStackTrace();;
         }
-        return location;
     }
 
     // GPS shutdown
