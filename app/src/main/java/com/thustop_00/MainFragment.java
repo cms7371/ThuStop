@@ -2,14 +2,19 @@ package com.thustop_00;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
@@ -21,6 +26,7 @@ import com.thustop_00.databinding.FragmentMainBinding;
 import com.thustop_00.model.Route;
 import com.thustop_00.model.Stop;
 import com.thustop_00.model.Via;
+import com.thustop_00.widgets.NotoTextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,8 +44,13 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     boolean toggle;
     boolean[] tog_local = {false, false, false};
 
+    private int backPosition = -1;
+    private String selectedTown;
+    private NotoTextView BackSelectedItem, CurSelectedItem;
+
     private GpsTracker gpsTracker;
     private ArrayList<Route> test_route_list;
+    private String[] test_town_list;
     double latitude;
     double longitude;
     String address;
@@ -101,6 +112,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         test_route_list.add(route1);
         route1.status = "모집중";
         test_route_list.add(route1);
+        test_town_list = new String[]{"호매실동", "하남", "동탄", "우리집", "남의집"};
 
         //Recycler view 호출 및 어댑터와 연결, 데이터 할당
         RecyclerView mainRecycler = binding.rvRoutes;
@@ -109,6 +121,42 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
 /*        PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
         pagerSnapHelper.attachToRecyclerView(mainRecycler);*/
 
+        GridView townGrid = binding.gvLocal;
+        TownGridAdapter townAdapter = new TownGridAdapter(getContext(), test_town_list);
+
+        townGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                if (backPosition == position) {
+                    BackSelectedItem.setSelected(false);
+                    BackSelectedItem.setTextColor(getResources().getColor(R.color.TextGray));
+                    BackSelectedItem.setBackgroundResource(R.drawable.button_local);
+                    backPosition = -1;
+                    binding.tvSelLocal.setText(R.string.tvSelLocal);
+                } else {
+                    selectedTown = adapterView.getItemAtPosition(position).toString();
+                    Log.d(TAG,selectedTown);
+                    CurSelectedItem = (NotoTextView) view;
+                    CurSelectedItem.setSelected(true);
+                    CurSelectedItem.setTextColor(getResources().getColor(R.color.TextBlack));
+                    CurSelectedItem.setBackgroundResource(R.drawable.button_local_sel);
+                    binding.tvSelLocal.setText(selectedTown);
+                    if (backPosition != -1) {
+                        BackSelectedItem = (NotoTextView) townGrid.getChildAt(backPosition);
+                        BackSelectedItem.setSelected(false);
+                        BackSelectedItem.setTextColor(getResources().getColor(R.color.TextGray));
+                        BackSelectedItem.setBackgroundResource(R.drawable.button_local);
+                    }
+                    backPosition = position;
+                }
+
+                toggle = false;
+                binding.vPause.setVisibility(View.GONE);
+                binding.layoutLocal.setVisibility(View.GONE);
+            }
+
+        });
+        townGrid.setAdapter(townAdapter);
         // Inflate the layout for this fragment
         return binding.getRoot();
     }
@@ -144,72 +192,6 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
 
     public void onTownRequestClick(View view) {
         _listener.addFragment(RequestTownServiceFragment.newInstance());
-    }
-
-
-    // when select local, change selected button's background resource
-    public void onLocal1Click(View view) {
-        if (tog_local[1] || tog_local[2]) {
-            if (tog_local[1]) {
-                tog_local[1] = false;
-                binding.btLocal2.setBackgroundResource(R.drawable.button_local);
-            } else {
-                tog_local[2] = false;
-                binding.btLocal3.setBackgroundResource(R.drawable.button_local);
-            }
-        }
-
-        tog_local[0] = !tog_local[0];
-        if (tog_local[0]) {
-            binding.btLocal1.setBackgroundResource(R.drawable.button_local_sel);
-            binding.tvSelLocal.setText(R.string.bt_local1);
-        } else {
-            binding.btLocal1.setBackgroundResource(R.drawable.button_local);
-            binding.tvSelLocal.setText(R.string.tvSelLocal);
-        }
-    }
-
-    public void onLocal2Click(View view) {
-        if (tog_local[0] || tog_local[2]) {
-            if (tog_local[0]) {
-                tog_local[0] = false;
-                binding.btLocal1.setBackgroundResource(R.drawable.button_local);
-            } else {
-                tog_local[2] = false;
-                binding.btLocal3.setBackgroundResource(R.drawable.button_local);
-            }
-        }
-
-        tog_local[1] = !tog_local[1];
-        if (tog_local[1]) {
-            binding.btLocal2.setBackgroundResource(R.drawable.button_local_sel);
-            binding.tvSelLocal.setText(R.string.bt_local2);
-        } else {
-            binding.btLocal2.setBackgroundResource(R.drawable.button_local);
-            binding.tvSelLocal.setText(R.string.tvSelLocal);
-        }
-    }
-
-    public void onLocal3Click(View view) {
-        if (tog_local[0] || tog_local[1]) {
-            if (tog_local[0]) {
-                tog_local[0] = false;
-                binding.btLocal1.setBackgroundResource(R.drawable.button_local);
-            } else {
-                tog_local[1] = false;
-                binding.btLocal2.setBackgroundResource(R.drawable.button_local);
-            }
-        }
-
-        tog_local[2] = !tog_local[2];
-        if (tog_local[2]) {
-            binding.btLocal3.setBackgroundResource(R.drawable.button_local_sel);
-            binding.tvSelLocal.setText(R.string.bt_local3);
-        } else {
-            binding.btLocal3.setBackgroundResource(R.drawable.button_local);
-            binding.tvSelLocal.setText(R.string.tvSelLocal);
-        }
-
     }
 
 
@@ -316,7 +298,55 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         }
     }
 
+    /***
+     * 지역 선택 그리드뷰 어댑터
+     *
+     * ***/
+     //TODO : 별도 레이아웃 쓰면 자꾸 오류남. 뷰 하나라 상관없긴 한데, 레이아웃 사용하면 뷰 셋팅 매번 안해줘도 됨.
+    public class TownGridAdapter extends BaseAdapter {
+        private Context context;
+        private String[] town;
+        private int layout;
+        LayoutInflater inf;
 
+        TownGridAdapter(Context context, String[] townIn) {
+            this.context = context;
+            this.town = townIn;
+
+        }
+        @Override
+        public int getCount() {
+            return town.length;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return town[position];
+        }
+
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View view, ViewGroup viewGroup) {
+            NotoTextView btTown = new NotoTextView(this.context);
+            btTown.setText(town[position]);
+            btTown.setBackgroundResource(R.drawable.button_local);
+            btTown.setGravity(Gravity.CENTER);
+            btTown.setTextColor(getResources().getColor(R.color.TextGray));
+            btTown.setLayoutParams(new GridView.LayoutParams(ConvertDPtoPX(context, 77), ConvertDPtoPX(context,77)));
+            btTown.setTextSize(13);
+            return btTown;
+        }
+    }
+
+    public static int ConvertDPtoPX(Context context, int dp) {
+        float density = context.getResources().getDisplayMetrics().density;
+        return Math.round((float) dp * density);
+    }
 
 
 

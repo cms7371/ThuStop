@@ -2,9 +2,6 @@
     <!--Fragment 이름 순으로 적어주세요-->
     <!--이름이 앞에 fragment가 뒤로 오게 합시다 ex) main fragment!-->
 
-
-
-
     <!--Add Route Map Search Fragment-->
     <string name="tv_mark_start">출발</string>
     <string name="tv_mark_end">도착</string>
