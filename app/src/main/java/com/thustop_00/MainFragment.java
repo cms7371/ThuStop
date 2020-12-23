@@ -5,7 +5,6 @@ import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,8 +26,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-import static android.content.Context.LOCATION_SERVICE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,11 +65,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         binding = FragmentMainBinding.inflate(inflater);
         binding.setMainfrag(this);
 
-        if (!checkLocationServicesStatus()) {
-            _listener.showLocationServiceSettingDialog();
-        } else {
-            checkRunTimePermission();
-        }
+        checkRunTimePermission();
 
         binding.vPause.setVisibility(View.GONE);
         binding.layoutLocal.setVisibility(View.GONE);
@@ -219,6 +212,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
 
     }
 
+
     public void onGPSClick(View view) {
         gpsTracker = new GpsTracker(getActivity());
         latitude = gpsTracker.getLatitude();
@@ -253,7 +247,6 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         }
         Address address = addresses.get(0);
         return address.getAdminArea() + " " + address.getLocality() + " " + address.getSubLocality();
-
     }
 
     void checkRunTimePermission() {
@@ -265,15 +258,20 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
                 Manifest.permission.ACCESS_COARSE_LOCATION);
         if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED &&
                 hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED) {
-            Log.d(TAG, "위치 권환 확인");
-            // 2. 이미 퍼미션을 가지고 있다면
+            // 2. 이미 퍼미션을 가지고 있다면 3.  위치 값을 가져올 수 있음
             // ( 안드로이드 6.0 이하 버전은 런타임 퍼미션이 필요없기 때문에 이미 허용된 걸로 인식합니다.)
-            // 3.  위치 값을 가져올 수 있음
+            Log.d(TAG, "checkRunTimePermission: 위치 권환 허용 되어 있음");
+            //위치 서비스 활성화 되어 있는지 체크
+            if (!_listener.checkLocationServicesStatus()) {
+                _listener.showLocationServiceSettingDialog();
+            } else {
+                _listener.setGPSLocationServiceStatus(true);
+            }
         } else {  //2. 퍼미션 요청을 허용한 적이 없다면 퍼미션 요청이 필요합니다. 2가지 경우(3-1, 4-1)가 있습니다.
             // 3-1. 사용자가 퍼미션 거부를 한 적이 있는 경우에는
             if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), REQUIRED_PERMISSIONS[0])) {
                 // 3-2. 요청을 진행하기 전에 사용자가에게 퍼미션이 필요한 이유를 설명해줄 필요가 있습니다.
-                Toast.makeText(getActivity(), "이 앱을 실행하려면 위치 접근 권한이 필요합니다.", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity(), "이 앱을 실행하려면 위치 접근 권한이 필요합니다.", Toast.LENGTH_LONG).show();
                 // 3-3. 사용자게에 퍼미션 요청을 합니다. 요청 결과는 onRequestPermissionResult에서 수신됩니다.
                 ActivityCompat.requestPermissions(getActivity(), REQUIRED_PERMISSIONS,
                         PERMISSIONS_REQUEST_CODE);
@@ -283,14 +281,10 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
                 ActivityCompat.requestPermissions(getActivity(), REQUIRED_PERMISSIONS,
                         PERMISSIONS_REQUEST_CODE);
             }
+            //+ onRequestPermissionResult 에서 허용할 시 위치 설정이 켜져있는지 체크 후 다이얼로그를 띄움
         }
     }
 
-    public boolean checkLocationServicesStatus() {
-        LocationManager locationManager = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-                || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-    }
 
     @Override
     public void onBack() {
@@ -307,6 +301,11 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
             }
         }
     }
+
+
+
+
+
 
 
 //메인 액티비티로 옮겨야 동작하는거 확인 추후 삭제 예정

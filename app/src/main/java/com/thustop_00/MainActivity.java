@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Rect;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -21,6 +22,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -61,9 +63,11 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     /* Handler for delay of splash fragment. It should be removed after loading delay added*/
     Handler H = new Handler(Looper.getMainLooper());
     //for checking first run
-    private static final int GPS_ENABLE_REQUEST_CODE = 2001;
+    private static final int LOCATION_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+    private static boolean isGPSLocationServiceEnabled = false;
+
     public SharedPreferences prefs;
     private onBackPressedListener BackListener;
     private final static String TAG = "MainActivity";
@@ -212,19 +216,30 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                 }
             }
             if (check_result) {
-                Log.d(TAG, "onRequestPermissionsResult: GPS is permitted");
+                Log.d(TAG, "onRequestPermissionsResult: GPS 권환 허용됨, 위치 설정 체크");
                 //위치 값을 가져올 수 있음
+                if (!checkLocationServicesStatus()) {
+                    showLocationServiceSettingDialog();
+                } else {
+                    setGPSLocationServiceStatus(true);
+                }
             } else {
                 // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])
                         || ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[1])) {
-                    Toast.makeText(this, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "위치 정보 관련 서비스를 이용하실 수 없습니다. 앱을 다시 실행하여 권한을 허용해주세요.", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(this, "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "위치 정보 관련 서비스를 이용하실 수 없습니다. 설정(앱 정보)에서 권한을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
                 }
             }
-
         }
+    }
+
+    @Override
+    public boolean checkLocationServicesStatus() {
+        LocationManager locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+                || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
 
     /***********************************************************************************************
@@ -392,26 +407,54 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         return super.dispatchTouchEvent(ev);
     }
 
+    //위치 권한 설정 activity 실행하는 메서드
     @Override
     public void showLocationServiceSettingDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("위치 서비스 비활성화");
-        builder.setMessage("앱을 사용하기 위해서는 위치 서비스가 필요합니다.\n" + "위치 설정을 수정하실래요?");
+        builder.setMessage("앱을 사용하기 위해서는 위치 서비스가 필요합니다.\n" + "위치 서비스 설정을 수정하실래요?");
         builder.setCancelable(true);
         builder.setPositiveButton("설정", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
-                Intent callGPSSettingIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivityForResult(callGPSSettingIntent, GPS_ENABLE_REQUEST_CODE);
+                Intent callLocationSettingIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivityForResult(callLocationSettingIntent, LOCATION_ENABLE_REQUEST_CODE);
             }
         });
         builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
                 dialog.cancel();
+                setGPSLocationServiceStatus(false);
+                Toast.makeText(getBaseContext(), "위치 서비스가 비활성화 되어 있으면 위치 기반 서비스를 이용할 수 없습니다.", Toast.LENGTH_SHORT).show();
             }
         });
+
         builder.create().show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == LOCATION_ENABLE_REQUEST_CODE) {
+            if (checkLocationServicesStatus()) {
+                setGPSLocationServiceStatus(true);
+            } else {
+                setGPSLocationServiceStatus(false);
+                Toast.makeText(this, "위치 서비스가 비활성화 되어 있으면 위치 기반 서비스를 이용할 수 없습니다.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    @Override
+    public void setGPSLocationServiceStatus(boolean isEnabled) {
+        isGPSLocationServiceEnabled = isEnabled;
+        Log.d(TAG, "setGPSLocationServiceStatus: 위치 설정, GPS 권한 상태 : " + isEnabled);
+    }
+
+    @Override
+    public boolean getIsGPSLocationServiceIsEnabled() {
+        return isGPSLocationServiceEnabled;
     }
 
     //해시키 필요할 때

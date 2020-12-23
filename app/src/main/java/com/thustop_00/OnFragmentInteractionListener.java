@@ -21,5 +21,9 @@ public interface OnFragmentInteractionListener {
     void hideKeyBoard();
 
     void showLocationServiceSettingDialog();
+    boolean checkLocationServicesStatus();
+    void setGPSLocationServiceStatus(boolean isEnabled);
+    boolean getIsGPSLocationServiceIsEnabled();
+
 
 }
