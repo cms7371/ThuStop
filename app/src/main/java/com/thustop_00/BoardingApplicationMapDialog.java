@@ -30,8 +30,7 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
     private Via via;
     private boolean isDestination;
 
-    private double centerLatitude = 0.0;
-    private double centerLongitude = 0.0;
+
     private boolean op_mod;
     private final static boolean SINGLE = false;
     private final static boolean MULTIPLE = true;
@@ -103,9 +102,9 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
                 marker.setMapPoint(getMapPointWithVia(alighting_stops.get(i - 1)));
                 mapView.addPOIItem(marker);
             }
-            centerLatitude /= boarding_stops.size() + alighting_stops.size();
-            centerLongitude /= boarding_stops.size() + alighting_stops.size();
-            mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(centerLatitude,centerLongitude), 7, true);
+            mapView.fitMapViewAreaToShowAllPOIItems();
+            mapView.zoomOut(true);
+            //mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(centerLatitude,centerLongitude), 7, true);
         } else if (op_mod == SINGLE) { //정류장이 하나인 경우(노선 신청에서 넘어오는 경우)
             findViewById(R.id.bt_dsm_confirm).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -128,7 +127,10 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
             marker.setCustomImageAnchor(0.5f, 1.0f);
             marker.setMapPoint(getMapPointWithVia(via));
             mapView.addPOIItem(marker);
-            mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(centerLatitude,centerLongitude), 5, true);
+            mapView.fitMapViewAreaToShowAllPOIItems();
+            mapView.zoomOut(true);
+            mapView.zoomOut(true);
+            //mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(centerLatitude,centerLongitude), 5, true);
 
         }
     }
@@ -138,8 +140,6 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
     }
 
     private MapPoint getMapPointWithVia(Via v){
-        centerLatitude += v.stop.latitude;
-        centerLongitude += v.stop.longitude;
         return MapPoint.mapPointWithGeoCoord(v.stop.latitude, v.stop.longitude);
     }
 
@@ -157,6 +157,7 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
     @Override
     public void onPOIItemSelected(MapView mapView, MapPOIItem mapPOIItem) {
         int index = mapPOIItem.getTag();
+        findViewById(R.id.cl_dsm_info).animate().translationY(-100).setDuration(150).withEndAction(() ->findViewById(R.id.cl_dsm_info).animate().translationY(0).setDuration(150).start()).start();
         if (index > 0) {
             index = index - 1;
             setInformationBox(boarding_stops.get(index), false);

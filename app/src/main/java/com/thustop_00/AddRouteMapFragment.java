@@ -136,15 +136,11 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
     }
 
     public void onGPSClick(View view){
-        if(_listener.getGPSServiceStatus()){
-            if(gpsTracker == null){
-                gpsTracker = new GpsTracker(getContext());
-                gpsMarker = new MapPOIItem();
-                gpsMarker.setTag(0);
-                gpsMarker.setItemName("현재 위치");
-                gpsMarker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
-            }
-
+        if(binding.map.getCurrentLocationTrackingMode() == MapView.CurrentLocationTrackingMode.TrackingModeOff){
+            binding.map.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeadingWithoutMapMoving);
+            binding.map.setCustomCurrentLocationMarkerImage(R.drawable.icon_pin_end, new MapPOIItem.ImageOffset(32, 32));
+            binding.map.setShowCurrentLocationMarker(true);
+            Log.d(TAG, "onGPSClick: 현위지 마커 활성화 됨");
         }
     }
 

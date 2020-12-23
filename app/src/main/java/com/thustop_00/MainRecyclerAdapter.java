@@ -219,7 +219,9 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        mListener.onItemSelected(view, 0, getAdapterPosition());
+                        //TODO 테스트를 위해 바꿔놓은거 원래대로
+                        mListener.onItemSelected(view, 0, -1);
+                        //mListener.onItemSelected(view, 0, getAdapterPosition());
                     }
                 });
                 //TODO 아이템들 로컬 변수로 묶어줄 것
