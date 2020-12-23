@@ -34,6 +34,8 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
     private static final String TAG = "LocationMapSearchFrag";
 
     private boolean isStart;
+    private GpsTracker gpsTracker = null;
+    private MapPOIItem gpsMarker = null;
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
@@ -66,10 +68,7 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
         binding.setMapSearchfrag(this);
         _listener.setToolbarStyle(_listener.INVISIBLE, "");
         isStart = true;
-
         binding.map.setMapViewEventListener(this);
-
-
         LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         //입력이 null로 fragment가 선언되면(메인에서 넘어올 때) 현재 위치로 초기화 해줍니다.
         if (startLocation == null) {
@@ -136,6 +135,19 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
         }
     }
 
+    public void onGPSClick(View view){
+        if(_listener.getGPSServiceStatus()){
+            if(gpsTracker == null){
+                gpsTracker = new GpsTracker(getContext());
+                gpsMarker = new MapPOIItem();
+                gpsMarker.setTag(0);
+                gpsMarker.setItemName("현재 위치");
+                gpsMarker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
+            }
+
+        }
+    }
+
     public void onBackClick(View view) {
         _listener.setFragment(MainFragment.newInstance());
     }
@@ -174,7 +186,7 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
             @Override
             public void onReverseGeoCoderFailedToFindAddress(MapReverseGeoCoder mapReverseGeoCoder) {
                 //binding.tvStart.setText("실패^^");// 호출에 실패한 경우.
-                Log.d(TAG, "ReverseGeoCoder 호출 실패");
+                Log.d(TAG, "onReverseGeoCoderFailedToFindAddress: ReverseGeoCoder 호출 실패");
             }
         }, getActivity());
         reverseGeoCoder.startFindingAddress();

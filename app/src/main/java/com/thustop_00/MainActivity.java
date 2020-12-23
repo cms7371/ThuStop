@@ -66,7 +66,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     private static final int LOCATION_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
-    private static boolean isGPSLocationServiceEnabled = false;
+    //GPS 권한 허용과 위치서비스 활용이 모두 켜져 있어야 true
+    private static boolean GPSServiceStatus = false;
 
     public SharedPreferences prefs;
     private onBackPressedListener BackListener;
@@ -221,16 +222,31 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                 if (!checkLocationServicesStatus()) {
                     showLocationServiceSettingDialog();
                 } else {
-                    setGPSLocationServiceStatus(true);
+                    setGPSServiceStatus(true);
                 }
             } else {
                 // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])
                         || ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[1])) {
-                    Toast.makeText(this, "위치 정보 관련 서비스를 이용하실 수 없습니다. 앱을 다시 실행하여 권한을 허용해주세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "위치 기반 서비스를 이용하실 수 없습니다. 앱을 다시 실행하여 권한을 허용해주세요.", Toast.LENGTH_LONG).show();
+                    setGPSServiceStatus(false);
                 } else {
-                    Toast.makeText(this, "위치 정보 관련 서비스를 이용하실 수 없습니다. 설정(앱 정보)에서 권한을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "위치 기반 서비스를 이용하실 수 없습니다. 설정(앱 정보)에서 권한을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
+                    setGPSServiceStatus(false);
                 }
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == LOCATION_ENABLE_REQUEST_CODE) {
+            if (checkLocationServicesStatus()) {
+                setGPSServiceStatus(true);
+            } else {
+                setGPSServiceStatus(false);
+                Toast.makeText(this, "위치 서비스가 비활성화 되어 있으면 위치 기반 서비스를 이용할 수 없습니다.", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -259,8 +275,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         } catch (IllegalStateException ignore) {
         }
     }
-
     /*BackStack 쌓으면서 fragment 바꿀 때*/
+
     @Override
     public void addFragment(FragmentBase fr) {
         getSupportFragmentManager().beginTransaction()
@@ -268,8 +284,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                 .addToBackStack(null)
                 .commit();
     }
-
     /*BackStack 쌓지 않고 fragment 바꿀 때(돌아올 필요가 없는 fragment 갈 때*/
+
     @Override
     public void addFragmentNotBackStack(FragmentBase fr) {
         getSupportFragmentManager().popBackStack();
@@ -293,7 +309,6 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     public void closeDrawer() {
         binding.drawerLayout.closeDrawer(GravityCompat.START);
     }
-
     @Override
     public void lockDrawer(boolean isLocked) {
         if (isLocked) {
@@ -302,7 +317,6 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
         }
     }
-
     /**
      * setToolbarStyle 메소드
      * - toolbarState : 이름 그대로 _listener에 정의된 변수 이용하여 하면 됨
@@ -425,7 +439,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             @Override
             public void onClick(DialogInterface dialog, int id) {
                 dialog.cancel();
-                setGPSLocationServiceStatus(false);
+                setGPSServiceStatus(false);
                 Toast.makeText(getBaseContext(), "위치 서비스가 비활성화 되어 있으면 위치 기반 서비스를 이용할 수 없습니다.", Toast.LENGTH_SHORT).show();
             }
         });
@@ -433,28 +447,17 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         builder.create().show();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == LOCATION_ENABLE_REQUEST_CODE) {
-            if (checkLocationServicesStatus()) {
-                setGPSLocationServiceStatus(true);
-            } else {
-                setGPSLocationServiceStatus(false);
-                Toast.makeText(this, "위치 서비스가 비활성화 되어 있으면 위치 기반 서비스를 이용할 수 없습니다.", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
+
 
     @Override
-    public void setGPSLocationServiceStatus(boolean isEnabled) {
-        isGPSLocationServiceEnabled = isEnabled;
+    public void setGPSServiceStatus(boolean isEnabled) {
+        GPSServiceStatus = isEnabled;
         Log.d(TAG, "setGPSLocationServiceStatus: 위치 설정, GPS 권한 상태 : " + isEnabled);
     }
 
     @Override
-    public boolean getIsGPSLocationServiceIsEnabled() {
-        return isGPSLocationServiceEnabled;
+    public boolean getGPSServiceStatus() {
+        return GPSServiceStatus;
     }
 
     //해시키 필요할 때

@@ -22,8 +22,8 @@ public interface OnFragmentInteractionListener {
 
     void showLocationServiceSettingDialog();
     boolean checkLocationServicesStatus();
-    void setGPSLocationServiceStatus(boolean isEnabled);
-    boolean getIsGPSLocationServiceIsEnabled();
+    void setGPSServiceStatus(boolean isEnabled);
+    boolean getGPSServiceStatus();
 
 
 }

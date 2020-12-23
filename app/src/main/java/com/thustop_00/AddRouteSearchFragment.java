@@ -65,9 +65,6 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
         binding = FragmentAddRouteSearchBinding.inflate(inflater);
 
         _listener.setToolbarStyle(_listener.WHITE_BACK, "");
-/*        _listener.setToolbarStyle(true, true);
-        _listener.setTitle(false, "");
-        _listener.showToolbarVisibility(true);*/
         _listener.setOnBackPressedListener(this);
 
         //apiKey로 구글 클라이언트 시작

@@ -249,6 +249,20 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         return address.getAdminArea() + " " + address.getLocality() + " " + address.getSubLocality();
     }
 
+    /**
+     * 위치, GPS 권환 확인 플로우
+     * checkRunTimePermission 에서 GPS 권한확인
+     * if GPS 허용 -> 위치 권환 확인으로 -> (2)
+     * else GPS 허용 X -> GPS 권한 팝업 뜨고 결과 MainActivity onRequestPermissionsResult 에서 수신 -> (1)
+     * (1) GPS 팝업 결과
+     * 허용 -> 위치 권환 확인으로 -> (2)
+     * 거부 -> isGPSLocationServiceEnabled = false 로 하여 이후 위치 서비스 비활성화
+     * (2)위치 권환 확인
+     * 허용 -> isGPSLocationServiceEnabled = true 하여 위치 서비스 활성화
+     * 거부 -> showLocationServiceSettingDialog 로 설정할 수 있도록 함 -> 결과는 MainActivity onActivityResult 에서 수신 -> (3)
+     * (3) 위치 권한 설정 창 이후
+     * 허용 -> isGPSLocationServiceEnabled = true 하여 위치 서비스 활성화
+     * 거부 -> isGPSLocationServiceEnabled = false 로 하여 이후 위치 서비스 비활성화*/
     void checkRunTimePermission() {
         //런타임 퍼미션 처리
         // 1. 위치 퍼미션을 가지고 있는지 체크합니다.
@@ -265,7 +279,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
             if (!_listener.checkLocationServicesStatus()) {
                 _listener.showLocationServiceSettingDialog();
             } else {
-                _listener.setGPSLocationServiceStatus(true);
+                _listener.setGPSServiceStatus(true);
             }
         } else {  //2. 퍼미션 요청을 허용한 적이 없다면 퍼미션 요청이 필요합니다. 2가지 경우(3-1, 4-1)가 있습니다.
             // 3-1. 사용자가 퍼미션 거부를 한 적이 있는 경우에는
