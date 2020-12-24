@@ -77,22 +77,19 @@ public class AddRouteTimeSetFragment extends FragmentBase implements MainActivit
     public void onTimeSetClick(View view) {
         CustomTimePickerDialog timePickerDialog = new CustomTimePickerDialog(getActivity());
         timePickerDialog.setDialogListener(new CustomTimePickerDialog.CustomTimePickerDialogListener() {
-            //TODO Bug : 처음 키자마자 클릭하면 0시 0분으로 찍힘
+            //TODO : 00 찍히는 거는 해결. 피커 특성상 언어 설정으로 인해 AM PM이 한글로 오전 오후로 나오는데 통일이 낫지 않을까?
             @Override
             public void onOkClick(int hour, int minute, String n) {
                 h = hour;
                 min = minute;
                 noon = n;
-                binding.tvTimePicker.setText(noon+"     "+String.valueOf(h)+"시     "+String.valueOf(min)+"분");
+                binding.tvTimePicker.setText(noon+"              "+String.valueOf(h)+"              "+String.valueOf(min));
             }
 
 
         });
         timePickerDialog.show();
 
-
-        //timePickerDialog.callFunction(binding.tvTimePicker);
-        //showTime();
     }
 
     private void setCurTime(){
@@ -104,7 +101,7 @@ public class AddRouteTimeSetFragment extends FragmentBase implements MainActivit
         }
         int h = cal.get(Calendar.HOUR);
         int m = (cal.get(Calendar.MINUTE)/10)*10;
-        binding.tvTimePicker.setText(n +"     "+String.valueOf(h)+"시     "+String.valueOf(m)+"분");
+        binding.tvTimePicker.setText(n+"              "+String.valueOf(h)+"              "+String.valueOf(m));
 
     }
 
@@ -112,22 +109,6 @@ public class AddRouteTimeSetFragment extends FragmentBase implements MainActivit
     public void onBack() {
         _listener.addFragmentNotBackStack(AddRouteMapFragment.newInstance(startLocation, endLocation));
     }
-    /*
-    void showTime() {
-
-        CustomTimePicker.OnTimeSetListener onTimeSetListener = new CustomTimePicker.OnTimeSetListener() {
-
-            @Override
-            public void onTimeSet(TimePicker timePicker, int i, int i1) {
-
-            }
-        };
-
-        CustomTimePicker timePickerDialog = new CustomTimePicker(getActivity(), R.style.SpinnerTimePickerDialogTheme, onTimeSetListener,cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), false);
-        timePickerDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        timePickerDialog.setMessage("희망 도착 시간");
-        timePickerDialog.show();
-    }*/
 
 
 }

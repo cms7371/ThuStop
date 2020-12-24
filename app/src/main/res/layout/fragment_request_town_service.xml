@@ -22,12 +22,13 @@
             android:id="@+id/iv_town"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="90dp"
             android:src="@drawable/img_town_bus"
-            app:layout_constraintTop_toTopOf="@id/guideline1"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_1"
             app:layout_constraintEnd_toEndOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline1"
+            app:layout_constraintVertical_bias="0.7"
+            app:layout_constraintVertical_chainStyle="packed" />
         <com.thustop_00.widgets.NotoTextView
             android:id="@+id/tv_1"
             android:layout_width="wrap_content"
@@ -38,6 +39,8 @@
             android:textColor="@color/TextBlack"
             android:letterSpacing="-0.07"
             app:notoTextStyle="medium"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintBottom_toTopOf="@id/tv_2"
             app:layout_constraintTop_toBottomOf="@id/iv_town"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -46,11 +49,13 @@
             android:id="@+id/tv_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="6dp"
+            android:layout_marginTop="6dp"
             android:text="@string/tv_town_2"
             android:letterSpacing="-0.07"
             android:textSize="10sp"
             android:textColor="@color/Primary"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintBottom_toTopOf="@id/cl_townSel"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_1"/>
@@ -66,7 +71,9 @@
             android:onClick="@{RequestTownFrag::onRegionSelectClick}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_2">
+            app:layout_constraintTop_toBottomOf="@id/tv_2"
+            app:layout_constraintBottom_toTopOf="@id/cb_message"
+            app:layout_constraintVertical_chainStyle="packed">
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -93,16 +100,19 @@
             android:id="@+id/cb_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:button="@drawable/checkbox_round"
             android:layout_marginTop="75dp"
+            android:letterSpacing="-0.1"
             android:paddingStart="5dp"
+            android:enabled="false"
             android:text="@string/cb_town_message"
             android:textColor="@color/TextBlack"
             android:textSize="13sp"
-            android:letterSpacing="-0.1"
-            android:button="@drawable/checkbox_round"
-            app:layout_constraintTop_toBottomOf="@id/cl_townSel"
+            app:layout_constraintBottom_toTopOf="@id/et_phoneNum"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/cl_townSel"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <com.thustop_00.widgets.NotoEditText
             android:id="@+id/et_phoneNum"
@@ -111,6 +121,7 @@
             android:layout_marginStart="38dp"
             android:layout_marginEnd="38dp"
             android:layout_marginTop="18dp"
+            android:enabled="false"
             android:background="@drawable/bg_round25_grayf5"
             android:hint="@string/et_town_hint"
             android:textColorHint="@color/TextGray"
@@ -120,9 +131,10 @@
             android:maxLines="1"
             android:paddingStart="30dp"
             android:textSize="14dp"
+            app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_townSel2"
             app:layout_constraintTop_toBottomOf="@id/cb_message" />
 
         <com.thustop_00.widgets.NotoTextView
@@ -133,9 +145,11 @@
             android:text="@string/tv_town_notice"
             android:textSize="9sp"
             android:textColor="@color/TextGray"
+            app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintTop_toBottomOf="@id/et_phoneNum"
             app:layout_constraintStart_toStartOf="@id/et_phoneNum"
-            app:layout_constraintEnd_toEndOf="@id/et_phoneNum"/>
+            app:layout_constraintEnd_toEndOf="@id/et_phoneNum"
+            app:layout_constraintBottom_toTopOf="@id/bt_request"/>
 
         <com.thustop_00.widgets.NotoButton
             android:id="@+id/bt_request"
@@ -144,6 +158,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="50dp"
+
             android:background="@drawable/bg_round25_graycf"
             android:text="@string/bt_town_request"
             android:textSize="16sp"

@@ -416,6 +416,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     }
 
     // TODO:위의 hide key board의 역할? 루트추가에서만 사용되는데 키보드 열린거 닫히진 않음, 그래서 아래 코드 추가함
+
     // when touch other space, hide opened keyboard
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {

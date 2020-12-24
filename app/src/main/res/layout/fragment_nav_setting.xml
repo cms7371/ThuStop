@@ -234,6 +234,7 @@
             android:paddingHorizontal="20dp"
             android:paddingVertical="5dp"
             android:src="@drawable/ic_thin_arrow"
+            android:onClick="@{NavSettingFrag::onServiceTermsClick}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_service_terms"
             app:layout_constraintBottom_toBottomOf="@id/tv_service_terms"/>
@@ -245,6 +246,7 @@
             android:paddingHorizontal="20dp"
             android:paddingVertical="5dp"
             android:src="@drawable/ic_thin_arrow"
+            android:onClick="@{NavSettingFrag::onLocationTermsClick}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_location_terms"
             app:layout_constraintBottom_toBottomOf="@id/tv_location_terms"/>
@@ -256,6 +258,7 @@
             android:paddingHorizontal="20dp"
             android:paddingVertical="5dp"
             android:src="@drawable/ic_thin_arrow"
+            android:onClick="@{NavSettingFrag::onPersonalDataPoliciesClick}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_personal_data_policies"
             app:layout_constraintBottom_toBottomOf="@id/tv_personal_data_policies"/>
@@ -267,6 +270,7 @@
             android:paddingHorizontal="20dp"
             android:paddingVertical="5dp"
             android:src="@drawable/ic_thin_arrow"
+            android:onClick="@{NavSettingFrag::onOperationalPoliciesClick}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_operational_policies"
             app:layout_constraintBottom_toBottomOf="@id/tv_operational_policies"/>

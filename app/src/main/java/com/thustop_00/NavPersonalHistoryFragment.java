@@ -54,7 +54,6 @@ public class NavPersonalHistoryFragment extends FragmentBase implements MainActi
         _listener.setOnBackPressedListener(this);
 
         callFragment(FRAGMENT_HISTORY);
-        // TODO: 네비게이션에서 넘어올때 창이 안닫혀서 강제로 닫고 프래그먼트 전환해놓음, 그랬더니 백버튼 눌러도 다시 네비게이션 안열려서 x버튼이랑 차이가 없음
         return binding.getRoot();
     }
 

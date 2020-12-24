@@ -29,7 +29,6 @@ public class RegisterTermsFragment extends FragmentBase implements CompoundButto
     public static RegisterTermsFragment newInstance() {
         RegisterTermsFragment fragment = new RegisterTermsFragment();
         Bundle args = new Bundle();
-
         fragment.setArguments(args);
         return fragment;
     }

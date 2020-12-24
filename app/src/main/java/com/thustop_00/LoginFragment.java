@@ -40,6 +40,7 @@ public class LoginFragment extends FragmentBase {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentLoginBinding.inflate(inflater);
+        binding.setLoginFrag(this);
         ButterKnife.bind(this,binding.getRoot());
 
         _listener.setToolbarStyle(_listener.WHITE_HAMBURGER, "로그인");

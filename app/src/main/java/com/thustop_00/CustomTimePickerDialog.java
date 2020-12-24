@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import com.thustop_00.widgets.NotoButton;
 
 import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.Objects;
 
 public class CustomTimePickerDialog extends Dialog {
@@ -26,6 +27,7 @@ public class CustomTimePickerDialog extends Dialog {
     private String noon;
     private int h, min;
     private String time;
+    final Calendar cal = Calendar.getInstance();
 
     private CustomTimePickerDialogListener dialogListener;
     private static final int INTERVAL = 10;
@@ -53,6 +55,7 @@ public class CustomTimePickerDialog extends Dialog {
         timePicker = findViewById(R.id.timePicker);
         timePicker.setIs24HourView(false);
         setMinutePicker();
+        setCurTime();
 
 
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
@@ -68,9 +71,9 @@ public class CustomTimePickerDialog extends Dialog {
             @Override
             public void onClick(View view) {
                 if(h <12) {
-                    noon = "오전";
+                    noon = "AM";
                 } else {
-                    noon = "오후";
+                    noon = "PM";
                     if(h != 12) {h = h-12;}
                 }
                 dialogListener.onOkClick(h,min,noon);
@@ -81,7 +84,10 @@ public class CustomTimePickerDialog extends Dialog {
         });
     }
 
-
+    private void setCurTime(){
+        h = cal.get(Calendar.HOUR_OF_DAY);
+        min = (cal.get(Calendar.MINUTE)/10)*10;
+    }
 
 
     public void setMinutePicker() {

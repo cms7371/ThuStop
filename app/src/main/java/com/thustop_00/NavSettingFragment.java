@@ -41,4 +41,17 @@ public class NavSettingFragment extends FragmentBase {
         _listener.setToolbarStyle(_listener.WHITE_BACK, "설정");
         return binding.getRoot();
     }
+
+    public void onServiceTermsClick(View view) {
+        _listener.addFragment(NavSettingTermsFragment.newInstance(0));
+    }
+    public void onLocationTermsClick(View view) {
+        _listener.addFragment(NavSettingTermsFragment.newInstance(1));
+    }
+    public void onPersonalDataPoliciesClick(View view) {
+        _listener.addFragment(NavSettingTermsFragment.newInstance(2));
+    }
+    public void onOperationalPoliciesClick(View view) {
+        _listener.addFragment(NavSettingTermsFragment.newInstance(3));
+    }
 }
