@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     //GPS 권한 허용과 위치서비스 활용이 모두 켜져 있어야 true
-    private static boolean GPSServiceStatus = false;
+    private static Boolean GPSServiceStatus = null;
 
     public SharedPreferences prefs;
     private onBackPressedListener BackListener;
@@ -99,9 +99,14 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         /* At start, display splash fragment during loading*/
         actionbar.hide();
         setFragment(SplashFragment.newInstance());
-
+        Log.d(TAG, "onCreate: GPSServiceStatus is " + GPSServiceStatus);
         checkFirstRun();
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        GPSServiceStatus = null;
     }
 
     /* Toolbar hamburger button click listener*/
@@ -447,8 +452,6 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         builder.create().show();
     }
 
-
-
     @Override
     public void setGPSServiceStatus(boolean isEnabled) {
         GPSServiceStatus = isEnabled;
@@ -456,9 +459,16 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     }
 
     @Override
-    public boolean getGPSServiceStatus() {
+    public Boolean getGPSServiceStatus() {
         return GPSServiceStatus;
     }
+
+    @Override
+    public int covertDPtoPX(int dp) {
+        float density = this.getResources().getDisplayMetrics().density;
+        return Math.round((float) dp * density);
+    }
+
 
     //해시키 필요할 때
 /*    private void getAppKeyHash() {

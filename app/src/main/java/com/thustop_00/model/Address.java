@@ -9,6 +9,14 @@ public class Address{
     private double latitude = 0;
     private double longitude = 0;
 
+    public static Address newInstance(String strAddress, double latitude, double longitude){
+        Address address = new Address();
+        address.address = strAddress;
+        address.latitude = latitude;
+        address.longitude = longitude;
+        return address;
+    }
+
 
     /*Getters and Setters*/
     public String getAddress() {

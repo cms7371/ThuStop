@@ -23,7 +23,8 @@ public interface OnFragmentInteractionListener {
     void showLocationServiceSettingDialog();
     boolean checkLocationServicesStatus();
     void setGPSServiceStatus(boolean isEnabled);
-    boolean getGPSServiceStatus();
+    Boolean getGPSServiceStatus();
+    int covertDPtoPX(int dp);
 
 
 }

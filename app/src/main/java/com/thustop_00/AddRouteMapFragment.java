@@ -3,6 +3,7 @@ package com.thustop_00;
 import android.Manifest;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.ScaleDrawable;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -57,11 +58,6 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentAddRouteMapBinding.inflate(inflater);
@@ -69,13 +65,18 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
         _listener.setToolbarStyle(_listener.INVISIBLE, "");
         isStart = true;
         binding.map.setMapViewEventListener(this);
-        LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         //입력이 null로 fragment가 선언되면(메인에서 넘어올 때) 현재 위치로 초기화 해줍니다.
         if (startLocation == null) {
-            startLocation = new Address();
-            endLocation = new Address();
-            getCurrentLocation(startLocation);
-            getCurrentLocation(endLocation);
+            if(_listener.getGPSServiceStatus()){
+                startLocation = new Address();
+                endLocation = new Address();
+                getCurrentLocation(startLocation);
+                getCurrentLocation(endLocation);
+            } else{
+                startLocation = Address.newInstance(null, 37.56667, 126.97847);
+                endLocation = Address.newInstance(null, 37.56667, 126.97847);
+            }
+
         }
         if (!startLocation.getAddress().equals("")) {
             binding.tvStart.setText(startLocation.getAddress());
@@ -91,17 +92,19 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
             binding.map.setMapCenterPoint(
                     MapPoint.mapPointWithGeoCoord(startLocation.getLatitude(), startLocation.getLongitude()), true);
         }
-
-        MapPOIItem marker = new MapPOIItem();
-        marker.setItemName("출발지");
-        marker.setTag(1);
-
         return binding.getRoot();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        binding.map.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOff);
+        binding.map.setShowCurrentLocationMarker(false);
     }
 
     public void onStartClick(View view) {
         if (!isStart) {
-            binding.marker.setImageResource(R.drawable.icon_pin_start);
+            binding.marker.setImageResource(R.drawable.icon_pin_head_green);
             binding.tvMarker.setText(R.string.tv_mark_start);
             binding.map.setMapCenterPoint(
                     MapPoint.mapPointWithGeoCoord(startLocation.getLatitude(), startLocation.getLongitude()),
@@ -117,7 +120,7 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
             _listener.addFragmentNotBackStack(AddRouteSearchFragment.newInstance(startLocation, endLocation));
         } else {
             isStart = false;
-            binding.marker.setImageResource(R.drawable.icon_pin_end);
+            binding.marker.setImageResource(R.drawable.icon_pin_head_red);
             binding.tvMarker.setText(R.string.tv_mark_end);
             binding.map.setMapCenterPoint(
                     MapPoint.mapPointWithGeoCoord(endLocation.getLatitude(), endLocation.getLongitude()),
@@ -136,11 +139,19 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
     }
 
     public void onGPSClick(View view){
-        if(binding.map.getCurrentLocationTrackingMode() == MapView.CurrentLocationTrackingMode.TrackingModeOff){
-            binding.map.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeadingWithoutMapMoving);
-            binding.map.setCustomCurrentLocationMarkerImage(R.drawable.icon_pin_end, new MapPOIItem.ImageOffset(32, 32));
-            binding.map.setShowCurrentLocationMarker(true);
-            Log.d(TAG, "onGPSClick: 현위지 마커 활성화 됨");
+        if (_listener.getGPSServiceStatus()) {
+            if (binding.map.getCurrentLocationTrackingMode() == MapView.CurrentLocationTrackingMode.TrackingModeOff) {
+                binding.map.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeadingWithoutMapMoving);
+                binding.map.setCustomCurrentLocationMarkerTrackingImage(R.drawable.icon_gps_marker, new MapPOIItem.ImageOffset(_listener.covertDPtoPX(18), _listener.covertDPtoPX(18)));
+                Toast.makeText(getContext(), "위치를 탐색 중입니다(10초~1분 소요)\n한 번 더 누르면 현재 위치로 핀이 이동합니다.", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onGPSClick: 현위지 마커 활성화 됨");
+            } else {
+                Address address = new Address();
+                getCurrentLocation(address);
+                binding.map.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(address.getLatitude(), address.getLongitude()), true);
+            }
+        } else {
+            Toast.makeText(getContext(), "GPS 또는 위치 서비스가 비활성화 되어있습니다.\n설정에서 권한을 활성화해주세요", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -152,8 +163,6 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
         GpsTracker gpsTracker = new GpsTracker(getActivity());
         address.setLatitude(gpsTracker.getLatitude());
         address.setLongitude(gpsTracker.getLongitude());
-        //address = getCurrentAddress(latitude, longitude);
-        //Toast.makeText(getActivity(), "현재위치 \n위도 " + latitude + "\n경도 " + longitude, Toast.LENGTH_LONG).show();
     }
 
     public void getAddr() {
@@ -161,7 +170,6 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
             @Override
             public void onReverseGeoCoderFoundAddress(MapReverseGeoCoder mapReverseGeoCoder, String addressString) {
                 // 주소를 찾은 경우.
-
                 if (isStart) {
                     binding.tvStart.setText(addressString);
                     binding.tvStart.setTextColor(Color.parseColor("#535353"));

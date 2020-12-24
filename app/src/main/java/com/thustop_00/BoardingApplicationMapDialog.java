@@ -4,13 +4,16 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.thustop_00.model.Address;
 import com.thustop_00.model.Via;
 
 import net.daum.mf.map.api.MapPOIItem;
@@ -20,12 +23,14 @@ import net.daum.mf.map.api.MapView;
 import java.util.ArrayList;
 
 public class BoardingApplicationMapDialog extends Dialog implements MapView.POIItemEventListener {
+    private static final String TAG = "BoardingMapDialog";
     private MapView mapView;
     private Activity activity;
-    private StopMapListener listener;
+    private StopMapListener dialogListener;
+    protected OnFragmentInteractionListener _listener;
 
-    private ArrayList<Via>boarding_stops;
-    private ArrayList<Via>alighting_stops;
+    private ArrayList<Via> boarding_stops;
+    private ArrayList<Via> alighting_stops;
 
     private Via via;
     private boolean isDestination;
@@ -39,7 +44,7 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
         void onConfirm();
     }
 
-    public BoardingApplicationMapDialog(@NonNull Context context, Activity activity, ArrayList<Via>boarding_stops, ArrayList<Via> alighting_stops) {
+    public BoardingApplicationMapDialog(@NonNull Context context, Activity activity, ArrayList<Via> boarding_stops, ArrayList<Via> alighting_stops) {
         super(context, R.style.CustomFullDialog);//화면을 꽉 채울 수 있도록 스타일 지정
         this.activity = activity;
         this.boarding_stops = boarding_stops;
@@ -47,7 +52,7 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
         this.op_mod = MULTIPLE;
     }
 
-    public BoardingApplicationMapDialog(Context context, Activity activity, Via via, boolean isDestination){
+    public BoardingApplicationMapDialog(Context context, Activity activity, Via via, boolean isDestination) {
         super(context, R.style.CustomFullDialog);
         this.activity = activity;
         this.via = via;
@@ -58,6 +63,13 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (activity instanceof OnFragmentInteractionListener) {
+            _listener = (OnFragmentInteractionListener) activity;
+            _listener.setOnBackPressedListener(null);
+        } else {
+            throw new RuntimeException(activity.toString() + " must implement OnFragmentInteractionListener");
+        }
+
         setContentView(R.layout.dialog_stop_map);
         //처음 설정된 match_parent가 무시되기 때문에 다시 설정해줘야함.
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -65,21 +77,17 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
         mapView = new MapView(activity);
         ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.mv_dsm_stop_map);
         mapViewContainer.addView(mapView);
-        findViewById(R.id.bt_dsm_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
-            }
-        });
+        findViewById(R.id.bt_dsm_back).setOnClickListener(view -> dismiss());
+        findViewById(R.id.bt_dsm_gps).setOnClickListener(view -> onGPSClick());
 
         //동작 모드에 따른 정의
         MapPOIItem marker;
-        if(op_mod == MULTIPLE){
+        if (op_mod == MULTIPLE) {
             mapView.setPOIItemEventListener(this);
             findViewById(R.id.bt_dsm_confirm).setVisibility(View.GONE);
             setInformationBox(boarding_stops.get(0), false);
             //출발 정류장 마커 만들어 줍니다.(1, 2, 3 등 양수 태그 가짐)
-            for (int i = 1; i <= boarding_stops.size(); i++){
+            for (int i = 1; i <= boarding_stops.size(); i++) {
                 marker = new MapPOIItem();
                 marker.setTag(i);
                 marker.setItemName(boarding_stops.get(i - 1).stop.name);
@@ -91,7 +99,7 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
                 mapView.addPOIItem(marker);
             }
             //도착 정류장 마커 만들기(-1, -2, -3 음수 태그 가짐)
-            for (int i = 1; i <= alighting_stops.size(); i++){
+            for (int i = 1; i <= alighting_stops.size(); i++) {
                 marker = new MapPOIItem();
                 marker.setTag(-i);
                 marker.setItemName(alighting_stops.get(i - 1).stop.name);
@@ -109,7 +117,7 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
             findViewById(R.id.bt_dsm_confirm).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.onConfirm();
+                    dialogListener.onConfirm();
                     dismiss();
                 }
             });
@@ -131,25 +139,48 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
             mapView.zoomOut(true);
             mapView.zoomOut(true);
             //mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(centerLatitude,centerLongitude), 5, true);
-
         }
     }
 
-    public void setDialogListener(StopMapListener listener) {
-        this.listener = listener;
+    @Override
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        _listener = null;
+        mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOff);
+        mapView.setShowCurrentLocationMarker(false);
     }
 
-    private MapPoint getMapPointWithVia(Via v){
+    public void setDialogListener(StopMapListener listener) {
+        this.dialogListener = listener;
+    }
+
+    private MapPoint getMapPointWithVia(Via v) {
         return MapPoint.mapPointWithGeoCoord(v.stop.latitude, v.stop.longitude);
     }
 
-    private void setInformationBox(Via v, boolean isDestination){
-        ((TextView)findViewById(R.id.tv_dsm_address)).setText(v.stop.address);
-        ((TextView)findViewById(R.id.tv_dsm_stop_name)).setText(v.stop.name);
-        if(isDestination){
-            ((ImageView)findViewById(R.id.iv_dsm_address)).setImageDrawable(getContext().getDrawable(R.drawable.icon_destination));
+    private void setInformationBox(Via v, boolean isDestination) {
+        ((TextView) findViewById(R.id.tv_dsm_address)).setText(v.stop.address);
+        ((TextView) findViewById(R.id.tv_dsm_stop_name)).setText(v.stop.name);
+        if (isDestination) {
+            ((ImageView) findViewById(R.id.iv_dsm_address)).setImageDrawable(getContext().getDrawable(R.drawable.icon_destination));
         } else {
-            ((ImageView)findViewById(R.id.iv_dsm_address)).setImageDrawable(getContext().getDrawable(R.drawable.icon_departure));
+            ((ImageView) findViewById(R.id.iv_dsm_address)).setImageDrawable(getContext().getDrawable(R.drawable.icon_departure));
+        }
+    }
+
+    private void onGPSClick() {
+        if (_listener.getGPSServiceStatus()) {
+            if (mapView.getCurrentLocationTrackingMode() == MapView.CurrentLocationTrackingMode.TrackingModeOff) {
+                mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeadingWithoutMapMoving);
+                mapView.setCustomCurrentLocationMarkerTrackingImage(R.drawable.icon_gps_marker, new MapPOIItem.ImageOffset(_listener.covertDPtoPX(18), _listener.covertDPtoPX(18)));
+                Toast.makeText(getContext(), "위치를 탐색 중입니다(10초~1분 소요)\n한 번 더 누르면 현재 위치로 핀이 이동합니다.", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onGPSClick: 현위지 마커 활성화 됨");
+            } else {
+                GpsTracker gpsTracker = new GpsTracker(activity);
+                mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(gpsTracker.getLatitude(), gpsTracker.getLongitude()), true);
+            }
+        } else {
+            Toast.makeText(getContext(), "GPS 또는 위치 서비스가 비활성화 되어있습니다.\n설정에서 권한을 활성화해주세요", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -157,7 +188,7 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
     @Override
     public void onPOIItemSelected(MapView mapView, MapPOIItem mapPOIItem) {
         int index = mapPOIItem.getTag();
-        findViewById(R.id.cl_dsm_info).animate().translationY(-100).setDuration(150).withEndAction(() ->findViewById(R.id.cl_dsm_info).animate().translationY(0).setDuration(150).start()).start();
+        findViewById(R.id.cl_dsm_info).animate().translationY(-100).setDuration(150).withEndAction(() -> findViewById(R.id.cl_dsm_info).animate().translationY(0).setDuration(150).start()).start();
         if (index > 0) {
             index = index - 1;
             setInformationBox(boarding_stops.get(index), false);

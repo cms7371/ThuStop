@@ -39,27 +39,22 @@ import java.util.Locale;
  * create an instance of this fragment.
  */
 public class MainFragment extends FragmentBase implements MainRecyclerAdapter.OnListItemSelectedInterface, MainActivity.onBackPressedListener {
-    FragmentMainBinding binding;
     private final static String TAG = "MainFragment";
+    private static final int GPS_ENABLE_REQUEST_CODE = 2001;
+    private static final int PERMISSIONS_REQUEST_CODE = 100;
+    FragmentMainBinding binding;
     boolean toggle;
-    boolean[] tog_local = {false, false, false};
-
-    private int backPosition = -1;
-    private String selectedTown;
-    private NotoTextView BackSelectedItem, CurSelectedItem;
-
-    private GpsTracker gpsTracker;
-    private ArrayList<Route> test_route_list;
-    private String[] test_town_list;
     double latitude;
     double longitude;
     String address;
-    private static final int GPS_ENABLE_REQUEST_CODE = 2001;
-    private static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
-
     long timeBackPressed = 0;
-
+    private int backPosition = -1;
+    private String selectedTown;
+    private NotoTextView BackSelectedItem, CurSelectedItem;
+    private GpsTracker gpsTracker;
+    private ArrayList<Route> test_route_list;
+    private String[] test_town_list;
 
     public static MainFragment newInstance() {
         MainFragment fragment = new MainFragment();
@@ -68,6 +63,8 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         return fragment;
     }
 
+
+
     @SuppressLint("ResourceType")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,9 +72,9 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
 
         binding = FragmentMainBinding.inflate(inflater);
         binding.setMainfrag(this);
-
-        checkRunTimePermission();
-
+        if (_listener.getGPSServiceStatus() == null) {
+            checkRunTimePermission();
+        }
         binding.vPause.setVisibility(View.GONE);
         binding.layoutLocal.setVisibility(View.GONE);
         colorText(binding.tvLocal1, R.string.tv_local1_color, getResources().getColor(R.color.Primary));
@@ -135,7 +132,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
                     binding.tvSelLocal.setText(R.string.tvSelLocal);
                 } else {
                     selectedTown = adapterView.getItemAtPosition(position).toString();
-                    Log.d(TAG,selectedTown);
+                    Log.d(TAG, selectedTown);
                     CurSelectedItem = (NotoTextView) view;
                     CurSelectedItem.setSelected(true);
                     CurSelectedItem.setTextColor(getResources().getColor(R.color.TextBlack));
@@ -149,12 +146,10 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
                     }
                     backPosition = position;
                 }
-
                 toggle = false;
                 binding.vPause.setVisibility(View.GONE);
                 binding.layoutLocal.setVisibility(View.GONE);
             }
-
         });
         townGrid.setAdapter(townAdapter);
         // Inflate the layout for this fragment
@@ -194,7 +189,6 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         _listener.addFragment(RequestTownServiceFragment.newInstance());
     }
 
-
     public void onGPSClick(View view) {
         gpsTracker = new GpsTracker(getActivity());
         latitude = gpsTracker.getLatitude();
@@ -204,7 +198,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         Toast.makeText(getActivity(), "현재위치 \n위도 " + latitude + "\n경도 " + longitude, Toast.LENGTH_LONG).show();
     }
 
-    // method to convert location to address
+    // method to convert location to address TODO: 없어져야하는 부분
     public String getCurrentAddress(double latitude, double longitude) {
         Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
         List<Address> addresses;
@@ -244,7 +238,8 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
      * 거부 -> showLocationServiceSettingDialog 로 설정할 수 있도록 함 -> 결과는 MainActivity onActivityResult 에서 수신 -> (3)
      * (3) 위치 권한 설정 창 이후
      * 허용 -> isGPSLocationServiceEnabled = true 하여 위치 서비스 활성화
-     * 거부 -> isGPSLocationServiceEnabled = false 로 하여 이후 위치 서비스 비활성화*/
+     * 거부 -> isGPSLocationServiceEnabled = false 로 하여 이후 위치 서비스 비활성화
+     */
     void checkRunTimePermission() {
         //런타임 퍼미션 처리
         // 1. 위치 퍼미션을 가지고 있는지 체크합니다.
@@ -302,18 +297,19 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
      * 지역 선택 그리드뷰 어댑터
      *
      * ***/
-     //TODO : 별도 레이아웃 쓰면 자꾸 오류남. 뷰 하나라 상관없긴 한데, 레이아웃 사용하면 뷰 셋팅 매번 안해줘도 됨.
+    //TODO : 별도 레이아웃 쓰면 자꾸 오류남. 뷰 하나라 상관없긴 한데, 레이아웃 사용하면 뷰 셋팅 매번 안해줘도 됨.
     public class TownGridAdapter extends BaseAdapter {
+        LayoutInflater inf;
         private Context context;
         private String[] town;
         private int layout;
-        LayoutInflater inf;
 
         TownGridAdapter(Context context, String[] townIn) {
             this.context = context;
             this.town = townIn;
 
         }
+
         @Override
         public int getCount() {
             return town.length;
@@ -337,19 +333,11 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
             btTown.setBackgroundResource(R.drawable.button_local);
             btTown.setGravity(Gravity.CENTER);
             btTown.setTextColor(getResources().getColor(R.color.TextGray));
-            btTown.setLayoutParams(new GridView.LayoutParams(ConvertDPtoPX(context, 77), ConvertDPtoPX(context,77)));
+            btTown.setLayoutParams(new GridView.LayoutParams(_listener.covertDPtoPX(77), _listener.covertDPtoPX(77)));
             btTown.setTextSize(13);
             return btTown;
         }
     }
-
-    public static int ConvertDPtoPX(Context context, int dp) {
-        float density = context.getResources().getDisplayMetrics().density;
-        return Math.round((float) dp * density);
-    }
-
-
-
 
 
 //메인 액티비티로 옮겨야 동작하는거 확인 추후 삭제 예정

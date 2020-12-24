@@ -62,7 +62,6 @@ public class BoardingApplicationDetailFragment extends FragmentBase {
     }
 
     private class RouteDetailAdapter extends RecyclerView.Adapter<RouteDetailAdapter.RouteDetailHolder>{
-        int dp10ToPixel = (int) (10 * getContext().getResources().getDisplayMetrics().density + 0.5);
 
         @Override
         public void onBindViewHolder(@NonNull RouteDetailHolder holder, int position) {
@@ -72,8 +71,8 @@ public class BoardingApplicationDetailFragment extends FragmentBase {
                 if (position == 0) {
                     holder.tvStop.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "NotoSansKR-Bold-Hestia.otf"));
                     holder.ivUpperLine.setVisibility(View.INVISIBLE);
-                    holder.ivDot.getLayoutParams().height = dp10ToPixel;
-                    holder.ivDot.getLayoutParams().width = dp10ToPixel;
+                    holder.ivDot.getLayoutParams().height = _listener.covertDPtoPX(10);
+                    holder.ivDot.getLayoutParams().width = _listener.covertDPtoPX(10);
                 }
             } else {
                 int offsetPosition = position - boarding_stop_num;
@@ -85,8 +84,8 @@ public class BoardingApplicationDetailFragment extends FragmentBase {
                 if (offsetPosition == alighting_stop_num - 1){
                     holder.tvStop.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "NotoSansKR-Bold-Hestia.otf"));
                     holder.ivLowerLine.setVisibility(View.INVISIBLE);
-                    holder.ivDot.getLayoutParams().height = dp10ToPixel;
-                    holder.ivDot.getLayoutParams().width = dp10ToPixel;
+                    holder.ivDot.getLayoutParams().height = _listener.covertDPtoPX(10);
+                    holder.ivDot.getLayoutParams().width = _listener.covertDPtoPX(10);
                 }
             }
         }
