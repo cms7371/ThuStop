@@ -22,7 +22,9 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.pixplicity.easyprefs.library.Prefs;
 import com.thustop_00.databinding.FragmentMainBinding;
+import com.thustop_00.model.PageResponse;
 import com.thustop_00.model.Route;
 import com.thustop_00.model.Stop;
 import com.thustop_00.model.Via;
@@ -32,6 +34,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,7 +61,8 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     private String selectedTown;
     private NotoTextView BackSelectedItem, CurSelectedItem;
     private GpsTracker gpsTracker;
-    private ArrayList<Route> test_route_list;
+    private MainRecyclerAdapter mainAdapter;
+    private List<Route> routes;
     private String[] test_town_list;
 
     public static MainFragment newInstance() {
@@ -62,7 +71,6 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         fragment.setArguments(args);
         return fragment;
     }
-
 
 
     @SuppressLint("ResourceType")
@@ -86,7 +94,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         _listener.lockDrawer(false);
 
         //Test Routes
-        Route route1 = new Route("A15", "수원", 123, 52.34f, 35, 13, 45, "운행중", 99000);
+/*        Route route1 = new Route("A15", "수원", 123, 52.34f, 35, 13, 45, "운행중", 99000);
         Stop stop1_0 = new Stop("수원역 1번 출구", 0, "경기도 수원시 팔달구 매산동 103", 37.266260f, 127.001412f);
         Via via1_0 = new Via(0, stop1_0, "07:30");
         Stop stop1_1 = new Stop("이춘택 병원", 1, "경기도 수원시 팔달구 교동 매산로 138", 37.272110f, 127.015525f);
@@ -108,15 +116,36 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         test_route_list = new ArrayList<Route>();
         test_route_list.add(route1);
         route1.status = "모집중";
-        test_route_list.add(route1);
+        test_route_list.add(route1);*/
         test_town_list = new String[]{"호매실동", "하남", "동탄", "우리집", "남의집"};
 
         //Recycler view 호출 및 어댑터와 연결, 데이터 할당
         RecyclerView mainRecycler = binding.rvRoutes;
-        MainRecyclerAdapter mainAdapter = new MainRecyclerAdapter(getContext(), test_route_list, this);
+        mainAdapter = new MainRecyclerAdapter(getContext(), null, this);
         mainRecycler.setAdapter(mainAdapter);
-/*        PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
-        pagerSnapHelper.attachToRecyclerView(mainRecycler);*/
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constant.SERVER_URL).addConverterFactory(GsonConverterFactory.create()).build();
+        RestApi api = retrofit.create(RestApi.class);
+        Call<PageResponse<Route>> call = api.listRoutes(Prefs.getString(Constant.LOGIN_KEY, ""));
+        call.enqueue(new Callback<PageResponse<Route>>() {
+            @Override
+            public void onResponse(Call<PageResponse<Route>> call, Response<PageResponse<Route>> response) {
+                if (response.isSuccessful() && (response.body() != null)) {
+                    routes = response.body().results;
+                    for (Route r : routes) {
+                        r.initialize();
+                    }
+                    mainAdapter.changeDataSet(routes);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PageResponse<Route>> call, Throwable t) {
+                Log.e(TAG, "RestApi onFailure: 노선 정보 수신 실패", null);
+            }
+        });
+
 
         GridView townGrid = binding.gvLocal;
         TownGridAdapter townAdapter = new TownGridAdapter(getContext(), test_town_list);
@@ -168,7 +197,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
                 Toast.makeText(getContext(), ticket_position + "번째 티켓 눌림", Toast.LENGTH_SHORT).show();
             }
         } else if (position >= 2) {
-            _listener.addFragment(BoardingApplicationDetailFragment.newInstance(test_route_list.get(position - 2)));
+            _listener.addFragment(BoardingApplicationDetailFragment.newInstance(routes.get(position - 2)));
         }
     }
 

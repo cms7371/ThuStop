@@ -14,12 +14,13 @@ import com.thustop_00.model.Route;
 import com.thustop_00.model.Ticket;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //Adapter for recyclerview in main fragment. There are 3 kinds of items, button for new route,
 //title to display current location, route for bus operation information
 public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     //It stores routes data to be displayed.
-    private ArrayList<Route> data;
+    private List<Route> data;
     private Context context;
     //Parameters represent type of item
     private static final int VIEW_TYPE_BUTTON = 0;
@@ -35,12 +36,18 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private OnListItemSelectedInterface mListener;
 
     //Adapter receives list of Routes and listener from target fragment
-    MainRecyclerAdapter(Context context, ArrayList<Route> in, OnListItemSelectedInterface listener) {
+    MainRecyclerAdapter(Context context, List<Route> in, OnListItemSelectedInterface listener) {
         this.context = context;
         this.data = in;
         this.mListener = listener;
         //TODO 티켓리스트와 현재 위치 이름 받아서 제목과 리사이클러 내용 바꿔줘야함
     }
+
+    public void changeDataSet(List<Route> data){
+        this.data = data;
+        notifyDataSetChanged();
+    }
+
 
 
     //Method that indicates type of item depending on position.
@@ -84,7 +91,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             Route cnt_route = data.get(position - 2);
             int boarding_stop_num = cnt_route.boarding_stops.size();
             int alighting_stop_num = cnt_route.alighting_stops.size();
-            ((RouteViewHolder) holder).tvID.setText(cnt_route.id);
+            ((RouteViewHolder) holder).tvName.setText(cnt_route.name);
             ((RouteViewHolder) holder).tvStatus.setText(cnt_route.status);
             ((RouteViewHolder) holder).tvPeople.setText(String.format("%d/%d",cnt_route.cnt_passenger,cnt_route.max_passenger));
             if (cnt_route.status.equals("모집중")){
@@ -114,7 +121,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public int getItemCount() {
         if (data == null) {
-            return 5; //TODO 이 값은 테스트를 위한 값임 route 클래스 넣고 나중에 지울 수 있도록 합니다.
+            return 2; //TODO 이 값은 테스트를 위한 값임 route 클래스 넣고 나중에 지울 수 있도록 합니다.
         } else {
             return data.size() + 2;
         }
@@ -166,7 +173,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     public class RouteViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvID;
+        public TextView tvName;
         public TextView tvStatus;
         public TextView tvPeople;
         public TextView tvDepartureTime;
@@ -181,7 +188,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         public RouteViewHolder(@NonNull View itemView) {
             super(itemView);
             //TODO view 의 이름을 자리에 맞는 클래스에 따라 바꿔주기
-            this.tvID = itemView.findViewById(R.id.tv_mrv_code);
+            this.tvName = itemView.findViewById(R.id.tv_mrv_code);
             this.tvStatus = itemView.findViewById(R.id.tv_mrv_state);
             this.tvPeople = itemView.findViewById(R.id.tv_mrv_num);
             this.tvDepartureTime = itemView.findViewById(R.id.tv_mrv_time_departure);

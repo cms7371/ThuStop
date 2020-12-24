@@ -40,10 +40,10 @@ public class BoardingApplicationDetailFragment extends FragmentBase {
         binding.setRouteDetailFrag(this);
         _listener.setToolbarStyle(_listener.GREEN_HAMBURGER, null);
 
-        binding.tvBusId.setText(route.id);
+        binding.tvBusId.setText(route.name);
         binding.tvDeparture.setText(route.getBoardingStopName(0));
         binding.tvDestination.setText(route.getAlightingStopName(alighting_stop_num - 1));
-        binding.tvCapacity.setText(String.format("%d인승", route.spec));
+        binding.tvCapacity.setText(route.bus.type);
         binding.tvPassengers.setText(String.format("%d/%d",route.cnt_passenger,route.max_passenger));
         binding.tvDistance.setText(String.format("%.2fkm", route.distance));
         RouteDetailAdapter adapter = new RouteDetailAdapter();

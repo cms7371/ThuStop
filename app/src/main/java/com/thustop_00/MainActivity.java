@@ -3,6 +3,7 @@ package com.thustop_00;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,6 +33,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
+import com.pixplicity.easyprefs.library.Prefs;
 import com.thustop_00.databinding.ActivityMainBinding;
 import com.thustop_00.intro.IntroBaseFragment;
 
@@ -87,6 +89,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setActivityMain(this);
         prefs = getSharedPreferences("Pref", MODE_PRIVATE);  // check first run
+        new Prefs.Builder()
+                .setContext(this)
+                .setMode(ContextWrapper.MODE_PRIVATE)
+                .setPrefsName(getPackageName())
+                .setUseDefaultSharedPreference(true)
+                .build();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN); // edittext view layout problem
         /* Setting toolbar referred  https://blog.naver.com/qbxlvnf11/221328098468*/
         toolbar = binding.tbMain;

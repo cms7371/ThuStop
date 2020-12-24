@@ -155,7 +155,7 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
     }
 
     private MapPoint getMapPointWithVia(Via v) {
-        return MapPoint.mapPointWithGeoCoord(v.stop.latitude, v.stop.longitude);
+        return MapPoint.mapPointWithGeoCoord(v.stop.pos.latitude, v.stop.pos.longitude);
     }
 
     private void setInformationBox(Via v, boolean isDestination) {
@@ -188,7 +188,8 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
     @Override
     public void onPOIItemSelected(MapView mapView, MapPOIItem mapPOIItem) {
         int index = mapPOIItem.getTag();
-        findViewById(R.id.cl_dsm_info).animate().translationY(-100).setDuration(150).withEndAction(() -> findViewById(R.id.cl_dsm_info).animate().translationY(0).setDuration(150).start()).start();
+        findViewById(R.id.cl_dsm_info).animate().translationY(_listener.covertDPtoPX(6)).setDuration(150)
+                .withEndAction(() -> findViewById(R.id.cl_dsm_info).animate().translationY(0).setDuration(150).start()).start();
         if (index > 0) {
             index = index - 1;
             setInformationBox(boarding_stops.get(index), false);
