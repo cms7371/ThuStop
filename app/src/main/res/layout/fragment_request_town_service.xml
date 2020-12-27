@@ -4,7 +4,7 @@
     <data>
         <variable
             name="RequestTownFrag"
-            type="com.thustop_00.RequestTownServiceFragment" />
+            type="com.thustop_00.RequestServiceRegionFragment" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

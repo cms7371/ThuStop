@@ -26,12 +26,9 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.thustop_00.databinding.FragmentMainBinding;
 import com.thustop_00.model.PageResponse;
 import com.thustop_00.model.Route;
-import com.thustop_00.model.Stop;
-import com.thustop_00.model.Via;
 import com.thustop_00.widgets.NotoTextView;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -58,12 +55,12 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     long timeBackPressed = 0;
     private int backPosition = -1;
-    private String selectedTown;
+    private String selectedRegion;
     private NotoTextView BackSelectedItem, CurSelectedItem;
     private GpsTracker gpsTracker;
     private MainRecyclerAdapter mainAdapter;
     private List<Route> routes;
-    private String[] test_town_list;
+    private String[] test_region_list;
 
     public static MainFragment newInstance() {
         MainFragment fragment = new MainFragment();
@@ -117,7 +114,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         test_route_list.add(route1);
         route1.status = "모집중";
         test_route_list.add(route1);*/
-        test_town_list = new String[]{"호매실동", "하남", "동탄", "우리집", "남의집"};
+        test_region_list = new String[]{"호매실동", "하남", "동탄", "우리집", "남의집"};
 
         //Recycler view 호출 및 어댑터와 연결, 데이터 할당
         RecyclerView mainRecycler = binding.rvRoutes;
@@ -147,10 +144,10 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         });
 
 
-        GridView townGrid = binding.gvLocal;
-        TownGridAdapter townAdapter = new TownGridAdapter(getContext(), test_town_list);
+        GridView regionGrid = binding.gvLocal;
+        RegionGridAdapter RegionAdapter = new RegionGridAdapter(getContext(), test_region_list);
 
-        townGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        regionGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 if (backPosition == position) {
@@ -160,15 +157,15 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
                     backPosition = -1;
                     binding.tvSelLocal.setText(R.string.tvSelLocal);
                 } else {
-                    selectedTown = adapterView.getItemAtPosition(position).toString();
-                    Log.d(TAG, selectedTown);
+                    selectedRegion = adapterView.getItemAtPosition(position).toString();
+                    Log.d(TAG, selectedRegion);
                     CurSelectedItem = (NotoTextView) view;
                     CurSelectedItem.setSelected(true);
                     CurSelectedItem.setTextColor(getResources().getColor(R.color.TextBlack));
                     CurSelectedItem.setBackgroundResource(R.drawable.button_local_sel);
-                    binding.tvSelLocal.setText(selectedTown);
+                    binding.tvSelLocal.setText(selectedRegion);
                     if (backPosition != -1) {
-                        BackSelectedItem = (NotoTextView) townGrid.getChildAt(backPosition);
+                        BackSelectedItem = (NotoTextView) regionGrid.getChildAt(backPosition);
                         BackSelectedItem.setSelected(false);
                         BackSelectedItem.setTextColor(getResources().getColor(R.color.TextGray));
                         BackSelectedItem.setBackgroundResource(R.drawable.button_local);
@@ -180,7 +177,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
                 binding.layoutLocal.setVisibility(View.GONE);
             }
         });
-        townGrid.setAdapter(townAdapter);
+        regionGrid.setAdapter(RegionAdapter);
         // Inflate the layout for this fragment
         return binding.getRoot();
     }
@@ -214,8 +211,8 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         }
     }
 
-    public void onTownRequestClick(View view) {
-        _listener.addFragment(RequestTownServiceFragment.newInstance());
+    public void onServiceRegionRequestClick(View view) {
+        _listener.addFragment(RequestServiceRegionFragment.newInstance());
     }
 
     public void onGPSClick(View view) {
@@ -327,26 +324,26 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
      *
      * ***/
     //TODO : 별도 레이아웃 쓰면 자꾸 오류남. 뷰 하나라 상관없긴 한데, 레이아웃 사용하면 뷰 셋팅 매번 안해줘도 됨.
-    public class TownGridAdapter extends BaseAdapter {
+    public class RegionGridAdapter extends BaseAdapter {
         LayoutInflater inf;
         private Context context;
-        private String[] town;
+        private String[] regions;
         private int layout;
 
-        TownGridAdapter(Context context, String[] townIn) {
+        RegionGridAdapter(Context context, String[] regionsIn) {
             this.context = context;
-            this.town = townIn;
+            this.regions = regionsIn;
 
         }
 
         @Override
         public int getCount() {
-            return town.length;
+            return regions.length;
         }
 
         @Override
         public Object getItem(int position) {
-            return town[position];
+            return regions[position];
         }
 
 
@@ -357,14 +354,14 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
 
         @Override
         public View getView(int position, View view, ViewGroup viewGroup) {
-            NotoTextView btTown = new NotoTextView(this.context);
-            btTown.setText(town[position]);
-            btTown.setBackgroundResource(R.drawable.button_local);
-            btTown.setGravity(Gravity.CENTER);
-            btTown.setTextColor(getResources().getColor(R.color.TextGray));
-            btTown.setLayoutParams(new GridView.LayoutParams(_listener.covertDPtoPX(77), _listener.covertDPtoPX(77)));
-            btTown.setTextSize(13);
-            return btTown;
+            NotoTextView btRegion = new NotoTextView(this.context);
+            btRegion.setText(regions[position]);
+            btRegion.setBackgroundResource(R.drawable.button_local);
+            btRegion.setGravity(Gravity.CENTER);
+            btRegion.setTextColor(getResources().getColor(R.color.TextGray));
+            btRegion.setLayoutParams(new GridView.LayoutParams(_listener.covertDPtoPX(77), _listener.covertDPtoPX(77)));
+            btRegion.setTextSize(13);
+            return btRegion;
         }
     }
 

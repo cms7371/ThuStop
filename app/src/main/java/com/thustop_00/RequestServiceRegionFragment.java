@@ -1,9 +1,7 @@
 package com.thustop_00;
 
 import android.os.Bundle;
-import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,19 +14,19 @@ import com.thustop_00.databinding.FragmentRequestTownServiceBinding;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link RequestTownServiceFragment#newInstance} factory method to
+ * Use the {@link RequestServiceRegionFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RequestTownServiceFragment extends FragmentBase {
+public class RequestServiceRegionFragment extends FragmentBase {
     FragmentRequestTownServiceBinding _binding;
     private String townSelected ="";
     private int digits = 0;
-    public RequestTownServiceFragment() {
+    public RequestServiceRegionFragment() {
         // Required empty public constructor
     }
 
-    public static RequestTownServiceFragment newInstance() {
-        RequestTownServiceFragment fragment = new RequestTownServiceFragment();
+    public static RequestServiceRegionFragment newInstance() {
+        RequestServiceRegionFragment fragment = new RequestServiceRegionFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;

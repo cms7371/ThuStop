@@ -17,7 +17,7 @@
 
 
         <com.thustop_00.widgets.NotoEditText
-            android:id="@+id/et_pass"
+            android:id="@+id/et_password"
             style="@style/EtLoginStyle"
             android:hint="@string/et_pass"
             android:imeOptions="actionNext"
@@ -35,7 +35,7 @@
             style="@style/EtLoginStyle"
             android:hint="@string/et_check"
             app:notoTextStyle="regular"
-            app:layout_constraintTop_toBottomOf="@id/et_pass"
+            app:layout_constraintTop_toBottomOf="@id/et_password"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

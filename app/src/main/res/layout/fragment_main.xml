@@ -169,7 +169,7 @@
                 android:layout_marginTop="19dp"
                 android:layout_marginBottom="18dp"
                 android:padding="10dp"
-                android:onClick="@{mainfrag::onTownRequestClick}"
+                android:onClick="@{mainfrag::onServiceRegionRequestClick}"
                 android:text="@string/tv_request"
                 android:textColor="@color/Primary"
                 android:textSize="10sp"

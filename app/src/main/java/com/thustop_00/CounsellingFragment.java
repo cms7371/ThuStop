@@ -33,6 +33,7 @@ public class CounsellingFragment extends FragmentBase {
     }
 
     public void onCounselClick(View view){
+        //TODO 사용자 정보랑 연동하여 답변을 받을 수 있도록 해야함
         /*if (loggined) {
             Gitple.user().setId("user id")
                     .setName("user name")
