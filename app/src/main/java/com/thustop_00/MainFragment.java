@@ -58,9 +58,11 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     private String selectedRegion;
     private NotoTextView BackSelectedItem, CurSelectedItem;
     private GpsTracker gpsTracker;
-    private MainRecyclerAdapter mainAdapter;
+    private MainRecyclerAdapter mainAdapter = null;
     private List<Route> routes;
     private String[] test_region_list;
+    private GridView regionGrid;
+    private RegionGridAdapter regionAdapter;
 
     public static MainFragment newInstance() {
         MainFragment fragment = new MainFragment();
@@ -90,62 +92,39 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         _listener.setOnBackPressedListener(this);
         _listener.lockDrawer(false);
 
-        //Test Routes
-/*        Route route1 = new Route("A15", "수원", 123, 52.34f, 35, 13, 45, "운행중", 99000);
-        Stop stop1_0 = new Stop("수원역 1번 출구", 0, "경기도 수원시 팔달구 매산동 103", 37.266260f, 127.001412f);
-        Via via1_0 = new Via(0, stop1_0, "07:30");
-        Stop stop1_1 = new Stop("이춘택 병원", 1, "경기도 수원시 팔달구 교동 매산로 138", 37.272110f, 127.015525f);
-        Via via1_1 = new Via(1, stop1_1, "07:45");
-        Stop stop1_2 = new Stop("성빈센트 병원", 2, "경기도 수원시 팔달구 지동 중부대로 93", 37.277585f, 127.028323f);
-        Via via1_2 = new Via(2, stop1_2, "08:00");
-        Stop stop1_3 = new Stop("정자역 1번 출구", 3, "성남시 정자동", 37.366200f, 127.108386f);
-        Via via1_3 = new Via(3, stop1_3, "08:45");
-        Stop stop1_4 = new Stop("정자역 5번 출구", 4, "성남시 정자동", 37.368213f, 127.108262f);
-        Via via1_4 = new Via(4, stop1_4, "08:50");
-        Stop stop1_5 = new Stop("두산위브파빌리온 오피스텔", 5, "경기도 성남시 분당구 정자동 7", 37.371521f, 127.108274f);
-        Via via1_5 = new Via(5, stop1_5, "09:00");
-        route1.boarding_stops.add(via1_0);
-        route1.boarding_stops.add(via1_1);
-        route1.boarding_stops.add(via1_2);
-        route1.alighting_stops.add(via1_3);
-        route1.alighting_stops.add(via1_4);
-        route1.alighting_stops.add(via1_5);
-        test_route_list = new ArrayList<Route>();
-        test_route_list.add(route1);
-        route1.status = "모집중";
-        test_route_list.add(route1);*/
         test_region_list = new String[]{"호매실동", "하남", "동탄", "우리집", "남의집"};
 
         //Recycler view 호출 및 어댑터와 연결, 데이터 할당
         RecyclerView mainRecycler = binding.rvRoutes;
-        mainAdapter = new MainRecyclerAdapter(getContext(), null, this);
-        mainRecycler.setAdapter(mainAdapter);
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constant.SERVER_URL).addConverterFactory(GsonConverterFactory.create()).build();
-        RestApi api = retrofit.create(RestApi.class);
-        Call<PageResponse<Route>> call = api.listRoutes(Prefs.getString(Constant.LOGIN_KEY, ""));
-        call.enqueue(new Callback<PageResponse<Route>>() {
-            @Override
-            public void onResponse(Call<PageResponse<Route>> call, Response<PageResponse<Route>> response) {
-                if (response.isSuccessful() && (response.body() != null)) {
-                    routes = response.body().results;
-                    for (Route r : routes) {
-                        r.initialize();
+        if(mainAdapter == null){
+            mainAdapter = new MainRecyclerAdapter(getContext(), null, this);
+            mainRecycler.setAdapter(mainAdapter);
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(Constant.SERVER_URL).addConverterFactory(GsonConverterFactory.create()).build();
+            RestApi api = retrofit.create(RestApi.class);
+            Call<PageResponse<Route>> call = api.listRoutes(Prefs.getString(Constant.LOGIN_KEY, ""));
+            call.enqueue(new Callback<PageResponse<Route>>() {
+                @Override
+                public void onResponse(Call<PageResponse<Route>> call, Response<PageResponse<Route>> response) {
+                    if (response.isSuccessful() && (response.body() != null)) {
+                        routes = response.body().results;
+                        for (Route r : routes) {
+                            r.initialize();
+                        }
+                        mainAdapter.changeDataSet(routes);
                     }
-                    mainAdapter.changeDataSet(routes);
                 }
-            }
+                @Override
+                public void onFailure(Call<PageResponse<Route>> call, Throwable t) {
+                    Log.e(TAG, "RestApi onFailure: 노선 정보 수신 실패", null);
+                }
+            });
+        } else {
+            mainRecycler.setAdapter(mainAdapter);
+        }
 
-            @Override
-            public void onFailure(Call<PageResponse<Route>> call, Throwable t) {
-                Log.e(TAG, "RestApi onFailure: 노선 정보 수신 실패", null);
-            }
-        });
-
-
-        GridView regionGrid = binding.gvLocal;
-        RegionGridAdapter RegionAdapter = new RegionGridAdapter(getContext(), test_region_list);
+        regionGrid = binding.gvLocal;
+        regionAdapter = new RegionGridAdapter(getContext(), test_region_list);
 
         regionGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -177,7 +156,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
                 binding.layoutLocal.setVisibility(View.GONE);
             }
         });
-        regionGrid.setAdapter(RegionAdapter);
+        regionGrid.setAdapter(regionAdapter);
         // Inflate the layout for this fragment
         return binding.getRoot();
     }

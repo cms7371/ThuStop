@@ -1,10 +1,7 @@
 package com.thustop_00;
 
 import android.Manifest;
-import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.ScaleDrawable;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,6 +32,7 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
     private static final String TAG = "LocationMapSearchFrag";
 
     private boolean isStart;
+    private boolean isDragged = false;
     private GpsTracker gpsTracker = null;
     private MapPOIItem gpsMarker = null;
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
@@ -207,7 +205,7 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
 
     @Override
     public void onMapViewCenterPointMoved(MapView mapView, MapPoint mapPoint) {
-
+        isDragged = true;
     }
 
     @Override
@@ -237,12 +235,15 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
 
     @Override
     public void onMapViewDragEnded(MapView mapView, MapPoint mapPoint) {
-        centerPoint = binding.map.getMapCenterPoint();
-        getAddr();
+
     }
 
     @Override
     public void onMapViewMoveFinished(MapView mapView, MapPoint mapPoint) {
-
+        if (isDragged) {
+            centerPoint = binding.map.getMapCenterPoint();
+            getAddr();
+            isDragged = false;
+        }
     }
 }
