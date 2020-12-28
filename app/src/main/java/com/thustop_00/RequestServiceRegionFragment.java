@@ -1,16 +1,23 @@
 package com.thustop_00;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.thustop_00.databinding.FragmentRequestTownServiceBinding;
+import com.thustop_00.widgets.NotoEditText;
+
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,25 +50,31 @@ public class RequestServiceRegionFragment extends FragmentBase {
         _binding = FragmentRequestTownServiceBinding.inflate(inflater);
         _binding.setRequestTownFrag(this);
 
+        _binding.cbMessage.setEnabled(true);
+        _binding.etPhoneNum.setEnabled(true);
         _listener.setToolbarStyle(_listener.WHITE_BACK, "우리 동네 서비스 요청");
         // RequestButton enable control
         _binding.cbMessage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
-                    if (digits == 11) {
+                    if ((digits == 11)&&(townSelected.length() != 0)) {
                         _binding.btRequest.setBackgroundResource(R.drawable.bg_round25_green);
+                        _binding.btRequest.setClickable(true);
                         _binding.btRequest.setClickable(true);
                     } else {
                         _binding.btRequest.setBackgroundResource(R.drawable.bg_round25_graycf);
                         _binding.btRequest.setClickable(false);
+                        _binding.btRequest.setClickable(false);
                     }
                 } else {
-                    if (digits == 0) {
+                    if ((digits != 11)&&(townSelected.length() != 0)) {
                         _binding.btRequest.setBackgroundResource(R.drawable.bg_round25_green);
+                        _binding.btRequest.setClickable(true);
                         _binding.btRequest.setClickable(true);
                     } else {
                         _binding.btRequest.setBackgroundResource(R.drawable.bg_round25_graycf);
+                        _binding.btRequest.setClickable(false);
                         _binding.btRequest.setClickable(false);
                     }
                 }
@@ -83,15 +96,37 @@ public class RequestServiceRegionFragment extends FragmentBase {
             public void afterTextChanged(Editable editable) {
                 // 글자수 업데이트
                 digits = _binding.etPhoneNum.getText().toString().length();
-                if ((digits == 11)&&_binding.cbMessage.isChecked()) {
+                if ((digits == 11)&&_binding.cbMessage.isChecked()&&(townSelected.length() != 0)) {
                     _binding.btRequest.setBackgroundResource(R.drawable.bg_round25_green);
+                    _binding.btRequest.setClickable(true);
                     _binding.btRequest.setClickable(true);
                 } else {
                     _binding.btRequest.setBackgroundResource(R.drawable.bg_round25_graycf);
                     _binding.btRequest.setClickable(false);
                 }
+
             }
         });
+        //TODO: 커서 깜박임 싫어서 넣은 코드인데, 키보드 바깥 눌러서 탈출시 커서 없애기 안됨...흠..
+        _binding.etPhoneNum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((NotoEditText)view).setCursorVisible(true);
+            }
+        });
+
+        _binding.etPhoneNum.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                textView.setCursorVisible(false);
+                InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(Objects.requireNonNull(getActivity().getCurrentFocus()).getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                return true;
+            }
+        });
+
+
+
         return _binding.getRoot();
     }
 
@@ -105,12 +140,18 @@ public class RequestServiceRegionFragment extends FragmentBase {
         regionSelectorDialog.setDialogListener(new RegionSelectorDialog.RegionSelectorListener() {
             @Override
             public void onSelect(String state, String city) {
+                townSelected = String.format("%s %s", state, city);
                 _binding.tvTownSel.setText(String.format("%s %s", state, city));
+                if (((digits == 11)&&_binding.cbMessage.isChecked())||((digits != 11)&&!_binding.cbMessage.isChecked())) {
+                    _binding.tvTownSel.setTextColor(getResources().getColor(R.color.TextBlack));
+                    _binding.btRequest.setBackgroundResource(R.drawable.bg_round25_green);
+                    _binding.btRequest.setClickable(true);
+                }
                 _binding.tvTownSel.setTextColor(getResources().getColor(R.color.TextBlack));
                 _binding.btRequest.setBackgroundResource(R.drawable.bg_round25_green);
                 _binding.btRequest.setClickable(true);
-                _binding.cbMessage.setEnabled(true);
-                _binding.etPhoneNum.setEnabled(true);
+                //_binding.cbMessage.setEnabled(true);
+                //_binding.etPhoneNum.setEnabled(true);
             }
         });
         regionSelectorDialog.show();
