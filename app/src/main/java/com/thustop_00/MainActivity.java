@@ -33,6 +33,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.firebase.FirebaseApp;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.thustop_00.databinding.ActivityMainBinding;
 import com.thustop_00.intro.IntroBaseFragment;
@@ -107,6 +108,9 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         /* At start, display splash fragment during loading*/
         actionbar.hide();
         setFragment(SplashFragment.newInstance());
+        Prefs.putString(Constant.LOGIN_KEY, "MindolTest");
+        FirebaseApp.initializeApp(this);
+        Util.registerDevice();
         Log.d(TAG, "onCreate: GPSServiceStatus is " + GPSServiceStatus);
         checkFirstRun();
     }

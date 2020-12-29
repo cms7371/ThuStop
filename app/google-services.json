@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "869105166381",
+    "firebase_url": "https://thestop-36498.firebaseio.com",
+    "project_id": "thestop-36498",
+    "storage_bucket": "thestop-36498.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:869105166381:android:1a544f8e58af2a474bb0a4",
+        "android_client_info": {
+          "package_name": "com.thustop.thestop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "869105166381-6u3nhhpdgsplrl27maabin604obda7hb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.thustop.thestop",
+            "certificate_hash": "2de3b5680a9759b2ee773c6d9ad10e002ed2565d"
+          }
+        },
+        {
+          "client_id": "869105166381-ru285lbfdigsta96phlind0t1cqjqik1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFAvyEoFhjFHMt23D7aoljHotYEGyJTVQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "869105166381-ru285lbfdigsta96phlind0t1cqjqik1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:869105166381:android:410799d9bf6b611e4bb0a4",
+        "android_client_info": {
+          "package_name": "com.thustop_00"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "869105166381-ru285lbfdigsta96phlind0t1cqjqik1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFAvyEoFhjFHMt23D7aoljHotYEGyJTVQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "869105166381-ru285lbfdigsta96phlind0t1cqjqik1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
