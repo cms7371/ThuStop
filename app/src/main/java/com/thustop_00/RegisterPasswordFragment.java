@@ -36,7 +36,6 @@ public class RegisterPasswordFragment extends FragmentBase {
     private Context context;
 
 
-
     public void RegisterRequest(UserData user) {
 
         OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
@@ -47,7 +46,7 @@ public class RegisterPasswordFragment extends FragmentBase {
         UserData NewUser = new UserData();
         NewUser.email = user.email;
         NewUser.username = user.username;
-        NewUser.password1 = NewUser.password2=user.password1;
+        NewUser.password1 = NewUser.password = user.password1;
         Log.d("test1 regi", "등록중1");
 
         //RestApi restApi = new RestRequestHelper().getRetrofit();
@@ -63,14 +62,14 @@ public class RegisterPasswordFragment extends FragmentBase {
             @Override
             public void onResponse(@NotNull Call<Token> call, @NotNull Response<Token> response) {
                 if (response.isSuccessful()) {
-                    Log.d("ㅅㅅㅅㅅㅅ","ㄱㄱㄱ");
+                    Log.d("ㅅㅅㅅㅅㅅ", "ㄱㄱㄱ");
                     Prefs.putString(Constant.LOGIN_KEY, "Token " + response.body().key);
                     //Utils.registerDevice();
-                    Toast.makeText(context,"success?", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "success?", Toast.LENGTH_SHORT).show();
 
-                }else{
+                } else {
 
-                    Log.d("연결",  Integer.toString(response.code()));
+                    Log.d("연결", Integer.toString(response.code()));
                 }
             }
 
@@ -80,7 +79,6 @@ public class RegisterPasswordFragment extends FragmentBase {
             }
         });
     }
-
 
 
     public static RegisterPasswordFragment newInstance() {
@@ -101,10 +99,8 @@ public class RegisterPasswordFragment extends FragmentBase {
                              Bundle savedInstanceState) {
         context = container.getContext();
         binding = FragmentRegisterPassowordBinding.inflate(inflater);
-        ButterKnife.bind(this,binding.getRoot());
+        ButterKnife.bind(this, binding.getRoot());
         _listener.setToolbarStyle(_listener.GREEN_HAMBURGER, "회원가입");
-
-
 
 
         return binding.getRoot();

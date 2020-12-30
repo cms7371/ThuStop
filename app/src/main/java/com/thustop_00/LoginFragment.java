@@ -7,14 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import com.kakao.sdk.auth.LoginClient;
-import com.kakao.sdk.auth.model.OAuthToken;
-import com.kakao.sdk.common.util.Utility;
 import com.kakao.sdk.user.UserApiClient;
+import com.pixplicity.easyprefs.library.Prefs;
 import com.thustop_00.databinding.FragmentLoginBinding;
+import com.thustop_00.model.Auth;
 import com.thustop_00.model.Token;
 import com.thustop_00.model.UserData;
+
+import org.jetbrains.annotations.NotNull;
 
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -52,9 +53,6 @@ public class LoginFragment extends FragmentBase {
 
         _listener.setToolbarStyle(_listener.WHITE_HAMBURGER, "로그인");
 
-/*        _listener.setToolbarStyle(true, false);
-        _listener.setTitle(false,"로그인");
-        _listener.showToolbarVisibility(true);*/
         return binding.getRoot();
     }
 
@@ -78,6 +76,7 @@ public class LoginFragment extends FragmentBase {
                         Log.e(TAG, "사용자 정보 요청 실패", meError);
                     } else {
                         Log.i(TAG, user.toString());
+                        testKakaoLogin(user.getId());
                     }
                     return null;
                 });
@@ -87,10 +86,9 @@ public class LoginFragment extends FragmentBase {
 
     }
 
-    private void login(String phone_num, String password) {
-        UserData user = new UserData();
-        user.password1 = password;
-        user.username = phone_num;
+    private void testKakaoLogin(long ID) {
+        Auth auth = new Auth();
+        auth.password = auth.username = "kakao" + ID;
 
         //retrofit 객체 선언
         Retrofit retrofit = new Retrofit.Builder()
@@ -99,16 +97,23 @@ public class LoginFragment extends FragmentBase {
                 .build();
         RestApi api = retrofit.create(RestApi.class);
 
-        Call<Token> call = api.login(user);
+        Call<Token> call = api.login(auth);
+        Log.d(TAG, "testKakaoLogin: 서버 로그인 요청" + auth.username + auth.password);
         call.enqueue(new Callback<Token>() {
             @Override
-            public void onResponse(Call<Token> call, Response<Token> response) {
-
+            public void onResponse(@NotNull Call<Token> call, @NotNull Response<Token> response) {
+                if (response.isSuccessful() && (response.body() != null)) {
+                    Prefs.putString(Constant.LOGIN_KEY, "Token " + response.body().key);
+                    Util.registerDevice();
+                    _listener.setFragment(MainFragment.newInstance());
+                } else {
+                    Log.e(TAG, "onResponse: Thustop 서버 에러 Null 반환", new NullPointerException());
+                }
             }
 
             @Override
-            public void onFailure(Call<Token> call, Throwable t) {
-
+            public void onFailure(@NotNull Call<Token> call, @NotNull Throwable t) {
+                Log.e(TAG, "onFailure: Thustop 서버 에러 접속 실패", new Exception());
             }
         });
 
