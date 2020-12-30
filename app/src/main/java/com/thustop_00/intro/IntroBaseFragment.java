@@ -69,6 +69,7 @@ public class IntroBaseFragment extends FragmentBase {
 
         return binding.getRoot();
     }
+
     /*Method for button listener test */
     public void onStartClick(View view) {
         _listener.setFragment(MainFragment.newInstance());

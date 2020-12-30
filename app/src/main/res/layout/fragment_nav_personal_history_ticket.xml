@@ -15,8 +15,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_ticket"
             android:layout_width="match_parent"
-            android:layout_height="153dp"
+            android:layout_height="0dp"
             android:layout_marginTop="4dp"
+            android:paddingBottom="32dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
@@ -26,17 +27,17 @@
             tools:listitem="@layout/item_ticket" />
 
         <com.thustop_00.widgets.NotoTextView
-        android:id="@+id/tv_title_left_ticket"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="남은횟수"
-        android:textSize="14sp"
-        app:notoTextStyle="medium"
-        android:textColor="@color/TextGray"
-        app:layout_constraintTop_toTopOf="@id/line1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/line1"/>
+            android:id="@+id/tv_title_left_ticket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="남은횟수"
+            android:textSize="14sp"
+            app:notoTextStyle="medium"
+            android:textColor="@color/TextGray"
+            app:layout_constraintTop_toTopOf="@id/line1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/line1"/>
         <com.thustop_00.widgets.NotoTextView
             android:id="@+id/tv_left_ticket"
             android:layout_width="wrap_content"
