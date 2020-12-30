@@ -54,4 +54,8 @@ public class NavSettingFragment extends FragmentBase {
     public void onOperationalPoliciesClick(View view) {
         _listener.addFragment(NavSettingTermsFragment.newInstance(3));
     }
+
+    public void onThustopClick(View view) {
+        _listener.addFragment(NavSettingTermsFragment.newInstance(4));
+    }
 }

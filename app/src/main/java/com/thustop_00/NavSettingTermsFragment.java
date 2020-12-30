@@ -66,6 +66,9 @@ public class NavSettingTermsFragment extends FragmentBase {
                 binding.tvTermsContainer.setText(R.string.personal_data_policies_content);
                 _listener.setToolbarStyle(_listener.WHITE_BACK, getString(R.string.tv_operational_policies));
                 break;
+            case 4:
+                binding.tvTermsContainer.setText(getString(R.string.business_information_content));
+                _listener.setToolbarStyle(_listener.WHITE_BACK, "사업자 정보");
         }
     }
 }

@@ -164,7 +164,7 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
     }
 
     public void getAddr() {
-        MapReverseGeoCoder reverseGeoCoder = new MapReverseGeoCoder(Constant.APP_KEY, centerPoint, new MapReverseGeoCoder.ReverseGeoCodingResultListener() {
+        MapReverseGeoCoder reverseGeoCoder = new MapReverseGeoCoder(Constant.KAKAO_API_KEY, centerPoint, new MapReverseGeoCoder.ReverseGeoCodingResultListener() {
             @Override
             public void onReverseGeoCoderFoundAddress(MapReverseGeoCoder mapReverseGeoCoder, String addressString) {
                 // 주소를 찾은 경우.

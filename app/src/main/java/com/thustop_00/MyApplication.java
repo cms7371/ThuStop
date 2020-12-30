@@ -2,6 +2,8 @@ package com.thustop_00;
 
 import android.app.Application;
 
+import com.kakao.sdk.common.KakaoSdk;
+
 import io.gitple.android.sdk.Gitple;
 
 public class MyApplication extends Application {
@@ -11,7 +13,7 @@ public class MyApplication extends Application {
 
         // 깃플 상담 초기화
         Gitple.initialize(this, "ksawojeLwMyVW7m7nNTaAFvhPl1mq3");
-
+        KakaoSdk.init(this, Constant.KAKAO_API_KEY);
         // 깃플 상담 화면에서 헤더메뉴를 표시하지 않을 경우
         Gitple.config().setHideHeader(true);
     }

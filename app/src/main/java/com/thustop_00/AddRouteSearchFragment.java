@@ -28,7 +28,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-import static com.thustop_00.Constant.apiKey;
+import static com.thustop_00.Constant.PLACES_API_KEY;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -74,7 +74,7 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
 
         //apiKey로 구글 클라이언트 시작
         if (!Places.isInitialized()) {
-            Places.initialize(Objects.requireNonNull(getContext()), apiKey);
+            Places.initialize(Objects.requireNonNull(getContext()), PLACES_API_KEY);
         }
         placesClient = Places.createClient(Objects.requireNonNull(getContext()));
         autocompleteAdapter = new LocationAutocompleteAdapter(getContext(), this);

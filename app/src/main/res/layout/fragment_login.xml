@@ -114,12 +114,36 @@
             app:layout_constraintTop_toTopOf="@+id/v_login_vertical_bar" />
 
         <com.thustop_00.widgets.NotoButton
+            android:id="@+id/bt_kako_login"
             style="@style/btStyle"
             android:layout_marginBottom="40dp"
             android:background="@drawable/bg_kakao_button"
-            app:layout_constraintStart_toStartOf="parent"
+            android:onClick="@{LoginFrag::onKakaoLoginClick}"
+            android:text="카카오톡 로그인"
+            android:textColor="#202020"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:notoTextStyle="medium" />
+
+        <ImageView
+            android:id="@+id/iv_kakao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="60dp"
+            android:elevation="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/bt_kako_login"
+            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintTop_toTopOf="@+id/bt_kako_login"
+            app:srcCompat="@drawable/icon_kakao" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

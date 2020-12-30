@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 30
@@ -8,6 +9,9 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 
     defaultConfig {
@@ -37,6 +41,7 @@ android {
                 srcDirs 'src/main/res', 'src/main/res/menu'
             }
         }
+        main.java.srcDirs += 'src/main/kotlin'
     }
 }
 
@@ -49,15 +54,15 @@ dependencies {
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    /*not null anotation*/
-    implementation 'org.jetbrains:annotations-java5:15.0'
+
     /* ViewPager2 */
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
     /* Implementation CircleIndicator3 for ViewPager2 */
     implementation 'me.relex:circleindicator:2.1.4'
 
     /* Implementation for kakao login*/
-    implementation 'com.kakao.sdk:usermgmt:1.27.0'
+    implementation "com.kakao.sdk:v2-user:2.2.0"
+    //implementation 'com.kakao.sdk:usermgmt:1.27.0'
 
     /* Implemantation for kakao map library*/
     implementation 'com.google.android.gms:play-services-location:17.0.0'
@@ -67,6 +72,7 @@ dependencies {
     /*butter Knife Library*/
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+
     /*Retrofit for Api request*/
     implementation 'com.squareup.retrofit2:retrofit:2.7.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
@@ -91,4 +97,7 @@ dependencies {
 
     /*Google Gson for Gitple*/
     implementation 'com.google.code.gson:gson:2.8.6'
+
+    /*Kotlin support from java*/
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.3.72'
 }

@@ -2,10 +2,16 @@ package com.thustop_00;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
+import com.kakao.sdk.auth.LoginClient;
+import com.kakao.sdk.auth.model.OAuthToken;
+import com.kakao.sdk.common.util.Utility;
+import com.kakao.sdk.user.UserApiClient;
 import com.thustop_00.databinding.FragmentLoginBinding;
 import com.thustop_00.model.Token;
 import com.thustop_00.model.UserData;
@@ -19,6 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginFragment extends FragmentBase {
     private FragmentLoginBinding binding;
+    private static final String TAG = "LoginFragment";
     //@OnClick(R.id.bt_register)
     /*void goLogin() {
         _listener.setFragment(RegisterTermsFragment.newInstance());
@@ -55,8 +62,29 @@ public class LoginFragment extends FragmentBase {
         _listener.addFragment(FindPasswordFragment.newInstance());
     }
 
-    public void OnRegisterClick(View view){
+    public void OnRegisterClick(View view) {
         _listener.addFragment(RegisterTermsFragment.newInstance());
+    }
+
+    public void onKakaoLoginClick(View view) {
+        LoginClient.getInstance().loginWithKakaoTalk(getContext(), (token, loginError) -> {
+            if (loginError != null) {
+                Log.e(TAG, "로그인 실패", loginError);
+            } else {
+                Log.d(TAG, "로그인 성공");
+                // 사용자 정보 요청
+                UserApiClient.getInstance().me((user, meError) -> {
+                    if (meError != null) {
+                        Log.e(TAG, "사용자 정보 요청 실패", meError);
+                    } else {
+                        Log.i(TAG, user.toString());
+                    }
+                    return null;
+                });
+            }
+            return null;
+        });
+
     }
 
     private void login(String phone_num, String password) {

@@ -35,6 +35,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.firebase.FirebaseApp;
+import com.kakao.sdk.common.KakaoSdk;
+import com.kakao.util.maps.helper.Utility;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.thustop_00.databinding.ActivityMainBinding;
 import com.thustop_00.intro.IntroBaseFragment;
@@ -109,9 +111,11 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         /* At start, display splash fragment during loading*/
         actionbar.hide();
         setFragment(SplashFragment.newInstance());
-        Prefs.putString(Constant.LOGIN_KEY, "MindolTest");
+        Prefs.putString(Constant.LOGIN_KEY,"");
         FirebaseApp.initializeApp(this);
-        Util.registerDevice();
+        getKeyHash();
+        if(!(Prefs.getString(Constant.LOGIN_KEY, "").isEmpty()))
+            Util.registerDevice();
         Log.d(TAG, "onCreate: GPSServiceStatus is " + GPSServiceStatus);
         checkFirstRun();
     }
@@ -485,6 +489,10 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         return Math.round((float) dp * density);
     }
 
+
+    private void getKeyHash(){
+        Log.d(TAG, "getKeyHash: " + Utility.getKeyHash(this));
+    }
 
     //해시키 필요할 때
 /*    private void getAppKeyHash() {
