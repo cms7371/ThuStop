@@ -1,12 +1,15 @@
 package com.thustop_00;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +22,7 @@ import com.google.android.libraries.places.api.net.FetchPlaceRequest;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.thustop_00.databinding.FragmentAddRouteSearchBinding;
 import com.thustop_00.model.Address;
+import com.thustop_00.widgets.NotoEditText;
 
 import java.util.Arrays;
 import java.util.List;
@@ -79,19 +83,33 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
         binding.etStart.setText(startLocation.getAddress());
         binding.etEnd.setText(endLocation.getAddress());
         binding.etStart.addTextChangedListener(filterTextWatcher);
-        binding.etStart.setOnFocusChangeListener((v, b) -> {
-            if (b) {
+        binding.etStart.setOnFocusChangeListener((view, bool) -> {
+            if (bool) {
                 Log.d(TAG, "onCreateView: focus on start");
                 isStartLastFocused = true;
+                ((NotoEditText)view).setCursorVisible(true);
             }
         });
         binding.etEnd.addTextChangedListener(filterTextWatcher);
-        binding.etEnd.setOnFocusChangeListener((v, b) -> {
-            if (b) {
+        binding.etEnd.setOnFocusChangeListener((view, bool) -> {
+            if (bool) {
                 Log.d(TAG, "onCreateView: focus on end");
                 isStartLastFocused = false;
+                ((NotoEditText)view).setCursorVisible(true);
             }
         });
+        //확인 누르면  키보드 닫히고 커서 감춤
+        TextView.OnEditorActionListener editorActionListener = new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                v.setCursorVisible(false);
+                InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(Objects.requireNonNull(getActivity().getCurrentFocus()).getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                return true;
+            }
+        };
+        binding.etStart.setOnEditorActionListener(editorActionListener);
+        binding.etEnd.setOnEditorActionListener(editorActionListener);
         setInitialColor(binding.etStart, R.drawable.bg_outline25_green);
         setInitialColor(binding.etEnd, R.drawable.bg_outline25_red);
         binding.etDummy.requestFocus();

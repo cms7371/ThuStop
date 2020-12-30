@@ -12,7 +12,7 @@
             android:layout_height="wrap_content"
             android:elevation="11dp"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="?attr/actionBarSize" />
+            app:layout_constraintGuide_begin="@dimen/toolbar_height" />
 
         <com.thustop_00.widgets.NotoEditText
             android:id="@+id/et_dummy"

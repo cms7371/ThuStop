@@ -20,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -433,6 +434,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                 InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
                 if (imm != null)
                     imm.hideSoftInputFromWindow(focusView.getWindowToken(), 0);
+                if (focusView instanceof EditText)
+                    ((EditText)focusView).setCursorVisible(false);
                 focusView.clearFocus();
             }
         }

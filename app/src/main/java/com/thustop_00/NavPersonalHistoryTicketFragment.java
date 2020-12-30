@@ -1,29 +1,22 @@
 package com.thustop_00;
 
-import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.lifecycle.Lifecycle;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.PagerSnapHelper;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.thustop_00.databinding.FragmentNavPersonalHistoryTicketBinding;
 import com.thustop_00.model.Ticket;
 import com.thustop_00.widgets.NotoTextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,7 +56,10 @@ public class NavPersonalHistoryTicketFragment extends FragmentBase {
         binding.setNavPersonalHistoryTicketFrag(this);
         mArrayList = new ArrayList<>();
         mAdapter = new NavTicketAdapter(mArrayList);
+
         binding.rvTicket.setAdapter(mAdapter);
+        PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
+        pagerSnapHelper.attachToRecyclerView(binding.rvTicket);
 
         return binding.getRoot();
 
@@ -98,7 +94,7 @@ public class NavPersonalHistoryTicketFragment extends FragmentBase {
 
         @Override
         public int getItemCount() {
-            return tickets.size();
+            return 3;
         }
 
         public class TicketViewHolder extends RecyclerView.ViewHolder {
@@ -118,7 +114,7 @@ public class NavPersonalHistoryTicketFragment extends FragmentBase {
                 this.departure = (NotoTextView) itemView.findViewById(R.id.tv_departure);
                 this.departureTime = (NotoTextView) itemView.findViewById(R.id.tv_departure_time);
                 this.destination = (NotoTextView) itemView.findViewById(R.id.tv_destination);
-                this.destinationTime = (NotoTextView) itemView.findViewById(R.id.tv_departure_time);
+                this.destinationTime = (NotoTextView) itemView.findViewById(R.id.tv_destination_time);
                 this.capacity = (NotoTextView) itemView.findViewById(R.id.tv_capacity);
                 this.ticketState = (NotoTextView) itemView.findViewById(R.id.tv_ticket_state);
                 this.pb_capacity = (ProgressBar) itemView.findViewById(R.id.pb_personnel);

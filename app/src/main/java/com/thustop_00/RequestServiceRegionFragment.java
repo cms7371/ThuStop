@@ -107,13 +107,8 @@ public class RequestServiceRegionFragment extends FragmentBase {
 
             }
         });
-        //TODO: 커서 깜박임 싫어서 넣은 코드인데, 키보드 바깥 눌러서 탈출시 커서 없애기 안됨...흠..
-        _binding.etPhoneNum.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((NotoEditText)view).setCursorVisible(true);
-            }
-        });
+
+        _binding.etPhoneNum.setOnClickListener(view -> ((NotoEditText)view).setCursorVisible(true));
 
         _binding.etPhoneNum.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -124,9 +119,6 @@ public class RequestServiceRegionFragment extends FragmentBase {
                 return true;
             }
         });
-
-
-
         return _binding.getRoot();
     }
 
@@ -134,7 +126,6 @@ public class RequestServiceRegionFragment extends FragmentBase {
         _listener.setFragment(DoneFragment.newInstance(getString(R.string.tv_request_done), getString(R.string.tv_request_continue), true));
     }
 
-    //TODO 질문: 제출하기 버튼 활성화 관련해서, 지역선택 안하면 그냥 폰번도 못적게 했는데 별로.? 아니면 경우의수가 너무 많아짐.
     public void onRegionSelectClick(View view) {
         RegionSelectorDialog regionSelectorDialog = new RegionSelectorDialog(getContext());
         regionSelectorDialog.setDialogListener(new RegionSelectorDialog.RegionSelectorListener() {
