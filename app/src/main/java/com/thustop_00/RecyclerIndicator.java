@@ -32,6 +32,7 @@ public class RecyclerIndicator extends RecyclerView.ItemDecoration {
      *  !!! 색상 넣을 때 int로 넣으면 보이지 않습니다. ex. 0x777777 <-이렇게 넣으면 컬러 설정 안됨 !!!
      *  !!! 가능한 R.color.~~로 넣어야 합니다 !!!
      *  !!! 모든 수치들은 DP값 기준으로 넣으면 됩니다!!!
+     *  기존 뷰 위에 그려지는 것이므로 하단에 높이만큼 패딩을 주어야함.
      * @param selectedIndicator     : 선택된 인디케이터 색상
      * @param unselectedIndicator   : 선택되지 않은 인디케이터 색상
      * @param indicatorHeight       : 인디케이터 전체 공간 높이
