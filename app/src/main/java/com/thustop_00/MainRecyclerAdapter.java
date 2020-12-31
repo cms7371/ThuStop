@@ -145,12 +145,13 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public class TicketRecyclerHolder extends RecyclerView.ViewHolder {
         protected RecyclerView rv;
-        protected TicketAdapter adapter;
+        protected TicketRecyclerAdapter adapter;
 
         public TicketRecyclerHolder(@NonNull View itemView) {
             super(itemView);
             this.rv = itemView.findViewById(R.id.rv_tickets);
-            this.adapter = new TicketAdapter(null); //TODO null말고 ticket array 넣을 것!
+            this.adapter = new TicketRecyclerAdapter(context,null, true); //TODO null말고 ticket array 넣을 것!
+            adapter.setListener((view, position) -> mListener.onItemSelected(view, 0, position));
             this.rv.setAdapter(this.adapter);
             PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
             pagerSnapHelper.attachToRecyclerView(this.rv);
@@ -210,7 +211,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
-    private class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketViewHolder> {
+    /*public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketViewHolder> {
         private ArrayList<Ticket> tickets;
 
         TicketAdapter(ArrayList<Ticket> in) {
@@ -249,6 +250,6 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             return 3; //TODO 티켓 갯수에 따라 길이 바꿔주도록 해야합니다.
         }
 
-    }
+    }*/
 
 }

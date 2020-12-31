@@ -108,6 +108,7 @@ public class LoginFragment extends FragmentBase {
                     _listener.setFragment(MainFragment.newInstance());
                 } else {
                     Log.e(TAG, "onResponse: Thustop 서버 에러 Null 반환", new NullPointerException());
+                    Log.d(TAG, "onResponse: Thustop 서버 에러 " + response.message());
                 }
             }
 

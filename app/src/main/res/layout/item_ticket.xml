@@ -43,14 +43,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="52dp"
-            app:layout_constraintBottom_toTopOf="@id/tv_ticket_bus_code"
+            app:layout_constraintBottom_toTopOf="@id/tv_ticket_bus_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
             app:srcCompat="@drawable/icon_bus_green" />
 
         <com.thustop_00.widgets.NotoTextView
-            android:id="@+id/tv_ticket_bus_code"
+            android:id="@+id/tv_ticket_bus_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -76,7 +76,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/iv_ticket_icon"
             app:layout_constraintStart_toStartOf="@id/iv_ticket_icon"
-            app:layout_constraintTop_toBottomOf="@id/tv_ticket_bus_code"
+            app:layout_constraintTop_toBottomOf="@id/tv_ticket_bus_name"
             app:notoTextStyle="medium" />
 
         <ImageView

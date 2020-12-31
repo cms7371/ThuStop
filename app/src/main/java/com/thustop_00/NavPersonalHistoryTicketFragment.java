@@ -1,6 +1,5 @@
 package com.thustop_00;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,9 +9,7 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
-import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,8 +19,6 @@ import com.thustop_00.widgets.NotoTextView;
 
 import java.util.ArrayList;
 
-import me.relex.circleindicator.CircleIndicator3;
-
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link NavPersonalHistoryTicketFragment#newInstance} factory method to
@@ -32,7 +27,7 @@ import me.relex.circleindicator.CircleIndicator3;
 public class NavPersonalHistoryTicketFragment extends FragmentBase {
 
     FragmentNavPersonalHistoryTicketBinding binding;
-    private NavTicketAdapter mAdapter;
+    private TicketRecyclerAdapter mAdapter;
     private ArrayList<Ticket> mArrayList;
 
     public NavPersonalHistoryTicketFragment() {
@@ -61,7 +56,7 @@ public class NavPersonalHistoryTicketFragment extends FragmentBase {
         binding=FragmentNavPersonalHistoryTicketBinding.inflate(inflater);
         binding.setNavPersonalHistoryTicketFrag(this);
         mArrayList = new ArrayList<>();
-        mAdapter = new NavTicketAdapter(mArrayList);
+        mAdapter = new TicketRecyclerAdapter(getContext(), mArrayList, false);
 
         binding.rvTicket.setAdapter(mAdapter);
         PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
@@ -94,57 +89,6 @@ public class NavPersonalHistoryTicketFragment extends FragmentBase {
         Log.d("ㅇㅇ","눌렸음");
         NoticeTicketPointDialog noticeTicketPointDialog = new NoticeTicketPointDialog(getContext());
         noticeTicketPointDialog.show();
-    }
-
-    private class NavTicketAdapter extends RecyclerView.Adapter<NavTicketAdapter.TicketViewHolder> {
-        private ArrayList<Ticket> tickets;
-        NavTicketAdapter(ArrayList<Ticket> in) {
-            this.tickets = in;
-        }
-
-
-        @NonNull
-        @Override
-        public TicketViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View itemView = LayoutInflater.from(getContext()).inflate(R.layout.item_ticket, parent, false);
-            TicketViewHolder viewHolder = new TicketViewHolder(itemView);
-            return viewHolder;
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull TicketViewHolder holder, int position) {
-
-        }
-
-        @Override
-        public int getItemCount() {
-            return 4;
-        }
-
-        public class TicketViewHolder extends RecyclerView.ViewHolder {
-            protected NotoTextView busCode;
-            protected NotoTextView departureTime;
-            protected NotoTextView departure;
-            protected NotoTextView destination;
-            protected NotoTextView destinationTime;
-            protected NotoTextView capacity;
-            protected NotoTextView ticketState;
-            protected ProgressBar pb_capacity;
-
-
-            public TicketViewHolder(@NonNull View itemView) {
-                super(itemView);
-                this.busCode = (NotoTextView) itemView.findViewById(R.id.tv_ticket_bus_code);
-                this.departure = (NotoTextView) itemView.findViewById(R.id.tv_departure);
-                this.departureTime = (NotoTextView) itemView.findViewById(R.id.tv_departure_time);
-                this.destination = (NotoTextView) itemView.findViewById(R.id.tv_destination);
-                this.destinationTime = (NotoTextView) itemView.findViewById(R.id.tv_destination_time);
-                this.capacity = (NotoTextView) itemView.findViewById(R.id.tv_capacity);
-                this.ticketState = (NotoTextView) itemView.findViewById(R.id.tv_ticket_state);
-                this.pb_capacity = (ProgressBar) itemView.findViewById(R.id.pb_personnel);
-
-            }
-        }
     }
 
     public static class SnapPagerListener extends RecyclerView.OnScrollListener {
