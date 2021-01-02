@@ -61,6 +61,7 @@ public class NavPersonalHistoryTicketPointFragment extends FragmentBase implemen
     }
 
     public void onDatePickerClick(View view) {
+        /***
         Calendar now = Calendar.getInstance();
         if (dpd == null) {
             dpd = DatePickerDialog.newInstance(
@@ -96,24 +97,19 @@ public class NavPersonalHistoryTicketPointFragment extends FragmentBase implemen
             dpd = null;
         });
         dpd.show(getParentFragmentManager(), "Datepickerdialog");
+        ***/
 
 
-        /***
         CustomDatePickerDialog datePickerDialog = new CustomDatePickerDialog(getContext());
         datePickerDialog.setDialogListener(new CustomDatePickerDialog.CustomDatePickerDialogListener() {
 
             @Override
             public void onOkClick(int year_picker, int month_picker, int day_picker) {
-                year = year_picker;
-                month = month_picker+1;
-                day = day_picker;
-                binding.tvYearValue.setText(String.valueOf(year));
-                binding.tvMonthValue.setText(String.valueOf(month));
-                binding.tvDayValue.setText(String.valueOf(day));
+
             }
         });
         datePickerDialog.show();
-        ***/
+
 
     }
 
