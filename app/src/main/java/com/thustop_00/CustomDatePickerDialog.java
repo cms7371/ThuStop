@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.TimePicker;
@@ -25,7 +24,7 @@ public class CustomDatePickerDialog extends Dialog {
     private Context context;
     private NotoTextView btOk;
     private NotoTextView btCancel;
-    private CalendarView datePicker;
+    private DatePicker datePicker;
     private int year, month, day;
 
     public CustomDatePickerDialog(@NonNull Context context) {
@@ -46,22 +45,22 @@ public class CustomDatePickerDialog extends Dialog {
         datePicker = findViewById(R.id.date_picker);
         //LinearLayout datePickerHeader = (LinearLayout) datePicker.getChildAt(0);
         //datePickerHeader.setVisibility(View.GONE);
-        datePicker.setMinDate(System.currentTimeMillis());
 
         final Calendar c = Calendar.getInstance();
         year = c.get(Calendar.YEAR);
-        month = c.get(Calendar.MONTH);
+        month = c.get(Calendar.MONTH) + 1;
         day = c.get(Calendar.DAY_OF_MONTH);
 
 
-        datePicker.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+
+        datePicker.init(year, month, day, new DatePicker.OnDateChangedListener() {
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int picked_year, int picked_month, int picked_day) {
-                year = picked_year;
-                month = picked_month;
-                day = picked_day;
+            public void onDateChanged(DatePicker datePicker, int year_picker, int month_picker, int day_picker) {
+                year = year_picker;
+                month = month_picker;
+                day = day_picker;
             }
-        } );
+        });
 
         btOk.setOnClickListener(new View.OnClickListener() {
             @Override

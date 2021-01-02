@@ -1,11 +1,12 @@
 package com.thustop_00;
 
-import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +16,20 @@ import android.widget.Toast;
 
 import com.thustop_00.databinding.FragmentNavPersonalHistoryTicketBinding;
 import com.thustop_00.databinding.FragmentNavPersonalHistoryTicketPointBinding;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+
+import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link NavPersonalHistoryTicketPointFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NavPersonalHistoryTicketPointFragment extends FragmentBase {
+public class NavPersonalHistoryTicketPointFragment extends FragmentBase implements com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
     FragmentNavPersonalHistoryTicketPointBinding binding;
     int year, month, day;
+    private com.wdullaer.materialdatetimepicker.date.DatePickerDialog dpd;
 
 
     public NavPersonalHistoryTicketPointFragment() {
@@ -55,8 +61,47 @@ public class NavPersonalHistoryTicketPointFragment extends FragmentBase {
     }
 
     public void onDatePickerClick(View view) {
+        Calendar now = Calendar.getInstance();
+        if (dpd == null) {
+            dpd = DatePickerDialog.newInstance(
+                    NavPersonalHistoryTicketPointFragment.this,
+                    now.get(Calendar.YEAR),
+                    now.get(Calendar.MONTH),
+                    now.get(Calendar.DAY_OF_MONTH)
+            );
+        } else {
+            dpd.initialize(
+                    NavPersonalHistoryTicketPointFragment.this,
+                    now.get(Calendar.YEAR),
+                    now.get(Calendar.MONTH),
+                    now.get(Calendar.DAY_OF_MONTH)
+            );
+        }
+
+        // restrict to weekdays only
+        ArrayList<Calendar> weekdays = new ArrayList<Calendar>();
+        Calendar day = Calendar.getInstance();
+        for (int i = 0; i < 30 ; i++) {
+            if (day.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY && day.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
+                Calendar d = (Calendar) day.clone();
+                weekdays.add(d);
+            }
+            day.add(Calendar.DATE, 1);
+        }
+        Calendar[] weekdayDays = weekdays.toArray(new Calendar[weekdays.size()]);
+        dpd.setSelectableDays(weekdayDays);
+
+        dpd.setOnCancelListener(dialog -> {
+            Log.d("DatePickerDialog", "Dialog was cancelled");
+            dpd = null;
+        });
+        dpd.show(getParentFragmentManager(), "Datepickerdialog");
+
+
+        /***
         CustomDatePickerDialog datePickerDialog = new CustomDatePickerDialog(getContext());
         datePickerDialog.setDialogListener(new CustomDatePickerDialog.CustomDatePickerDialogListener() {
+
             @Override
             public void onOkClick(int year_picker, int month_picker, int day_picker) {
                 year = year_picker;
@@ -68,23 +113,18 @@ public class NavPersonalHistoryTicketPointFragment extends FragmentBase {
             }
         });
         datePickerDialog.show();
-
-        //DatePickerDialog dialog = new DatePickerDialog(getActivity(), listener, 2020,11,15);
-        /*dialog.setContentView(R.id.datetime_dialog);
-        DatePicker datePicker = dialog.findViewById(R.id.dialogDatePicker);
-        LinearLayout datePickerHeader = (LinearLayout) datePicker.getChildAt(0);
-        datePickerHeader.setVisibility(View.GONE);
-        dialog.setCustomTitle(binding.stroke);*/
-        //dialog.show();
+        ***/
 
     }
 
-    private DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            Toast.makeText(getActivity().getApplicationContext(), year + "년" + monthOfYear + "월" + dayOfMonth + "일", Toast.LENGTH_SHORT).show();
-        }
-    };
 
 
+
+    @Override
+    public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        binding.tvYearValue.setText(String.valueOf(year));
+        binding.tvMonthValue.setText(String.valueOf(monthOfYear+1));
+        binding.tvDayValue.setText(String.valueOf(dayOfMonth));
+        dpd = null;
+    }
 }
