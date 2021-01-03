@@ -28,8 +28,9 @@ import java.util.Calendar;
  */
 public class NavPersonalHistoryTicketPointFragment extends FragmentBase implements com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
     FragmentNavPersonalHistoryTicketPointBinding binding;
-    int year, month, day;
+    private Calendar start, end;
     private com.wdullaer.materialdatetimepicker.date.DatePickerDialog dpd;
+    private ArrayList<ArrayList<String>> calendarList = new ArrayList<>();
 
 
     public NavPersonalHistoryTicketPointFragment() {
@@ -56,6 +57,11 @@ public class NavPersonalHistoryTicketPointFragment extends FragmentBase implemen
                              Bundle savedInstanceState) {
         binding= FragmentNavPersonalHistoryTicketPointBinding.inflate(inflater);
         binding.setNavPersonalHistoryTicketPointFrag(this);
+        start = Calendar.getInstance();
+        end = Calendar.getInstance();
+        start.set(2020, 0, 15);
+        end.set(2021,1,26);
+        calendarList = setCalendarList(start, end);
 
         return binding.getRoot();
     }
@@ -100,7 +106,7 @@ public class NavPersonalHistoryTicketPointFragment extends FragmentBase implemen
         ***/
 
 
-        CustomDatePickerDialog datePickerDialog = new CustomDatePickerDialog(getContext());
+        CustomDatePickerDialog datePickerDialog = new CustomDatePickerDialog(getContext(), calendarList);
         datePickerDialog.setDialogListener(new CustomDatePickerDialog.CustomDatePickerDialogListener() {
 
             @Override
@@ -113,9 +119,6 @@ public class NavPersonalHistoryTicketPointFragment extends FragmentBase implemen
 
     }
 
-
-
-
     @Override
     public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
         binding.tvYearValue.setText(String.valueOf(year));
@@ -123,4 +126,75 @@ public class NavPersonalHistoryTicketPointFragment extends FragmentBase implemen
         binding.tvDayValue.setText(String.valueOf(dayOfMonth));
         dpd = null;
     }
+
+    public ArrayList<ArrayList<String>> setCalendarList(Calendar start, Calendar end) {
+        ArrayList<ArrayList<String>> Calendars = new ArrayList<>();
+        // 현재 날짜 셋팅
+        Calendar c = Calendar.getInstance();
+        // 시작일이 오늘 보다 이전이라면,
+        if (start.before(c)) start = Calendar.getInstance();
+        int startYear = start.get(Calendar.YEAR);
+        int startMonth = start.get(Calendar.MONTH);
+        int endYear = end.get(Calendar.YEAR);
+        int endMonth = end.get(Calendar.MONTH);
+
+
+        if (startMonth == endMonth) {
+            c.set(startYear, startMonth, 1);
+            int dayNum = c.get(Calendar.DAY_OF_WEEK);
+            ArrayList<String> dayList = new ArrayList<String>();
+
+            dayList.add("일");
+            dayList.add("월");
+            dayList.add("화");
+            dayList.add("수");
+            dayList.add("목");
+            dayList.add("금");
+            dayList.add("토");
+
+            for(int i = 1; i < dayNum; i++) {
+                dayList.add("");
+            }
+            int finalDate = c.getActualMaximum(Calendar.DAY_OF_MONTH);
+            Log.d("데이오브먼스", String.valueOf(finalDate));
+            for (int i = 0; i < finalDate; i++) {
+                dayList.add(String.valueOf(i + 1));
+            }
+            Calendars.add(dayList);
+            dayList.add(startYear+"년 "+(startMonth+1)+"월");
+
+            return Calendars;
+        } else if(startYear == endYear) {
+
+            for (int i = startMonth; i <= endMonth; i++) {
+                c.set(startYear, i, 1);
+                int dayNum = c.get(Calendar.DAY_OF_WEEK);
+                ArrayList<String> dayList = new ArrayList<String>();
+
+                dayList.add("일");
+                dayList.add("월");
+                dayList.add("화");
+                dayList.add("수");
+                dayList.add("목");
+                dayList.add("금");
+                dayList.add("토");
+
+                for(int j = 1; j < dayNum; j++) {
+                    dayList.add("");
+                }
+                int finalDate = c.getActualMaximum(Calendar.DAY_OF_MONTH);
+                Log.d("데이오브먼스", String.valueOf(finalDate));
+                for (int j = 0; j < finalDate; j++) {
+                    dayList.add(String.valueOf(j + 1));
+                }
+                Calendars.add(dayList);
+                dayList.add(startYear+"년 "+(i+1)+"월");
+            }
+
+            return Calendars;
+
+        }
+        return Calendars;
+    }
+
 }

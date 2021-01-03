@@ -97,7 +97,10 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
         return binding.getRoot();
     }
 
+    //TODO: 데이트피커 변경중. 나중에 재적용 필요
+
     public void onCalendarClick(View view) {
+        /***
         CustomDatePickerDialog datePickerDialog = new CustomDatePickerDialog(getContext());
         datePickerDialog.setDialogListener(new CustomDatePickerDialog.CustomDatePickerDialogListener() {
             @Override
@@ -111,7 +114,9 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
             }
         });
         datePickerDialog.show();
+         ***/
     }
+
 
     public void onBtOkClick(View view) {
         // TODO 확인 화면 다이얼로그로 바꾸고 결제화면 연결해야함

@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.thustop_00.widgets.NotoTextView;
 
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -35,13 +36,17 @@ public class CustomDatePickerDialog extends Dialog {
     private Context context;
     private NotoTextView btOk;
     private NotoTextView btCancel;
+    private NotoTextView yearMonth;
     private ArrayList<Calendar> calendarRange;
     private int width;
     private Calendar start, end;
+    private ArrayList<ArrayList<String>> calendarList;
+    private String title;
 
-    public CustomDatePickerDialog(@NonNull Context context) {
+    public CustomDatePickerDialog(@NonNull Context context, ArrayList<ArrayList<String>> calendarList) {
         super(context);
         this.context = context;
+        this.calendarList = calendarList;
     }
 
     public void setDialogListener(CustomDatePickerDialog.CustomDatePickerDialogListener customDatePickerDialogListener){
@@ -54,11 +59,39 @@ public class CustomDatePickerDialog extends Dialog {
         setContentView(R.layout.dialog_date_picker);
         Objects.requireNonNull(getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
+
+        yearMonth = findViewById(R.id.tv_year_month);
         calendar = findViewById(R.id.date_picker);
-        CalendarAdapter rvAdapter = new CalendarAdapter(context);
+        CalendarAdapter rvAdapter = new CalendarAdapter(context, calendarList);
         calendar.setAdapter(rvAdapter);
+
+
+
+
         PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
         pagerSnapHelper.attachToRecyclerView(calendar);
+
+        SnapPagerListener listener = new SnapPagerListener(
+                pagerSnapHelper,
+                SnapPagerListener.ON_SETTLED,
+                true,
+                new SnapPagerListener.OnChangeListener() {
+                    @Override
+                    public void onSnapped(int position) {
+                        yearMonth.setText(calendarList.get(position).get(calendarList.get(position).size()-1));
+                    }
+                }
+        );
+        calendar.addOnScrollListener(listener);
+        calendar.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                yearMonth.setText(title);
+                Log.d("변경", "스크롤 중");
+            }
+        });
+
         btOk = findViewById(R.id.tv_ok);
         btCancel = findViewById(R.id.tv_cancel);
 
@@ -87,70 +120,49 @@ public class CustomDatePickerDialog extends Dialog {
     }
 
 
-    private class CalendarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.CalendarHolder> {
         private Context context;
-        CalendarAdapter(Context context) {
+        private ArrayList<ArrayList<String>> calendarList;
+        CalendarAdapter(Context context, ArrayList<ArrayList<String>> calendarList) {
             this.context = context;
+            this.calendarList = calendarList;
         }
 
         @NonNull
         @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public CalendarHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View itemView = LayoutInflater.from(context).inflate(R.layout.item_calendar, parent, false);
             return new CalendarHolder(itemView);
         }
 
         @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull CalendarHolder holder, int position) {
+
+
+            CalendarGridAdapter adapter = new CalendarGridAdapter(context, calendarList.get(position));
+            holder.gv.setAdapter(adapter);
+
 
         }
 
         @Override
         public int getItemCount() {
-            return 1;
+            return calendarList.size();
         }
+
 
         public class CalendarHolder extends RecyclerView.ViewHolder {
             private GridView gv;
-            private CalendarGridAdapter adapter;
-            private ArrayList<String> dayList;
-            private Date start, end;
-            private NotoTextView BackSelectedItem, CurSelectedItem;
-            private Calendar mCalendar;
 
             public CalendarHolder(@NonNull View itemView) {
                 super(itemView);
                 this.gv = itemView.findViewById(R.id.gv_calendar);
 
-                dayList = new ArrayList<String>();
-                dayList.add("일");
-                dayList.add("월");
-                dayList.add("화");
-                dayList.add("수");
-                dayList.add("목");
-                dayList.add("금");
-                dayList.add("토");
-
-                mCalendar = Calendar.getInstance();
-                mCalendar.set(2021,0,1);
-                int dayNum = mCalendar.get(Calendar.DAY_OF_WEEK);
-
-                for (int i = 1; i <dayNum; i++) {
-                    dayList.add("");
-                }
-                Log.d("아이템",String.valueOf(dayList.size()));
-                mCalendar.set(Calendar.MONTH, mCalendar.get(Calendar.MONTH)-1);
-                for (int i = 0; i < mCalendar.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
-                    dayList.add(String.valueOf(i + 1));
-                }
-
-
-                this.adapter = new CalendarGridAdapter(context, dayList);
-                this.gv.setAdapter(adapter);
                 gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         view.setBackgroundResource(R.drawable.bg_round25_green);
+                        ((NotoTextView) view).setTextColor(context.getResources().getColor(R.color.White));
                     }
                 });
 
@@ -197,16 +209,20 @@ public class CustomDatePickerDialog extends Dialog {
         @Override
         public View getView(int position, View view, ViewGroup viewGroup) {
             NotoTextView tvDate = new NotoTextView(this.context);
-            tvDate.setText(dayList.get(position));
+
             tvDate.setGravity(Gravity.CENTER);
 
             tvDate.setLayoutParams(new GridView.LayoutParams(width, width));
             tvDate.setTextSize(12);
             if(position%7 == 0 ||position%7 == 6 ) {
-                tvDate.setTextColor(getContext().getResources().getColor(R.color.TextGray));
+                tvDate.setText(dayList.get(position));
+                tvDate.setTextColor(getContext().getResources().getColor(R.color.AchCF));
                 tvDate.setEnabled(false);
 
+            } else if (position == dayList.size()-1) {
+                tvDate.setText("");
             } else {
+                tvDate.setText(dayList.get(position));
                 tvDate.setTextColor(getContext().getResources().getColor(R.color.TextBlack));
             }
             return tvDate;
