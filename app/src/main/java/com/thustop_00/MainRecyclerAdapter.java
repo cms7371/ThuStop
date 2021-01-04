@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,13 +44,12 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         //TODO 티켓리스트와 현재 위치 이름 받아서 제목과 리사이클러 내용 바꿔줘야함
     }
 
-    public void changeDataSet(List<Route> data){
+    public void changeDataSet(List<Route> data) {
         this.data = data;
-        for (int i = 0; i < data.size(); i++){
+        for (int i = 0; i < data.size(); i++) {
             notifyItemInserted(i + 2);
         }
     }
-
 
 
     //Method that indicates type of item depending on position.
@@ -62,9 +62,12 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             return VIEW_TYPE_BUTTON;
         }*/ else if (position == 1) {
             return VIEW_TYPE_TITLE;
-        } else if (position >= 2){
+        } else if (position == (data.size() + 2)) {
+            return VIEW_TYPE_TITLE; //TODO 이거도 사업자 정보 지워야함
+        } else if (position >= 2) {
             return VIEW_TYPE_ROUTE;
-        } return 0;
+        }
+        return 0;
     }
 
     //This method gives layout of item according to the viewtype value
@@ -89,14 +92,14 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof RouteViewHolder){
+        if (holder instanceof RouteViewHolder) {
             Route cnt_route = data.get(position - 2);
             int boarding_stop_num = cnt_route.boarding_stops.size();
             int alighting_stop_num = cnt_route.alighting_stops.size();
             ((RouteViewHolder) holder).tvName.setText(cnt_route.name);
             ((RouteViewHolder) holder).tvStatus.setText(cnt_route.status);
-            ((RouteViewHolder) holder).tvPeople.setText(String.format("%d/%d",cnt_route.cnt_passenger,cnt_route.max_passenger));
-            if (cnt_route.status.equals("모집중")){
+            ((RouteViewHolder) holder).tvPeople.setText(String.format("%d/%d", cnt_route.cnt_passenger, cnt_route.max_passenger));
+            if (cnt_route.status.equals("모집중")) {
                 ((RouteViewHolder) holder).tvStatus.setBackground(context.getDrawable(R.drawable.bg_round12_red));
             }
             //시간 반영
@@ -104,17 +107,21 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             ((RouteViewHolder) holder).tvDestinationTime.setText(cnt_route.alighting_stops.get(alighting_stop_num - 1).time);
 
             ((RouteViewHolder) holder).tvDeparture1.setText(cnt_route.getBoardingStopName(0));
-            if (boarding_stop_num != 2){
+            if (boarding_stop_num != 2) {
                 ((RouteViewHolder) holder).tvDeparture2.setText(cnt_route.getBoardingStopName(boarding_stop_num / 2));
             }
             ((RouteViewHolder) holder).tvDeparture3.setText(cnt_route.getBoardingStopName(boarding_stop_num - 1));
 
             ((RouteViewHolder) holder).tvDestination1.setText(cnt_route.getAlightingStopName(0));
-            if (alighting_stop_num != 2){
+            if (alighting_stop_num != 2) {
                 ((RouteViewHolder) holder).tvDestination2.setText(cnt_route.getAlightingStopName(alighting_stop_num / 2));
             }
             ((RouteViewHolder) holder).tvDestination3.setText(cnt_route.getAlightingStopName(boarding_stop_num - 1));
-
+        } else if ((data != null) && (position == (data.size() + 2)) && (holder instanceof TitleViewHolder)) {
+            ((TitleViewHolder) holder).layout.setBackground(context.getDrawable(R.color.Primary));
+            ((TitleViewHolder) holder).title.setTextColor(context.getResources().getColor(R.color.White));
+            ((TitleViewHolder) holder).title.setText(R.string.business_information_content);
+            ((TitleViewHolder) holder).title.setTextSize(12);
         }
     }
 
@@ -125,7 +132,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         if (data == null) {
             return 2; //TODO 이 값은 테스트를 위한 값임 route 클래스 넣고 나중에 지울 수 있도록 합니다.
         } else {
-            return data.size() + 2;
+            //TODO 마지막 사업자 정보 지워야함
+            return data.size() + 3;
         }
     }
 
@@ -150,7 +158,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         public TicketRecyclerHolder(@NonNull View itemView) {
             super(itemView);
             this.rv = itemView.findViewById(R.id.rv_tickets);
-            this.adapter = new TicketRecyclerAdapter(context,null, true); //TODO null말고 ticket array 넣을 것!
+            this.adapter = new TicketRecyclerAdapter(context, null, true); //TODO null말고 ticket array 넣을 것!
             adapter.setListener((view, position) -> mListener.onItemSelected(view, 0, position));
             this.rv.setAdapter(this.adapter);
             PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
@@ -160,17 +168,19 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public class TitleViewHolder extends RecyclerView.ViewHolder {
         protected TextView title;
+        protected ConstraintLayout layout;
 
         public TitleViewHolder(@NonNull View itemView) {
             super(itemView);
             this.title = (TextView) itemView.findViewById(R.id.tv_route_title);
+            this.layout = (ConstraintLayout) itemView.findViewById(R.id.cl_route_title);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+/*            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mListener.onItemSelected(view, getAdapterPosition(), -1);
                 }
-            });
+            });*/
 
         }
     }

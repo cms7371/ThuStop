@@ -2,20 +2,23 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_route_title"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="9dp">
 
     <com.thustop_00.widgets.NotoTextView
         android:id="@+id/tv_route_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="25dp"
         android:text="전체 노선표"
         android:textColor="@color/Primary"
         android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:notoTextStyle="medium" />
 </androidx.constraintlayout.widget.ConstraintLayout>

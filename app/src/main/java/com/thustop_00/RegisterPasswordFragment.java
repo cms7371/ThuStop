@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.pixplicity.easyprefs.library.Prefs;
 import com.thustop_00.databinding.FragmentRegisterPassowordBinding;
+import com.thustop_00.model.Auth;
 import com.thustop_00.model.Token;
 import com.thustop_00.model.UserData;
 
@@ -43,8 +44,7 @@ public class RegisterPasswordFragment extends FragmentBase {
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         clientBuilder.addInterceptor(loggingInterceptor);
 
-        UserData NewUser = new UserData();
-        NewUser.email = user.email;
+        Auth NewUser = new Auth();
         NewUser.username = user.username;
         NewUser.password1 = NewUser.password = user.password1;
         Log.d("test1 regi", "등록중1");

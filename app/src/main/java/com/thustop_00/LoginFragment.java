@@ -109,6 +109,7 @@ public class LoginFragment extends FragmentBase {
                 } else {
                     Log.e(TAG, "onResponse: Thustop 서버 에러 Null 반환", new NullPointerException());
                     Log.d(TAG, "onResponse: Thustop 서버 에러 " + response.message());
+                    testKakaoRegister(ID);
                 }
             }
 
@@ -117,7 +118,39 @@ public class LoginFragment extends FragmentBase {
                 Log.e(TAG, "onFailure: Thustop 서버 에러 접속 실패", new Exception());
             }
         });
+    }
 
+    private void testKakaoRegister(long id) {
+        Auth auth = new Auth();
+        auth.password1 = auth.password2 = auth.username =  "kakao" + id;
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constant.SERVER_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RestApi api = retrofit.create(RestApi.class);
+
+        Log.d(TAG, "testKakaoRegister: 회원 가입 시도" + auth.username + auth.password);
+        Call<Token> call = api.register(auth);
+        call.enqueue(new Callback<Token>() {
+            @Override
+            public void onResponse(@NotNull Call<Token> call, @NotNull Response<Token> response) {
+                if (response.isSuccessful() && (response.body() != null)) {
+                    Prefs.putString(Constant.LOGIN_KEY, "Token " + response.body().key);
+                    Util.registerDevice();
+                    Log.d(TAG, "onResponse: 회원가입 성공");
+                    _listener.setFragment(MainFragment.newInstance());
+                } else {
+                    Log.e(TAG, "onResponse: Thustop 서버 에러 Null 반환", new NullPointerException());
+                    Log.d(TAG, "onResponse: Thustop 서버 에러 " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<Token> call, @NotNull Throwable t) {
+                Log.d(TAG, "server error");
+            }
+        });
 
     }
 

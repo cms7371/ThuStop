@@ -17,7 +17,7 @@ import retrofit2.http.Path;
 
 public interface RestApi {
     @POST("rest-auth/registration/")
-    Call<Token> register(@Body UserData userData);
+    Call<Token> register(@Body Auth auth);
     @POST("rest-auth/login/")
     Call<Token> login(@Body Auth auth);
     @POST("api/devices/")
