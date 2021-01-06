@@ -104,6 +104,7 @@ public class LoginFragment extends FragmentBase {
             public void onResponse(@NotNull Call<Token> call, @NotNull Response<Token> response) {
                 if (response.isSuccessful() && (response.body() != null)) {
                     Prefs.putString(Constant.LOGIN_KEY, "Token " + response.body().key);
+                    Log.d(TAG, "onResponse: 서버 로그인 토큰 " + Prefs.getString(Constant.LOGIN_KEY, ""));
                     Util.registerDevice();
                     _listener.setFragment(MainFragment.newInstance());
                 } else {
@@ -138,7 +139,7 @@ public class LoginFragment extends FragmentBase {
                 if (response.isSuccessful() && (response.body() != null)) {
                     Prefs.putString(Constant.LOGIN_KEY, "Token " + response.body().key);
                     Util.registerDevice();
-                    Log.d(TAG, "onResponse: 회원가입 성공");
+                    Log.d(TAG, "onResponse: 회원가입 성공 " + Prefs.getString(Constant.LOGIN_KEY, ""));
                     _listener.setFragment(MainFragment.newInstance());
                 } else {
                     Log.e(TAG, "onResponse: Thustop 서버 에러 Null 반환", new NullPointerException());

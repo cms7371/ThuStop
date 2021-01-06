@@ -93,12 +93,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setActivityMain(this);
         prefs = getSharedPreferences("Pref", MODE_PRIVATE);  // check first run
-        new Prefs.Builder()
+/*        new Prefs.Builder()
                 .setContext(this)
                 .setMode(ContextWrapper.MODE_PRIVATE)
                 .setPrefsName(getPackageName())
                 .setUseDefaultSharedPreference(true)
-                .build();
+                .build();*/
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN); // edittext view layout problem
         /* Setting toolbar referred  https://blog.naver.com/qbxlvnf11/221328098468*/
         toolbar = binding.tbMain;
@@ -111,10 +111,10 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         /* At start, display splash fragment during loading*/
         actionbar.hide();
         setFragment(SplashFragment.newInstance());
-        Prefs.putString(Constant.LOGIN_KEY,"");
         FirebaseApp.initializeApp(this);
-        getKeyHash();
+        Log.d(TAG, "onCreate: 로그인키 " + Prefs.getString(Constant.LOGIN_KEY, null));
         if(!(Prefs.getString(Constant.LOGIN_KEY, "").isEmpty()))
+            Log.d(TAG, "onCreate: FCM 등록 시도");
             Util.registerDevice();
         Log.d(TAG, "onCreate: GPSServiceStatus is " + GPSServiceStatus);
         checkFirstRun();
