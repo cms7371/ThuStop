@@ -99,20 +99,24 @@
             app:layout_constraintTop_toBottomOf="@id/stroke1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
+
             <com.thustop_00.widgets.NotoTextView
                 android:id="@+id/tv_cancel_route"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                android:padding="10dp"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:paddingStart="34dp"
+                android:paddingEnd="0dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:text="노선요청 취소"
                 android:textColor="@color/TextBlack"
                 android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@id/stroke_recruit"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/stroke_recruit"/>
+                app:layout_constraintTop_toTopOf="parent" />
             <View
                 android:id="@+id/stroke_recruit"
                 android:layout_width="match_parent"
@@ -122,58 +126,72 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_before_payment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/cl_recruit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/cl_recruit">
+
             <com.thustop_00.widgets.NotoTextView
                 android:id="@+id/tv_payment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                android:padding="10dp"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:paddingStart="34dp"
+                android:paddingEnd="0dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:text="결제하기"
                 android:textColor="@color/TextBlack"
                 android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@id/stroke_payment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/stroke_payment"/>
+                app:layout_constraintTop_toTopOf="parent" />
+
             <View
                 android:id="@+id/stroke_payment"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/Stroke"
-                app:layout_constraintTop_toBottomOf="@id/tv_payment"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_payment" />
+
             <com.thustop_00.widgets.NotoTextView
                 android:id="@+id/tv_change_route"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                android:padding="10dp"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:paddingStart="34dp"
+                android:paddingEnd="0dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:text="출 · 도착지 변경"
                 android:textColor="@color/TextBlack"
                 android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@id/stroke_change_route"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/stroke_payment"
-                app:layout_constraintBottom_toTopOf="@id/stroke_change_route"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stroke_payment" />
+
             <View
                 android:id="@+id/stroke_change_route"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/Stroke"
-                app:layout_constraintTop_toBottomOf="@id/tv_change_route"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_change_route" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_complete_payment"
             android:layout_width="match_parent"
@@ -181,32 +199,39 @@
             app:layout_constraintTop_toBottomOf="@id/cl_before_payment"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
+
             <com.thustop_00.widgets.NotoTextView
                 android:id="@+id/tv_convert_point"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                android:padding="10dp"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:paddingStart="34dp"
+                android:paddingEnd="0dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:text="티켓 포인트로 전환"
                 android:textColor="@color/TextBlack"
                 android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/stroke_convert_point"
-                android:onClick="@{NavPersonalHistoryTicketFrag::onTicketPointClick}"/>/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <ImageView
                 android:id="@+id/iv_transform_info"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_marginEnd="23dp"
-                android:src="@drawable/icon_help"
+                android:layout_width="44dp"
+                android:layout_height="0dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_convert_point"
+                android:focusable="true"
+                android:onClick="@{NavPersonalHistoryTicketFrag::onTransformInfoClick}"
+                android:paddingTop="11dp"
+                android:paddingBottom="11dp"
+                android:src="@drawable/icon_help"
                 app:layout_constraintBottom_toBottomOf="@id/tv_convert_point"
-                android:onClick="@{NavPersonalHistoryTicketFrag::onTransformInfoClick}"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_convert_point" />
             <View
                 android:id="@+id/stroke_convert_point"
                 android:layout_width="match_parent"
@@ -217,16 +242,19 @@
                 app:layout_constraintEnd_toEndOf="parent"/>
             <com.thustop_00.widgets.NotoTextView
                 android:id="@+id/tv_refund"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                android:padding="10dp"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:paddingStart="34dp"
+                android:paddingEnd="0dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:text="환불하기"
                 android:textColor="@color/TextBlack"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/stroke_convert_point"
                 app:layout_constraintBottom_toTopOf="@id/stroke_refund"/>
             <View

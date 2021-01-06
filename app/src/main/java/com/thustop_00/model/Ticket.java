@@ -1,6 +1,8 @@
 package com.thustop_00.model;
 
 
+import java.util.List;
+
 public class Ticket {
     public int ticketID;
     public int userID;
@@ -9,5 +11,6 @@ public class Ticket {
     public int alighting_via_position;
     public String status;
     public String end_date;
+    public List<String> unavailable_dates;
     public Route route;
 }

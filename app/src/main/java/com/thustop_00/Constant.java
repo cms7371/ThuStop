@@ -25,4 +25,5 @@ public class Constant {
     final static String PAYMENT = "payment";
 
     public final static String LOGIN_KEY = "login_key";
+    public final static String FIRST_RUN = "first_run_check";
 }

@@ -3,10 +3,8 @@ package com.thustop_00;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Rect;
 import android.location.LocationManager;
@@ -35,7 +33,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.firebase.FirebaseApp;
-import com.kakao.sdk.common.KakaoSdk;
 import com.kakao.util.maps.helper.Utility;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.thustop_00.databinding.ActivityMainBinding;
@@ -75,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     //GPS 권한 허용과 위치서비스 활용이 모두 켜져 있어야 true
     private static Boolean GPSServiceStatus = null;
 
-    public SharedPreferences prefs;
     private onBackPressedListener BackListener;
     private final static String TAG = "MainActivity";
 
@@ -92,13 +88,6 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         /* Link activity_main as binding, with doing setContentView(R.layout.activity_main);*/
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setActivityMain(this);
-        prefs = getSharedPreferences("Pref", MODE_PRIVATE);  // check first run
-/*        new Prefs.Builder()
-                .setContext(this)
-                .setMode(ContextWrapper.MODE_PRIVATE)
-                .setPrefsName(getPackageName())
-                .setUseDefaultSharedPreference(true)
-                .build();*/
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN); // edittext view layout problem
         /* Setting toolbar referred  https://blog.naver.com/qbxlvnf11/221328098468*/
         toolbar = binding.tbMain;
@@ -203,9 +192,9 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     }
 
     public void checkFirstRun() {
-        boolean isFirstRun = prefs.getBoolean("isFirstRun", true);
+        boolean isFirstRun = Prefs.getBoolean(Constant.FIRST_RUN, true);
         if (isFirstRun) {
-            prefs.edit().putBoolean("isFirstRun", false).apply();
+            Prefs.putBoolean(Constant.FIRST_RUN, false);
             H.postDelayed(new Runnable() {
                 @Override
                 public void run() {

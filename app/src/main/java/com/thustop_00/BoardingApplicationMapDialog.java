@@ -66,8 +66,6 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
         if (activity instanceof OnFragmentInteractionListener) {
             _listener = (OnFragmentInteractionListener) activity;
             _listener.setOnBackPressedListener(null);
-        } else {
-            throw new RuntimeException(activity.toString() + " must implement OnFragmentInteractionListener");
         }
 
         setContentView(R.layout.dialog_stop_map);
@@ -189,7 +187,9 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
     public void onPOIItemSelected(MapView mapView, MapPOIItem mapPOIItem) {
         int index = mapPOIItem.getTag();
         findViewById(R.id.cl_dsm_info).animate().translationY(_listener.covertDPtoPX(6)).setDuration(150)
-                .withEndAction(() -> findViewById(R.id.cl_dsm_info).animate().translationY(0).setDuration(150).start()).start();
+                .withEndAction(() ->
+                        findViewById(R.id.cl_dsm_info).animate().translationY(0).setDuration(150).start())
+                .start();
         if (index > 0) {
             index = index - 1;
             setInformationBox(boarding_stops.get(index), false);
