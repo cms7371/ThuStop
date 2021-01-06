@@ -11,6 +11,7 @@
         android:numColumns="7"
         android:gravity="center"
         android:verticalSpacing="8dp"
+        android:listSelector="@android:color/transparent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

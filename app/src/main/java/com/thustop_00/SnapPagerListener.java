@@ -46,7 +46,6 @@ public class SnapPagerListener extends RecyclerView.OnScrollListener {
         super.onScrollStateChanged(recyclerView, newState);
         if (type == ON_SETTLED && newState == RecyclerView.SCROLL_STATE_IDLE) {
             notifyListenerIfNeeded(getSnapPosition(recyclerView));
-        } else if (type == ON_SETTLED && newState == RecyclerView.SCROLL_STATE_DRAGGING) {
         }
     }
 

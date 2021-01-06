@@ -15,6 +15,8 @@ import com.thustop_00.databinding.FragmentBoardingApplicationPassengerInfoBindin
 import com.thustop_00.model.Route;
 import com.thustop_00.model.Ticket;
 
+import java.util.Calendar;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link BoardingApplicationPassengerInfoFragment#newInstance} factory method to
@@ -100,8 +102,11 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
     //TODO: 데이트피커 변경중. 나중에 재적용 필요
 
     public void onCalendarClick(View view) {
-        /***
-        CustomDatePickerDialog datePickerDialog = new CustomDatePickerDialog(getContext());
+        // 임시 적용 중
+        Calendar start = Calendar.getInstance();
+        Calendar end = Calendar.getInstance();
+        end.set(2021,1,27);
+        CustomDatePickerDialog datePickerDialog = new CustomDatePickerDialog(getContext(), start, end);
         datePickerDialog.setDialogListener(new CustomDatePickerDialog.CustomDatePickerDialogListener() {
             @Override
             public void onOkClick(int year_picker, int month_picker, int day_picker) {
@@ -114,7 +119,6 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
             }
         });
         datePickerDialog.show();
-         ***/
     }
 
 

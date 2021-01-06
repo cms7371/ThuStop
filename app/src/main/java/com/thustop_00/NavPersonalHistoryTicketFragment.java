@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Switch;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
@@ -25,10 +26,14 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class NavPersonalHistoryTicketFragment extends FragmentBase {
+    public static final int  모집중= 0;
+    public static final int 대기중 = 1;
+    public static final int 운행중 = 2;
 
     FragmentNavPersonalHistoryTicketBinding binding;
     private TicketRecyclerAdapter mAdapter;
     private ArrayList<Ticket> mArrayList;
+    private ArrayList<Integer> type;
 
     public NavPersonalHistoryTicketFragment() {
         // Required empty public constructor
@@ -57,14 +62,25 @@ public class NavPersonalHistoryTicketFragment extends FragmentBase {
         binding.setNavPersonalHistoryTicketFrag(this);
         mArrayList = new ArrayList<>();
         mAdapter = new TicketRecyclerAdapter(getContext(), mArrayList, false);
+        //TODO: 타입 어떻게 받을 지 결정 필요
+        type = new ArrayList<Integer>();
+        type.add(모집중);
+        Log.d("1", String.valueOf(type.get(0)));
+        type.add(대기중);
+        Log.d("1", String.valueOf(type.get(1)));
+        type.add(운행중);
+        Log.d("1", String.valueOf(type.get(2)));
 
         binding.rvTicket.setAdapter(mAdapter);
         PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
         pagerSnapHelper.attachToRecyclerView(binding.rvTicket);
+        if (mAdapter.getItemCount() != 0)
+        settingView(0);
 
-        SnapPagerListener mListener = new SnapPagerListener(pagerSnapHelper, SnapPagerListener.ON_SCROLL, true, new SnapPagerListener.OnChangeListener() {
+        SnapPagerListener mListener = new SnapPagerListener(pagerSnapHelper, SnapPagerListener.ON_SETTLED, false, new SnapPagerListener.OnChangeListener() {
             @Override
             public void onSnapped(int position) {
+                settingView(position);
             }
         });
 
@@ -89,6 +105,30 @@ public class NavPersonalHistoryTicketFragment extends FragmentBase {
         Log.d("ㅇㅇ","눌렸음");
         NoticeTicketPointDialog noticeTicketPointDialog = new NoticeTicketPointDialog(getContext());
         noticeTicketPointDialog.show();
+    }
+
+    public void settingView(int position){
+        Log.d("겟", String.valueOf(type.get(position)));
+        switch (type.get(position)) {
+            case 0 :
+                Log.d("됨", "0");
+                binding.clRecruit.setVisibility(View.VISIBLE);
+                binding.clBeforePayment.setVisibility(View.GONE);
+                binding.clCompletePayment.setVisibility(View.GONE);
+                break;
+            case 1 :
+                binding.clRecruit.setVisibility(View.GONE);
+                binding.clBeforePayment.setVisibility(View.VISIBLE);
+                binding.clCompletePayment.setVisibility(View.GONE);
+                Log.d("됨", "1");
+                break;
+            case 2 :
+                binding.clRecruit.setVisibility(View.GONE);
+                binding.clBeforePayment.setVisibility(View.GONE);
+                binding.clCompletePayment.setVisibility(View.VISIBLE);
+                Log.d("됨", "2");
+                break;
+        }
     }
 
 

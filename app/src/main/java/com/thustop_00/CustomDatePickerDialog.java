@@ -37,16 +37,19 @@ public class CustomDatePickerDialog extends Dialog {
     private NotoTextView btOk;
     private NotoTextView btCancel;
     private NotoTextView yearMonth;
-    private ArrayList<Calendar> calendarRange;
     private int width;
     private Calendar start, end;
     private ArrayList<ArrayList<String>> calendarList;
-    private String title;
+    private int year, month, day;
+    private int preposition = -1;
+    private NotoTextView preSelectedItem;
 
-    public CustomDatePickerDialog(@NonNull Context context, ArrayList<ArrayList<String>> calendarList) {
+
+    public CustomDatePickerDialog(@NonNull Context context, Calendar start, Calendar end) {
         super(context);
         this.context = context;
-        this.calendarList = calendarList;
+        this.start = start;
+        this.end = end;
     }
 
     public void setDialogListener(CustomDatePickerDialog.CustomDatePickerDialogListener customDatePickerDialogListener){
@@ -58,6 +61,8 @@ public class CustomDatePickerDialog extends Dialog {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_date_picker);
         Objects.requireNonNull(getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        calendarList = setCalendarList(start, end);
 
 
         yearMonth = findViewById(R.id.tv_year_month);
@@ -74,23 +79,17 @@ public class CustomDatePickerDialog extends Dialog {
         SnapPagerListener listener = new SnapPagerListener(
                 pagerSnapHelper,
                 SnapPagerListener.ON_SETTLED,
-                true,
+                false,
                 new SnapPagerListener.OnChangeListener() {
                     @Override
                     public void onSnapped(int position) {
+                        Log.d("스냅", String.valueOf(position));
                         yearMonth.setText(calendarList.get(position).get(calendarList.get(position).size()-1));
                     }
                 }
         );
         calendar.addOnScrollListener(listener);
-        calendar.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                yearMonth.setText(title);
-                Log.d("변경", "스크롤 중");
-            }
-        });
+
 
         btOk = findViewById(R.id.tv_ok);
         btCancel = findViewById(R.id.tv_cancel);
@@ -101,7 +100,10 @@ public class CustomDatePickerDialog extends Dialog {
         btOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //customDatePickerDialogListener.onOkClick(year,month,day);
+                if (day != 0) {
+                    customDatePickerDialogListener.onOkClick(year,month,day);
+                }
+
                 dismiss();
             }
         });
@@ -113,6 +115,76 @@ public class CustomDatePickerDialog extends Dialog {
         });
 
 
+    }
+
+    public ArrayList<ArrayList<String>> setCalendarList(Calendar start, Calendar end) {
+        ArrayList<ArrayList<String>> Calendars = new ArrayList<>();
+        // 현재 날짜 셋팅
+        Calendar c = Calendar.getInstance();
+        // 시작일이 오늘 보다 이전이라면,
+        if (start.before(c)) start = Calendar.getInstance();
+        int startYear = start.get(Calendar.YEAR);
+        int startMonth = start.get(Calendar.MONTH);
+        int endYear = end.get(Calendar.YEAR);
+        int endMonth = end.get(Calendar.MONTH);
+
+
+        if (startMonth == endMonth) {
+            c.set(startYear, startMonth, 1);
+            int dayNum = c.get(Calendar.DAY_OF_WEEK);
+            ArrayList<String> dayList = new ArrayList<String>();
+
+            dayList.add("일");
+            dayList.add("월");
+            dayList.add("화");
+            dayList.add("수");
+            dayList.add("목");
+            dayList.add("금");
+            dayList.add("토");
+
+            for(int i = 1; i < dayNum; i++) {
+                dayList.add("");
+            }
+            int finalDate = c.getActualMaximum(Calendar.DAY_OF_MONTH);
+            Log.d("데이오브먼스", String.valueOf(finalDate));
+            for (int i = 0; i < finalDate; i++) {
+                dayList.add(String.valueOf(i + 1));
+            }
+            Calendars.add(dayList);
+            dayList.add(startYear+"년 "+(startMonth+1)+"월");
+
+            return Calendars;
+        } else if(startYear == endYear) {
+
+            for (int i = startMonth; i <= endMonth; i++) {
+                c.set(startYear, i, 1);
+                int dayNum = c.get(Calendar.DAY_OF_WEEK);
+                ArrayList<String> dayList = new ArrayList<String>();
+
+                dayList.add("일");
+                dayList.add("월");
+                dayList.add("화");
+                dayList.add("수");
+                dayList.add("목");
+                dayList.add("금");
+                dayList.add("토");
+
+                for(int j = 1; j < dayNum; j++) {
+                    dayList.add("");
+                }
+                int finalDate = c.getActualMaximum(Calendar.DAY_OF_MONTH);
+                Log.d("데이오브먼스", String.valueOf(finalDate));
+                for (int j = 0; j < finalDate; j++) {
+                    dayList.add(String.valueOf(j + 1));
+                }
+                Calendars.add(dayList);
+                dayList.add(startYear+"년 "+(i+1)+"월");
+            }
+
+            return Calendars;
+
+        }
+        return Calendars;
     }
 
     public interface CustomDatePickerDialogListener {
@@ -160,9 +232,32 @@ public class CustomDatePickerDialog extends Dialog {
 
                 gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        view.setBackgroundResource(R.drawable.bg_round25_green);
-                        ((NotoTextView) view).setTextColor(context.getResources().getColor(R.color.White));
+                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+                        if (view instanceof NotoTextView) {
+                            if (preposition != -1) {
+                                preSelectedItem.setBackgroundResource(R.color.White);
+                                preSelectedItem.setTextColor(context.getResources().getColor(R.color.TextBlack));
+                            }
+                            if (preposition == position) {
+                                preposition = -1;
+                                preSelectedItem = null;
+                                day = 0;
+                            } else {
+                                view.setBackgroundResource(R.drawable.bg_round25_green);
+                                ((NotoTextView)view).setTextColor(context.getResources().getColor(R.color.White));
+                                String ym = yearMonth.getText().toString();
+                                int ymLen = ym.length();
+                                year = Integer.parseInt(ym.substring(0,4));
+                                Log.d("년", String.valueOf(year));
+                                month = Integer.parseInt(ym.substring(6,ymLen-1));
+                                Log.d("달", String.valueOf(month));
+                                day = Integer.parseInt(((NotoTextView)view).getText().toString());
+                                preposition = position;
+                                preSelectedItem = (NotoTextView)view;
+                            }
+                        }
+
                     }
                 });
 
@@ -228,4 +323,6 @@ public class CustomDatePickerDialog extends Dialog {
             return tvDate;
         }
     }
+
+
 }

@@ -54,9 +54,9 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     String address;
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     long timeBackPressed = 0;
-    private int backPosition = -1;
+    private int prePosition = -1;
     private String selectedRegion;
-    private NotoTextView BackSelectedItem, CurSelectedItem;
+    private NotoTextView preSelectedItem, curSelectedItem;
     private GpsTracker gpsTracker;
     private MainRecyclerAdapter mainAdapter = null;
     private List<Route> routes;
@@ -129,27 +129,27 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         regionGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                if (backPosition == position) {
-                    BackSelectedItem.setSelected(false);
-                    BackSelectedItem.setTextColor(getResources().getColor(R.color.TextGray));
-                    BackSelectedItem.setBackgroundResource(R.drawable.button_local);
-                    backPosition = -1;
+                if (prePosition == position) {
+                    preSelectedItem.setSelected(false);
+                    preSelectedItem.setTextColor(getResources().getColor(R.color.TextGray));
+                    preSelectedItem.setBackgroundResource(R.drawable.button_local);
+                    prePosition = -1;
                     binding.tvSelLocal.setText(R.string.tvSelLocal);
                 } else {
                     selectedRegion = adapterView.getItemAtPosition(position).toString();
                     Log.d(TAG, selectedRegion);
-                    CurSelectedItem = (NotoTextView) view;
-                    CurSelectedItem.setSelected(true);
-                    CurSelectedItem.setTextColor(getResources().getColor(R.color.TextBlack));
-                    CurSelectedItem.setBackgroundResource(R.drawable.button_local_sel);
+                    curSelectedItem = (NotoTextView) view;
+                    curSelectedItem.setSelected(true);
+                    curSelectedItem.setTextColor(getResources().getColor(R.color.TextBlack));
+                    curSelectedItem.setBackgroundResource(R.drawable.button_local_sel);
                     binding.tvSelLocal.setText(selectedRegion);
-                    if (backPosition != -1) {
-                        BackSelectedItem = (NotoTextView) regionGrid.getChildAt(backPosition);
-                        BackSelectedItem.setSelected(false);
-                        BackSelectedItem.setTextColor(getResources().getColor(R.color.TextGray));
-                        BackSelectedItem.setBackgroundResource(R.drawable.button_local);
+                    if (prePosition != -1) {
+                        preSelectedItem = (NotoTextView) regionGrid.getChildAt(prePosition);
+                        preSelectedItem.setSelected(false);
+                        preSelectedItem.setTextColor(getResources().getColor(R.color.TextGray));
+                        preSelectedItem.setBackgroundResource(R.drawable.button_local);
                     }
-                    backPosition = position;
+                    prePosition = position;
                 }
                 toggle = false;
                 binding.vPause.setVisibility(View.GONE);
