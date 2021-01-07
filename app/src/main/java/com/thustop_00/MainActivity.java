@@ -164,6 +164,11 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         closeDrawer();
     }
 
+    public void onFreeTicketClick(View view) {
+        closeDrawer();
+        addFragment(FreeTicketIntroFragment.newInstance());
+    }
+
     public void onNavPersonalHistoryClick(View view) {
         closeDrawer();
         addFragment(NavPersonalHistoryFragment.newInstance());
@@ -210,7 +215,6 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                 }
             }, 1000);
         }
-
     }
 
     @Override

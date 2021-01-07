@@ -16,6 +16,12 @@ import com.thustop_00.R;
  */
 public class NotoTextView extends AppCompatTextView {
     /* Below 3 methods are essential declarations with new function 'setType'*/
+
+    @Override
+    public boolean performClick() {
+        return super.performClick();
+    }
+
     public NotoTextView(Context context) {
         super(context);
         setType(context, null);

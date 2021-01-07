@@ -321,18 +321,19 @@
                         app:srcCompat="@drawable/img_event_new_member" />
 
                     <com.thustop_00.widgets.NotoTextView
-                        android:id="@+id/tv_new_coupons"
+                        android:id="@+id/tv_coupons"
                         style="@style/tvToolbarComponent"
-                        android:text="새쿠폰"
+                        android:text="쿠폰"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_event" />
 
                     <com.thustop_00.widgets.NotoTextView
-                        android:id="@+id/tv_used_coupons"
+                        android:id="@+id/tv_free_tickets"
                         style="@style/tvToolbarComponent"
-                        android:text="사용한 쿠폰"
+                        android:text="무료 탑승권"
+                        android:onClick="onFreeTicketClick"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_new_coupons" />
+                        app:layout_constraintTop_toBottomOf="@id/tv_coupons" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
