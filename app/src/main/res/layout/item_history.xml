@@ -17,7 +17,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-
     <com.thustop_00.widgets.NotoTextView
         android:id="@+id/tv_condition"
         android:layout_width="0dp"
@@ -35,20 +34,35 @@
         android:id="@+id/tv_departure"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="19dp"
         android:text="출발지"
         android:textSize="11sp"
         android:textColor="@color/Ach3F"
-        app:layout_constraintStart_toEndOf="@id/tv_condition"
+        android:maxLength="10"
+        app:layout_constraintEnd_toStartOf="@id/iv_arrow"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/stroke"/>
+
+    <ImageView
+        android:id="@+id/iv_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_half_arrow"
+        app:layout_constraintBottom_toBottomOf="@id/tv_departure"
+        app:layout_constraintEnd_toStartOf="@id/tv_time"
+        app:layout_constraintStart_toEndOf="@id/tv_condition"
+        app:layout_constraintTop_toTopOf="@id/tv_departure" />
+
     <com.thustop_00.widgets.NotoTextView
         android:id="@+id/tv_alighting"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:text="도착지"
         android:textSize="11sp"
+        android:maxLength="10"
         android:textColor="@color/Ach3F"
-        app:layout_constraintStart_toEndOf="@id/tv_departure"
+        app:layout_constraintStart_toEndOf="@id/iv_arrow"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/stroke"/>
 

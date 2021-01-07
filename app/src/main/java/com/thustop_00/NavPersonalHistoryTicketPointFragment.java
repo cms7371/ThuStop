@@ -10,9 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-import com.thustop_00.databinding.FragmentNavPersonalHistoryTicketBinding;
 import com.thustop_00.databinding.FragmentNavPersonalHistoryTicketPointBinding;
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,9 +24,9 @@ import java.util.Calendar;
 public class NavPersonalHistoryTicketPointFragment extends FragmentBase  {
     FragmentNavPersonalHistoryTicketPointBinding binding;
     private Calendar start, end;
-    private com.wdullaer.materialdatetimepicker.date.DatePickerDialog dpd;
     private ArrayList<ArrayList<String>> calendarList = new ArrayList<>();
     private int year, month, day;
+    private int point;
 
 
     public NavPersonalHistoryTicketPointFragment() {
@@ -73,14 +72,28 @@ public class NavPersonalHistoryTicketPointFragment extends FragmentBase  {
                 year = year_picker;
                 month = month_picker;
                 day = day_picker;
+                //임시로 포인트 처리
+                point = 1300;
                 binding.tvYearValue.setText(String.valueOf(year));
                 binding.tvMonthValue.setText(String.valueOf(month));
                 binding.tvDayValue.setText(String.valueOf(day));
+                binding.tvPointValue.setText(String.format("%d P", point));
             }
         });
         datePickerDialog.show();
 
+    }
 
+    public void onConfirmClick(View view) {
+        TicketPointConfirmDialog ticketPointConfirmDialog = new TicketPointConfirmDialog(getContext(), year, month, day, point);
+        ticketPointConfirmDialog.setDialogListener(new TicketPointConfirmDialog.TicketPointConfirmListener() {
+            @Override
+            public void onConfirmClick() {
+                //TODO:포인트 내역 추가 하기
+                _listener.setFragment(DoneFragment.newInstance("티켓 포인트 전환이 완료되었습니다", "이용내역을 확인해보세요",true));
+            }
+        });
+        ticketPointConfirmDialog.show();
     }
 
 }

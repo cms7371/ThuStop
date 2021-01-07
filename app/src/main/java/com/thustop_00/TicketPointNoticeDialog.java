@@ -9,19 +9,17 @@ import android.text.Spannable;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.thustop_00.widgets.NotoTextView;
 
 import java.util.Objects;
 
-public class NoticeTicketPointDialog extends Dialog {
+public class TicketPointNoticeDialog extends Dialog {
 
-    public NoticeTicketPointDialog(Context context) {super(context);}
+    public TicketPointNoticeDialog(Context context) {super(context);}
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_notice_ticket_point);
+        setContentView(R.layout.dialog_ticket_point_notice);
         Objects.requireNonNull(getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         NotoTextView explain1 = findViewById(R.id.tv_explain1);

@@ -96,6 +96,24 @@
         <item name="android:textColor">@color/Black</item>
     </style>
 
+    <style name="TvHdSubTitle">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/TextGray</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+    <style name="TvHdDetail">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/TextGray</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
     <style name="SpinnerTimePickerDialogTheme" parent="Theme.AppCompat.Light.Dialog">
         <!-- android:timePickerStyle was not added until API 21 -->
         <item name="android:timePickerStyle">@style/TimePickerStyle</item>

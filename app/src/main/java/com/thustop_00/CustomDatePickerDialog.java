@@ -52,6 +52,7 @@ public class CustomDatePickerDialog extends Dialog {
         this.end = end;
     }
 
+
     public void setDialogListener(CustomDatePickerDialog.CustomDatePickerDialogListener customDatePickerDialogListener){
         this.customDatePickerDialogListener = customDatePickerDialogListener;
     }

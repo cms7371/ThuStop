@@ -64,6 +64,7 @@
                 android:id="@+id/tv_year_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="3dp"
                 android:text=""
                 android:textSize="18sp"
                 android:textColor="@color/TextBlack"
@@ -88,6 +89,7 @@
                 android:id="@+id/tv_month_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="3dp"
                 android:text=""
                 android:textColor="@color/TextBlack"
                 android:textSize="18sp"
@@ -112,6 +114,7 @@
                 android:id="@+id/tv_day_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="3dp"
                 android:text=""
                 android:textColor="@color/TextBlack"
                 android:textSize="18sp"
@@ -169,7 +172,7 @@
                 android:id="@+id/tv_point_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1300 P"
+                android:text=""
                 android:textColor="@color/Primary"
                 android:textSize="30sp"
                 app:notoTextStyle="bold"
@@ -188,7 +191,8 @@
             app:notoTextStyle="medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:onClick="@{NavPersonalHistoryTicketPointFrag::onConfirmClick}"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
