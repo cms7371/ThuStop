@@ -348,13 +348,14 @@
                         android:id="@+id/tv_customer_center"
                         style="@style/tvToolbarCategory"
                         android:text="고객센터"
+                        android:onClick="testToolbarLogin"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <com.thustop_00.widgets.NotoTextView
                         android:id="@+id/tv_FAQ"
                         style="@style/tvToolbarComponent"
-                        android:onClick="testToolbarLogin"
+                        android:onClick="onNavFAQClick"
                         android:text="FAQ"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_customer_center" />
