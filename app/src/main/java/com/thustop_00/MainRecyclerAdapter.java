@@ -23,6 +23,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     //It stores routes data to be displayed.
     private List<Route> data;
     private Context context;
+    private boolean isFreeTicket;
+    private int routeOffset;
     //Parameters represent type of item
     private static final int VIEW_TYPE_BUTTON = 0;
     private static final int VIEW_TYPE_TICKET = 1;
@@ -37,17 +39,23 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private OnListItemSelectedInterface mListener;
 
     //Adapter receives list of Routes and listener from target fragment
-    MainRecyclerAdapter(Context context, List<Route> in, OnListItemSelectedInterface listener) {
+    MainRecyclerAdapter(Context context, boolean isFreeTicket, List<Route> in, OnListItemSelectedInterface listener) {
         this.context = context;
+        this.isFreeTicket = isFreeTicket;
         this.data = in;
         this.mListener = listener;
+        if (isFreeTicket)
+            routeOffset = 1;
+        else
+            routeOffset = 2;
         //TODO 티켓리스트와 현재 위치 이름 받아서 제목과 리사이클러 내용 바꿔줘야함
     }
+
 
     public void changeDataSet(List<Route> data) {
         this.data = data;
         for (int i = 0; i < data.size(); i++) {
-            notifyItemInserted(i + 2);
+            notifyItemInserted(i + routeOffset);
         }
     }
 
@@ -56,16 +64,23 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     //We can add condition depending on date too
     @Override
     public int getItemViewType(int position) {
-        if (position == 0) {
-            return VIEW_TYPE_TICKET; //TODO 티켓 class에 따라 버튼을 만들어야 할 수도 있음
-        } /*else if (position == 0) {
+        if (isFreeTicket) {
+            if (position == 0)
+                return VIEW_TYPE_TITLE;
+            else
+                return VIEW_TYPE_ROUTE;
+        } else {
+            if (position == 0) {
+                return VIEW_TYPE_TICKET; //TODO 티켓 class에 따라 버튼을 만들어야 할 수도 있음
+            } /*else if (position == 0) {
             return VIEW_TYPE_BUTTON;
         }*/ else if (position == 1) {
-            return VIEW_TYPE_TITLE;
-        } else if (position == (data.size() + 2)) {
-            return VIEW_TYPE_TITLE; //TODO 이거도 사업자 정보 지워야함
-        } else if (position >= 2) {
-            return VIEW_TYPE_ROUTE;
+                return VIEW_TYPE_TITLE;
+            } else if (position == (data.size() + 2)) {
+                return VIEW_TYPE_TITLE; //TODO 이거도 사업자 정보 지워야함
+            } else if (position >= 2) {
+                return VIEW_TYPE_ROUTE;
+            }
         }
         return 0;
     }
@@ -93,7 +108,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof RouteViewHolder) {
-            Route cnt_route = data.get(position - 2);
+            Route cnt_route = data.get(position - routeOffset);
             int boarding_stop_num = cnt_route.boarding_stops.size();
             int alighting_stop_num = cnt_route.alighting_stops.size();
             ((RouteViewHolder) holder).tvName.setText(cnt_route.name);
@@ -117,11 +132,15 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 ((RouteViewHolder) holder).tvDestination2.setText(cnt_route.getAlightingStopName(alighting_stop_num / 2));
             }
             ((RouteViewHolder) holder).tvDestination3.setText(cnt_route.getAlightingStopName(boarding_stop_num - 1));
+        } else if (isFreeTicket && holder instanceof TitleViewHolder) {
+            ((TitleViewHolder) holder).title.setText("탑승 가능 노선");
+            ((TitleViewHolder) holder).title.setTextColor(context.getResources().getColor(R.color.TextBlack));
         } else if ((data != null) && (position == (data.size() + 2)) && (holder instanceof TitleViewHolder)) {
             ((TitleViewHolder) holder).layout.setBackground(context.getDrawable(R.color.Primary));
             ((TitleViewHolder) holder).title.setTextColor(context.getResources().getColor(R.color.White));
             ((TitleViewHolder) holder).title.setText(R.string.business_information_content);
             ((TitleViewHolder) holder).title.setTextSize(12);
+            //TODO 메인화면 사업자 표시용 코드, 없애야함.
         }
     }
 
@@ -129,11 +148,17 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     //It returns number of items according to input data
     @Override
     public int getItemCount() {
-        if (data == null) {
-            return 2; //TODO 이 값은 테스트를 위한 값임 route 클래스 넣고 나중에 지울 수 있도록 합니다.
+        if (isFreeTicket) {
+            if (data == null)
+                return 1;
+            else
+                return data.size() + 1;
         } else {
-            //TODO 마지막 사업자 정보 지워야함
-            return data.size() + 3;
+            if (data == null)
+                return 2; //TODO 이 값은 테스트를 위한 값임 route 클래스 넣고 나중에 지울 수 있도록 합니다.
+            else
+                //TODO 마지막 사업자 정보 지워야함
+                return data.size() + 3;
         }
     }
 

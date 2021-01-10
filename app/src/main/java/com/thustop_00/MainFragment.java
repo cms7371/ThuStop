@@ -97,7 +97,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         //Recycler view 호출 및 어댑터와 연결, 데이터 할당
         RecyclerView mainRecycler = binding.rvRoutes;
         if(mainAdapter == null){
-            mainAdapter = new MainRecyclerAdapter(getContext(), null, this);
+            mainAdapter = new MainRecyclerAdapter(getContext(), false, null, this);
             mainRecycler.setAdapter(mainAdapter);
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(Constant.SERVER_URL).addConverterFactory(GsonConverterFactory.create()).build();

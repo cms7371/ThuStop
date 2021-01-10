@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/White"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/toolbar_height" />
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_fft_selected_region"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="13dp"
+            android:background="@drawable/bg_outline_gray_fa_ee"
+            android:paddingStart="40dp"
+            android:paddingTop="9dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="9dp"
+            android:text="@string/tvSelLocal"
+            android:textColor="@color/TextGray"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline9" />
+
+        <ImageView
+            android:id="@+id/iv_fft_down_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:elevation="11dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_fft_selected_region"
+            app:layout_constraintStart_toStartOf="@+id/tv_fft_selected_region"
+            app:layout_constraintTop_toTopOf="@+id/tv_fft_selected_region"
+            app:srcCompat="@drawable/icon_down" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_free_ticket_routes"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_fft_selected_region"
+            app:layout_constraintVertical_bias="0.0"
+            tools:listitem="@layout/item_route" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

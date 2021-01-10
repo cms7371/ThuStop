@@ -5,36 +5,111 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/White">
+
+        <ImageView
+            android:id="@+id/iv_slide_ripple"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@id/guideline8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline8"
+            app:srcCompat="@drawable/bg_free_ticket_ripple" />
 
         <com.gtomato.android.ui.widget.CarouselView
             android:id="@+id/cv_free_tickets"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
+            android:layout_height="584dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             tools:listitem="@layout/item_free_ticket_green" />
 
-        <com.thustop_00.widgets.NotoTextView
-            android:id="@+id/tv_test_free"
-            android:layout_width="186dp"
-            android:layout_height="288dp"
-            android:background="@drawable/bg_free_ticket_green"
-            android:text="한번 끌어 보거라"
+        <TextView
+            android:id="@+id/tv_user_infomation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="30dp"
+            android:text="로그인 후\n이용해주세요"
+            android:textColor="@color/TextBlack"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline6" />
+
+        <ImageView
+            android:id="@+id/iv_fft_left_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginBottom="6dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_user_infomation"
+            app:layout_constraintStart_toEndOf="@+id/tv_user_infomation"
+            app:srcCompat="@drawable/icon_login" />
+
+        <ImageView
+            android:id="@+id/iv_top_arrow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="65dp"
+            android:alpha="0.3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:visibility="gone"/>
+            app:srcCompat="@drawable/icon_thin_top_arrow_gray" />
 
-        <TextView
-            android:id="@+id/tv_current_offset"
+        <ImageView
+            android:id="@+id/iv_top_arrow2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            app:layout_constraintBottom_toTopOf="@+id/tv_test_free"
-            app:layout_constraintEnd_toEndOf="@+id/tv_test_free"
-            app:layout_constraintStart_toStartOf="@+id/tv_test_free" />
+            android:layout_marginTop="4dp"
+            android:alpha="0.3"
+            app:layout_constraintEnd_toEndOf="@+id/iv_top_arrow1"
+            app:layout_constraintStart_toStartOf="@+id/iv_top_arrow1"
+            app:layout_constraintTop_toTopOf="@+id/iv_top_arrow1"
+            app:srcCompat="@drawable/icon_thin_top_arrow_gray" />
+
+        <ImageView
+            android:id="@+id/iv_top_arrow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:alpha="0.3"
+            app:layout_constraintEnd_toEndOf="@+id/iv_top_arrow2"
+            app:layout_constraintStart_toStartOf="@id/iv_top_arrow2"
+            app:layout_constraintTop_toTopOf="@id/iv_top_arrow2"
+            app:srcCompat="@drawable/icon_thin_top_arrow_gray" />
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_slide_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="위로 올려 사용하기"
+            android:textColor="@color/TextGray"
+            android:textSize="12sp"
+            app:notoTextStyle="regular"
+            app:layout_constraintEnd_toEndOf="@id/iv_top_arrow3"
+            app:layout_constraintStart_toStartOf="@+id/iv_top_arrow3"
+            app:layout_constraintTop_toBottomOf="@id/iv_top_arrow3" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/toolbar_height" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="180dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

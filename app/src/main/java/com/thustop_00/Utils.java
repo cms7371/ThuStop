@@ -1,5 +1,9 @@
 package com.thustop_00;
 
+import android.content.Context;
+import android.graphics.Typeface;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -19,8 +23,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Util {
-    private final static String TAG = "Util";
+public class Utils {
+    private final static String TAG = "Utils";
     static public void registerDevice() {
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
@@ -57,5 +61,20 @@ public class Util {
                         // Log and toast
                     }
                 });
+    }
+
+    /**예시 코드
+    textView.setText(Utils.getBoldSpan(getContext(),"1회\n무료 탑승권", new String[] {"1회", "탑승권"}));
+     **/
+    static public SpannableStringBuilder getBoldSpan(Context context, String mainString, String[] boldStrings) {
+        Typeface boldFace = Typeface.createFromAsset(context.getAssets(), "NotoSansKR-Bold-Hestia.otf");
+        SpannableStringBuilder span = new SpannableStringBuilder(mainString);
+        int index_start, index_end;
+        for (String bold: boldStrings) {
+            index_start = mainString.indexOf(bold);
+            index_end = index_start + bold.length();
+            span.setSpan(new CustomTypefaceSpan("", boldFace), index_start, index_end, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+        }
+        return span;
     }
 }

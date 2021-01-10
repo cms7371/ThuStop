@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         Log.d(TAG, "onCreate: 로그인키 " + Prefs.getString(Constant.LOGIN_KEY, null));
         if(!(Prefs.getString(Constant.LOGIN_KEY, "").isEmpty()))
             Log.d(TAG, "onCreate: FCM 등록 시도");
-            Util.registerDevice();
+            Utils.registerDevice();
         Log.d(TAG, "onCreate: GPSServiceStatus is " + GPSServiceStatus);
         checkFirstRun();
     }

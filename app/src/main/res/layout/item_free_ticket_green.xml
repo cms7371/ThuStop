@@ -9,6 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_free_ticket_green"
+        android:bufferType="spannable"
         android:paddingStart="21dp"
         android:paddingTop="24dp"
         android:text="1회\n무료 탑승권"

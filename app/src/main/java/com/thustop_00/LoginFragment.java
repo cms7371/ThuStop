@@ -13,7 +13,6 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.thustop_00.databinding.FragmentLoginBinding;
 import com.thustop_00.model.Auth;
 import com.thustop_00.model.Token;
-import com.thustop_00.model.UserData;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -105,7 +104,7 @@ public class LoginFragment extends FragmentBase {
                 if (response.isSuccessful() && (response.body() != null)) {
                     Prefs.putString(Constant.LOGIN_KEY, "Token " + response.body().key);
                     Log.d(TAG, "onResponse: 서버 로그인 토큰 " + Prefs.getString(Constant.LOGIN_KEY, ""));
-                    Util.registerDevice();
+                    Utils.registerDevice();
                     _listener.setFragment(MainFragment.newInstance());
                 } else {
                     Log.e(TAG, "onResponse: Thustop 서버 에러 Null 반환", new NullPointerException());
@@ -138,7 +137,7 @@ public class LoginFragment extends FragmentBase {
             public void onResponse(@NotNull Call<Token> call, @NotNull Response<Token> response) {
                 if (response.isSuccessful() && (response.body() != null)) {
                     Prefs.putString(Constant.LOGIN_KEY, "Token " + response.body().key);
-                    Util.registerDevice();
+                    Utils.registerDevice();
                     Log.d(TAG, "onResponse: 회원가입 성공 " + Prefs.getString(Constant.LOGIN_KEY, ""));
                     _listener.setFragment(MainFragment.newInstance());
                 } else {
