@@ -49,14 +49,74 @@
             android:id="@+id/rv_free_ticket_routes"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_fft_selected_region"
-            app:layout_constraintVertical_bias="0.0"
             tools:listitem="@layout/item_route" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_fft_case_empty"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_fft_selected_region">
+
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_fft_empty_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="탑승 가능한\n노선이 없습니다"
+                android:textAlignment="center"
+                android:textColor="@color/TextGray"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/bt_fft_empty"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.4"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/bt_fft_empty"
+                android:layout_width="188dp"
+                android:layout_height="41dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_round25_green"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="우리 동네 서비스 신청하기"
+                android:textColor="@color/White"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_fft_empty_2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_fft_empty_1"
+                app:layout_constraintVertical_bias="0.4" />
+
+            <com.thustop_00.widgets.NotoTextView
+                android:id="@+id/tv_fft_empty_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="우리 동네에도 노선을 신청해보세요!"
+                android:textColor="@color/TextGray"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bt_fft_empty"
+                app:layout_constraintVertical_bias="0.4" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

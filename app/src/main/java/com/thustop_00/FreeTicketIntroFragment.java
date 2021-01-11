@@ -50,6 +50,9 @@ public class FreeTicketIntroFragment extends FragmentBase {
                 } else if (carouselView.getCurrentPosition() == (adapter.getItemCount() - 1)) {
                     carouselView.smoothScrollToPosition(adapter.getItemCount() - 2);
                 }
+                if (newState == CarouselView.SCROLL_STATE_DRAGGING) {
+                    binding.ivSlideRipple.setVisibility(View.INVISIBLE);
+                }
             }
         });
 
