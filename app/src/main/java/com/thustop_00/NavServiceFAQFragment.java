@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,9 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.thustop_00.FAQRecyclerAdapter.FAQRecyclerListener;
 import com.thustop_00.databinding.FragmentNavServiceFaqBinding;
 import com.thustop_00.widgets.NotoTextView;
 
@@ -30,6 +34,7 @@ public class NavServiceFAQFragment extends FragmentBase {
     private Context context;
     private int[] nums = {1,2,3,4,5};
     private int heightPx, strokePx, marginPx;
+    private boolean isOpen = false;
 
 
 
@@ -65,6 +70,7 @@ public class NavServiceFAQFragment extends FragmentBase {
         heightPx=_listener.covertDPtoPX(49);
         strokePx=_listener.covertDPtoPX(1);
         marginPx=_listener.covertDPtoPX(20);
+
 
         binding.rvFaq.addItemDecoration(new fillSpace(heightPx, strokePx, marginPx));
 
@@ -127,20 +133,21 @@ public class NavServiceFAQFragment extends FragmentBase {
             mPaint.setStrokeCap(Paint.Cap.SQUARE);
         }
 
+        /***
         @Override
         public void onDraw(@NonNull Canvas c, @NonNull RecyclerView rv, @NonNull RecyclerView.State state) {
             super.onDraw(c, rv, state);
-            Log.d("마진", String.valueOf(marginPx));
             int itemCount = rv.getAdapter().getItemCount();
             int filledSpace = heightPx *itemCount;
             int width = rv.getWidth();
             int height = rv.getHeight();
 
+
             drawLine(c, heightPx, filledSpace, width-marginPx, height, marginPx);
 
 
         }
-
+         ***/
         private void drawLine(Canvas c, float heightPx, float filledSpace, int width, int height, int marginPx) {
             mPaint.setColor(context.getResources().getColor(R.color.Stroke));
             float start =filledSpace;
@@ -150,6 +157,21 @@ public class NavServiceFAQFragment extends FragmentBase {
                 c.drawLine(marginPx, start, width, start, mPaint);
                 start += heightPx;
             }
+        }
+
+
+        @Override
+        public void onDrawOver(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+            super.onDrawOver(c, parent, state);
+            int itemCount = parent.getChildCount();
+            View lastView = parent.getChildAt(itemCount-1);
+            RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) lastView.getLayoutParams();
+            int height = lastView.getBottom();
+            int width = lastView.getWidth();
+            int parentHeight = parent.getHeight();
+
+            drawLine(c, heightPx, height, width-marginPx, parentHeight, marginPx);
+
         }
     }
 

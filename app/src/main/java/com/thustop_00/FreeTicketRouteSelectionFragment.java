@@ -5,12 +5,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
 
 import com.pixplicity.easyprefs.library.Prefs;
 import com.thustop_00.databinding.FragmentFreeTicketIntroBinding;
 import com.thustop_00.databinding.FragmentFreeTicketRouteSelectionBinding;
 import com.thustop_00.model.PageResponse;
 import com.thustop_00.model.Route;
+import com.thustop_00.widgets.NotoTextView;
 
 import java.util.List;
 
@@ -24,6 +27,13 @@ public class FreeTicketRouteSelectionFragment extends FragmentBase implements Ma
     private FragmentFreeTicketRouteSelectionBinding binding;
     private List<Route> routes;
     private final static String TAG = "FreeTicketRoutes";
+    private String[] test_region_list;
+    private GridView regionGrid;
+    private RegionGridAdapter regionGridAdapter;
+    private int prePosition = -1;
+    private String selectedRegion;
+    private NotoTextView preSelectedItem, curSelectedItem;
+    boolean toggle = false;
 
     public static FreeTicketRouteSelectionFragment newInstance() {
         FreeTicketRouteSelectionFragment fragment = new FreeTicketRouteSelectionFragment();
@@ -36,6 +46,7 @@ public class FreeTicketRouteSelectionFragment extends FragmentBase implements Ma
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentFreeTicketRouteSelectionBinding.inflate(inflater);
+        binding.setFreeTicketRouteSelectionFrag(this);
         _listener.setToolbarStyle(_listener.WHITE_BACK, "무료 탑승권");
 
         MainRecyclerAdapter mainAdapter = new MainRecyclerAdapter(getContext(), true, null, this);
@@ -61,11 +72,62 @@ public class FreeTicketRouteSelectionFragment extends FragmentBase implements Ma
             }
         });
 
+        test_region_list = new String[]{"호매실동", "하남", "동탄", "우리집", "남의집"};
+        regionGridAdapter = new RegionGridAdapter(getContext(),test_region_list,_listener.covertDPtoPX(77));
+        regionGrid = binding.gvFftLocal;
+        regionGrid.setAdapter(regionGridAdapter);
+        regionGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                if (prePosition == position) {
+                    preSelectedItem.setSelected(false);
+                    preSelectedItem.setTextColor(getResources().getColor(R.color.TextGray));
+                    preSelectedItem.setBackgroundResource(R.drawable.button_local);
+                    prePosition = -1;
+                    binding.tvFftSelectedRegion.setText(R.string.tvSelLocal);
+                } else {
+                    selectedRegion = adapterView.getItemAtPosition(position).toString();
+                    Log.d(TAG, selectedRegion);
+                    curSelectedItem = (NotoTextView) view;
+                    curSelectedItem.setSelected(true);
+                    curSelectedItem.setTextColor(getResources().getColor(R.color.TextBlack));
+                    curSelectedItem.setBackgroundResource(R.drawable.button_local_sel);
+                    binding.tvFftSelectedRegion.setText(selectedRegion);
+                    if (prePosition != -1) {
+                        preSelectedItem = (NotoTextView) regionGrid.getChildAt(prePosition);
+                        preSelectedItem.setSelected(false);
+                        preSelectedItem.setTextColor(getResources().getColor(R.color.TextGray));
+                        preSelectedItem.setBackgroundResource(R.drawable.button_local);
+                    }
+                    prePosition = position;
+                }
+                toggle = false;
+                binding.vFftPause.setVisibility(View.GONE);
+                binding.clFftLocal.setVisibility(View.GONE);
+            }
+        });
+
+
         return binding.getRoot();
     }
+
+    public void onSelLocalClick(View view) {
+        if (!toggle) {
+            binding.vFftPause.setVisibility(View.VISIBLE);
+            binding.clFftLocal.setVisibility(View.VISIBLE);
+            toggle = true;
+        } else {
+            binding.vFftPause.setVisibility(View.GONE);
+            binding.clFftLocal.setVisibility(View.GONE);
+            toggle = false;
+        }
+    }
+
 
     @Override
     public void onItemSelected(View v, int position, int ticket_position) {
 
     }
+
+
 }

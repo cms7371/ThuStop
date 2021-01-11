@@ -1,0 +1,179 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:background="@color/White">
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="11dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/toolbar_height" />
+
+        <ImageView
+            android:id="@+id/iv_unsubscribe"
+            android:layout_width="222dp"
+            android:layout_height="151dp"
+            android:layout_marginTop="55dp"
+            android:src="@drawable/ic_bus_bye"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline1"/>
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_unsubs_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:text="이번정류장 회원을 탈퇴할까요?"
+            android:textColor="@color/TextBlack"
+            android:textSize="16sp"
+            app:notoTextStyle="medium"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/iv_unsubscribe"
+            app:layout_constraintEnd_toEndOf="@id/iv_unsubscribe"
+            app:layout_constraintTop_toBottomOf="@id/iv_unsubscribe"/>
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_unsubs_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:text="이번정류장을 이용해주셔서 대단히 감사드립니다"
+            android:textSize="14sp"
+            android:textColor="@color/Primary"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/iv_unsubscribe"
+            app:layout_constraintEnd_toEndOf="@id/iv_unsubscribe"
+            app:layout_constraintTop_toBottomOf="@id/tv_unsubs_1"/>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_unsubs_notice_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="탈퇴 전 주의사항"
+            android:textSize="13sp"
+            android:textColor="@color/TextBlack"
+            app:notoTextStyle="medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/iv_unsubs_notice_1"/>
+        <ImageView
+            android:id="@+id/iv_unsubs_notice_1"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/icon_exclamation_mark"
+            app:layout_constraintStart_toStartOf="@id/tv_unsubs_notice_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_unsubs_notice_title"/>
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_unsubs_notice_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginEnd="28dp"
+            android:text="회원 탈퇴 시, 고객 요구사항 처리 및 부정이용방지를 위하여 회원탈퇴 후 30일간 고객님의 개인정보(아이디, 휴대 전화번호)를 보관합니다."
+            android:textColor="@color/TextBlack"
+            android:textSize="11sp"
+            app:layout_constraintTop_toTopOf="@id/iv_unsubs_notice_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_unsubs_notice_1"/>
+
+        <ImageView
+            android:id="@+id/iv_unsubs_notice_2"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="11dp"
+            android:src="@drawable/icon_exclamation_mark"
+            app:layout_constraintStart_toStartOf="@id/tv_unsubs_notice_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_unsubs_notice_1"/>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_unsubs_notice_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginEnd="28dp"
+            android:text="회원 탈퇴 시 고객님께서 보유하셨던 포인트는 모두 삭제됩니다."
+            android:textColor="@color/TextBlack"
+            android:textSize="11sp"
+            app:layout_constraintTop_toTopOf="@id/iv_unsubs_notice_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_unsubs_notice_2"/>
+
+        <ImageView
+            android:id="@+id/iv_unsubs_notice_3"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="11dp"
+            android:src="@drawable/icon_exclamation_mark"
+            app:layout_constraintStart_toStartOf="@id/tv_unsubs_notice_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_unsubs_notice_2"/>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_unsubs_notice_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginEnd="28dp"
+            android:text="회원 탈퇴 시 고객님께서 보유하셨던 포인트는 모두 삭제됩니다."
+            android:textColor="@color/TextBlack"
+            android:textSize="11sp"
+            app:layout_constraintTop_toTopOf="@id/iv_unsubs_notice_3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_unsubs_notice_3"/>
+        <ImageView
+            android:id="@+id/iv_unsubs_notice_4"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="11dp"
+            android:src="@drawable/icon_exclamation_mark"
+            app:layout_constraintStart_toStartOf="@id/tv_unsubs_notice_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_unsubs_notice_3"/>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_unsubs_notice_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginEnd="28dp"
+            android:text="회원 탈퇴 시 고객님께서 보유하셨던 포인트는 모두 삭제됩니다."
+            android:textColor="@color/TextBlack"
+            android:textSize="11sp"
+            app:layout_constraintTop_toTopOf="@id/iv_unsubs_notice_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_unsubs_notice_4"/>
+
+        <com.thustop_00.widgets.NotoCheckBox
+            android:id="@+id/cb_unsubs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginBottom="19dp"
+            android:button="@drawable/checkbox_round"
+            android:text="위 사항에 동의하며, 탈퇴하겠습니다"
+            android:textColor="@color/TextBlack"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_unsubs_next"
+            app:layout_constraintStart_toStartOf="@id/tv_unsubs_notice_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_unsubs_notice_4"/>
+
+        <com.thustop_00.widgets.NotoTextView
+            android:id="@+id/tv_unsubs_next"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/AchCF"
+            android:gravity="center"
+            android:text="다음"
+            android:textColor="@color/White"
+            android:textSize="16sp"
+            app:notoTextStyle="medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

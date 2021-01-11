@@ -64,6 +64,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     private GridView regionGrid;
     private RegionGridAdapter regionAdapter;
 
+
     public static MainFragment newInstance() {
         MainFragment fragment = new MainFragment();
         Bundle args = new Bundle();
@@ -124,7 +125,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         }
 
         regionGrid = binding.gvLocal;
-        regionAdapter = new RegionGridAdapter(getContext(), test_region_list);
+        regionAdapter = new RegionGridAdapter(getContext(), test_region_list,_listener.covertDPtoPX(77));
 
         regionGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -298,51 +299,6 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         }
     }
 
-    /***
-     * 지역 선택 그리드뷰 어댑터
-     *
-     * ***/
-    //TODO : 별도 레이아웃 쓰면 자꾸 오류남. 뷰 하나라 상관없긴 한데, 레이아웃 사용하면 뷰 셋팅 매번 안해줘도 됨.
-    public class RegionGridAdapter extends BaseAdapter {
-        LayoutInflater inf;
-        private Context context;
-        private String[] regions;
-        private int layout;
-
-        RegionGridAdapter(Context context, String[] regionsIn) {
-            this.context = context;
-            this.regions = regionsIn;
-
-        }
-
-        @Override
-        public int getCount() {
-            return regions.length;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return regions[position];
-        }
-
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View view, ViewGroup viewGroup) {
-            NotoTextView btRegion = new NotoTextView(this.context);
-            btRegion.setText(regions[position]);
-            btRegion.setBackgroundResource(R.drawable.button_local);
-            btRegion.setGravity(Gravity.CENTER);
-            btRegion.setTextColor(getResources().getColor(R.color.TextGray));
-            btRegion.setLayoutParams(new GridView.LayoutParams(_listener.covertDPtoPX(77), _listener.covertDPtoPX(77)));
-            btRegion.setTextSize(13);
-            return btRegion;
-        }
-    }
 
 
 //메인 액티비티로 옮겨야 동작하는거 확인 추후 삭제 예정

@@ -16,9 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.thustop_00.widgets.NotoTextView;
 
+import java.time.Duration;
 import java.util.ArrayList;
+import java.util.concurrent.Delayed;
 
 public class FAQRecyclerAdapter extends RecyclerView.Adapter<FAQRecyclerAdapter.FAQHolder> {
+
     private Context context;
     private int prePosition = -1;
     private SparseBooleanArray selectedItems = new SparseBooleanArray();
@@ -52,6 +55,7 @@ public class FAQRecyclerAdapter extends RecyclerView.Adapter<FAQRecyclerAdapter.
                     // 펼쳐진 Item을 클릭 시
                     selectedItems.delete(position);
                 } else {
+                    Log.d("프리포지션", String.valueOf(prePosition));
                     // 직전의 클릭됐던 Item의 클릭상태를 지움
                     selectedItems.delete(prePosition);
 
