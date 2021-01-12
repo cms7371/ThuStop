@@ -58,4 +58,9 @@ public class NavSettingFragment extends FragmentBase {
     public void onThustopClick(View view) {
         _listener.addFragment(NavSettingTermsFragment.newInstance(4));
     }
+
+    //TODO:로그인 안되어있는 경우의 리액션은?
+    public void onUnsubscribeClick(View view) {
+        _listener.addFragment(UnsubscribeFragment.newInstance());
+    }
 }

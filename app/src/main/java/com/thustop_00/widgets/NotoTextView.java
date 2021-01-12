@@ -53,6 +53,9 @@ public class NotoTextView extends AppCompatTextView {
             case 3: //When option is 'bold'
                 this.setTypeface(Typeface.createFromAsset(context.getAssets(), "NotoSansKR-Bold-Hestia.otf"));
                 break;
+            case 4: //When option is 'light'
+                this.setTypeface(Typeface.createFromAsset(context.getAssets(), "NotoSansKR-Light-Hestia.otf"));
+                break;
         }
         attr.recycle();
 

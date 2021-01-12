@@ -12,7 +12,7 @@
         android:layout_marginStart="18dp"
         android:layout_marginTop="22dp"
         android:layout_marginEnd="18dp"
-        android:background="@drawable/bg_outline_gray_fa_ee"
+        android:background="@drawable/bg_outline_gray_fa"
         android:textColor=" #757f8c"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
