@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/White">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/toolbar_height" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/bt_fpm_pay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline10">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fpm_departure"
+                    android:layout_width="0dp"
+                    android:layout_height="59dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginEnd="18dp"
+                    android:background="@drawable/bg_round35_container"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:text="미사강변도시"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/notoTextView3"
+                    android:layout_width="65dp"
+                    android:layout_height="26dp"
+                    android:layout_marginStart="23dp"
+                    android:background="@drawable/bg_round25_green"
+                    android:gravity="center"
+                    android:text="출발"
+                    android:textColor="@color/White"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_fpm_departure"
+                    app:layout_constraintStart_toStartOf="@+id/tv_fpm_departure"
+                    app:layout_constraintTop_toTopOf="@+id/tv_fpm_departure"
+                    app:notoTextStyle="medium" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fpm_destination"
+                    android:layout_width="0dp"
+                    android:layout_height="59dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginEnd="18dp"
+                    android:background="@drawable/bg_round35_container"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:text="잠실역 2번 출구"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fpm_departure" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/notoTextView5"
+                    android:layout_width="65dp"
+                    android:layout_height="26dp"
+                    android:layout_marginStart="23dp"
+                    android:background="@drawable/bg_round25_red"
+                    android:gravity="center"
+                    android:text="도착"
+                    android:textColor="@color/White"
+                    app:layout_constraintBottom_toTopOf="@id/tv_fpm_destination"
+                    app:layout_constraintStart_toStartOf="@id/tv_fpm_destination"
+                    app:layout_constraintTop_toTopOf="@id/tv_fpm_destination"
+                    app:notoTextStyle="medium" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/notoTextView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="요금정보"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_fpm_original_price"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_fpm_original_price"
+                    app:notoTextStyle="medium" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fpm_original_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="24dp"
+                    android:text="99,000 원"
+                    android:textColor="@color/Primary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fpm_destination"
+                    app:notoTextStyle="medium" />
+
+                <View
+                    android:id="@+id/v_fpm_stroke"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@color/Stroke"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fpm_original_price" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fpm_coupon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="35dp"
+                    android:text="쿠폰/제휴 할인"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="15sp"
+                    app:notoTextStyle="medium"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/v_fpm_stroke" />
+
+                <RadioGroup
+                    android:id="@+id/rg_fpm_coupon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fpm_coupon">
+
+                    <RadioButton
+                        android:id="@+id/radioButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="쿠폰" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="제휴" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="사용안함" />
+                </RadioGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <com.thustop_00.widgets.NotoButton
+            android:id="@+id/bt_fpm_pay"
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:background="@color/Primary"
+            android:text="결제하기"
+            android:textColor="@color/White"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:notoTextStyle="medium" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

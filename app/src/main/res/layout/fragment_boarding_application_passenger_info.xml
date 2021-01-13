@@ -112,57 +112,58 @@
                     android:layout_width="match_parent"
                     android:layout_height="59dp"
                     android:layout_marginStart="18dp"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="36dp"
                     android:layout_marginEnd="18dp"
+                    android:background="@drawable/bg_round35_container"
                     android:gravity="center"
                     android:text="미사강변지구"
-                    android:textSize="14sp"
                     android:textColor="@color/TextBlack"
-                    android:background="@drawable/bg_round35_container"
+                    android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tv_fbapi_departure"/>
+                    app:layout_constraintTop_toBottomOf="@+id/tv_fbapi_phase2" />
 
                 <com.thustop_00.widgets.NotoTextView
                     android:id="@+id/tv_fbapi_departure"
-                    android:layout_width="89dp"
-                    android:layout_height="36dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_width="65dp"
+                    android:layout_height="26dp"
+                    android:layout_marginStart="23dp"
                     android:background="@drawable/bg_round25_green"
                     android:gravity="center"
                     android:text="출발"
                     android:textColor="@color/White"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_fbapi_boarding_stop"
                     app:layout_constraintStart_toStartOf="@id/tv_fbapi_boarding_stop"
-                    app:layout_constraintTop_toBottomOf="@id/tv_fbapi_phase2"
+                    app:layout_constraintTop_toTopOf="@+id/tv_fbapi_boarding_stop"
                     app:notoTextStyle="medium" />
 
                 <com.thustop_00.widgets.NotoTextView
                     android:id="@+id/tv_fbapi_alighting_stop"
                     android:layout_width="0dp"
                     android:layout_height="59dp"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="22dp"
+                    android:background="@drawable/bg_round35_container"
                     android:gravity="center"
                     android:text="잠실역 2번 출구"
-                    android:textSize="14sp"
                     android:textColor="@color/TextBlack"
-                    android:background="@drawable/bg_round35_container"
+                    android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="@id/tv_fbapi_boarding_stop"
                     app:layout_constraintStart_toStartOf="@id/tv_fbapi_boarding_stop"
-                    app:layout_constraintTop_toTopOf="@id/tv_fbapi_arrival"/>
+                    app:layout_constraintTop_toBottomOf="@+id/tv_fbapi_boarding_stop" />
 
                 <com.thustop_00.widgets.NotoTextView
                     android:id="@+id/tv_fbapi_arrival"
-                    android:layout_width="89dp"
-                    android:layout_height="36dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_width="65dp"
+                    android:layout_height="26dp"
+                    android:layout_marginStart="23dp"
                     android:background="@drawable/bg_round25_red"
                     android:gravity="center"
                     android:text="도착"
                     android:textColor="@color/White"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_fbapi_alighting_stop"
                     app:layout_constraintStart_toStartOf="@id/tv_fbapi_alighting_stop"
-                    app:layout_constraintTop_toBottomOf="@id/tv_fbapi_boarding_stop"
+                    app:layout_constraintTop_toTopOf="@+id/tv_fbapi_alighting_stop"
                     app:notoTextStyle="medium" />
 
                 <com.thustop_00.widgets.NotoTextView

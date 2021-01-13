@@ -4,26 +4,24 @@
         <layer-list>
             <item>
                 <shape android:shape="oval">
-                    <solid android:color="@color/ButtonGray" />
-
+                    <solid android:color="@android:color/transparent" />
                     <size android:height="19dp" />
                     <size android:width="19dp" />
                 </shape>
             </item>
-            <item android:drawable="@drawable/icon_check_white" android:gravity="center"/>
+            <item android:drawable="@drawable/icon_check_gray" android:gravity="center" />
         </layer-list>
     </item>
     <item android:state_checked="true">
         <layer-list>
             <item>
                 <shape android:shape="oval">
-                    <solid android:color="@color/Primary" />
+                    <solid android:color="@android:color/transparent" />
                     <size android:height="19dp" />
                     <size android:width="19dp" />
                 </shape>
             </item>
-            <item android:drawable="@drawable/icon_check_white" android:gravity="center" />
-
+            <item android:drawable="@drawable/icon_check_green" android:gravity="center" />
         </layer-list>
     </item>
 </selector>

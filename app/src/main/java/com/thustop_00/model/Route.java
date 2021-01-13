@@ -24,19 +24,6 @@ public class Route {
     public ArrayList<Via> boarding_stops;
     public ArrayList<Via> alighting_stops;
 
-/*    public Route(String id, String region, int driver_id, float distance, int max_passenger, int cnt_passenger, int spec, String status, int price) {
-        this.id = id;
-        this.region = region;
-        this.driver_id = driver_id;
-        this.distance = distance;
-        this.max_passenger = max_passenger;
-        this.cnt_passenger = cnt_passenger;
-        this.spec = spec;
-        this.status = status;
-        this.price = price;
-        this.boarding_stops = new ArrayList<Via>();
-        this.alighting_stops = new ArrayList<Via>();
-    }*/
     public void initialize(){
         boarding_stops = new ArrayList<Via>();
         alighting_stops = new ArrayList<Via>();
