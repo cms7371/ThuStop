@@ -20,8 +20,10 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@id/bt_fpm_pay"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/guideline10">
+            app:layout_constraintTop_toBottomOf="@id/guideline10"
+            app:layout_constraintVertical_bias="0.0">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -137,38 +139,142 @@
                     android:text="쿠폰/제휴 할인"
                     android:textColor="@color/TextBlack"
                     android:textSize="15sp"
-                    app:notoTextStyle="medium"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/v_fpm_stroke" />
+                    app:layout_constraintTop_toBottomOf="@id/v_fpm_stroke"
+                    app:notoTextStyle="medium" />
 
                 <RadioGroup
-                    android:id="@+id/rg_fpm_coupon"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/rg_fpm_coupon_discount"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="34dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="50dp"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_fpm_coupon">
 
-                    <RadioButton
-                        android:id="@+id/radioButton"
+                    <com.thustop_00.widgets.NotoRadioButton
+                        android:id="@+id/rb_fpm_coupon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="쿠폰" />
+                        android:layout_weight="1"
+                        android:button="@drawable/radio_button"
+                        android:paddingStart="6dp"
+                        android:paddingEnd="0dp"
+                        android:text="쿠폰"
+                        android:textColor="@color/TextBlack"
+                        android:textSize="13sp" />
 
-                    <RadioButton
-                        android:id="@+id/radioButton2"
+                    <com.thustop_00.widgets.NotoRadioButton
+                        android:id="@+id/rb_fpm_afliate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="제휴" />
+                        android:layout_weight="1"
+                        android:button="@drawable/radio_button"
+                        android:paddingStart="6dp"
+                        android:paddingEnd="0dp"
+                        android:text="제휴"
+                        android:textColor="@color/TextBlack"
+                        android:textSize="13sp" />
 
-                    <RadioButton
-                        android:id="@+id/radioButton3"
+                    <com.thustop_00.widgets.NotoRadioButton
+                        android:id="@+id/rb_fpm_nothing"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="사용안함" />
+                        android:layout_weight="1"
+                        android:button="@drawable/radio_button"
+                        android:paddingStart="6dp"
+                        android:paddingEnd="0dp"
+                        android:text="사용안함"
+                        android:textColor="@color/TextBlack"
+                        android:textSize="13sp" />
                 </RadioGroup>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_fpm_coupon_container"
+                    android:layout_width="0dp"
+                    android:layout_height="127dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="18dp"
+                    android:background="@drawable/bg_outline10_gray_f3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rg_fpm_coupon_discount">
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fpm_point_use"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="34dp"
+                    android:text="포인트 사용"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_fpm_coupon_container"
+                    app:notoTextStyle="medium" />
+
+                <com.thustop_00.widgets.NotoCheckBox
+                    android:id="@+id/cb_fpm_point_all_in"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:button="@drawable/checkbox_round"
+                    android:paddingStart="6dp"
+                    android:paddingEnd="0dp"
+                    android:text="모두 사용"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/tv_fpm_point_use"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_fpm_point_use" />
+
+                <com.thustop_00.widgets.NotoEditText
+                    android:id="@+id/tv_fpm_used_point"
+                    android:layout_width="145dp"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/bg_round35_container"
+                    android:gravity="center_vertical|end"
+                    android:maxLines="1"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="28dp"
+                    android:text="0"
+                    android:textColor="@color/Primary"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/cb_fpm_point_all_in"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/cb_fpm_point_all_in" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/notoTextView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="P"
+                    android:textColor="@color/TextBlack"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_fpm_used_point"
+                    app:layout_constraintEnd_toEndOf="@id/tv_fpm_used_point"
+                    app:layout_constraintTop_toTopOf="@+id/tv_fpm_used_point"
+                    app:notoTextStyle="medium" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/notoTextView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="14dp"
+                    android:text="보유 포인트 1300P"
+                    android:textColor="@color/Primary"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="@id/tv_fpm_used_point"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fpm_used_point" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 

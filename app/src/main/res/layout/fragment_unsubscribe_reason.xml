@@ -68,7 +68,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/et_ur_reason_etc">
-                <RadioButton
+                <com.thustop_00.widgets.NotoRadioButton
                     android:id="@+id/cb_ur_reason_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
                     android:textColor="@color/TextBlack"
                     android:textSize="13sp"
                     />
-                <RadioButton
+                <com.thustop_00.widgets.NotoRadioButton
                     android:id="@+id/cb_ur_reason_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
                     android:text="혜택 (쿠폰,  포인트, 이벤트 등)이 적어요"
                     android:textColor="@color/TextBlack"
                     android:textSize="13sp"/>
-                <RadioButton
+                <com.thustop_00.widgets.NotoRadioButton
                     android:id="@+id/cb_ur_reason_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
                     android:text="다른 계정이 존재해요"
                     android:textColor="@color/TextBlack"
                     android:textSize="13sp" />
-                <RadioButton
+                <com.thustop_00.widgets.NotoRadioButton
                     android:id="@+id/cb_ur_reason_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
                     android:text="개설되어 있는 노선이 마음에 들지 않아요"
                     android:textColor="@color/TextBlack"
                     android:textSize="13sp" />
-                <RadioButton
+                <com.thustop_00.widgets.NotoRadioButton
                     android:id="@+id/cb_ur_reason_5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -118,7 +118,7 @@
                     android:text="버스 승차감 또는 이용이 불편해요"
                     android:textColor="@color/TextBlack"
                     android:textSize="13sp" />
-                <RadioButton
+                <com.thustop_00.widgets.NotoRadioButton
                     android:id="@+id/cb_ur_reason_6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
                     android:text="버스 기사님이 불친절해요"
                     android:textColor="@color/TextBlack"
                     android:textSize="13sp" />
-                <RadioButton
+                <com.thustop_00.widgets.NotoRadioButton
                     android:id="@+id/cb_ur_reason_7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -138,7 +138,7 @@
                     android:text="대체 가능한 서비스가 있어요"
                     android:textColor="@color/TextBlack"
                     android:textSize="13sp" />
-                <RadioButton
+                <com.thustop_00.widgets.NotoRadioButton
                     android:id="@+id/cb_ur_reason_8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -147,8 +147,7 @@
                     android:paddingStart="5dp"
                     android:text="기타"
                     android:textColor="@color/TextBlack"
-                    android:textSize="13sp"
-                    android:fontFamily="sans-serif" />
+                    android:textSize="13sp" />
             </RadioGroup>
 
 

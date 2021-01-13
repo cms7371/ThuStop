@@ -1,4 +1,4 @@
-package com.thustop_00.intro;
+package com.thustop_00;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -8,12 +8,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 
-import com.thustop_00.DoneFragment;
-import com.thustop_00.FragmentBase;
-import com.thustop_00.R;
 import com.thustop_00.databinding.FragmentUnsubscribeReasonBinding;
 
 /**
@@ -52,14 +48,6 @@ public class UnsubscribeReasonFragment extends FragmentBase {
                              Bundle savedInstanceState) {
         binding = FragmentUnsubscribeReasonBinding.inflate(inflater);
 
-        binding.cbUrReason1.setTypeface(Typeface.createFromAsset(getContext().getAssets(),"NotoSansKR-Regular-Hestia.otf"));
-        binding.cbUrReason2.setTypeface(Typeface.createFromAsset(getContext().getAssets(),"NotoSansKR-Regular-Hestia.otf"));
-        binding.cbUrReason3.setTypeface(Typeface.createFromAsset(getContext().getAssets(),"NotoSansKR-Regular-Hestia.otf"));
-        binding.cbUrReason4.setTypeface(Typeface.createFromAsset(getContext().getAssets(),"NotoSansKR-Regular-Hestia.otf"));
-        binding.cbUrReason5.setTypeface(Typeface.createFromAsset(getContext().getAssets(),"NotoSansKR-Regular-Hestia.otf"));
-        binding.cbUrReason6.setTypeface(Typeface.createFromAsset(getContext().getAssets(),"NotoSansKR-Regular-Hestia.otf"));
-        binding.cbUrReason7.setTypeface(Typeface.createFromAsset(getContext().getAssets(),"NotoSansKR-Regular-Hestia.otf"));
-        binding.cbUrReason8.setTypeface(Typeface.createFromAsset(getContext().getAssets(),"NotoSansKR-Regular-Hestia.otf"));
 
         binding.rgUrReason.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

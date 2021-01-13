@@ -5,27 +5,21 @@ import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 
-import androidx.appcompat.widget.AppCompatButton;
-
 import com.thustop_00.R;
 
-/*
- * This class is for customizing Button.
- * Through the function 'setType', change the font of the button into NotoSansKR
- */
-public class NotoButton extends AppCompatButton {
+public class NotoRadioButton extends androidx.appcompat.widget.AppCompatRadioButton {
     /* Below 3 methods are essential declarations with new function 'setType'*/
-    public NotoButton(Context context) {
+    public NotoRadioButton(Context context) {
         super(context);
         setType(context, null);
     }
 
-    public NotoButton(Context context, AttributeSet attrs) {
+    public NotoRadioButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         setType(context, attrs);
     }
 
-    public NotoButton(Context context, AttributeSet attrs, int defStyleAttr) {
+    public NotoRadioButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setType(context, attrs);
     }

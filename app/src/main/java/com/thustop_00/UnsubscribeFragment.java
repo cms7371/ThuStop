@@ -2,15 +2,12 @@ package com.thustop_00;
 
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 
 import com.thustop_00.databinding.FragmentUnsubscribeBinding;
-import com.thustop_00.intro.UnsubscribeReasonFragment;
 
 public class UnsubscribeFragment extends FragmentBase {
     FragmentUnsubscribeBinding binding;
