@@ -3,26 +3,38 @@ package com.thustop_00;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 import android.view.animation.Interpolator;
 
+import androidx.annotation.IntDef;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 public class RecyclerIndicator extends RecyclerView.ItemDecoration {
+    public static final int HEIGHT_DP = 0;
+    public static final int HEIGHT_PX = 1;
 
-    public int selectedIndicator;
-    public int unselectedIndicator;
+    private int selectedIndicator;
+    private int unselectedIndicator;
+    private int type;
 
     private static final float DP = Resources.getSystem().getDisplayMetrics().density;
 
-    private int indicatorHeight;
+    private float indicatorHeight;
     private int indicatorDiagram;
     private int indicatorPadding;
 
+    private float indicatorStartX;
+    private float indicatorPosY;
+
+
+    @IntDef({HEIGHT_DP, HEIGHT_PX})
+    public @interface Type {
+    }
 
     private final Interpolator mInterpolator = new AccelerateDecelerateInterpolator();
 
@@ -30,22 +42,23 @@ public class RecyclerIndicator extends RecyclerView.ItemDecoration {
 
     /***
      *  !!! 색상 넣을 때 int로 넣으면 보이지 않습니다. ex. 0x777777 <-이렇게 넣으면 컬러 설정 안됨 !!!
-     *  !!! 가능한 R.color.~~로 넣어야 합니다 !!!
-     *  !!! 모든 수치들은 DP값 기준으로 넣으면 됩니다!!!
+     *  !!! getResource.getColor(R.color.~~) 또는 Color.parseColor("#000000")로 넣어야 합니다!
      *  기존 뷰 위에 그려지는 것이므로 하단에 높이만큼 패딩을 주어야함.
      * @param selectedIndicator     : 선택된 인디케이터 색상
      * @param unselectedIndicator   : 선택되지 않은 인디케이터 색상
      * @param indicatorHeight       : 인디케이터 전체 공간 높이
      * @param indicatorDiagram      : 원형 인디케이터 지름
      * @param indicatorPadding      : 인디케이터와 인디케이터 사이의 패딩
+     * @param type                  : DP와 px 타입 존재(DP는 직접적으로 높이 설정, px는 전체 리사이클러 뷰에서 백분율로 높이 지정)
      */
 
-    public RecyclerIndicator(int selectedIndicator, int unselectedIndicator, int indicatorHeight, int indicatorDiagram, int indicatorPadding) {
+    public RecyclerIndicator(int selectedIndicator, int unselectedIndicator, float indicatorHeight, int indicatorDiagram, int indicatorPadding, @Type int type) {
         this.selectedIndicator=selectedIndicator;
         this.unselectedIndicator=unselectedIndicator;
-        this.indicatorHeight = (int)(DP*indicatorHeight);
+        this.indicatorHeight = indicatorHeight;
         this.indicatorDiagram = (int)(DP*indicatorDiagram);
         this.indicatorPadding = (int)(DP*indicatorPadding);
+        this.type = type;
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setAntiAlias(true);
         //mPaint.setStrokeWidth(this.strokeWidth);
@@ -58,12 +71,19 @@ public class RecyclerIndicator extends RecyclerView.ItemDecoration {
         super.onDrawOver(c, rv, state);
 
         int itemCount = rv.getAdapter().getItemCount();
+        if(type == HEIGHT_DP) {
+            indicatorHeight = (int)(DP*indicatorHeight);
+            indicatorPosY  = rv.getHeight() - indicatorHeight;
+        } else {
+            indicatorPosY = rv.getHeight()*(1-indicatorHeight);
+        }
 
 
         float totalWidth = (indicatorDiagram *itemCount) + (Math.max(0, itemCount-1)*indicatorPadding);
-        float indicatorStartX = (rv.getWidth()-totalWidth)/2F;
+        indicatorStartX = (rv.getWidth()-totalWidth)/2F;
 
-        float indicatorPosY = rv.getHeight() - indicatorHeight/2F;
+
+        Log.d("인디케이터 높이", String.valueOf(rv.getHeight()));
 
 
         drawIndicators(c, indicatorStartX, indicatorPosY, itemCount);

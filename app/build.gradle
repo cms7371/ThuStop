@@ -57,8 +57,6 @@ dependencies {
 
     /* ViewPager2 */
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
-    /* Implementation CircleIndicator3 for ViewPager2 */
-    implementation 'me.relex:circleindicator:2.1.4'
 
     /* Implementation for kakao login*/
     implementation "com.kakao.sdk:v2-user:2.2.0"

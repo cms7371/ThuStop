@@ -1,21 +1,27 @@
 package com.thustop_00.intro;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.thustop_00.FragmentBase;
 import com.thustop_00.MainFragment;
 import com.thustop_00.R;
+import com.thustop_00.RecyclerIndicator;
 import com.thustop_00.databinding.FragmentIntroBaseBinding;
 
 import java.util.ArrayList;
@@ -42,9 +48,10 @@ public class IntroBaseFragment extends FragmentBase {
 
         ViewPager2 viewpager = binding.vpIntroContainer;
         viewpager.setAdapter(pagerAdapter);
-        /* Link indicator and viewpager and create indicating dots*/
-        binding.indicator.setViewPager(viewpager);
-        binding.indicator.createIndicators(3, 0);
+
+        RecyclerView.ItemDecoration indicator = new RecyclerIndicator(getResources().getColor(R.color.Primary), Color.parseColor("#cff1d5"),0.15F, 10, 8, RecyclerIndicator.HEIGHT_PX);
+        viewpager.addItemDecoration(indicator);
+
 
         /* Set viewpager listener for page changing action(Set visibility of buttons) */
         viewpager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -66,9 +73,25 @@ public class IntroBaseFragment extends FragmentBase {
                 }
             }
         });
+        binding.vpIntroContainer.post(new Runnable(){
+
+            @Override
+
+            public void run() {
+
+                float height = (float)(binding.vpIntroContainer.getHeight()*0.15);
+                Log.d("밖",String.valueOf(binding.vpIntroContainer.getHeight()));
+
+
+            }
+
+        });
 
         return binding.getRoot();
     }
+
+
+
 
     /*Method for button listener test */
     public void onStartClick(View view) {

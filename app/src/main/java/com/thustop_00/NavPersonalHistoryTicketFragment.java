@@ -87,7 +87,7 @@ public class NavPersonalHistoryTicketFragment extends FragmentBase {
     public void setIndicator(int numTicket) {
         if (numTicket > 1) {
             //binding.rvTicket.addItemDecoration(new RecyclerIndicator());
-            binding.rvTicket.addItemDecoration(new RecyclerIndicator(R.color.Ach97, R.color.AchCF, 32, 6, 10));
+            binding.rvTicket.addItemDecoration(new RecyclerIndicator(getResources().getColor(R.color.Ach97), getResources().getColor(R.color.AchCF), 16, 6, 10, RecyclerIndicator.HEIGHT_DP));
         } else {
             binding.rvTicket.setPadding(0,0,0,0);
         }
