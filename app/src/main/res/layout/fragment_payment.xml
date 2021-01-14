@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -44,6 +44,7 @@
                     android:text="미사강변도시"
                     android:textColor="@color/TextBlack"
                     android:textSize="14sp"
+
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -77,6 +78,7 @@
                     android:text="잠실역 2번 출구"
                     android:textColor="@color/TextBlack"
                     android:textSize="14sp"
+
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_fpm_departure" />
@@ -116,6 +118,7 @@
                     android:layout_marginEnd="24dp"
                     android:text="99,000 원"
                     android:textColor="@color/Primary"
+
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_fpm_destination"
                     app:notoTextStyle="medium" />
@@ -126,12 +129,13 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="30dp"
                     android:background="@color/Stroke"
+
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_fpm_original_price" />
 
                 <com.thustop_00.widgets.NotoTextView
-                    android:id="@+id/tv_fpm_coupon"
+                    android:id="@+id/tv_fpm_coupon_affiliation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -139,12 +143,13 @@
                     android:text="쿠폰/제휴 할인"
                     android:textColor="@color/TextBlack"
                     android:textSize="15sp"
+
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/v_fpm_stroke"
                     app:notoTextStyle="medium" />
 
                 <RadioGroup
-                    android:id="@+id/rg_fpm_coupon_discount"
+                    android:id="@+id/rg_fpm_coupon_affiliation"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="34dp"
@@ -154,7 +159,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_fpm_coupon">
+                    app:layout_constraintTop_toBottomOf="@id/tv_fpm_coupon_affiliation">
 
                     <com.thustop_00.widgets.NotoRadioButton
                         android:id="@+id/rb_fpm_coupon"
@@ -162,19 +167,19 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:button="@drawable/radio_button"
-                        android:paddingStart="6dp"
+                        android:paddingStart="4dp"
                         android:paddingEnd="0dp"
                         android:text="쿠폰"
                         android:textColor="@color/TextBlack"
                         android:textSize="13sp" />
 
                     <com.thustop_00.widgets.NotoRadioButton
-                        android:id="@+id/rb_fpm_afliate"
+                        android:id="@+id/rb_fpm_affliation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:button="@drawable/radio_button"
-                        android:paddingStart="6dp"
+                        android:paddingStart="4dp"
                         android:paddingEnd="0dp"
                         android:text="제휴"
                         android:textColor="@color/TextBlack"
@@ -186,7 +191,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:button="@drawable/radio_button"
-                        android:paddingStart="6dp"
+                        android:paddingStart="4dp"
                         android:paddingEnd="0dp"
                         android:text="사용안함"
                         android:textColor="@color/TextBlack"
@@ -201,9 +206,10 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="18dp"
                     android:background="@drawable/bg_outline10_gray_f3"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rg_fpm_coupon_discount">
+                    app:layout_constraintTop_toBottomOf="@id/rg_fpm_coupon_affiliation">
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -235,7 +241,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_fpm_point_use" />
 
                 <com.thustop_00.widgets.NotoEditText
-                    android:id="@+id/tv_fpm_used_point"
+                    android:id="@+id/tv_fpm_point_to_use"
                     android:layout_width="145dp"
                     android:layout_height="36dp"
                     android:layout_marginEnd="20dp"
@@ -258,13 +264,13 @@
                     android:layout_marginEnd="8dp"
                     android:text="P"
                     android:textColor="@color/TextBlack"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_fpm_used_point"
-                    app:layout_constraintEnd_toEndOf="@id/tv_fpm_used_point"
-                    app:layout_constraintTop_toTopOf="@+id/tv_fpm_used_point"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_fpm_point_to_use"
+                    app:layout_constraintEnd_toEndOf="@id/tv_fpm_point_to_use"
+                    app:layout_constraintTop_toTopOf="@+id/tv_fpm_point_to_use"
                     app:notoTextStyle="medium" />
 
                 <com.thustop_00.widgets.NotoTextView
-                    android:id="@+id/notoTextView7"
+                    android:id="@+id/tv_fpm_current_point"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
@@ -272,8 +278,253 @@
                     android:text="보유 포인트 1300P"
                     android:textColor="@color/Primary"
                     android:textSize="10sp"
-                    app:layout_constraintEnd_toEndOf="@id/tv_fpm_used_point"
-                    app:layout_constraintTop_toBottomOf="@id/tv_fpm_used_point" />
+                    app:layout_constraintEnd_toEndOf="@id/tv_fpm_point_to_use"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fpm_point_to_use" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fpm_method"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="45dp"
+                    android:text="결제 수단"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cb_fpm_point_all_in"
+                    app:notoTextStyle="medium" />
+
+                <RadioGroup
+                    android:id="@+id/rg_fpm_method"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="34dp"
+                    android:layout_marginTop="26dp"
+                    android:layout_marginEnd="30dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_fpm_method">
+
+                    <com.thustop_00.widgets.NotoRadioButton
+                        android:id="@+id/rb_fpm_creditcard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/radio_button"
+                        android:maxLines="1"
+                        android:paddingStart="4dp"
+                        android:paddingEnd="0dp"
+                        android:text="신용/체크카드"
+                        android:textColor="@color/TextBlack"
+                        android:textSize="13sp" />
+
+                    <com.thustop_00.widgets.NotoRadioButton
+                        android:id="@+id/rb_fpm_kakaopay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/radio_button"
+                        android:drawableStart="@drawable/icon_kakao_pay"
+                        android:paddingStart="4dp"
+                        android:paddingEnd="0dp"
+                        android:textColor="@color/TextBlack"
+                        android:textSize="13sp" />
+
+                    <com.thustop_00.widgets.NotoRadioButton
+                        android:id="@+id/rb_fpm_deposit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/radio_button"
+                        android:paddingStart="4dp"
+                        android:paddingEnd="0dp"
+                        android:text="무통장 입금"
+                        android:textColor="@color/TextBlack"
+                        android:textSize="13sp" />
+                </RadioGroup>
+
+                <View
+                    android:id="@+id/v_fpm_stroke2"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@color/Stroke"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rg_fpm_method" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fpm_original_price2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26dp"
+                    android:layout_marginEnd="19dp"
+                    android:text="99,000원"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/v_fpm_stroke2" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/notoTextView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:text="최초 금액"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_fpm_original_price2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_fpm_original_price2" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fpm_coupon_discount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="19dp"
+                    android:text="-1,300원"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fpm_original_price2" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/notoTextView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:text="쿠폰 할인"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_fpm_coupon_discount"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_fpm_coupon_discount" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fpm_point_discount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="19dp"
+                    android:text="-1,300원"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fpm_coupon_discount" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/notoTextView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:text="포인트 할인"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_fpm_point_discount"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_fpm_point_discount" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fpm_final_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="94,700원"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fpm_point_discount"
+                    app:notoTextStyle="bold" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/notoTextView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="21dp"
+                    android:text="최종 결제 금액"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_fpm_final_price"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_fpm_final_price"
+                    app:notoTextStyle="bold" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fpm_cautions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="24dp"
+                    android:text="주의사항"
+                    android:textColor="@color/TextBlack"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fpm_final_price" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fpm_caution1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="49dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="50dp"
+                    android:text="첫번째 주의사항입니다.\n많이많이 타세요~"
+                    android:textSize="11sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_fpm_cautions" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="21dp"
+                    android:translationY="-2.5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_fpm_caution1"
+                    app:srcCompat="@drawable/icon_exclamation_mark" />
+
+                <com.thustop_00.widgets.NotoTextView
+                    android:id="@+id/tv_fpm_caution2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="49dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="50dp"
+                    android:text="두번째 주의사항입니다."
+                    android:textSize="11sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_fpm_caution1" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="21dp"
+                    android:translationY="-2.5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_fpm_caution2"
+                    app:srcCompat="@drawable/icon_exclamation_mark" />
+
+                <com.thustop_00.widgets.NotoCheckBox
+                    android:id="@+id/cb_fpm_agreement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="19dp"
+                    android:button="@drawable/checkbox_round"
+                    android:paddingStart="10dp"
+                    android:text="위 예약내역 및 결제내역을 확인하였음에 동의합니다."
+                    android:textColor="@color/TextBlack"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fpm_caution2" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>

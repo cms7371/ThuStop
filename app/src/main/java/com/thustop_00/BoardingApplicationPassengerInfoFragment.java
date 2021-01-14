@@ -130,7 +130,8 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
             @Override
             public void onBoardingConfirm() {
                 //TODO 결제 프로세스 연결 또는 탑승 신청 완료로 연결
-                _listener.setFragment(DoneFragment.newInstance("탑승 신청이 완료되었습니다.", "배차가 확정되면 푸시알림, 또는 문자를 드립니다.",true));
+                _listener.addFragment(PaymentFragment.newInstance());
+                //_listener.setFragment(DoneFragment.newInstance("탑승 신청이 완료되었습니다.", "배차가 확정되면 푸시알림, 또는 문자를 드립니다.",true));
                 Handler H = new Handler(Looper.getMainLooper());
                 H.postDelayed(new Runnable() {
                     @Override
