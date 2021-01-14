@@ -102,9 +102,9 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         setFragment(SplashFragment.newInstance());
         FirebaseApp.initializeApp(this);
         Log.d(TAG, "onCreate: 로그인키 " + Prefs.getString(Constant.LOGIN_KEY, null));
-        if(!(Prefs.getString(Constant.LOGIN_KEY, "").isEmpty()))
+        if (!(Prefs.getString(Constant.LOGIN_KEY, "").isEmpty()))
             Log.d(TAG, "onCreate: FCM 등록 시도");
-            Utils.registerDevice();
+        Utils.registerDevice();
         Log.d(TAG, "onCreate: GPSServiceStatus is " + GPSServiceStatus);
         checkFirstRun();
     }
@@ -290,6 +290,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             FragmentManager fm = getSupportFragmentManager();
             fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             fm.beginTransaction()
+                    .setCustomAnimations(
+                            R.anim.fade_in,  // enter
+                            R.anim.fade_out,  // exit
+                            R.anim.fade_in,   // popEnter
+                            R.anim.fade_out  // popExit
+                    )
                     .replace(R.id.fr_main, fr)
                     .commit();
         } catch (IllegalStateException ignore) {
@@ -300,6 +306,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     @Override
     public void addFragment(FragmentBase fr) {
         getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(
+                        R.anim.slide_in,  // enter
+                        R.anim.fade_out,  // exit
+                        R.anim.fade_in,   // popEnter
+                        R.anim.slide_out  // popExit
+                )
                 .replace(R.id.fr_main, fr)
                 .addToBackStack(null)
                 .commit();
@@ -310,6 +322,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     public void addFragmentNotBackStack(FragmentBase fr) {
         getSupportFragmentManager().popBackStack();
         getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(
+                        R.anim.slide_in,  // enter
+                        R.anim.fade_out,  // exit
+                        R.anim.fade_in,   // popEnter
+                        R.anim.slide_out  // popExit
+                )
                 .replace(R.id.fr_main, fr)
                 .addToBackStack(null)
                 .commit();
@@ -329,6 +347,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     public void closeDrawer() {
         binding.drawerLayout.closeDrawer(GravityCompat.START);
     }
+
     @Override
     public void lockDrawer(boolean isLocked) {
         if (isLocked) {
@@ -337,6 +356,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
         }
     }
+
     /**
      * setToolbarStyle 메소드
      * - toolbarState : 이름 그대로 _listener에 정의된 변수 이용하여 하면 됨
@@ -437,7 +457,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                 if (imm != null)
                     imm.hideSoftInputFromWindow(focusView.getWindowToken(), 0);
                 if (focusView instanceof EditText)
-                    ((EditText)focusView).setCursorVisible(false);
+                    ((EditText) focusView).setCursorVisible(false);
                 focusView.clearFocus();
             }
         }
@@ -488,7 +508,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     }
 
 
-    private void getKeyHash(){
+    private void getKeyHash() {
         Log.d(TAG, "getKeyHash: " + Utility.getKeyHash(this));
     }
 

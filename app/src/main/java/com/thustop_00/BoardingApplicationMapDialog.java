@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +52,13 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
         this.boarding_stops = boarding_stops;
         this.alighting_stops = alighting_stops;
         this.op_mod = MULTIPLE;
+        Window window = getWindow();
+        if( window != null ) {
+            WindowManager.LayoutParams params = window.getAttributes();
+            // 열기&닫기 시 애니메이션 설정
+            params.windowAnimations = R.style.AnimationPopupStyle;
+            window.setAttributes(params);
+        }
     }
 
     public BoardingApplicationMapDialog(Context context, Activity activity, Via via, boolean isDestination) {
@@ -58,6 +67,13 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
         this.via = via;
         this.isDestination = isDestination;
         this.op_mod = SINGLE;
+        Window window = getWindow();
+        if( window != null ) {
+            WindowManager.LayoutParams params = window.getAttributes();
+            // 열기&닫기 시 애니메이션 설정
+            params.windowAnimations = R.style.AnimationPopupStyle;
+            window.setAttributes(params);
+        }
     }
 
     @Override
