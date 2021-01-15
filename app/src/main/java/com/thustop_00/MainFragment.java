@@ -93,6 +93,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         _listener.setOnBackPressedListener(this);
         _listener.lockDrawer(false);
 
+
         test_region_list = new String[]{"호매실동", "하남", "동탄", "우리집", "남의집"};
 
         //Recycler view 호출 및 어댑터와 연결, 데이터 할당
