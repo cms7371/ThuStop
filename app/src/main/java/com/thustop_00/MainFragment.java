@@ -2,18 +2,13 @@ package com.thustop_00;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -28,9 +23,7 @@ import com.thustop_00.model.PageResponse;
 import com.thustop_00.model.Route;
 import com.thustop_00.widgets.NotoTextView;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -49,20 +42,17 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     FragmentMainBinding binding;
     boolean toggle;
-    double latitude;
-    double longitude;
-    String address;
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     long timeBackPressed = 0;
     private int prePosition = -1;
     private String selectedRegion;
     private NotoTextView preSelectedItem, curSelectedItem;
-    private GpsTracker gpsTracker;
     private MainRecyclerAdapter mainAdapter = null;
     private List<Route> routes;
     private String[] test_region_list;
     private GridView regionGrid;
     private RegionGridAdapter regionAdapter;
+    private boolean isRefreshing = false;
 
 
     public static MainFragment newInstance() {
@@ -83,8 +73,6 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         if (_listener.getGPSServiceStatus() == null) {
             checkRunTimePermission();
         }
-        binding.vPause.setVisibility(View.GONE);
-        binding.layoutLocal.setVisibility(View.GONE);
         colorText(binding.tvLocal1, R.string.tv_local1_color, getResources().getColor(R.color.Primary));
         toggle = false;
         //Activity 기본 세팅
@@ -98,35 +86,16 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
 
         //Recycler view 호출 및 어댑터와 연결, 데이터 할당
         RecyclerView mainRecycler = binding.rvRoutes;
-        if(mainAdapter == null){
+        if (mainAdapter == null) {
             mainAdapter = new MainRecyclerAdapter(getContext(), false, null, this);
             mainRecycler.setAdapter(mainAdapter);
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(Constant.SERVER_URL).addConverterFactory(GsonConverterFactory.create()).build();
-            RestApi api = retrofit.create(RestApi.class);
-            Call<PageResponse<Route>> call = api.listRoutes(Prefs.getString(Constant.LOGIN_KEY, ""));
-            call.enqueue(new Callback<PageResponse<Route>>() {
-                @Override
-                public void onResponse(Call<PageResponse<Route>> call, Response<PageResponse<Route>> response) {
-                    if (response.isSuccessful() && (response.body() != null)) {
-                        routes = response.body().results;
-                        for (Route r : routes) {
-                            r.initialize();
-                        }
-                        mainAdapter.changeDataSet(routes);
-                    }
-                }
-                @Override
-                public void onFailure(Call<PageResponse<Route>> call, Throwable t) {
-                    Log.e(TAG, "RestApi onFailure: 노선 정보 수신 실패", null);
-                }
-            });
+            updateRoutes();
         } else {
             mainRecycler.setAdapter(mainAdapter);
         }
 
         regionGrid = binding.gvLocal;
-        regionAdapter = new RegionGridAdapter(getContext(), test_region_list,_listener.covertDPtoPX(77));
+        regionAdapter = new RegionGridAdapter(getContext(), test_region_list, _listener.covertDPtoPX(77));
 
         regionGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -153,9 +122,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
                     }
                     prePosition = position;
                 }
-                toggle = false;
-                binding.vPause.setVisibility(View.GONE);
-                binding.layoutLocal.setVisibility(View.GONE);
+                onSelLocalClick(null);
             }
         });
         regionGrid.setAdapter(regionAdapter);
@@ -184,10 +151,14 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         if (!toggle) {
             binding.vPause.setVisibility(View.VISIBLE);
             binding.layoutLocal.setVisibility(View.VISIBLE);
+            binding.vPause.animate().alpha(1f).setDuration(300).start();
+            binding.layoutLocal.animate().alpha(1f).setDuration(300).start();
             toggle = true;
         } else {
-            binding.vPause.setVisibility(View.GONE);
-            binding.layoutLocal.setVisibility(View.GONE);
+            binding.vPause.animate().alpha(0f).setDuration(300).withEndAction(() ->
+                    binding.vPause.setVisibility(View.GONE)).start();
+            binding.layoutLocal.animate().alpha(0f).setDuration(300).withEndAction(() ->
+                    binding.layoutLocal.setVisibility(View.GONE)).start();
             toggle = false;
         }
     }
@@ -196,41 +167,24 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         _listener.addFragment(RequestServiceRegionFragment.newInstance());
     }
 
-    public void onGPSClick(View view) {
-        gpsTracker = new GpsTracker(getActivity());
-        latitude = gpsTracker.getLatitude();
-        longitude = gpsTracker.getLongitude();
-        address = getCurrentAddress(latitude, longitude);
-        binding.tvSelLocal.setText(address);
-        Toast.makeText(getActivity(), "현재위치 \n위도 " + latitude + "\n경도 " + longitude, Toast.LENGTH_LONG).show();
+    public void onRefreshClick(View view) {
+        if (!isRefreshing) {
+            isRefreshing = true;
+            updateRoutes();
+            view.animate().rotation(720f).setDuration(500).withEndAction(() ->
+                    view.animate().translationX(0).setDuration(500).withEndAction(() ->
+                            view.animate().rotation(1440f).setDuration(500).withEndAction(() -> {
+                                        isRefreshing = false;
+                                        view.setRotation(0f);
+                                    }
+                            ).start()
+                    ).start()
+            ).start();
+        }
     }
 
-    // method to convert location to address TODO: 없어져야하는 부분
-    public String getCurrentAddress(double latitude, double longitude) {
-        Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
-        List<Address> addresses;
-        try {
-            // Last value is maxResults
-            addresses = geocoder.getFromLocation(latitude, longitude, 100);
-        } catch (IOException ioException) {
-            // Network problem
-            Toast.makeText(getActivity(), "지오코더 서비스 사용불가", Toast.LENGTH_SHORT).show();
-            _listener.showLocationServiceSettingDialog();
-            return "지오코더 서비스 사용불가";
 
-        } catch (IllegalArgumentException illegalArgumentException) {
-            Toast.makeText(getActivity(), "잘못된 GPS 좌표", Toast.LENGTH_SHORT).show();
-            _listener.showLocationServiceSettingDialog();
-            return "잘못된 GPS 좌표표";
-        }
-        if (addresses == null || addresses.size() == 0) {
-            Toast.makeText(getActivity(), "주소 미발견", Toast.LENGTH_LONG).show();
-            _listener.showLocationServiceSettingDialog();
-            return "주소 미발견";
-        }
-        Address address = addresses.get(0);
-        return address.getAdminArea() + " " + address.getLocality() + " " + address.getSubLocality();
-    }
+
 
     /**
      * 위치, GPS 권환 확인 플로우
@@ -283,7 +237,6 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         }
     }
 
-
     @Override
     public void onBack() {
         if (timeBackPressed == 0) {
@@ -300,82 +253,67 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         }
     }
 
-
-
-//메인 액티비티로 옮겨야 동작하는거 확인 추후 삭제 예정
-/*    @Override
-    public void onRequestPermissionsResult(int permsRequestCode, String[] permissions, int[] grandResults) {
-        super.onRequestPermissionsResult(permsRequestCode, permissions, grandResults);
-        Log.d(TAG,"권한 결과 확인 함수 호출");
-        if (permsRequestCode == PERMISSIONS_REQUEST_CODE && grandResults.length == REQUIRED_PERMISSIONS.length) {
-            // 요청 코드가 PERMISSIONS_REQUEST_CODE 이고, 요청한 퍼미션 개수만큼 수신되었다면
-            boolean check_result = true;
-            // 모든 퍼미션을 허용했는지 체크합니다.
-            for (int result : grandResults) {
-                if (result != PackageManager.PERMISSION_GRANTED) {
-                    check_result = false;
-                    break;
-                }
-            }
-            if (check_result) {
-                //위치 값을 가져올 수 있음
-                ;
-            } else {
-                // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
-
-                if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), REQUIRED_PERMISSIONS[0])
-                        || ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), REQUIRED_PERMISSIONS[1])) {
-                    Toast.makeText(getActivity(), "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show();
-                    getActivity().finish();
-                } else {
-                    Toast.makeText(getActivity(), "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
-                }
-            }
-
-        }
-    }*/
-
-//동작 안하는거 확인 삭제 예정
-/*    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case GPS_ENABLE_REQUEST_CODE: //사용자가 GPS 활성 시켰는지 검사
-                if (checkLocationServicesStatus()) {
-                    if (checkLocationServicesStatus()) {
-                        Log.d("@@@", "onActivityResult : GPS 활성화 되있음");
-                        checkRunTimePermission();
-                        return;
+    private void updateRoutes() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constant.SERVER_URL).addConverterFactory(GsonConverterFactory.create()).build();
+        RestApi api = retrofit.create(RestApi.class);
+        Call<PageResponse<Route>> call = api.listRoutes(Prefs.getString(Constant.LOGIN_KEY, ""));
+        call.enqueue(new Callback<PageResponse<Route>>() {
+            @Override
+            public void onResponse(Call<PageResponse<Route>> call, Response<PageResponse<Route>> response) {
+                if (response.isSuccessful() && (response.body() != null)) {
+                    routes = response.body().results;
+                    for (Route r : routes) {
+                        r.initialize();
                     }
+                    Log.d(TAG, "onResponse: 노선 업데이트 됨");
+                    mainAdapter.changeDataSet(routes);
                 }
-                break;
-            default:
-                Log.d(TAG, "onActivityResult: 작동하기는 했음");
-        }
-    }*/
+            }
+            @Override
+            public void onFailure(Call<PageResponse<Route>> call, Throwable t) {
+                Log.e(TAG, "RestApi onFailure: 노선 정보 수신 실패", null);
+            }
+        });
+    }
 
-//이거도 동작하는 지 모르겠음
-/*    // Activate GPS
-    private void showLocationServiceSettingDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("위치 서비스 비활성화");
-        builder.setMessage("앱을 사용하기 위해서는 위치 서비스가 필요합니다.\n" + "위치 설정을 수정하실래요?");
-        builder.setCancelable(true);
-        builder.setPositiveButton("설정", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                Intent callGPSSettingIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivityForResult(callGPSSettingIntent, GPS_ENABLE_REQUEST_CODE);
-            }
-        });
-        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-            }
-        });
-        builder.create().show();
-    }*/
+    /*
+    public void onGPSClick(View view) {
+        gpsTracker = new GpsTracker(getActivity());
+        latitude = gpsTracker.getLatitude();
+        longitude = gpsTracker.getLongitude();
+        address = getCurrentAddress(latitude, longitude);
+        binding.tvSelLocal.setText(address);
+        Toast.makeText(getActivity(), "현재위치 \n위도 " + latitude + "\n경도 " + longitude, Toast.LENGTH_LONG).show();
+    }
+
+    // method to convert location to address TODO: 없어져야하는 부분
+    public String getCurrentAddress(double latitude, double longitude) {
+        Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
+        List<Address> addresses;
+        try {
+            // Last value is maxResults
+            addresses = geocoder.getFromLocation(latitude, longitude, 100);
+        } catch (IOException ioException) {
+            // Network problem
+            Toast.makeText(getActivity(), "지오코더 서비스 사용불가", Toast.LENGTH_SHORT).show();
+            _listener.showLocationServiceSettingDialog();
+            return "지오코더 서비스 사용불가";
+
+        } catch (IllegalArgumentException illegalArgumentException) {
+            Toast.makeText(getActivity(), "잘못된 GPS 좌표", Toast.LENGTH_SHORT).show();
+            _listener.showLocationServiceSettingDialog();
+            return "잘못된 GPS 좌표표";
+        }
+        if (addresses == null || addresses.size() == 0) {
+            Toast.makeText(getActivity(), "주소 미발견", Toast.LENGTH_LONG).show();
+            _listener.showLocationServiceSettingDialog();
+            return "주소 미발견";
+        }
+        Address address = addresses.get(0);
+        return address.getAdminArea() + " " + address.getLocality() + " " + address.getSubLocality();
+    }
+*/
 
 
 }

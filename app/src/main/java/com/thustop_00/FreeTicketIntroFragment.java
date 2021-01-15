@@ -32,7 +32,7 @@ public class FreeTicketIntroFragment extends FragmentBase {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        _listener.setToolbarStyle(_listener.WHITE_BACK, "무료탑승권");
+        _listener.setToolbarStyle(_listener.WHITE_BACK, "무료 탑승권");
         dp150 = _listener.covertDPtoPX(150);
         binding = FragmentFreeTicketIntroBinding.inflate(inflater);
         WheelViewTransformer test = new WheelViewTransformer();

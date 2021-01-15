@@ -13,7 +13,7 @@ import com.thustop_00.widgets.NotoTextView;
 
 import java.util.Objects;
 
-public class TicketPointNoticeDialog extends Dialog {
+public class TicketPointNoticeDialog extends DialogBase {
 
     public TicketPointNoticeDialog(Context context) {super(context);}
 

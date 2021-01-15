@@ -39,7 +39,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,6 +49,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <com.thustop_00.widgets.NotoTextView
                     android:id="@+id/tv_hd_bus"
                     android:layout_width="wrap_content"
@@ -56,11 +57,11 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="27dp"
                     android:text="A15"
-                    android:textSize="24sp"
                     android:textColor="@color/TextBlack"
-                    app:notoTextStyle="bold"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:notoTextStyle="bold" />
 
                 <com.thustop_00.widgets.NotoTextView
                     android:id="@+id/tv_hd_departure_time"
@@ -253,7 +254,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
         <com.thustop_00.widgets.NotoTextView
             android:id="@+id/tv_hd_ok"

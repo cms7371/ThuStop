@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.Objects;
 
 
-public class RegionSelectorDialog extends Dialog {
+public class RegionSelectorDialog extends DialogBase {
     private String[] states = getContext().getResources().getStringArray(R.array.state);
     private RegionSelectorListener listener;
     private CityAdapter cityAdapter;

@@ -1,6 +1,8 @@
 package com.thustop_00;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,26 +53,28 @@ public class FreeTicketRouteSelectionFragment extends FragmentBase implements Ma
 
         MainRecyclerAdapter mainAdapter = new MainRecyclerAdapter(getContext(), true, null, this);
         binding.rvFreeTicketRoutes.setAdapter(mainAdapter);
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constant.SERVER_URL).addConverterFactory(GsonConverterFactory.create()).build();
-        RestApi api = retrofit.create(RestApi.class);
-        Call<PageResponse<Route>> call = api.listRoutes(Prefs.getString(Constant.LOGIN_KEY, ""));
-        call.enqueue(new Callback<PageResponse<Route>>() {
-            @Override
-            public void onResponse(Call<PageResponse<Route>> call, Response<PageResponse<Route>> response) {
-                if (response.isSuccessful() && (response.body() != null)) {
-                    routes = response.body().results;
-                    for (Route r : routes) {
-                        r.initialize();
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(Constant.SERVER_URL).addConverterFactory(GsonConverterFactory.create()).build();
+            RestApi api = retrofit.create(RestApi.class);
+            Call<PageResponse<Route>> call = api.listRoutes(Prefs.getString(Constant.LOGIN_KEY, ""));
+            call.enqueue(new Callback<PageResponse<Route>>() {
+                @Override
+                public void onResponse(Call<PageResponse<Route>> call, Response<PageResponse<Route>> response) {
+                    if (response.isSuccessful() && (response.body() != null)) {
+                        routes = response.body().results;
+                        for (Route r : routes) {
+                            r.initialize();
+                        }
+                        mainAdapter.changeDataSet(routes);
                     }
-                    mainAdapter.changeDataSet(routes);
                 }
-            }
-            @Override
-            public void onFailure(Call<PageResponse<Route>> call, Throwable t) {
-                Log.e(TAG, "RestApi onFailure: 노선 정보 수신 실패", null);
-            }
-        });
+                @Override
+                public void onFailure(Call<PageResponse<Route>> call, Throwable t) {
+                    Log.e(TAG, "RestApi onFailure: 노선 정보 수신 실패", null);
+                }
+            });
+        }, 500);
 
         test_region_list = new String[]{"호매실동", "하남", "동탄", "우리집", "남의집"};
         regionGridAdapter = new RegionGridAdapter(getContext(),test_region_list,_listener.covertDPtoPX(77));
@@ -101,9 +105,7 @@ public class FreeTicketRouteSelectionFragment extends FragmentBase implements Ma
                     }
                     prePosition = position;
                 }
-                toggle = false;
-                binding.vFftPause.setVisibility(View.GONE);
-                binding.clFftLocal.setVisibility(View.GONE);
+                onSelLocalClick(null);
             }
         });
 
@@ -115,14 +117,17 @@ public class FreeTicketRouteSelectionFragment extends FragmentBase implements Ma
         if (!toggle) {
             binding.vFftPause.setVisibility(View.VISIBLE);
             binding.clFftLocal.setVisibility(View.VISIBLE);
+            binding.vFftPause.animate().alpha(1f).setDuration(300).start();
+            binding.clFftLocal.animate().alpha(1f).setDuration(300).start();
             toggle = true;
         } else {
-            binding.vFftPause.setVisibility(View.GONE);
-            binding.clFftLocal.setVisibility(View.GONE);
+            binding.vFftPause.animate().alpha(0f).setDuration(300).withEndAction(() ->
+                    binding.vFftPause.setVisibility(View.GONE)).start();
+            binding.clFftLocal.animate().alpha(0f).setDuration(300).withEndAction(() ->
+                    binding.clFftLocal.setVisibility(View.GONE)).start();
             toggle = false;
         }
     }
-
 
     @Override
     public void onItemSelected(View v, int position, int ticket_position) {

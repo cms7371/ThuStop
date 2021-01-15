@@ -24,7 +24,7 @@ import net.daum.mf.map.api.MapView;
 
 import java.util.ArrayList;
 
-public class BoardingApplicationMapDialog extends Dialog implements MapView.POIItemEventListener {
+public class BoardingApplicationMapDialog extends DialogBase implements MapView.POIItemEventListener {
     private static final String TAG = "BoardingMapDialog";
     private MapView mapView;
     private Activity activity;
@@ -52,13 +52,7 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
         this.boarding_stops = boarding_stops;
         this.alighting_stops = alighting_stops;
         this.op_mod = MULTIPLE;
-        Window window = getWindow();
-        if( window != null ) {
-            WindowManager.LayoutParams params = window.getAttributes();
-            // 열기&닫기 시 애니메이션 설정
-            params.windowAnimations = R.style.AnimationPopupStyle;
-            window.setAttributes(params);
-        }
+
     }
 
     public BoardingApplicationMapDialog(Context context, Activity activity, Via via, boolean isDestination) {
@@ -67,13 +61,7 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
         this.via = via;
         this.isDestination = isDestination;
         this.op_mod = SINGLE;
-        Window window = getWindow();
-        if( window != null ) {
-            WindowManager.LayoutParams params = window.getAttributes();
-            // 열기&닫기 시 애니메이션 설정
-            params.windowAnimations = R.style.AnimationPopupStyle;
-            window.setAttributes(params);
-        }
+
     }
 
     @Override
@@ -83,11 +71,9 @@ public class BoardingApplicationMapDialog extends Dialog implements MapView.POII
             _listener = (OnFragmentInteractionListener) activity;
             _listener.setOnBackPressedListener(null);
         }
-
         setContentView(R.layout.dialog_stop_map);
         //처음 설정된 match_parent가 무시되기 때문에 다시 설정해줘야함.
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
         mapView = new MapView(activity);
         ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.mv_dsm_stop_map);
         mapViewContainer.addView(mapView);

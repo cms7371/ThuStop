@@ -13,7 +13,7 @@ import com.thustop_00.widgets.NotoTextView;
 
 import java.util.Objects;
 
-public class TicketPointConfirmDialog extends Dialog {
+public class TicketPointConfirmDialog extends DialogBase {
     private NotoTextView tvDate;
     private NotoTextView tvPoint;
     private NotoTextView btCancel;

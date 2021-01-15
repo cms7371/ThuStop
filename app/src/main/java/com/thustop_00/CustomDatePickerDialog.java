@@ -30,7 +30,7 @@ import java.util.Objects;
 
 import butterknife.OnClick;
 
-public class CustomDatePickerDialog extends Dialog {
+public class CustomDatePickerDialog extends DialogBase {
     private CustomDatePickerDialogListener customDatePickerDialogListener;
     private RecyclerView calendar;
     private Context context;

@@ -5,11 +5,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-public class BoardingApplicationCheckDialog extends Dialog {
+public class BoardingApplicationCheckDialog extends DialogBase {
     private String boarding_stop;
     private String alighting_stop;
     private BoardingCheckDialogListener listener;
@@ -18,6 +20,7 @@ public class BoardingApplicationCheckDialog extends Dialog {
         super(context, R.style.CustomFullDialog);
         this.boarding_stop = boarding_stop;
         this.alighting_stop = alighting_stop;
+
     }
 
     interface BoardingCheckDialogListener{
@@ -30,7 +33,6 @@ public class BoardingApplicationCheckDialog extends Dialog {
         setContentView(R.layout.dialog_boarding_application_check);
         //처음 설정된 match_parent가 무시되기 때문에 다시 설정해줘야함.
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
         ((TextView)findViewById(R.id.tv_dbc_boarding_stop)).setText(boarding_stop);
         ((TextView)findViewById(R.id.tv_dbc_alighting_stop)).setText(alighting_stop);
         findViewById(R.id.bt_dbc_back).setOnClickListener(new View.OnClickListener() {

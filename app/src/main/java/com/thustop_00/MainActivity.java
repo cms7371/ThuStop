@@ -102,9 +102,10 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         setFragment(SplashFragment.newInstance());
         FirebaseApp.initializeApp(this);
         Log.d(TAG, "onCreate: 로그인키 " + Prefs.getString(Constant.LOGIN_KEY, null));
-        if (!(Prefs.getString(Constant.LOGIN_KEY, "").isEmpty()))
+        if (!(Prefs.getString(Constant.LOGIN_KEY, "").isEmpty())) {
             Log.d(TAG, "onCreate: FCM 등록 시도");
-        Utils.registerDevice();
+            Utils.registerDevice();
+        }
         Log.d(TAG, "onCreate: GPSServiceStatus is " + GPSServiceStatus);
         checkFirstRun();
     }
@@ -432,7 +433,6 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                 isBackEnabled = true;
                 isExitEnabled = true;
                 break;
-
         }
     }
 
@@ -512,19 +512,4 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         Log.d(TAG, "getKeyHash: " + Utility.getKeyHash(this));
     }
 
-    //해시키 필요할 때
-/*    private void getAppKeyHash() {
-        try {
-            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
-            for (Signature signature : info.signatures) {
-                MessageDigest md;
-                md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                String something = new String(Base64.encode(md.digest(), 0));
-                Log.e("Hash key", something);
-            }
-        } catch (Exception e) {
-            Log.e("name not found", e.toString());
-        }
-    }*/
 }

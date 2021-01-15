@@ -21,6 +21,7 @@ public class FragmentBase extends Fragment {
         if (context instanceof OnFragmentInteractionListener) {
             _listener = (OnFragmentInteractionListener) context;
             _listener.setOnBackPressedListener(null);
+            _listener.lockDrawer(true);
         } else {
             throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
         }

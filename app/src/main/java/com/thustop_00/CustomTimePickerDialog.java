@@ -19,7 +19,7 @@ import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Objects;
 
-public class CustomTimePickerDialog extends Dialog {
+public class CustomTimePickerDialog extends DialogBase {
     private Context context;
     private NotoButton btOk;
     private TimePicker timePicker;

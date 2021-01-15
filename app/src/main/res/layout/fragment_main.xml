@@ -69,21 +69,6 @@
             app:layout_constraintTop_toTopOf="@id/tvSelLocal"
             tools:ignore="ContentDescription" />
 
-        <ImageView
-            android:id="@+id/gps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:padding="4dp"
-            android:elevation="11dp"
-            android:src="@drawable/gps_main"
-            android:onClick="@{mainfrag::onGPSClick}"
-            android:clickable="true"
-            app:layout_constraintBottom_toBottomOf="@id/top_layout"
-            app:layout_constraintEnd_toEndOf="@id/tvSelLocal"
-            app:layout_constraintTop_toTopOf="@id/guideline1"
-            tools:ignore="ContentDescription" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_routes"
             android:layout_width="0dp"
@@ -105,10 +90,25 @@
             android:background="#65000000"
             android:clickable="true"
             android:elevation="2dp"
-            android:focusable="auto"
+            android:focusable="true"
+            android:visibility="gone"
+            android:alpha="0"
             android:onClick="@{mainfrag::onSelLocalClick}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{mainfrag::onRefreshClick}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/icon_refresh" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_local"
@@ -118,6 +118,9 @@
             android:clickable="true"
             android:elevation="11dp"
             android:focusable="true"
+            android:paddingBottom="10dp"
+            android:visibility="gone"
+            android:alpha="0"
             app:layout_constraintEnd_toEndOf="@id/tvSelLocal"
             app:layout_constraintStart_toStartOf="@id/tvSelLocal"
             app:layout_constraintTop_toBottomOf="@id/tvSelLocal">
@@ -157,7 +160,6 @@
                 android:text="@string/tv_local2"
                 android:textSize="9sp"
                 android:letterSpacing="-0.07"
-                app:layout_constraintBottom_toTopOf="@id/tv_request"
                 app:layout_constraintEnd_toEndOf="@id/layout_local"
                 app:layout_constraintStart_toStartOf="@id/layout_local"
                 app:layout_constraintTop_toBottomOf="@id/tv_local1" />
@@ -173,7 +175,6 @@
                 android:text="@string/tv_request"
                 android:textColor="@color/Primary"
                 android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@id/layout_local"
                 app:layout_constraintEnd_toEndOf="@id/layout_local"
                 app:layout_constraintStart_toStartOf="@id/layout_local"
                 app:layout_constraintTop_toBottomOf="@id/tv_local2" />

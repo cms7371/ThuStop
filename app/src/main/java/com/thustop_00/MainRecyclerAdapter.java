@@ -53,6 +53,10 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
 
     public void changeDataSet(List<Route> data) {
+        if (this.data != null) {
+            this.data = null;
+            notifyDataSetChanged();
+        }
         this.data = data;
         for (int i = 0; i < data.size(); i++) {
             notifyItemInserted(i + routeOffset);
