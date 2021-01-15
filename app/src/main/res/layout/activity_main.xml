@@ -38,6 +38,7 @@
                 android:layout_height="@dimen/toolbar_height"
                 android:background="@color/Primary"
                 android:theme="?attr/actionBarTheme"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
 

@@ -16,6 +16,7 @@ public class Route {
     public float distance;
     public Bus bus;
     public String status;
+//  public String start_date;
     public int max_passenger;
     public int cnt_passenger;
     public int default_price;
