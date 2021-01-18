@@ -94,7 +94,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/tv_fba_phase2"
                     app:layout_constraintStart_toEndOf="@+id/tv_fba_phase1"
                     app:layout_constraintTop_toTopOf="@+id/tv_fba_phase1"
-                    app:srcCompat="@drawable/icon_3dots_gray" />
+                    app:srcCompat="@drawable/ic_3dots_gray" />
 
                 <ImageView
                     android:id="@+id/iv_fba_right_dots"
@@ -104,7 +104,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/tv_fba_phase3"
                     app:layout_constraintStart_toEndOf="@+id/tv_fba_phase2"
                     app:layout_constraintTop_toTopOf="@+id/tv_fba_phase2"
-                    app:srcCompat="@drawable/icon_3dots_gray" />
+                    app:srcCompat="@drawable/ic_3dots_gray" />
 
                 <com.thustop_00.widgets.NotoTextView
                     android:id="@+id/tv_fba_big"

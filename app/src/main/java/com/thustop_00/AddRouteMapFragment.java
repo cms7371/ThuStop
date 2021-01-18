@@ -136,11 +136,12 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
         }
     }
 
+    //TODO:gps 벡터 잘되나 확인!(안되면 마커는 png로 변경)
     public void onGPSClick(View view){
         if (_listener.getGPSServiceStatus()) {
             if (binding.map.getCurrentLocationTrackingMode() == MapView.CurrentLocationTrackingMode.TrackingModeOff) {
                 binding.map.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeadingWithoutMapMoving);
-                binding.map.setCustomCurrentLocationMarkerTrackingImage(R.drawable.icon_gps_marker, new MapPOIItem.ImageOffset(_listener.covertDPtoPX(18), _listener.covertDPtoPX(18)));
+                binding.map.setCustomCurrentLocationMarkerTrackingImage(R.drawable.ic_gps_marker, new MapPOIItem.ImageOffset(_listener.covertDPtoPX(18), _listener.covertDPtoPX(18)));
                 Toast.makeText(getContext(), "위치를 탐색 중입니다(10초~1분 소요)\n한 번 더 누르면 현재 위치로 핀이 이동합니다.", Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "onGPSClick: 현위지 마커 활성화 됨");
             } else {

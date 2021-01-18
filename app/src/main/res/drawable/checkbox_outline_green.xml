@@ -19,7 +19,7 @@
                 </shape>
             </item>
             <item
-                android:drawable="@drawable/icon_check_green"
+                android:drawable="@drawable/ic_check_green"
                 android:gravity="center">
             </item>
         </layer-list>

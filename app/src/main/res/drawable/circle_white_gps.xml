@@ -8,7 +8,7 @@
         </shape>
     </item>
     <item
-        android:drawable="@drawable/gps_add_route"
+        android:drawable="@drawable/ic_gps_add_route"
         android:gravity="center">
     </item>
 

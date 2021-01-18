@@ -95,7 +95,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/tv_fbapi_phase2"
                     app:layout_constraintStart_toEndOf="@+id/tv_fbapi_phase1"
                     app:layout_constraintTop_toTopOf="@+id/tv_fbapi_phase1"
-                    app:srcCompat="@drawable/icon_3dots_green" />
+                    app:srcCompat="@drawable/ic_3dots_green" />
 
                 <ImageView
                     android:id="@+id/iv_fbapi_right_dots"
@@ -105,7 +105,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/tv_fbapi_phase3"
                     app:layout_constraintStart_toEndOf="@+id/tv_fbapi_phase2"
                     app:layout_constraintTop_toTopOf="@+id/tv_fbapi_phase2"
-                    app:srcCompat="@drawable/icon_3dots_green" />
+                    app:srcCompat="@drawable/ic_3dots_green" />
 
                 <com.thustop_00.widgets.NotoTextView
                     android:id="@+id/tv_fbapi_boarding_stop"
@@ -234,7 +234,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginEnd="20dp"
-                    android:src="@drawable/icon_calendar"
+                    app:srcCompat="@drawable/ic_calendar"
                     app:layout_constraintEnd_toEndOf="@id/etv_fbapi_boarding_date"
                     app:layout_constraintTop_toTopOf="@id/etv_fbapi_boarding_date"
                     app:layout_constraintBottom_toBottomOf="@id/etv_fbapi_boarding_date"

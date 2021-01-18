@@ -28,13 +28,13 @@
 
                 <ImageView
                     android:id="@+id/iv_bus_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="16dp"
+                    android:layout_height="18dp"
                     android:layout_marginStart="21dp"
                     android:layout_marginTop="21dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_bus_green" />
+                    app:srcCompat="@drawable/ic_bus_green" />
 
                 <com.thustop_00.widgets.NotoTextView
                     android:id="@+id/tv_bus_id"
@@ -107,7 +107,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/v_map_stroke"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_map_black" />
+                    app:srcCompat="@drawable/ic_map_black" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_vias"

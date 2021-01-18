@@ -162,17 +162,18 @@ public class BoardingApplicationMapDialog extends DialogBase implements MapView.
         ((TextView) findViewById(R.id.tv_dsm_address)).setText(v.stop.address);
         ((TextView) findViewById(R.id.tv_dsm_stop_name)).setText(v.stop.name);
         if (isDestination) {
-            ((ImageView) findViewById(R.id.iv_dsm_address)).setImageDrawable(getContext().getDrawable(R.drawable.icon_destination));
+            ((ImageView) findViewById(R.id.iv_dsm_address)).setImageDrawable(getContext().getDrawable(R.drawable.ic_destination_small));
         } else {
-            ((ImageView) findViewById(R.id.iv_dsm_address)).setImageDrawable(getContext().getDrawable(R.drawable.icon_departure));
+            ((ImageView) findViewById(R.id.iv_dsm_address)).setImageDrawable(getContext().getDrawable(R.drawable.ic_departure_small));
         }
     }
 
+    //TODO:gps 벡터 잘되나 확인!(안되면 마커는 png로 변경)
     private void onGPSClick() {
         if (_listener.getGPSServiceStatus()) {
             if (mapView.getCurrentLocationTrackingMode() == MapView.CurrentLocationTrackingMode.TrackingModeOff) {
                 mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeadingWithoutMapMoving);
-                mapView.setCustomCurrentLocationMarkerTrackingImage(R.drawable.icon_gps_marker, new MapPOIItem.ImageOffset(_listener.covertDPtoPX(18), _listener.covertDPtoPX(18)));
+                mapView.setCustomCurrentLocationMarkerTrackingImage(R.drawable.ic_gps_marker, new MapPOIItem.ImageOffset(_listener.covertDPtoPX(18), _listener.covertDPtoPX(18)));
                 Toast.makeText(getContext(), "위치를 탐색 중입니다(10초~1분 소요)\n한 번 더 누르면 현재 위치로 핀이 이동합니다.", Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "onGPSClick: 현위지 마커 활성화 됨");
             } else {

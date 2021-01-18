@@ -84,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="74dp"
-            android:src="@drawable/icon_calendar_green"
+            app:srcCompat="@drawable/ic_calendar_green"
             app:layout_constraintTop_toTopOf="@id/iv_touch"
             app:layout_constraintEnd_toEndOf="parent"/>
         <com.thustop_00.widgets.NotoTextView
@@ -127,7 +127,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="1dp"
-            android:src="@drawable/icon_done_24"
+            app:srcCompat="@drawable/ic_done_22px"
             app:layout_constraintTop_toTopOf="@id/iv_spell_check"
             app:layout_constraintStart_toStartOf="@id/tv_calendar"
             app:layout_constraintEnd_toEndOf="@id/tv_calendar"/>

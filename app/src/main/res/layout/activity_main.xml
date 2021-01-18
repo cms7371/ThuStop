@@ -101,7 +101,7 @@
                     android:onClick="@{activity_main::onNavigationExitClick}"
                     app:layout_constraintStart_toEndOf="@id/iv_drawer_title"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_exit" />
+                    app:srcCompat="@drawable/ic_exit" />
 
                 <ImageView
                     android:id="@+id/bt_logout"
@@ -116,7 +116,7 @@
                     android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:srcCompat="@drawable/icon_logout" />
+                    app:srcCompat="@drawable/ic_log_out" />
 
                 <com.thustop_00.widgets.NotoTextView
                     android:id="@+id/tv_logout"
@@ -170,7 +170,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/icon_portrait_big" />
+                            app:srcCompat="@drawable/ic_portrait" />
 
                         <com.thustop_00.widgets.NotoTextView
                             android:id="@+id/tv_member_name"
@@ -224,13 +224,13 @@
 
                         <ImageView
                             android:id="@+id/iv_guest"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
                             android:layout_marginStart="33dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/icon_portrait_small" />
+                            app:srcCompat="@drawable/ic_portrait" />
 
                         <com.thustop_00.widgets.NotoTextView
                             android:id="@+id/tv_guest"
@@ -253,7 +253,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toEndOf="@id/tv_guest"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/icon_login" />
+                            app:srcCompat="@drawable/ic_login_next" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 

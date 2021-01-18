@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--ic_notification으로 바꾸면 왜 안되는지 이해 안감..-->
     <item
         android:id="@+id/bt_notification"
         android:icon="@drawable/icon_notification_white"
         android:title="notification"
-        app:showAsAction="always" />
+        app:showAsAction="always"/>
 </menu>

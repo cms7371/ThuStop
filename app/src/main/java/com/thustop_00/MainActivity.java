@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         assert actionbar != null; // To prevent warning from setDisplayShowTitleEnabled
         actionbar.setDisplayShowTitleEnabled(false);
         actionbar.setDisplayHomeAsUpEnabled(false);
-        toolbar.setNavigationIcon(R.drawable.icon_hamburger_white);
+        toolbar.setNavigationIcon(R.drawable.ic_hamburger_white);
         /* At start, display splash fragment during loading*/
         actionbar.hide();
         setFragment(SplashFragment.newInstance());
@@ -384,7 +384,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             case GREEN_HAMBURGER:
                 toolbar.setBackground(getDrawable(R.color.Primary));
                 binding.tvTitle.setTextColor(getResources().getColor(R.color.White));
-                toolbar.setNavigationIcon(R.drawable.icon_hamburger_white);
+                toolbar.setNavigationIcon(R.drawable.ic_hamburger_white);
                 menu.getItem(0).setIcon(R.drawable.icon_notification_white);
                 menu.getItem(0).setEnabled(true);
                 menu.getItem(0).setVisible(true);
@@ -392,7 +392,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             case GREEN_BACK:
                 toolbar.setBackground(getDrawable(R.color.Primary));
                 binding.tvTitle.setTextColor(getResources().getColor(R.color.White));
-                toolbar.setNavigationIcon(R.drawable.icon_back_white);
+                toolbar.setNavigationIcon(R.drawable.ic_back_white);
                 menu.getItem(0).setEnabled(false);
                 menu.getItem(0).setVisible(false);
                 isBackEnabled = true;
@@ -400,8 +400,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             case GREEN_BACK_EXIT:
                 toolbar.setBackground(getDrawable(R.color.Primary));
                 binding.tvTitle.setTextColor(getResources().getColor(R.color.White));
-                toolbar.setNavigationIcon(R.drawable.icon_back_white);
-                menu.getItem(0).setIcon(R.drawable.icon_exit_white);
+                toolbar.setNavigationIcon(R.drawable.ic_back_white);
+                menu.getItem(0).setIcon(R.drawable.ic_exit_white);
                 menu.getItem(0).setEnabled(true);
                 menu.getItem(0).setVisible(true);
                 isBackEnabled = true;
@@ -410,15 +410,15 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             case WHITE_HAMBURGER:
                 toolbar.setBackground(getDrawable(R.color.White));
                 binding.tvTitle.setTextColor(getResources().getColor(R.color.Primary));
-                toolbar.setNavigationIcon(R.drawable.icon_hamburger_green);
-                menu.getItem(0).setIcon(R.drawable.icon_notification_green);
+                toolbar.setNavigationIcon(R.drawable.ic_hamburger_green);
+                menu.getItem(0).setIcon(R.drawable.ic_notification_green);
                 menu.getItem(0).setEnabled(true);
                 menu.getItem(0).setVisible(true);
                 break;
             case WHITE_BACK:
                 toolbar.setBackground(getDrawable(R.color.White));
                 binding.tvTitle.setTextColor(getResources().getColor(R.color.Primary));
-                toolbar.setNavigationIcon(R.drawable.icon_back_green);
+                toolbar.setNavigationIcon(R.drawable.ic_back_green);
                 menu.getItem(0).setEnabled(false);
                 menu.getItem(0).setVisible(false);
                 isBackEnabled = true;
@@ -426,8 +426,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             case WHITE_BACK_EXIT:
                 toolbar.setBackground(getDrawable(R.color.White));
                 binding.tvTitle.setTextColor(getResources().getColor(R.color.Primary));
-                toolbar.setNavigationIcon(R.drawable.icon_back_green);
-                menu.getItem(0).setIcon(R.drawable.icon_exit);
+                toolbar.setNavigationIcon(R.drawable.ic_back_green);
+                menu.getItem(0).setIcon(R.drawable.ic_exit);
                 menu.getItem(0).setEnabled(true);
                 menu.getItem(0).setVisible(true);
                 isBackEnabled = true;

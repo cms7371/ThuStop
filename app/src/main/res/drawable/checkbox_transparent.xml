@@ -9,7 +9,7 @@
                     <size android:width="19dp" />
                 </shape>
             </item>
-            <item android:drawable="@drawable/icon_check_gray" android:gravity="center" />
+            <item android:drawable="@drawable/ic_check_gray" android:gravity="center" />
         </layer-list>
     </item>
     <item android:state_checked="true">
@@ -21,7 +21,7 @@
                     <size android:width="19dp" />
                 </shape>
             </item>
-            <item android:drawable="@drawable/icon_check_green" android:gravity="center" />
+            <item android:drawable="@drawable/ic_check_green" android:gravity="center" />
         </layer-list>
     </item>
 </selector>

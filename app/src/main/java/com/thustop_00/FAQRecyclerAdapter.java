@@ -77,8 +77,8 @@ public class FAQRecyclerAdapter extends RecyclerView.Adapter<FAQRecyclerAdapter.
             tvAnswer.getLayoutParams().height = 1;
             tvAnswer.setVisibility(View.GONE);
             Drawable[] layers = new Drawable[2];
-            layers[0] = context.getDrawable(R.drawable.icon_down_gray);
-            layers[1] = context.getDrawable(R.drawable.icon_down);
+            layers[0] = context.getDrawable(R.drawable.ic_down_gray);
+            layers[1] = context.getDrawable(R.drawable.ic_down);
             downAnimation = new TransitionDrawable(layers);
             ivDown.setImageDrawable(downAnimation);
         }

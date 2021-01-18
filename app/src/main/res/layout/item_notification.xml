@@ -11,9 +11,9 @@
         app:layout_constraintStart_toStartOf="parent">
         <ImageView
             android:id="@+id/iv_notification"
-            android:layout_width="13dp"
-            android:layout_height="16dp"
-            android:src="@drawable/icon_notification_green"
+            android:layout_width="14dp"
+            android:layout_height="17dp"
+            app:srcCompat="@drawable/ic_notification_green"
             app:layout_constraintStart_toStartOf="@id/stroke_notification"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>

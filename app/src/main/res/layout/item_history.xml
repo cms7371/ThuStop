@@ -47,7 +47,7 @@
         android:id="@+id/iv_arrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/icon_half_arrow"
+        android:src="@drawable/ic_half_arrow"
         app:layout_constraintBottom_toBottomOf="@id/tv_departure"
         app:layout_constraintEnd_toStartOf="@id/tv_time"
         app:layout_constraintStart_toEndOf="@id/tv_condition"

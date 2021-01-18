@@ -70,7 +70,7 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginTop="15dp"
-            android:src="@drawable/icon_exclamation_mark"
+            app:srcCompat="@drawable/ic_exclamation_mark"
             app:layout_constraintStart_toStartOf="@id/tv_unsubs_notice_title"
             app:layout_constraintTop_toBottomOf="@id/tv_unsubs_notice_title"/>
         <com.thustop_00.widgets.NotoTextView
@@ -91,7 +91,7 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginTop="11dp"
-            android:src="@drawable/icon_exclamation_mark"
+            app:srcCompat="@drawable/ic_exclamation_mark"
             app:layout_constraintStart_toStartOf="@id/tv_unsubs_notice_title"
             app:layout_constraintTop_toBottomOf="@id/tv_unsubs_notice_1"/>
 
@@ -113,7 +113,7 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginTop="11dp"
-            android:src="@drawable/icon_exclamation_mark"
+            app:srcCompat="@drawable/ic_exclamation_mark"
             app:layout_constraintStart_toStartOf="@id/tv_unsubs_notice_title"
             app:layout_constraintTop_toBottomOf="@id/tv_unsubs_notice_2"/>
 
@@ -134,7 +134,7 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginTop="11dp"
-            android:src="@drawable/icon_exclamation_mark"
+            app:srcCompat="@drawable/ic_exclamation_mark"
             app:layout_constraintStart_toStartOf="@id/tv_unsubs_notice_title"
             app:layout_constraintTop_toBottomOf="@id/tv_unsubs_notice_3"/>
 

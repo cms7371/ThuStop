@@ -40,7 +40,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)
-                        .setSmallIcon(R.drawable.icon_bus_green)
+                        .setSmallIcon(R.drawable.ic_bus_green)
                         //.setLargeIcon(((BitmapDrawable)ContextCompat.getDrawable(getApplicationContext(), R.drawable.img_carbang_noti)).getBitmap())
                         .setContentTitle(title)
                         .setColor(ContextCompat.getColor(getApplicationContext(), R.color.Primary))

@@ -68,7 +68,7 @@ public class BoardingApplicationFragment extends FragmentBase {
         adapter.notifyDataSetChanged();
         if (phase == 0) {
             _listener.setToolbarStyle(_listener.GREEN_BACK, "출발 위치 선택");
-            binding.ivFbaLeftDots.setImageDrawable(getContext().getDrawable(R.drawable.icon_3dots_gray));
+            binding.ivFbaLeftDots.setImageDrawable(getContext().getDrawable(R.drawable.ic_3dots_gray));
             binding.tvFbaPhase2.setBackground(getContext().getDrawable(R.drawable.bg_round12_graycf));
             binding.tvFbaBig.setText(R.string.tv_fba_big_boarding);
             colorText(binding.tvFbaBig, R.string.tv_fba_big_boarding_colored, getResources().getColor(R.color.Primary));
@@ -80,8 +80,8 @@ public class BoardingApplicationFragment extends FragmentBase {
             binding.btFbaOk.setEnabled(false);
         } else{
             _listener.setToolbarStyle(_listener.GREEN_BACK, "도착 위치 선택");
-            binding.ivFbaLeftDots.setImageDrawable(getContext().getDrawable(R.drawable.icon_3dots_green));
-            binding.ivFbaRightDots.setImageDrawable(getContext().getDrawable(R.drawable.icon_3dots_gray));
+            binding.ivFbaLeftDots.setImageDrawable(getContext().getDrawable(R.drawable.ic_3dots_green));
+            binding.ivFbaRightDots.setImageDrawable(getContext().getDrawable(R.drawable.ic_3dots_gray));
             binding.tvFbaPhase2.setBackground(getContext().getDrawable(R.drawable.bg_round12_green));
             binding.tvFbaBig.setText(R.string.tv_fba_big_alighting);
             colorText(binding.tvFbaBig, R.string.tv_fba_big_alighting_colored, getResources().getColor(R.color.Red));

@@ -485,7 +485,7 @@
                     android:translationY="-2.5dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tv_fpm_caution1"
-                    app:srcCompat="@drawable/icon_exclamation_mark" />
+                    app:srcCompat="@drawable/ic_exclamation_mark" />
 
                 <com.thustop_00.widgets.NotoTextView
                     android:id="@+id/tv_fpm_caution2"
@@ -508,7 +508,7 @@
                     android:translationY="-2.5dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tv_fpm_caution2"
-                    app:srcCompat="@drawable/icon_exclamation_mark" />
+                    app:srcCompat="@drawable/ic_exclamation_mark" />
 
                 <com.thustop_00.widgets.NotoCheckBox
                     android:id="@+id/cb_fpm_agreement"

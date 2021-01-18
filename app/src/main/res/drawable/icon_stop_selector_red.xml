@@ -13,7 +13,7 @@
 
     </item>
     <item
-        android:drawable="@drawable/icon_check_red"
+        android:drawable="@drawable/ic_check_red"
         android:gravity="center">
     </item>
 

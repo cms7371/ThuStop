@@ -136,7 +136,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/bt_kako_login"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
             app:layout_constraintTop_toTopOf="@+id/bt_kako_login"
-            app:srcCompat="@drawable/icon_kakao" />
+            app:srcCompat="@drawable/ic_kakao" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline7"

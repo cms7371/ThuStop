@@ -32,24 +32,24 @@
 
         <ImageView
             android:id="@+id/iv_mrv_bus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_width="13dp"
+            android:layout_height="14dp"
             app:layout_constraintEnd_toStartOf="@id/iv_mrv_route_line"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/icon_bus_green" />
+            app:layout_constraintTop_toTopOf="@id/tv_mrv_code"
+            app:layout_constraintBottom_toBottomOf="@id/tv_mrv_code"
+            app:srcCompat="@drawable/ic_bus_green" />
 
         <com.thustop_00.widgets.NotoTextView
             android:id="@+id/tv_mrv_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
+            android:layout_marginTop="8dp"
             android:text="A15"
             android:textColor="#171d33"
             android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="@id/iv_mrv_bus"
             app:layout_constraintStart_toEndOf="@id/iv_mrv_bus"
-            app:layout_constraintTop_toTopOf="@id/iv_mrv_bus"
+            app:layout_constraintTop_toTopOf="parent"
             app:notoTextStyle="medium" />
 
         <com.thustop_00.widgets.NotoTextView
@@ -199,15 +199,7 @@
             app:layout_constraintEnd_toStartOf="@id/tv_mrv_running"
             app:notoTextStyle="bold" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="3dp"
-            app:layout_constraintBottom_toBottomOf="@id/tv_mrv_days"
-            app:layout_constraintEnd_toStartOf="@id/tv_mrv_days"
-            app:layout_constraintTop_toTopOf="@id/tv_mrv_days"
-            app:srcCompat="@drawable/icon_calendar" />
+
 
         <com.thustop_00.widgets.NotoTextView
             android:id="@+id/tv_mrv_running"

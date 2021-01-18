@@ -91,7 +91,7 @@
             android:layout_marginBottom="6dp"
             app:layout_constraintBottom_toTopOf="@+id/tv_fc_description"
             app:layout_constraintStart_toStartOf="@+id/bt_fc_counsel"
-            app:srcCompat="@drawable/icon_exclamation_mark" />
+            app:srcCompat="@drawable/ic_exclamation_mark" />
 
         <com.thustop_00.widgets.NotoTextView
             android:id="@+id/notoTextView4"

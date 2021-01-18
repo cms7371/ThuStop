@@ -21,7 +21,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
+        vectorDrawables.useSupportLibrary = true
         //for edit buildconfig(add server url)
         buildConfigField "String", "SERVER", "\"https://thustop.com/\""
     }
@@ -46,6 +46,7 @@ android {
 }
 
 dependencies {
+
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation files('libs/gitple-android-sdk-v1.1.4.aar')
     implementation 'androidx.appcompat:appcompat:1.1.0'
