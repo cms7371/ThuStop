@@ -244,14 +244,14 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="50dp"
             android:background="@drawable/bg_round25_graycf"
+            android:onClick="@{AgreeTermsfrag::onAgreeClick}"
             android:text="@string/bt_agree"
             android:textColor="@color/White"
             android:textSize="16sp"
-            app:notoTextStyle="medium"
-            android:onClick="@{AgreeTermsfrag::onAgreeClick}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:notoTextStyle="medium" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

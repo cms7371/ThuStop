@@ -9,6 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
@@ -16,7 +20,12 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.siot.IamportRestClient.IamportClient;
+import com.siot.IamportRestClient.exception.IamportResponseException;
+import com.siot.IamportRestClient.response.Certification;
 import com.thustop_00.databinding.FragmentRegisterVerificationBinding;
+
+import java.io.IOException;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
@@ -115,6 +124,18 @@ public class RegisterVerificationFragment extends FragmentBase {
         });
 
         _listener.setToolbarStyle(_listener.WHITE_BACK, "휴대폰 본인인증");
+        WebSettings webSettings = binding.wvCertification.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setBuiltInZoomControls(true);
+        webSettings.setLoadWithOverviewMode(true);
+        webSettings.setDefaultTextEncodingName("UTF-8");
+        webSettings.setDisplayZoomControls(false);
+        binding.wvCertification.setWebChromeClient(new WebChromeClient());
+        binding.wvCertification.setWebViewClient(new WebViewClient());
+        binding.wvCertification.addJavascriptInterface(new JsHandler(getContext()), "Android");
+        binding.wvCertification.loadUrl("file:///android_asset/iamport.html");
+
+
 
         // Inflate the layout for this fragment
         return binding.getRoot();
@@ -182,4 +203,24 @@ public class RegisterVerificationFragment extends FragmentBase {
             }
         }.start();
     }
+
+    public class JsHandler {
+        public IamportClient iamportClient;
+        private Context context;
+
+        public JsHandler(Context context){
+            iamportClient = new IamportClient(Constant.IAMPORT_API_KEY, Constant.IAMPORT_API_SECRET);
+            this.context = context;
+        }
+
+        @JavascriptInterface
+        public Certification getData(String impUid) throws IOException, IamportResponseException {
+            Certification data =  iamportClient.certificationByImpUid(impUid).getResponse();
+            Toast.makeText(context, "사용자 이름 : " + data.getName(), Toast.LENGTH_LONG).show();
+            return data;
+        }
+
+
+    }
+
 }

@@ -4,6 +4,8 @@ public class Constant {
     public final static String SERVER_URL = BuildConfig.SERVER;
     public final static String KAKAO_API_KEY ="d052c3328162c0f6638fc7ac4839196f";
     public final static String PLACES_API_KEY = "AIzaSyALQ21GnW2L862VunvAGREdVli1hlD1mBk";
+    public final static String IAMPORT_API_KEY = "6859390392474197";
+    public final static String IAMPORT_API_SECRET = "wMCfqIu6B43Z18m1nMJQUGAeImfzFNKbAmq14V7G0aF1j13HOMxJs7YaudK91ukBRLCWGJCGUiIdkMU8";
     public final static String FRAGMENT = "fragment";
     public static final String FID = "fid";
     public static final String STOP = "stop";

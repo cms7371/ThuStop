@@ -42,7 +42,7 @@ public class RegisterTermsFragment extends FragmentBase implements CompoundButto
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentRegisterTermsBinding.inflate(inflater);
-        ButterKnife.bind(this,binding.getRoot());
+        binding.setAgreeTermsfrag(this);
 
         _listener.setToolbarStyle(_listener.WHITE_BACK, "");
 

@@ -102,4 +102,6 @@ dependencies {
 
     /*Carousel View 동그란 리사이클러*/
     implementation 'com.gtomato.android.library:carouselview:2.0.1'
+
+    implementation 'com.github.iamport:iamport-rest-client-java:0.2.13'
 }

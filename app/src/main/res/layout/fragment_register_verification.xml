@@ -193,14 +193,15 @@
             android:layout_height="0dp"
             android:layout_marginStart="10dp"
             android:background="@drawable/bg_round25_green"
+            android:onClick="@{IDVerfrag::onSendClick}"
             android:text="@string/bt_verification_send"
             android:textColor="@android:color/white"
             android:textSize="14dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/layout_phoneNum"
             app:layout_constraintEnd_toEndOf="@id/layout_idNum"
             app:layout_constraintStart_toEndOf="@id/layout_phoneNum"
-            app:layout_constraintTop_toTopOf="@id/layout_phoneNum"
-            android:onClick="@{IDVerfrag::onSendClick}"/>
+            app:layout_constraintTop_toTopOf="@id/layout_phoneNum" />
 
         <com.thustop_00.widgets.NotoEditText
             android:id="@+id/et_code"
@@ -239,12 +240,23 @@
             android:text="@string/bt_verification_done"
             android:textColor="@android:color/white"
             android:textSize="16sp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_code"
             app:layout_constraintVertical_bias="0.24"
             app:notoTextStyle="medium" />
+
+        <WebView
+            android:id="@+id/wv_certification"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
