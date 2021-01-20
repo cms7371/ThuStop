@@ -4,6 +4,8 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -89,7 +91,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         if (mainAdapter == null) {
             mainAdapter = new MainRecyclerAdapter(getContext(), false, null, this);
             mainRecycler.setAdapter(mainAdapter);
-            updateRoutes();
+            new Handler(Looper.getMainLooper()).postDelayed(this::updateRoutes, 300);
         } else {
             mainRecycler.setAdapter(mainAdapter);
         }

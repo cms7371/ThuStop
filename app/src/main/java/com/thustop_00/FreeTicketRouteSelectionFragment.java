@@ -74,7 +74,7 @@ public class FreeTicketRouteSelectionFragment extends FragmentBase implements Ma
                     Log.e(TAG, "RestApi onFailure: 노선 정보 수신 실패", null);
                 }
             });
-        }, 500);
+        }, 300);
 
         test_region_list = new String[]{"호매실동", "하남", "동탄", "우리집", "남의집"};
         regionGridAdapter = new RegionGridAdapter(getContext(),test_region_list,_listener.covertDPtoPX(77));
