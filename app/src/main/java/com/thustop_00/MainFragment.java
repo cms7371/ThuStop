@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -105,7 +106,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
                 if (prePosition == position) {
                     preSelectedItem.setSelected(false);
                     preSelectedItem.setTextColor(getResources().getColor(R.color.TextGray));
-                    preSelectedItem.setBackgroundResource(R.drawable.button_local);
+                    preSelectedItem.setBackgroundResource(R.drawable.bg_round25_grayf5);
                     prePosition = -1;
                     binding.tvSelLocal.setText(R.string.tvSelLocal);
                 } else {
@@ -114,19 +115,20 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
                     curSelectedItem = (NotoTextView) view;
                     curSelectedItem.setSelected(true);
                     curSelectedItem.setTextColor(getResources().getColor(R.color.TextBlack));
-                    curSelectedItem.setBackgroundResource(R.drawable.button_local_sel);
+                    curSelectedItem.setBackgroundResource(R.drawable.bg_outline25_green_f5);
                     binding.tvSelLocal.setText(selectedRegion);
                     if (prePosition != -1) {
                         preSelectedItem = (NotoTextView) regionGrid.getChildAt(prePosition);
                         preSelectedItem.setSelected(false);
                         preSelectedItem.setTextColor(getResources().getColor(R.color.TextGray));
-                        preSelectedItem.setBackgroundResource(R.drawable.button_local);
+                        preSelectedItem.setBackgroundResource(R.drawable.bg_round25_grayf5);
                     }
                     prePosition = position;
                 }
                 onSelLocalClick(null);
             }
         });
+
         regionGrid.setAdapter(regionAdapter);
         // Inflate the layout for this fragment
         return binding.getRoot();

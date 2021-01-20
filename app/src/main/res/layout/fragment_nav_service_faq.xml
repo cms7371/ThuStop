@@ -50,76 +50,104 @@
             app:layout_constraintTop_toBottomOf="@id/faq_stroke1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
-        <com.thustop_00.widgets.NotoTextView
-            android:id="@+id/tv_faq_price"
-            android:layout_width="64dp"
+        <HorizontalScrollView
+            android:layout_width="match_parent"
             android:layout_height="42dp"
-            android:background="@drawable/bg_tap_top"
-            android:onClick="@{NavServiceFAQFrag::onPriceClick}"
-            android:gravity="center"
-            android:text="가격"
-            android:textSize="12sp"
-            android:textColor="@color/TextBlack"
-            app:notoTextStyle="medium"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintTop_toTopOf="@id/faq_stroke1"
+            android:orientation="horizontal"
+            android:fillViewport="true"
+            android:scrollbars = "none"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/tv_faq_late"/>
-        <com.thustop_00.widgets.NotoTextView
-            android:id="@+id/tv_faq_late"
-            android:layout_width="64dp"
-            android:layout_height="42dp"
-            android:onClick="@{NavServiceFAQFrag::onLateClick}"
-            android:gravity="center"
-            android:text="지각 시"
-            android:textSize="12sp"
-            android:textColor="@color/TextBlack"
-            app:notoTextStyle="medium"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintTop_toTopOf="@id/tv_faq_price"
-            app:layout_constraintStart_toEndOf="@id/tv_faq_price"
-            app:layout_constraintEnd_toStartOf="@id/tv_faq_accident"/>
-        <com.thustop_00.widgets.NotoTextView
-            android:id="@+id/tv_faq_accident"
-            android:layout_width="64dp"
-            android:layout_height="42dp"
-            android:onClick="@{NavServiceFAQFrag::onAccidentClick}"
-            android:gravity="center"
-            android:text="사고 발생 시"
-            android:textSize="12sp"
-            android:textColor="@color/TextBlack"
-            app:notoTextStyle="medium"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintTop_toTopOf="@id/tv_faq_price"
-            app:layout_constraintStart_toEndOf="@id/tv_faq_late"
-            app:layout_constraintEnd_toStartOf="@id/tv_faq_service_use"/>
-        <com.thustop_00.widgets.NotoTextView
-            android:id="@+id/tv_faq_service_use"
-            android:layout_width="64dp"
-            android:layout_height="42dp"
-            android:onClick="@{NavServiceFAQFrag::onServiceUseClick}"
-            android:gravity="center"
-            android:text="서비스 이용"
-            android:textSize="12sp"
-            android:textColor="@color/TextBlack"
-            app:notoTextStyle="medium"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintTop_toTopOf="@id/tv_faq_price"
-            app:layout_constraintStart_toEndOf="@id/tv_faq_accident"
-            app:layout_constraintEnd_toStartOf="@id/tv_faq_security"/>
-        <com.thustop_00.widgets.NotoTextView
-            android:id="@+id/tv_faq_security"
-            android:layout_width="64dp"
-            android:layout_height="42dp"
-            android:onClick="@{NavServiceFAQFrag::onSecurityClick}"
-            android:gravity="center"
-            android:text="아이디/보안"
-            android:textSize="12sp"
-            android:textColor="@color/TextBlack"
-            app:notoTextStyle="medium"
-            app:layout_constraintTop_toTopOf="@id/tv_faq_price"
-            app:layout_constraintStart_toEndOf="@id/tv_faq_service_use"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/faq_stroke1">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="500dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="match_parent"/>
+                    <com.thustop_00.widgets.NotoTextView
+                        android:id="@+id/tv_faq_price"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="42dp"
+                        android:background="@drawable/bg_tap_top"
+                        android:onClick="@{NavServiceFAQFrag::onPriceClick}"
+                        android:gravity="center"
+                        android:text="가격"
+                        android:textSize="12sp"
+                        android:textColor="@color/TextBlack"
+                        app:notoTextStyle="medium" />
+                    <com.thustop_00.widgets.NotoTextView
+                        android:id="@+id/tv_faq_late"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="42dp"
+                        android:onClick="@{NavServiceFAQFrag::onLateClick}"
+                        android:gravity="center"
+                        android:text="지각 시"
+                        android:textSize="12sp"
+                        android:textColor="@color/TextBlack"
+                        app:notoTextStyle="medium" />
+                    <com.thustop_00.widgets.NotoTextView
+                        android:id="@+id/tv_faq_accident"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="42dp"
+                        android:onClick="@{NavServiceFAQFrag::onAccidentClick}"
+                        android:gravity="center"
+                        android:text="사고 발생 시"
+                        android:textSize="12sp"
+                        android:textColor="@color/TextBlack"
+                        app:notoTextStyle="medium" />
+                    <com.thustop_00.widgets.NotoTextView
+                        android:id="@+id/tv_faq_service_use"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="42dp"
+                        android:onClick="@{NavServiceFAQFrag::onServiceUseClick}"
+                        android:gravity="center"
+                        android:text="서비스 이용"
+                        android:textSize="12sp"
+                        android:textColor="@color/TextBlack"
+                        app:notoTextStyle="medium" />
+                    <com.thustop_00.widgets.NotoTextView
+                        android:id="@+id/tv_faq_security"
+                        android:layout_width="wrap_content"
+                        android:layout_height="42dp"
+                        android:paddingHorizontal="10dp"
+                        android:onClick="@{NavServiceFAQFrag::onSecurityClick}"
+                        android:gravity="center"
+                        android:text="아이디/보안"
+                        android:textSize="12sp"
+                        android:textColor="@color/TextBlack"
+                        android:maxLines="1"
+                        app:notoTextStyle="medium" />
+                    <com.thustop_00.widgets.NotoTextView
+                        android:id="@+id/tv_faq_service_u1se"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="42dp"
+                        android:onClick="@{NavServiceFAQFrag::onServiceUseClick}"
+                        android:gravity="center"
+                        android:text="스크롤test"
+                        android:textSize="12sp"
+                        android:textColor="@color/TextBlack"
+                        app:notoTextStyle="medium" />
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_faq"
             android:layout_width="match_parent"

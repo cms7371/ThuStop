@@ -28,7 +28,7 @@
             app:layout_constraintHorizontal_bias="0.20"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_mrv_bus"
-            app:srcCompat="@drawable/icon_route_line" />
+            app:srcCompat="@drawable/ic_route_line" />
 
         <ImageView
             android:id="@+id/iv_mrv_bus"

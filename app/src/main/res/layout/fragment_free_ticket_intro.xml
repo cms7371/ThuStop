@@ -60,7 +60,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/icon_thin_top_arrow_gray" />
+            app:srcCompat="@drawable/ic_thin_top_arrow_gray" />
 
         <ImageView
             android:id="@+id/iv_top_arrow2"
@@ -71,7 +71,7 @@
             app:layout_constraintEnd_toEndOf="@+id/iv_top_arrow1"
             app:layout_constraintStart_toStartOf="@+id/iv_top_arrow1"
             app:layout_constraintTop_toTopOf="@+id/iv_top_arrow1"
-            app:srcCompat="@drawable/icon_thin_top_arrow_gray" />
+            app:srcCompat="@drawable/ic_thin_top_arrow_gray" />
 
         <ImageView
             android:id="@+id/iv_top_arrow3"
@@ -82,7 +82,7 @@
             app:layout_constraintEnd_toEndOf="@+id/iv_top_arrow2"
             app:layout_constraintStart_toStartOf="@id/iv_top_arrow2"
             app:layout_constraintTop_toTopOf="@id/iv_top_arrow2"
-            app:srcCompat="@drawable/icon_thin_top_arrow_gray" />
+            app:srcCompat="@drawable/ic_thin_top_arrow_gray" />
 
         <com.thustop_00.widgets.NotoTextView
             android:id="@+id/tv_slide_guide"

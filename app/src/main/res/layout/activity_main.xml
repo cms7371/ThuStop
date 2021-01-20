@@ -144,7 +144,7 @@
                     android:padding="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:srcCompat="@drawable/icon_setting" />
+                    app:srcCompat="@drawable/ic_setting" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_drawer_head"

@@ -80,7 +80,7 @@ public class BoardingApplicationDetailFragment extends FragmentBase {
                 holder.tvStop.setText(route.getAlightingStopName(offsetPosition));
                 holder.ivUpperLine.setBackground(getContext().getDrawable(R.color.Red));
                 holder.ivLowerLine.setBackground(getContext().getDrawable(R.color.Red));
-                holder.ivDot.setImageDrawable(getContext().getDrawable(R.drawable.icon_via_red));
+                holder.ivDot.setImageDrawable(getContext().getDrawable(R.drawable.ic_via_red));
                 if (offsetPosition == alighting_stop_num - 1){
                     holder.tvStop.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "NotoSansKR-Bold-Hestia.otf"));
                     holder.ivLowerLine.setVisibility(View.INVISIBLE);

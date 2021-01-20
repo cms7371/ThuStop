@@ -75,6 +75,6 @@
         app:layout_constraintEnd_toStartOf="@id/tv_rd_name"
         app:layout_constraintStart_toEndOf="@+id/tv_rd_time"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_via_green" />
+        app:srcCompat="@drawable/ic_via_green" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

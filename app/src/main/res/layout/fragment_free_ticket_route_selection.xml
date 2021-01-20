@@ -163,6 +163,7 @@
                 android:gravity="center"
                 android:numColumns="3"
                 android:verticalSpacing="23dp"
+                android:listSelector="@android:color/transparent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

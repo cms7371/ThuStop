@@ -14,33 +14,69 @@
         android:background="@color/White">
 
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="?attr/actionBarSize" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_routes"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/top_layout"
+            tools:listitem="@layout/item_route">
+
+        </androidx.recyclerview.widget.RecyclerView>
+        <ImageView
+            android:id="@+id/iv_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{mainfrag::onRefreshClick}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_refresh" />
+
+        <View
+            android:id="@+id/v_pause"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#65000000"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone"
+            android:alpha="0"
+            android:onClick="@{mainfrag::onSelLocalClick}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
         <View
             android:id="@+id/top_layout"
             android:layout_width="match_parent"
             android:layout_height="112dp"
             android:background="@color/Primary"
-            android:elevation="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="11dp"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="?attr/actionBarSize" />
 
         <com.thustop_00.widgets.NotoTextView
             android:id="@+id/tvSelLocal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="18dp"
             android:layout_marginTop="12dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="18dp"
             android:layout_marginBottom="12dp"
             android:background="@drawable/bg_outline_gray_fa"
-            android:elevation="11dp"
             android:paddingStart="40dp"
             android:paddingTop="9dp"
             android:paddingEnd="5dp"
@@ -62,53 +98,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:elevation="11dp"
             app:srcCompat="@drawable/ic_down"
             app:layout_constraintBottom_toBottomOf="@id/tvSelLocal"
             app:layout_constraintStart_toStartOf="@id/tvSelLocal"
             app:layout_constraintTop_toTopOf="@id/tvSelLocal"
             tools:ignore="ContentDescription" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_routes"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/top_layout"
-            tools:listitem="@layout/item_route">
 
-        </androidx.recyclerview.widget.RecyclerView>
-
-        <View
-            android:id="@+id/v_pause"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#65000000"
-            android:clickable="true"
-            android:elevation="2dp"
-            android:focusable="true"
-            android:visibility="gone"
-            android:alpha="0"
-            android:onClick="@{mainfrag::onSelLocalClick}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/iv_refresh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="@{mainfrag::onRefreshClick}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_refresh" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_local"
@@ -116,7 +112,6 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_outline_gray_fa"
             android:clickable="true"
-            android:elevation="11dp"
             android:focusable="true"
             android:paddingBottom="10dp"
             android:visibility="gone"
@@ -134,6 +129,7 @@
                 android:gravity="center"
                 android:numColumns="3"
                 android:verticalSpacing="23dp"
+                android:listSelector="@android:color/transparent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />

@@ -385,7 +385,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                 toolbar.setBackground(getDrawable(R.color.Primary));
                 binding.tvTitle.setTextColor(getResources().getColor(R.color.White));
                 toolbar.setNavigationIcon(R.drawable.ic_hamburger_white);
-                menu.getItem(0).setIcon(R.drawable.icon_notification_white);
+                menu.getItem(0).setIcon(R.drawable.ic_notification_white);
                 menu.getItem(0).setEnabled(true);
                 menu.getItem(0).setVisible(true);
                 break;

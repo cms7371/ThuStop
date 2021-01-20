@@ -3,6 +3,7 @@ package com.thustop_00;
 import android.content.Context;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -43,7 +44,7 @@ public class RegionGridAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup viewGroup) {
         NotoTextView btRegion = new NotoTextView(this.context);
         btRegion.setText(regions[position]);
-        btRegion.setBackgroundResource(R.drawable.button_local);
+        btRegion.setBackgroundResource(R.drawable.bg_round25_grayf5);
         btRegion.setGravity(Gravity.CENTER);
         btRegion.setTextColor(context.getResources().getColor(R.color.TextGray));
         btRegion.setLayoutParams(new GridView.LayoutParams(width,width));

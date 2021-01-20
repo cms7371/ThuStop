@@ -86,7 +86,7 @@ public class FreeTicketRouteSelectionFragment extends FragmentBase implements Ma
                 if (prePosition == position) {
                     preSelectedItem.setSelected(false);
                     preSelectedItem.setTextColor(getResources().getColor(R.color.TextGray));
-                    preSelectedItem.setBackgroundResource(R.drawable.button_local);
+                    preSelectedItem.setBackgroundResource(R.drawable.bg_round25_grayf5);
                     prePosition = -1;
                     binding.tvFftSelectedRegion.setText(R.string.tvSelLocal);
                 } else {
@@ -95,13 +95,13 @@ public class FreeTicketRouteSelectionFragment extends FragmentBase implements Ma
                     curSelectedItem = (NotoTextView) view;
                     curSelectedItem.setSelected(true);
                     curSelectedItem.setTextColor(getResources().getColor(R.color.TextBlack));
-                    curSelectedItem.setBackgroundResource(R.drawable.button_local_sel);
+                    curSelectedItem.setBackgroundResource(R.drawable.bg_outline25_green_f5);
                     binding.tvFftSelectedRegion.setText(selectedRegion);
                     if (prePosition != -1) {
                         preSelectedItem = (NotoTextView) regionGrid.getChildAt(prePosition);
                         preSelectedItem.setSelected(false);
                         preSelectedItem.setTextColor(getResources().getColor(R.color.TextGray));
-                        preSelectedItem.setBackgroundResource(R.drawable.button_local);
+                        preSelectedItem.setBackgroundResource(R.drawable.bg_round25_grayf5);
                     }
                     prePosition = position;
                 }
