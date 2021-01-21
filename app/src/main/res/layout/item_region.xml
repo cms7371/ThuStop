@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
 
-    <com.thustop_00.widgets.NotoTextView
+    <com.thustop.thestop.widgets.NotoTextView
         android:id="@+id/tv_region"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -46,7 +46,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_dsm_stop_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
             app:layout_constraintBottom_toTopOf="@id/bt_dsm_confirm"
             app:layout_constraintStart_toStartOf="@id/cl_dsm_info" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_dsm_address"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
             app:layout_constraintTop_toTopOf="@id/iv_dsm_address"
             app:notoTextStyle="regular" />
 
-        <com.thustop_00.widgets.NotoButton
+        <com.thustop.thestop.widgets.NotoButton
             android:id="@+id/bt_dsm_confirm"
             style="@style/btStyle"
             android:layout_marginBottom="30dp"

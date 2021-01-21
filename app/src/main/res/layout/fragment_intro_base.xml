@@ -6,7 +6,7 @@
     <data>
         <variable
             name="intro"
-            type="com.thustop_00.intro.IntroBaseFragment" />
+            type="com.thustop.thestop.intro.IntroBaseFragment" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_intro"
@@ -25,7 +25,7 @@
 
         </androidx.viewpager2.widget.ViewPager2>
 
-        <com.thustop_00.widgets.NotoButton
+        <com.thustop.thestop.widgets.NotoButton
             android:id="@+id/bt_intro_later"
             android:layout_width="60dp"
             android:layout_height="17dp"
@@ -41,7 +41,7 @@
             app:notoTextStyle="regular" />
 
 
-        <com.thustop_00.widgets.NotoButton
+        <com.thustop.thestop.widgets.NotoButton
             android:id="@+id/bt_intro_start"
             android:layout_width="0dp"
             android:layout_height="48dp"

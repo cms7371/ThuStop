@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:paddingBottom="9dp">
 
-    <com.thustop_00.widgets.NotoTextView
+    <com.thustop.thestop.widgets.NotoTextView
         android:id="@+id/tv_route_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

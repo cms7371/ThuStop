@@ -7,7 +7,7 @@
     android:foreground="@drawable/selectable_item_background">
 
 
-    <com.thustop_00.widgets.NotoTextView
+    <com.thustop.thestop.widgets.NotoTextView
         android:id="@+id/tv_pred_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="선릉역 1번출구" />
 
-    <com.thustop_00.widgets.NotoTextView
+    <com.thustop.thestop.widgets.NotoTextView
         android:id="@+id/tv_pred_address"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

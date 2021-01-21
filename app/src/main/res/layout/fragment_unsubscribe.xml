@@ -26,7 +26,7 @@
             app:layout_constraintVertical_bias="0.120000005"
             app:layout_constraintVertical_chainStyle="packed" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_unsubs_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
             app:layout_constraintStart_toStartOf="@id/iv_unsubscribe"
             app:layout_constraintEnd_toEndOf="@id/iv_unsubscribe"
             app:layout_constraintTop_toBottomOf="@id/iv_unsubscribe"/>
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_unsubs_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_unsubs_1"
             app:layout_constraintBottom_toTopOf="@id/tv_unsubs_notice_title"/>
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_unsubs_notice_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
             app:srcCompat="@drawable/ic_exclamation_mark"
             app:layout_constraintStart_toStartOf="@id/tv_unsubs_notice_title"
             app:layout_constraintTop_toBottomOf="@id/tv_unsubs_notice_title"/>
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_unsubs_notice_1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
             app:layout_constraintStart_toStartOf="@id/tv_unsubs_notice_title"
             app:layout_constraintTop_toBottomOf="@id/tv_unsubs_notice_1"/>
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_unsubs_notice_2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
             app:layout_constraintStart_toStartOf="@id/tv_unsubs_notice_title"
             app:layout_constraintTop_toBottomOf="@id/tv_unsubs_notice_2"/>
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_unsubs_notice_3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -138,7 +138,7 @@
             app:layout_constraintStart_toStartOf="@id/tv_unsubs_notice_title"
             app:layout_constraintTop_toBottomOf="@id/tv_unsubs_notice_3"/>
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_unsubs_notice_4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -151,7 +151,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_unsubs_notice_4"/>
 
-        <com.thustop_00.widgets.NotoCheckBox
+        <com.thustop.thestop.widgets.NotoCheckBox
             android:id="@+id/cb_unsubs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -166,7 +166,7 @@
             app:layout_constraintStart_toStartOf="@id/tv_unsubs_notice_title"
             app:layout_constraintTop_toBottomOf="@id/tv_unsubs_notice_4"/>
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_unsubs_next"
             android:layout_width="match_parent"
             android:layout_height="60dp"

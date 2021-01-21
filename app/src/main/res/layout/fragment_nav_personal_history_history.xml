@@ -5,14 +5,14 @@
     <data>
         <variable
             name="NavPersonalHistoryHistoryFrag"
-            type="com.thustop_00.NavPersonalHistoryHistoryFragment" />
+            type="com.thustop.thestop.NavPersonalHistoryHistoryFragment" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/White">
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_noHistory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

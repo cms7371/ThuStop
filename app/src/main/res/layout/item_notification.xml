@@ -17,7 +17,7 @@
             app:layout_constraintStart_toStartOf="@id/stroke_notification"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/rv_notification_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

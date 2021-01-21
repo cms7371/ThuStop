@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="57dp">
 
-    <com.thustop_00.widgets.NotoTextView
+    <com.thustop.thestop.widgets.NotoTextView
         android:id="@+id/tv_rd_time"
         android:layout_width="27dp"
         android:layout_height="16dp"
@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.thustop_00.widgets.NotoTextView
+    <com.thustop.thestop.widgets.NotoTextView
         android:id="@+id/tv_rd_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

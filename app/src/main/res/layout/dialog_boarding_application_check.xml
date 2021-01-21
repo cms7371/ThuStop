@@ -12,7 +12,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="@dimen/toolbar_height" />
 
-    <com.thustop_00.widgets.NotoTextView
+    <com.thustop.thestop.widgets.NotoTextView
         android:id="@+id/tv_dbc_big"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
         app:layout_constraintTop_toBottomOf="@id/guideline4"
         app:notoTextStyle="medium" />
 
-    <com.thustop_00.widgets.NotoTextView
+    <com.thustop.thestop.widgets.NotoTextView
         android:id="@+id/tv_dbc_small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_dbc_big" />
 
-    <com.thustop_00.widgets.NotoTextView
+    <com.thustop.thestop.widgets.NotoTextView
         android:id="@+id/tv_dbc_boarding_stop"
         android:layout_width="133dp"
         android:layout_height="119dp"
@@ -50,7 +50,7 @@
         app:layout_constraintStart_toStartOf="@id/tv_dbc_small"
         app:layout_constraintTop_toTopOf="@id/tv_dbc_departure" />
 
-    <com.thustop_00.widgets.NotoTextView
+    <com.thustop.thestop.widgets.NotoTextView
         android:id="@+id/tv_dbc_departure"
         android:layout_width="65dp"
         android:layout_height="26dp"
@@ -65,7 +65,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_dbc_small"
         app:notoTextStyle="medium" />
 
-    <com.thustop_00.widgets.NotoTextView
+    <com.thustop.thestop.widgets.NotoTextView
         android:id="@+id/tv_dbc_alighting_stop"
         android:layout_width="133dp"
         android:layout_height="119dp"
@@ -79,7 +79,7 @@
         app:layout_constraintStart_toEndOf="@id/tv_dbc_boarding_stop"
         app:layout_constraintTop_toTopOf="@id/tv_dbc_arrival" />
 
-    <com.thustop_00.widgets.NotoTextView
+    <com.thustop.thestop.widgets.NotoTextView
         android:id="@+id/tv_dbc_arrival"
         android:layout_width="65dp"
         android:layout_height="26dp"
@@ -93,7 +93,7 @@
         app:layout_constraintTop_toTopOf="@id/tv_dbc_departure"
         app:notoTextStyle="medium" />
 
-    <com.thustop_00.widgets.NotoButton
+    <com.thustop.thestop.widgets.NotoButton
         android:id="@+id/bt_dbc_ok"
         style="@style/btStyle"
         android:background="@drawable/bg_round25_green"

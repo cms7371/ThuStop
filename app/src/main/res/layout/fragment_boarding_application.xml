@@ -6,7 +6,7 @@
     <data>
         <variable
             name="BoardingApplicationFrag"
-            type="com.thustop_00.BoardingApplicationFragment" />
+            type="com.thustop.thestop.BoardingApplicationFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,7 +35,7 @@
                     android:orientation="horizontal"
                     app:layout_constraintGuide_begin="@dimen/toolbar_height" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fba_phase1"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -53,7 +53,7 @@
                     app:layout_constraintTop_toTopOf="@+id/guideline4"
                     app:notoTextStyle="bold" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fba_phase2"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -69,7 +69,7 @@
                     app:layout_constraintTop_toTopOf="@+id/guideline4"
                     app:notoTextStyle="bold" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fba_phase3"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -106,7 +106,7 @@
                     app:layout_constraintTop_toTopOf="@+id/tv_fba_phase2"
                     app:srcCompat="@drawable/ic_3dots_gray" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fba_big"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -120,7 +120,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_fba_phase2"
                     app:notoTextStyle="medium" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fba_small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -159,7 +159,7 @@
                         tools:listitem="@layout/item_stop_selection" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fba_stage"
                     android:layout_width="89dp"
                     android:layout_height="36dp"
@@ -177,7 +177,7 @@
 
         </androidx.core.widget.NestedScrollView>
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/bt_fba_ok"
             android:layout_width="match_parent"
             android:layout_height="69dp"

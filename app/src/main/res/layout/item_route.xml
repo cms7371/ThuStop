@@ -39,7 +39,7 @@
             app:layout_constraintBottom_toBottomOf="@id/tv_mrv_code"
             app:srcCompat="@drawable/ic_bus_green" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_mrv_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:notoTextStyle="medium" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_mrv_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
             app:layout_constraintTop_toTopOf="@id/tv_mrv_state"
             app:notoTextStyle="medium" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_mrv_time_departure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
             app:layout_constraintTop_toTopOf="@id/iv_mrv_route_line"
             app:notoTextStyle="regular" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_mrv_departure1"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
             app:layout_constraintTop_toTopOf="@id/iv_mrv_route_line"
             app:notoTextStyle="bold" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_mrv_departure2"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
             app:layout_constraintTop_toTopOf="@id/iv_mrv_route_line"
             app:notoTextStyle="regular" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_mrv_departure3"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
             app:layout_constraintTop_toTopOf="@id/iv_mrv_route_line"
             app:notoTextStyle="regular" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_mrv_time_arrive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
             app:layout_constraintTop_toTopOf="@id/iv_mrv_route_line"
             app:notoTextStyle="regular" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_mrv_destination3"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
@@ -143,7 +143,7 @@
             app:layout_constraintTop_toTopOf="@id/iv_mrv_route_line"
             app:notoTextStyle="bold" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_mrv_destination2"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
@@ -156,7 +156,7 @@
             app:layout_constraintTop_toTopOf="@id/iv_mrv_route_line"
             app:notoTextStyle="regular" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_mrv_destination1"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
@@ -169,7 +169,7 @@
             app:layout_constraintTop_toTopOf="@id/iv_mrv_route_line"
             app:notoTextStyle="regular" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_mrv_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -187,7 +187,7 @@
             app:notoTextStyle="regular"
             tools:ignore="SmallSp" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_mrv_days"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -201,7 +201,7 @@
 
 
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_mrv_running"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

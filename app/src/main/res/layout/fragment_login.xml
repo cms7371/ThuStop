@@ -5,7 +5,7 @@
     <data>
         <variable
             name="LoginFrag"
-            type="com.thustop_00.LoginFragment" />
+            type="com.thustop.thestop.LoginFragment" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             app:layout_constraintGuide_begin="@dimen/toolbar_height" />
 
 
-        <com.thustop_00.widgets.NotoEditText
+        <com.thustop.thestop.widgets.NotoEditText
             android:id="@+id/et_phone_number"
             style="@style/EtLoginStyle"
             android:layout_marginTop="40dp"
@@ -34,7 +34,7 @@
             app:layout_constraintVertical_chainStyle="packed" />
 
 
-        <com.thustop_00.widgets.NotoEditText
+        <com.thustop.thestop.widgets.NotoEditText
             android:id="@+id/et_password"
             android:layout_marginTop="15dp"
             style="@style/EtLoginStyle"
@@ -45,7 +45,7 @@
             app:layout_constraintBottom_toTopOf="@id/cb_remember"
             />
 
-        <com.thustop_00.widgets.NotoCheckBox
+        <com.thustop.thestop.widgets.NotoCheckBox
             android:id="@+id/cb_remember"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
             app:layout_constraintTop_toBottomOf="@id/et_password"
             app:layout_constraintBottom_toTopOf="@id/bt_login"/>
 
-        <com.thustop_00.widgets.NotoButton
+        <com.thustop.thestop.widgets.NotoButton
             android:id="@+id/bt_login"
             style="@style/btStyle"
             android:layout_marginTop="65dp"
@@ -73,7 +73,7 @@
             app:layout_constraintWidth_percent="0.6"
             app:notoTextStyle="medium" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_find_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
             app:layout_constraintStart_toStartOf="@id/bt_login"
             app:layout_constraintTop_toBottomOf="@id/bt_login" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -113,7 +113,7 @@
             app:layout_constraintStart_toEndOf="@+id/v_login_vertical_bar"
             app:layout_constraintTop_toTopOf="@+id/v_login_vertical_bar" />
 
-        <com.thustop_00.widgets.NotoButton
+        <com.thustop.thestop.widgets.NotoButton
             android:id="@+id/bt_kako_login"
             style="@style/btStyle"
             android:layout_marginBottom="40dp"

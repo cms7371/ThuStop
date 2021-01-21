@@ -4,7 +4,7 @@
     <data>
         <variable
             name="NavPersonalHistoryTicketPointFrag"
-            type="com.thustop_00.NavPersonalHistoryTicketPointFragment" />
+            type="com.thustop.thestop.NavPersonalHistoryTicketPointFragment" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="match_parent"
@@ -17,7 +17,7 @@
             android:elevation="11dp"
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="?attr/actionBarSize" />
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_year_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
                 app:layout_constraintEnd_toStartOf="@id/tv_year"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_year"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
                 app:layout_constraintStart_toEndOf="@id/iv_date_range"
                 app:layout_constraintBottom_toBottomOf="@id/tv_year_value"/>
 
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_month_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
                 app:layout_constraintEnd_toStartOf="@id/tv_month"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_month"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
                 app:layout_constraintStart_toEndOf="@id/tv_year"
                 app:layout_constraintBottom_toBottomOf="@id/tv_month_value"/>
 
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_day_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -138,7 +138,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/tv_day_value"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_notice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -157,7 +157,7 @@
             app:layout_constraintTop_toBottomOf="@id/layout_date"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_point_notice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -168,7 +168,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/tv_point_value"/>
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_point_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -184,7 +184,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.thustop_00.widgets.NotoButton
+        <com.thustop.thestop.widgets.NotoButton
             style="@style/btStyle"
             android:background="@drawable/bg_round25_graycf"
             android:text="확인"

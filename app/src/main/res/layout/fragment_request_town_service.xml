@@ -4,7 +4,7 @@
     <data>
         <variable
             name="RequestTownFrag"
-            type="com.thustop_00.RequestServiceRegionFragment" />
+            type="com.thustop.thestop.RequestServiceRegionFragment" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="@id/guideline1"
             app:layout_constraintVertical_bias="0.7"
             app:layout_constraintVertical_chainStyle="packed" />
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_townSel"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -96,7 +96,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.thustop_00.widgets.NotoCheckBox
+        <com.thustop.thestop.widgets.NotoCheckBox
             android:id="@+id/cb_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
             app:layout_constraintTop_toBottomOf="@id/cl_townSel"
             app:layout_constraintVertical_chainStyle="packed" />
 
-        <com.thustop_00.widgets.NotoEditText
+        <com.thustop.thestop.widgets.NotoEditText
             android:id="@+id/et_phoneNum"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -137,7 +137,7 @@
             app:layout_constraintBottom_toTopOf="@id/tv_townSel2"
             app:layout_constraintTop_toBottomOf="@id/cb_message" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_townSel2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -151,7 +151,7 @@
             app:layout_constraintEnd_toEndOf="@id/et_phoneNum"
             app:layout_constraintBottom_toTopOf="@id/bt_request"/>
 
-        <com.thustop_00.widgets.NotoButton
+        <com.thustop.thestop.widgets.NotoButton
             android:id="@+id/bt_request"
             android:layout_width="match_parent"
             android:layout_height="48dp"

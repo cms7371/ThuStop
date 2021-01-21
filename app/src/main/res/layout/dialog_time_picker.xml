@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/transparent"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <com.thustop_00.widgets.NotoTextView
+    <com.thustop.thestop.widgets.NotoTextView
         android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="46dp"
@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bt_ok"
         android:descendantFocusability="blocksDescendants"/>
-    <com.thustop_00.widgets.NotoButton
+    <com.thustop.thestop.widgets.NotoButton
         android:id="@+id/bt_ok"
         android:layout_width="0dp"
         android:layout_height="54dp"

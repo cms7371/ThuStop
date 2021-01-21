@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fpm_departure"
                     android:layout_width="0dp"
                     android:layout_height="59dp"
@@ -49,7 +49,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/notoTextView3"
                     android:layout_width="65dp"
                     android:layout_height="26dp"
@@ -63,7 +63,7 @@
                     app:layout_constraintTop_toTopOf="@+id/tv_fpm_departure"
                     app:notoTextStyle="medium" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fpm_destination"
                     android:layout_width="0dp"
                     android:layout_height="59dp"
@@ -83,7 +83,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_fpm_departure" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/notoTextView5"
                     android:layout_width="65dp"
                     android:layout_height="26dp"
@@ -97,7 +97,7 @@
                     app:layout_constraintTop_toTopOf="@id/tv_fpm_destination"
                     app:notoTextStyle="medium" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/notoTextView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
                     app:layout_constraintTop_toTopOf="@+id/tv_fpm_original_price"
                     app:notoTextStyle="medium" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fpm_original_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -134,7 +134,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_fpm_original_price" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fpm_coupon_affiliation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -161,7 +161,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_fpm_coupon_affiliation">
 
-                    <com.thustop_00.widgets.NotoRadioButton
+                    <com.thustop.thestop.widgets.NotoRadioButton
                         android:id="@+id/rb_fpm_coupon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -173,7 +173,7 @@
                         android:textColor="@color/TextBlack"
                         android:textSize="13sp" />
 
-                    <com.thustop_00.widgets.NotoRadioButton
+                    <com.thustop.thestop.widgets.NotoRadioButton
                         android:id="@+id/rb_fpm_affliation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -185,7 +185,7 @@
                         android:textColor="@color/TextBlack"
                         android:textSize="13sp" />
 
-                    <com.thustop_00.widgets.NotoRadioButton
+                    <com.thustop.thestop.widgets.NotoRadioButton
                         android:id="@+id/rb_fpm_nothing"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -213,7 +213,7 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fpm_point_use"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -226,7 +226,7 @@
                     app:layout_constraintTop_toBottomOf="@id/cl_fpm_coupon_container"
                     app:notoTextStyle="medium" />
 
-                <com.thustop_00.widgets.NotoCheckBox
+                <com.thustop.thestop.widgets.NotoCheckBox
                     android:id="@+id/cb_fpm_point_all_in"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -240,7 +240,7 @@
                     app:layout_constraintStart_toStartOf="@+id/tv_fpm_point_use"
                     app:layout_constraintTop_toBottomOf="@+id/tv_fpm_point_use" />
 
-                <com.thustop_00.widgets.NotoEditText
+                <com.thustop.thestop.widgets.NotoEditText
                     android:id="@+id/tv_fpm_point_to_use"
                     android:layout_width="145dp"
                     android:layout_height="36dp"
@@ -257,7 +257,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/cb_fpm_point_all_in" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/notoTextView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -269,7 +269,7 @@
                     app:layout_constraintTop_toTopOf="@+id/tv_fpm_point_to_use"
                     app:notoTextStyle="medium" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fpm_current_point"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -281,7 +281,7 @@
                     app:layout_constraintEnd_toEndOf="@id/tv_fpm_point_to_use"
                     app:layout_constraintTop_toBottomOf="@id/tv_fpm_point_to_use" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fpm_method"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -306,7 +306,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_fpm_method">
 
-                    <com.thustop_00.widgets.NotoRadioButton
+                    <com.thustop.thestop.widgets.NotoRadioButton
                         android:id="@+id/rb_fpm_creditcard"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -319,7 +319,7 @@
                         android:textColor="@color/TextBlack"
                         android:textSize="13sp" />
 
-                    <com.thustop_00.widgets.NotoRadioButton
+                    <com.thustop.thestop.widgets.NotoRadioButton
                         android:id="@+id/rb_fpm_kakaopay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -331,7 +331,7 @@
                         android:textColor="@color/TextBlack"
                         android:textSize="13sp" />
 
-                    <com.thustop_00.widgets.NotoRadioButton
+                    <com.thustop.thestop.widgets.NotoRadioButton
                         android:id="@+id/rb_fpm_deposit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -354,7 +354,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/rg_fpm_method" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fpm_original_price2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -366,7 +366,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/v_fpm_stroke2" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/notoTextView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -378,7 +378,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tv_fpm_original_price2" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fpm_coupon_discount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -390,7 +390,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_fpm_original_price2" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/notoTextView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -402,7 +402,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_fpm_coupon_discount" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fpm_point_discount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -414,7 +414,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_fpm_coupon_discount" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/notoTextView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -426,7 +426,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_fpm_point_discount" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fpm_final_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -439,7 +439,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_fpm_point_discount"
                     app:notoTextStyle="bold" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/notoTextView12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -452,7 +452,7 @@
                     app:layout_constraintTop_toTopOf="@+id/tv_fpm_final_price"
                     app:notoTextStyle="bold" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fpm_cautions"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -464,7 +464,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_fpm_final_price" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fpm_caution1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -487,7 +487,7 @@
                     app:layout_constraintTop_toTopOf="@+id/tv_fpm_caution1"
                     app:srcCompat="@drawable/ic_exclamation_mark" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fpm_caution2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -510,7 +510,7 @@
                     app:layout_constraintTop_toTopOf="@+id/tv_fpm_caution2"
                     app:srcCompat="@drawable/ic_exclamation_mark" />
 
-                <com.thustop_00.widgets.NotoCheckBox
+                <com.thustop.thestop.widgets.NotoCheckBox
                     android:id="@+id/cb_fpm_agreement"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -529,7 +529,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
-        <com.thustop_00.widgets.NotoButton
+        <com.thustop.thestop.widgets.NotoButton
             android:id="@+id/bt_fpm_pay"
             android:layout_width="match_parent"
             android:layout_height="69dp"

@@ -5,7 +5,7 @@
     <data>
         <variable
             name="NavPersonalHistoryTicketFrag"
-            type="com.thustop_00.NavPersonalHistoryTicketFragment" />
+            type="com.thustop.thestop.NavPersonalHistoryTicketFragment" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_ticket" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_title_left_ticket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
             app:layout_constraintTop_toTopOf="@id/line1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/line1"/>
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_left_ticket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
             app:layout_constraintTop_toBottomOf="@id/rv_ticket"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_title_due_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
             app:layout_constraintTop_toTopOf="@id/line1"
             app:layout_constraintStart_toEndOf="@id/line1"
             app:layout_constraintEnd_toEndOf="parent"/>
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_due_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_cancel_route"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
@@ -136,7 +136,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cl_recruit">
 
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_payment"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
@@ -164,7 +164,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_payment" />
 
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_change_route"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
@@ -200,7 +200,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_convert_point"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
@@ -240,7 +240,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_convert_point"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_refund"
                 android:layout_width="0dp"
                 android:layout_height="40dp"

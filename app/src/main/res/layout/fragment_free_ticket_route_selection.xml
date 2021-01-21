@@ -5,7 +5,7 @@
     <data>
         <variable
             name="FreeTicketRouteSelectionFrag"
-            type="com.thustop_00.FreeTicketRouteSelectionFragment" />
+            type="com.thustop.thestop.FreeTicketRouteSelectionFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,7 +46,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_fft_selected_region">
 
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_fft_empty_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
                 app:layout_constraintVertical_bias="0.4"
                 app:layout_constraintVertical_chainStyle="packed" />
 
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/bt_fft_empty"
                 android:layout_width="188dp"
                 android:layout_height="41dp"
@@ -81,7 +81,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_fft_empty_1"
                 app:layout_constraintVertical_bias="0.4" />
 
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_fft_empty_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_fft_selected_region"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -168,7 +168,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_fft_local1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -182,7 +182,7 @@
                 app:layout_constraintTop_toBottomOf="@id/gv_fft_local"
                 app:notoTextStyle="bold" />
 
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_fft_local2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -195,7 +195,7 @@
                 app:layout_constraintStart_toStartOf="@id/cl_fft_local"
                 app:layout_constraintTop_toBottomOf="@id/tv_fft_local1" />
 
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_fft_request"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

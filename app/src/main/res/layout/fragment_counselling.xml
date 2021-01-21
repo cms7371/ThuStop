@@ -7,7 +7,7 @@
 
         <variable
             name="CounselFrag"
-            type="com.thustop_00.CounsellingFragment" />
+            type="com.thustop.thestop.CounsellingFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,7 +33,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline5"
             app:srcCompat="@drawable/img_counselling" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_fc_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
             app:layout_constraintTop_toBottomOf="@+id/iv_fc_img"
             app:notoTextStyle="medium" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_fc_recommendation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_fc_title" />
 
-        <com.thustop_00.widgets.NotoButton
+        <com.thustop.thestop.widgets.NotoButton
             android:id="@+id/bt_fc_counsel"
             style="@style/btStyle"
             android:background="@drawable/bg_round25_green"
@@ -71,7 +71,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:notoTextStyle="medium" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_fc_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -93,7 +93,7 @@
             app:layout_constraintStart_toStartOf="@+id/bt_fc_counsel"
             app:srcCompat="@drawable/ic_exclamation_mark" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/notoTextView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -16,7 +16,7 @@
             app:layout_constraintGuide_begin="?attr/actionBarSize" />
 
 
-        <com.thustop_00.widgets.NotoEditText
+        <com.thustop.thestop.widgets.NotoEditText
             android:id="@+id/et_password"
             style="@style/EtLoginStyle"
             android:hint="@string/et_pass"
@@ -29,7 +29,7 @@
             app:layout_constraintVertical_bias="0.15"
             app:layout_constraintVertical_chainStyle="packed" />
 
-        <com.thustop_00.widgets.NotoEditText
+        <com.thustop.thestop.widgets.NotoEditText
             android:id="@+id/et_check"
             android:layout_marginTop="15dp"
             style="@style/EtLoginStyle"
@@ -41,7 +41,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             />
 
-        <com.thustop_00.widgets.NotoButton
+        <com.thustop.thestop.widgets.NotoButton
             android:id="@+id/bt_confirm"
             style="@style/btStyle"
             android:background="@drawable/bg_round25_graycf"

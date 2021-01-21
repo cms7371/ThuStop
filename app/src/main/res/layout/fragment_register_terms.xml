@@ -4,7 +4,7 @@
     <data>
         <variable
             name="AgreeTermsfrag"
-            type="com.thustop_00.RegisterTermsFragment" />
+            type="com.thustop.thestop.RegisterTermsFragment" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="?attr/actionBarSize" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_agree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
             app:layout_constraintBottom_toTopOf="@id/cb_agree2"/>
 
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_agree1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
             app:layout_constraintStart_toStartOf="@id/cb_agree_all"
             app:layout_constraintBottom_toTopOf="@id/cb_agree3"/>
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_agree2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -139,7 +139,7 @@
             app:layout_constraintStart_toStartOf="@id/cb_agree_all"
             app:layout_constraintBottom_toTopOf="@id/cb_agree4"/>
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_agree3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -167,7 +167,7 @@
             app:layout_constraintTop_toBottomOf="@id/cb_agree3"
             app:layout_constraintStart_toStartOf="@id/cb_agree_all"
             app:layout_constraintBottom_toTopOf="@id/cb_agree5"/>
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_agree4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -196,7 +196,7 @@
             app:layout_constraintStart_toStartOf="@id/cb_agree_all"
             app:layout_constraintBottom_toTopOf="@id/cb_agree6"/>
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_agree5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -225,7 +225,7 @@
             app:layout_constraintBottom_toTopOf="@id/bt_agree"
             app:layout_constraintStart_toStartOf="@id/cb_agree_all"/>
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_agree6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -237,7 +237,7 @@
             app:layout_constraintTop_toTopOf="@id/cb_agree6"
             app:layout_constraintBottom_toBottomOf="@id/cb_agree6"/>
 
-        <com.thustop_00.widgets.NotoButton
+        <com.thustop.thestop.widgets.NotoButton
             android:id="@+id/bt_agree"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -4,7 +4,7 @@
     <data>
         <variable
             name="NavPersonalHistoryHistoryDetailFrag"
-            type="com.thustop_00.NavPersonalHistoryHistoryDetailFragment" />
+            type="com.thustop.thestop.NavPersonalHistoryHistoryDetailFragment" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="match_parent"
@@ -17,7 +17,7 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="@dimen/toolbar_height" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_hd_condition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_hd_bus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -63,38 +63,38 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:notoTextStyle="bold" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_hd_departure_time"
                     android:text="출발 시간"
                     style="@style/TvHdSubTitle"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_hd_bus"/>
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_hd_departure_stop"
                     android:text="출발"
                     style="@style/TvHdSubTitle"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_hd_departure_time"/>
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_hd_alighting_stop"
                     android:text="도착"
                     style="@style/TvHdSubTitle"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_hd_departure_stop"/>
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_hd_driver"
                     android:text="기사명"
                     style="@style/TvHdSubTitle"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_hd_alighting_stop"/>
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_hd_ticket_start"
                     android:text="티켓 시작일"
                     style="@style/TvHdSubTitle"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_hd_driver"/>
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_hd_ticket_end"
                     android:text="티켓 만료일"
                     style="@style/TvHdSubTitle"
@@ -112,7 +112,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_hd_payment_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -124,14 +124,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/stroke_hd_2"/>
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_hd_payment_method"
                     android:text="결제 방법"
                     style="@style/TvHdSubTitle"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_hd_payment_info"/>
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_hd_payment_date"
                     android:text="결제 일시"
                     style="@style/TvHdSubTitle"
@@ -149,7 +149,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_hd_fare_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -161,20 +161,20 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/stroke_hd_3"/>
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_hd_fare"
                     android:text="운행 요금"
                     style="@style/TvHdSubTitle"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_hd_fare_info"/>
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_hd_fare_coupon"
                     android:text="쿠폰 할인"
                     style="@style/TvHdSubTitle"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_hd_fare"/>
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_hd_fare_point"
                     android:text="포인트 사용"
                     style="@style/TvHdSubTitle"
@@ -188,7 +188,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_hd_fare_point"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent">
-                    <com.thustop_00.widgets.NotoTextView
+                    <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_hd_fare_total"
                         android:text="최종 결제 금액"
                         style="@style/TvHdSubTitle"
@@ -204,7 +204,7 @@
                         app:layout_constraintTop_toBottomOf="@id/tv_hd_fare_total"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"/>
-                    <com.thustop_00.widgets.NotoTextView
+                    <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_hd_refund_info"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -215,32 +215,32 @@
                         android:textColor="@color/Ach20"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/stroke_hd_4"/>
-                    <com.thustop_00.widgets.NotoTextView
+                    <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_hd_days_used"
                         android:text="티켓 사용 일수"
                         style="@style/TvHdSubTitle"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_hd_refund_info"/>
-                    <com.thustop_00.widgets.NotoTextView
+                    <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_hd_refund_fees"
                         android:text="환불 수수료"
                         style="@style/TvHdSubTitle"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_hd_days_used"/>
-                    <com.thustop_00.widgets.NotoTextView
+                    <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_hd_refund_method"
                         android:text="환불 방법"
                         style="@style/TvHdSubTitle"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_hd_refund_fees"/>
-                    <com.thustop_00.widgets.NotoTextView
+                    <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_hd_refund_date"
                         android:text="환불 일시"
                         style="@style/TvHdSubTitle"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_hd_refund_method"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -256,7 +256,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_hd_ok"
             android:layout_width="match_parent"
             android:layout_height="69dp"

@@ -5,7 +5,7 @@
     <data>
         <variable
             name="NavServiceFAQFrag"
-            type="com.thustop_00.NavServiceFAQFragment"/>
+            type="com.thustop.thestop.NavServiceFAQFragment"/>
 
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,7 +20,7 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="@dimen/toolbar_height" />
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_faq_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
                     <View
                         android:layout_width="10dp"
                         android:layout_height="match_parent"/>
-                    <com.thustop_00.widgets.NotoTextView
+                    <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_faq_price"
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -82,7 +82,7 @@
                         android:textSize="12sp"
                         android:textColor="@color/TextBlack"
                         app:notoTextStyle="medium" />
-                    <com.thustop_00.widgets.NotoTextView
+                    <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_faq_late"
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -93,7 +93,7 @@
                         android:textSize="12sp"
                         android:textColor="@color/TextBlack"
                         app:notoTextStyle="medium" />
-                    <com.thustop_00.widgets.NotoTextView
+                    <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_faq_accident"
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -104,7 +104,7 @@
                         android:textSize="12sp"
                         android:textColor="@color/TextBlack"
                         app:notoTextStyle="medium" />
-                    <com.thustop_00.widgets.NotoTextView
+                    <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_faq_service_use"
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -115,7 +115,7 @@
                         android:textSize="12sp"
                         android:textColor="@color/TextBlack"
                         app:notoTextStyle="medium" />
-                    <com.thustop_00.widgets.NotoTextView
+                    <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_faq_security"
                         android:layout_width="wrap_content"
                         android:layout_height="42dp"
@@ -127,7 +127,7 @@
                         android:textColor="@color/TextBlack"
                         android:maxLines="1"
                         app:notoTextStyle="medium" />
-                    <com.thustop_00.widgets.NotoTextView
+                    <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_faq_service_u1se"
                         android:layout_width="0dp"
                         android:layout_weight="1"

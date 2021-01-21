@@ -7,7 +7,7 @@
 
         <variable
             name="RouteDetailFrag"
-            type="com.thustop_00.BoardingApplicationDetailFragment" />
+            type="com.thustop.thestop.BoardingApplicationDetailFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,7 +36,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_bus_green" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_bus_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
                     app:layout_constraintTop_toTopOf="@+id/iv_bus_icon"
                     app:notoTextStyle="bold" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_departure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
                     app:layout_constraintTop_toTopOf="@+id/tv_departure"
                     app:srcCompat="@drawable/ic_arrow_black" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_destination"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -122,7 +122,7 @@
 
                 </androidx.recyclerview.widget.RecyclerView>
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_bus_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
                     app:layout_constraintTop_toBottomOf="@id/rv_vias"
                     app:notoTextStyle="medium" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_nop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -148,7 +148,7 @@
                     app:layout_constraintTop_toBottomOf="@id/rv_vias"
                     app:notoTextStyle="medium" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_how_far"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -161,7 +161,7 @@
                     app:layout_constraintTop_toBottomOf="@id/rv_vias"
                     app:notoTextStyle="medium" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_capacity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_bus_type"
                     app:notoTextStyle="regular" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_passengers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -187,7 +187,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_nop"
                     app:notoTextStyle="regular" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_distance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -200,7 +200,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_how_far"
                     app:notoTextStyle="regular" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_precaution"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -213,7 +213,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_capacity"
                     app:notoTextStyle="medium" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_caution_list"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -231,7 +231,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_rd_ok"
             android:layout_width="match_parent"
             android:layout_height="69dp"

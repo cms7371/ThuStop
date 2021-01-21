@@ -5,7 +5,7 @@
     <data>
         <variable
             name="mainfrag"
-            type="com.thustop_00.MainFragment" />
+            type="com.thustop.thestop.MainFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -68,7 +68,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
 
-        <com.thustop_00.widgets.NotoTextView
+        <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tvSelLocal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -134,7 +134,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_local1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -148,7 +148,7 @@
                 app:layout_constraintStart_toStartOf="@id/layout_local"
                 app:layout_constraintTop_toBottomOf="@id/gv_local" />
 
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_local2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -160,7 +160,7 @@
                 app:layout_constraintStart_toStartOf="@id/layout_local"
                 app:layout_constraintTop_toBottomOf="@id/tv_local1" />
 
-            <com.thustop_00.widgets.NotoTextView
+            <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_request"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

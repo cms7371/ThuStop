@@ -8,7 +8,7 @@
 
         <variable
             name="activity_main"
-            type="com.thustop_00.MainActivity" />
+            type="com.thustop.thestop.MainActivity" />
     </data>
 
     <androidx.drawerlayout.widget.DrawerLayout
@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/White"
-            tools:context=".MainActivity">
+            tools:context=".thestop.MainActivity">
 
             <FrameLayout
                 android:id="@+id/fr_main"
@@ -43,7 +43,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
@@ -118,7 +118,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:srcCompat="@drawable/ic_log_out" />
 
-                <com.thustop_00.widgets.NotoTextView
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_logout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -172,7 +172,7 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/ic_portrait" />
 
-                        <com.thustop_00.widgets.NotoTextView
+                        <com.thustop.thestop.widgets.NotoTextView
                             android:id="@+id/tv_member_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -185,7 +185,7 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:notoTextStyle="bold" />
 
-                        <com.thustop_00.widgets.NotoTextView
+                        <com.thustop.thestop.widgets.NotoTextView
                             android:id="@+id/tv_member_nim"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -197,7 +197,7 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:notoTextStyle="regular" />
 
-                        <com.thustop_00.widgets.NotoTextView
+                        <com.thustop.thestop.widgets.NotoTextView
                             android:id="@+id/tv_member_point"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -232,7 +232,7 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/ic_portrait" />
 
-                        <com.thustop_00.widgets.NotoTextView
+                        <com.thustop.thestop.widgets.NotoTextView
                             android:id="@+id/tv_guest"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -267,21 +267,21 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/cl_drawer_head">
 
-                    <com.thustop_00.widgets.NotoTextView
+                    <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_my_page"
                         style="@style/tvToolbarCategory"
                         android:text="마이페이지"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <com.thustop_00.widgets.NotoTextView
+                    <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_personal_modify"
                         style="@style/tvToolbarComponent"
                         android:text="개인정보 수정"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_my_page" />
 
-                    <com.thustop_00.widgets.NotoTextView
+                    <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_personal_history"
                         style="@style/tvToolbarComponent"
                         android:text="이용내역"
@@ -289,7 +289,7 @@
                         app:layout_constraintTop_toBottomOf="@id/tv_personal_modify"
                         android:onClick="@{activity_main::onNavPersonalHistoryClick}"/>
 
-                    <com.thustop_00.widgets.NotoTextView
+                    <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_personal_point"
                         style="@style/tvToolbarComponent"
                         android:text="포인트"
@@ -305,7 +305,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/cl_my_page">
 
-                    <com.thustop_00.widgets.NotoTextView
+                    <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_event"
                         style="@style/tvToolbarCategory"
                         android:text="이벤트"
@@ -322,14 +322,14 @@
                         app:layout_constraintTop_toTopOf="@id/tv_event"
                         app:srcCompat="@drawable/img_event_new_member" />
 
-                    <com.thustop_00.widgets.NotoTextView
+                    <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_coupons"
                         style="@style/tvToolbarComponent"
                         android:text="쿠폰"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_event" />
 
-                    <com.thustop_00.widgets.NotoTextView
+                    <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_free_tickets"
                         style="@style/tvToolbarComponent"
                         android:text="무료 탑승권"
@@ -346,7 +346,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/cl_event">
 
-                    <com.thustop_00.widgets.NotoTextView
+                    <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_customer_center"
                         style="@style/tvToolbarCategory"
                         android:text="고객센터"
@@ -354,7 +354,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <com.thustop_00.widgets.NotoTextView
+                    <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_FAQ"
                         style="@style/tvToolbarComponent"
                         android:onClick="onNavFAQClick"
@@ -362,7 +362,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_customer_center" />
 
-                    <com.thustop_00.widgets.NotoTextView
+                    <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_consultation"
                         style="@style/tvToolbarComponent"
                         android:onClick="onCounselClick"
