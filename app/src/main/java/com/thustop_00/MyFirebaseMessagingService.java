@@ -23,6 +23,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Utils.registerDevice();
     }
 
+
+
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);

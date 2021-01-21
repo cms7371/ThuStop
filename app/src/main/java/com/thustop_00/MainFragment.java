@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
@@ -140,7 +141,8 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     @Override
     public void onItemSelected(View v, int position, int ticket_position) {
         if (position == 0) {
-            if (ticket_position == -1) {
+            //TODO 수정하세요 티켓 위치
+            if (true) {
                 _listener.addFragment(AddRouteMapFragment.newInstance(null, null));
             } else {
                 Toast.makeText(getContext(), ticket_position + "번째 티켓 눌림", Toast.LENGTH_SHORT).show();
@@ -175,9 +177,9 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         if (!isRefreshing) {
             isRefreshing = true;
             updateRoutes();
-            view.animate().rotation(720f).setDuration(500).withEndAction(() ->
+            view.animate().rotation(720f).setDuration(750).setInterpolator(new AccelerateDecelerateInterpolator()).withEndAction(() ->
                     view.animate().translationX(0).setDuration(500).withEndAction(() ->
-                            view.animate().rotation(1440f).setDuration(500).withEndAction(() -> {
+                            view.animate().rotation(1440f).setDuration(750).setInterpolator(new AccelerateDecelerateInterpolator()).withEndAction(() -> {
                                         isRefreshing = false;
                                         view.setRotation(0f);
                                     }

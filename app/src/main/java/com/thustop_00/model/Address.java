@@ -3,9 +3,6 @@ package com.thustop_00.model;
 
 public class Address{
     private String address ="";
-    //public String road = "";
-    //public String jibun = "";
-    //public String shortAddr = "";
     private double latitude = 0;
     private double longitude = 0;
 
@@ -18,7 +15,6 @@ public class Address{
     }
 
 
-    /*Getters and Setters*/
     public String getAddress() {
         return address;
     }

@@ -366,74 +366,79 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     @Override
     public void setToolbarStyle(int toolbarState, String title) {
         //제목을 설정하는 부분 null일 시 메인 타이틀
-        if (title == null) {
-            findViewById(R.id.iv_title).setVisibility(View.VISIBLE);
-            findViewById(R.id.tv_title).setVisibility(View.GONE);
-        } else {
-            findViewById(R.id.iv_title).setVisibility(View.GONE);
-            findViewById(R.id.tv_title).setVisibility(View.VISIBLE);
-            binding.tvTitle.setText(title);
-        }
+
         //툴바 설정하는 부분
+        actionbar.show();
         isExitEnabled = false;
         isBackEnabled = false;
-        actionbar.show();
-        switch (toolbarState) {
-            case INVISIBLE:
-                actionbar.hide();
-            case GREEN_HAMBURGER:
-                toolbar.setBackground(getDrawable(R.color.Primary));
-                binding.tvTitle.setTextColor(getResources().getColor(R.color.White));
-                toolbar.setNavigationIcon(R.drawable.ic_hamburger_white);
-                menu.getItem(0).setIcon(R.drawable.ic_notification_white);
-                menu.getItem(0).setEnabled(true);
-                menu.getItem(0).setVisible(true);
-                break;
-            case GREEN_BACK:
-                toolbar.setBackground(getDrawable(R.color.Primary));
-                binding.tvTitle.setTextColor(getResources().getColor(R.color.White));
-                toolbar.setNavigationIcon(R.drawable.ic_back_white);
-                menu.getItem(0).setEnabled(false);
-                menu.getItem(0).setVisible(false);
-                isBackEnabled = true;
-                break;
-            case GREEN_BACK_EXIT:
-                toolbar.setBackground(getDrawable(R.color.Primary));
-                binding.tvTitle.setTextColor(getResources().getColor(R.color.White));
-                toolbar.setNavigationIcon(R.drawable.ic_back_white);
-                menu.getItem(0).setIcon(R.drawable.ic_exit_white);
-                menu.getItem(0).setEnabled(true);
-                menu.getItem(0).setVisible(true);
-                isBackEnabled = true;
-                isExitEnabled = true;
-                break;
-            case WHITE_HAMBURGER:
-                toolbar.setBackground(getDrawable(R.color.White));
-                binding.tvTitle.setTextColor(getResources().getColor(R.color.Primary));
-                toolbar.setNavigationIcon(R.drawable.ic_hamburger_green);
-                menu.getItem(0).setIcon(R.drawable.ic_notification_green);
-                menu.getItem(0).setEnabled(true);
-                menu.getItem(0).setVisible(true);
-                break;
-            case WHITE_BACK:
-                toolbar.setBackground(getDrawable(R.color.White));
-                binding.tvTitle.setTextColor(getResources().getColor(R.color.Primary));
-                toolbar.setNavigationIcon(R.drawable.ic_back_green);
-                menu.getItem(0).setEnabled(false);
-                menu.getItem(0).setVisible(false);
-                isBackEnabled = true;
-                break;
-            case WHITE_BACK_EXIT:
-                toolbar.setBackground(getDrawable(R.color.White));
-                binding.tvTitle.setTextColor(getResources().getColor(R.color.Primary));
-                toolbar.setNavigationIcon(R.drawable.ic_back_green);
-                menu.getItem(0).setIcon(R.drawable.ic_exit);
-                menu.getItem(0).setEnabled(true);
-                menu.getItem(0).setVisible(true);
-                isBackEnabled = true;
-                isExitEnabled = true;
-                break;
-        }
+        toolbar.animate().alpha(0f).setDuration(250).withEndAction(()->{
+            if (title == null) {
+                findViewById(R.id.iv_title).setVisibility(View.VISIBLE);
+                findViewById(R.id.tv_title).setVisibility(View.GONE);
+            } else {
+                findViewById(R.id.iv_title).setVisibility(View.GONE);
+                findViewById(R.id.tv_title).setVisibility(View.VISIBLE);
+                binding.tvTitle.setText(title);
+            }
+            switch (toolbarState) {
+                case INVISIBLE:
+                    actionbar.hide();
+                case GREEN_HAMBURGER:
+                    toolbar.setBackground(getDrawable(R.color.Primary));
+                    binding.tvTitle.setTextColor(getResources().getColor(R.color.White));
+                    toolbar.setNavigationIcon(R.drawable.ic_hamburger_white);
+                    menu.getItem(0).setIcon(R.drawable.ic_notification_white);
+                    menu.getItem(0).setEnabled(true);
+                    menu.getItem(0).setVisible(true);
+                    break;
+                case GREEN_BACK:
+                    toolbar.setBackground(getDrawable(R.color.Primary));
+                    binding.tvTitle.setTextColor(getResources().getColor(R.color.White));
+                    toolbar.setNavigationIcon(R.drawable.ic_back_white);
+                    menu.getItem(0).setEnabled(false);
+                    menu.getItem(0).setVisible(false);
+                    isBackEnabled = true;
+                    break;
+                case GREEN_BACK_EXIT:
+                    toolbar.setBackground(getDrawable(R.color.Primary));
+                    binding.tvTitle.setTextColor(getResources().getColor(R.color.White));
+                    toolbar.setNavigationIcon(R.drawable.ic_back_white);
+                    menu.getItem(0).setIcon(R.drawable.ic_exit_white);
+                    menu.getItem(0).setEnabled(true);
+                    menu.getItem(0).setVisible(true);
+                    isBackEnabled = true;
+                    isExitEnabled = true;
+                    break;
+                case WHITE_HAMBURGER:
+                    toolbar.setBackground(getDrawable(R.color.White));
+                    binding.tvTitle.setTextColor(getResources().getColor(R.color.Primary));
+                    toolbar.setNavigationIcon(R.drawable.ic_hamburger_green);
+                    menu.getItem(0).setIcon(R.drawable.ic_notification_green);
+                    menu.getItem(0).setEnabled(true);
+                    menu.getItem(0).setVisible(true);
+                    break;
+                case WHITE_BACK:
+                    toolbar.setBackground(getDrawable(R.color.White));
+                    binding.tvTitle.setTextColor(getResources().getColor(R.color.Primary));
+                    toolbar.setNavigationIcon(R.drawable.ic_back_green);
+                    menu.getItem(0).setEnabled(false);
+                    menu.getItem(0).setVisible(false);
+                    isBackEnabled = true;
+                    break;
+                case WHITE_BACK_EXIT:
+                    toolbar.setBackground(getDrawable(R.color.White));
+                    binding.tvTitle.setTextColor(getResources().getColor(R.color.Primary));
+                    toolbar.setNavigationIcon(R.drawable.ic_back_green);
+                    menu.getItem(0).setIcon(R.drawable.ic_exit);
+                    menu.getItem(0).setEnabled(true);
+                    menu.getItem(0).setVisible(true);
+                    isBackEnabled = true;
+                    isExitEnabled = true;
+                    break;
+            }
+            toolbar.animate().alpha(1f).setDuration(250).start();
+        }).start();
+
     }
 
     @Override
