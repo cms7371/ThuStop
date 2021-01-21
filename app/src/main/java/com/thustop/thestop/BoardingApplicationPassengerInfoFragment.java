@@ -1,22 +1,30 @@
 package com.thustop.thestop;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.pixplicity.easyprefs.library.Prefs;
 import com.thustop.R;
 import com.thustop.databinding.FragmentBoardingApplicationPassengerInfoBinding;
 import com.thustop.thestop.model.Route;
 import com.thustop.thestop.model.Ticket;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Calendar;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +32,7 @@ import java.util.Calendar;
  * create an instance of this fragment.
  */
 public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
+    private static final String TAG = "BoardingInfo";
     private FragmentBoardingApplicationPassengerInfoBinding binding;
     private Route route;
     private int boarding_stop_position;
@@ -114,12 +123,42 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
                 year = year_picker;
                 month = month_picker + 1;
                 day = day_picker;
-                date = String.format("%d/%d/%d", year, month, day);
+                date = String.format("%d-%02d-%02d", year, month, day);
                 binding.etvFbapiBoardingDate.setTextColor(getResources().getColor(R.color.TextBlack));
                 binding.etvFbapiBoardingDate.setText(date);
             }
         });
         datePickerDialog.show();
+    }
+
+    private void postTestTicket(){
+        int boarding_via_id = route.boarding_stops.get(boarding_stop_position).id;
+        int alighting_via_id = route.alighting_stops.get(alighting_stop_position).id;
+        ticket = new Ticket(route.id, boarding_via_id, alighting_via_id, date, date);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constant.SERVER_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RestApi api = retrofit.create(RestApi.class);
+
+        Call<Ticket> call = api.postTicket(Prefs.getString(Constant.LOGIN_KEY, ""), ticket);
+        call.enqueue(new Callback<Ticket>() {
+
+            @Override
+            public void onResponse(@NotNull Call<Ticket> call, @NotNull Response<Ticket> response) {
+                if (response.isSuccessful() && response.body() != null){
+                    Toast.makeText(getContext(), "티켓 생성됨", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "티켓 띠용쓰", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<Ticket> call, @NotNull Throwable t) {
+                Toast.makeText(getContext(), "아예 에러남", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 
@@ -131,15 +170,11 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
             @Override
             public void onBoardingConfirm() {
                 //TODO 결제 프로세스 연결 또는 탑승 신청 완료로 연결
-                _listener.addFragment(PaymentFragment.newInstance());
+                postTestTicket();
+/*                _listener.addFragment(PaymentFragment.newInstance());
                 //_listener.setFragment(DoneFragment.newInstance("탑승 신청이 완료되었습니다.", "배차가 확정되면 푸시알림, 또는 문자를 드립니다.",true));
                 Handler H = new Handler(Looper.getMainLooper());
-                H.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        dialog.dismiss();
-                    }
-                }, 500);
+                H.postDelayed(dialog::dismiss, 500);*/
             }
         });
         dialog.show();

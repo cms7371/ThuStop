@@ -5,7 +5,9 @@ import com.thustop.thestop.model.Auth;
 import com.thustop.thestop.model.FCMReg;
 import com.thustop.thestop.model.PageResponse;
 import com.thustop.thestop.model.Route;
+import com.thustop.thestop.model.Ticket;
 import com.thustop.thestop.model.Token;
+import com.thustop.thestop.model.UserDetails;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -21,11 +23,16 @@ public interface RestApi {
     Call<Token> login(@Body Auth auth);
     @POST("api/devices/")
     Call<FCMReg> registerDevice(@Header("Authorization") String auth, @Body FCMReg reg);
+    @GET("rest-auth/user/")
+    Call<UserDetails> getUserDetails(@Header("Authorization") String auth);
 
     @GET("bus/api/routes/")
     Call<PageResponse<Route>> listRoutes(@Header("Authorization") String auth);
     @GET("bus/api/routes/{id}/")
     Call<Route> getRoute(@Header("Authorization") String auth, @Path("id") int id);
 
+    @POST("bus/api/tickets/")
+    Call<Ticket> postTicket(@Header("Authorization") String auth, @Body Ticket ticket);
+    
 }
 

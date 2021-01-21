@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.kakao.sdk.auth.LoginClient;
 import com.kakao.sdk.user.UserApiClient;
@@ -13,6 +14,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.thustop.databinding.FragmentLoginBinding;
 import com.thustop.thestop.model.Auth;
 import com.thustop.thestop.model.Token;
+import com.thustop.thestop.model.UserDetails;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -26,21 +28,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LoginFragment extends FragmentBase {
     private FragmentLoginBinding binding;
     private static final String TAG = "LoginFragment";
-    //@OnClick(R.id.bt_register)
-    /*void goLogin() {
-        _listener.setFragment(RegisterTermsFragment.newInstance());
-    }*/
 
-   /*@OnClick(R.id.bt_login)
-   void startlogin() {
-       String phone_num = binding.etPhone.getText().toString();
-       String password = binding.etPass.getText().toString();
-   }*/
-
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public static LoginFragment newInstance() {
+        LoginFragment fragment = new LoginFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -48,14 +41,11 @@ public class LoginFragment extends FragmentBase {
                              Bundle savedInstanceState) {
         binding = FragmentLoginBinding.inflate(inflater);
         binding.setLoginFrag(this);
-        ButterKnife.bind(this,binding.getRoot());
-
         _listener.setToolbarStyle(_listener.WHITE_HAMBURGER, "로그인");
-
         return binding.getRoot();
     }
 
-    public void OnFindPassClick(View view){
+    public void OnFindPassClick(View view) {
         _listener.addFragment(FindPasswordFragment.newInstance());
     }
 
@@ -105,7 +95,8 @@ public class LoginFragment extends FragmentBase {
                     Prefs.putString(Constant.LOGIN_KEY, "Token " + response.body().key);
                     Log.d(TAG, "onResponse: 서버 로그인 토큰 " + Prefs.getString(Constant.LOGIN_KEY, ""));
                     Utils.registerDevice();
-                    _listener.setFragment(MainFragment.newInstance());
+                    getUserDetail(response.body().key);
+                    //_listener.setFragment(MainFragment.newInstance());
                 } else {
                     Log.e(TAG, "onResponse: Thustop 서버 에러 Null 반환", new NullPointerException());
                     Log.d(TAG, "onResponse: Thustop 서버 에러 " + response.message());
@@ -122,7 +113,7 @@ public class LoginFragment extends FragmentBase {
 
     private void testKakaoRegister(long id) {
         Auth auth = new Auth();
-        auth.password1 = auth.password2 = auth.username =  "kakao" + id;
+        auth.password1 = auth.password2 = auth.username = "kakao" + id;
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constant.SERVER_URL)
@@ -154,11 +145,31 @@ public class LoginFragment extends FragmentBase {
 
     }
 
-    public static LoginFragment newInstance() {
-        LoginFragment fragment = new LoginFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
+    //TODO 테스트 유저 정보 불러오기 수정해야함
+    private void getUserDetail(String token) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constant.SERVER_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RestApi api = retrofit.create(RestApi.class);
+
+        Call<UserDetails> call = api.getUserDetails("Token " + token);
+        call.enqueue(new Callback<UserDetails>() {
+            @Override
+            public void onResponse(@NotNull Call<UserDetails> call, @NotNull Response<UserDetails> response) {
+                if (response.isSuccessful() && (response.body() != null)) {
+                    Toast.makeText(getContext(), response.body().first_name + "로그인 성공", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getContext(), "유저 정보 불러오기 실패" + response.message(), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<UserDetails> call, @NotNull Throwable t) {
+                Log.e(TAG, "onFailure: 유저 정보 불러오기 실패함", t);
+            }
+        });
+
     }
 
 
@@ -276,7 +287,6 @@ public class LoginFragment extends FragmentBase {
         ButterKnife.bind(this,binding.getRoot());
         return binding.getRoot();
     }*/
-
 
 
 }
