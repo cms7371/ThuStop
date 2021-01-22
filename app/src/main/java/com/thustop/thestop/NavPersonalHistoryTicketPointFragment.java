@@ -55,7 +55,7 @@ public class NavPersonalHistoryTicketPointFragment extends FragmentBase  {
         start = Calendar.getInstance();
         end = Calendar.getInstance();
         start.set(2020, 0, 15);
-        end.set(2021,1,26);
+        end.set(2021,2,26);
 
 
         return binding.getRoot();

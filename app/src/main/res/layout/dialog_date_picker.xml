@@ -13,6 +13,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
+        <ImageView
+            android:id="@+id/iv_chevron_l"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tv_year_month"
+            app:layout_constraintEnd_toStartOf="@id/tv_year_month"
+            app:layout_constraintHorizontal_bias="0.45"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_year_month"
+            app:srcCompat="@drawable/ic_chevron_l" />
+
+        <ImageView
+            android:id="@+id/iv_chevron_r"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tv_year_month"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.55"
+            app:layout_constraintStart_toEndOf="@id/tv_year_month"
+            app:layout_constraintTop_toTopOf="@id/tv_year_month"
+            app:srcCompat="@drawable/ic_chevron_r" />
+
         <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_year_month"
             android:layout_width="wrap_content"

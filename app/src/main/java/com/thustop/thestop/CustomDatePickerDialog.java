@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.PagerSnapHelper;
@@ -34,7 +35,7 @@ public class CustomDatePickerDialog extends DialogBase {
     private NotoTextView yearMonth;
     private int width;
     private Calendar start, end;
-    private ArrayList<ArrayList<String>> calendarList;
+    private ArrayList<ArrayList<Integer>> calendarList;
     private int year, month, day;
     private int preposition = -1;
     private NotoTextView preSelectedItem;
@@ -80,7 +81,7 @@ public class CustomDatePickerDialog extends DialogBase {
                     @Override
                     public void onSnapped(int position) {
                         Log.d("스냅", String.valueOf(position));
-                        yearMonth.setText(calendarList.get(position).get(calendarList.get(position).size()-1));
+                        yearMonth.setText(String.format("%d년 %d월",calendarList.get(position).get(0), calendarList.get(position).get(1)));
                     }
                 }
         );
@@ -113,68 +114,86 @@ public class CustomDatePickerDialog extends DialogBase {
 
     }
 
-    public ArrayList<ArrayList<String>> setCalendarList(Calendar start, Calendar end) {
-        ArrayList<ArrayList<String>> Calendars = new ArrayList<>();
+
+    /***********************************************
+     *
+     * @param start : 티켓의 시작일을 받아옴
+     * @param end   : 티켓의 끝나는 일을 받아옴
+     *
+     * Date picker 달력을 생성하기 위한 정보를 설정하는 함수
+     *              dayList라는 배열(달력의 한 페이지 정보)을 갖는 배열(전체 date picker)을 생성(2차원 배열)
+     *              daylist = [년, 월, 공란 수(시작요일 셋팅), 이번 달의 마지막 날, 티켓 시작일, 끝 일, + 운행 안하는 날...]
+     *
+     *
+     * @return 해당 티켓의 가능한 지정범위를 반영하는 달력 정보 배열
+     */
+    public ArrayList<ArrayList<Integer>> setCalendarList(Calendar start, Calendar end) {
+        int startYear;
+        int startMonth;
+        int startDate;
+        ArrayList<ArrayList<Integer>> Calendars = new ArrayList<>();
         // 현재 날짜 셋팅
         Calendar c = Calendar.getInstance();
         // 시작일이 오늘 보다 이전이라면,
-        if (start.before(c)) start = Calendar.getInstance();
-        int startYear = start.get(Calendar.YEAR);
-        int startMonth = start.get(Calendar.MONTH);
+        if (start.before(c)) {
+            startYear = c.get(Calendar.YEAR);
+            startMonth = c.get(Calendar.MONTH);
+            startDate = c.get(Calendar.DATE);
+        } else {
+            startYear = start.get(Calendar.YEAR);
+            startMonth = start.get(Calendar.MONTH);
+            startDate = start.get(Calendar.DATE);
+        }
+
         int endYear = end.get(Calendar.YEAR);
         int endMonth = end.get(Calendar.MONTH);
+        int endDate = end.get(Calendar.DATE);
 
 
         if (startMonth == endMonth) {
             c.set(startYear, startMonth, 1);
             int dayNum = c.get(Calendar.DAY_OF_WEEK);
-            ArrayList<String> dayList = new ArrayList<String>();
-
-            dayList.add("일");
-            dayList.add("월");
-            dayList.add("화");
-            dayList.add("수");
-            dayList.add("목");
-            dayList.add("금");
-            dayList.add("토");
-
-            for(int i = 1; i < dayNum; i++) {
-                dayList.add("");
-            }
+            ArrayList<Integer> dayList = new ArrayList<Integer>();
+            dayList.add(startYear);
+            dayList.add(startMonth+1);
+            dayList.add(dayNum-1);
             int finalDate = c.getActualMaximum(Calendar.DAY_OF_MONTH);
             Log.d("데이오브먼스", String.valueOf(finalDate));
-            for (int i = 0; i < finalDate; i++) {
-                dayList.add(String.valueOf(i + 1));
-            }
+            dayList.add(finalDate);
+            dayList.add(startDate);
+            Log.d("시작일", String.valueOf(startDate));
+            dayList.add(endDate);
             Calendars.add(dayList);
-            dayList.add(startYear+"년 "+(startMonth+1)+"월");
-
             return Calendars;
         } else if(startYear == endYear) {
 
             for (int i = startMonth; i <= endMonth; i++) {
                 c.set(startYear, i, 1);
                 int dayNum = c.get(Calendar.DAY_OF_WEEK);
-                ArrayList<String> dayList = new ArrayList<String>();
+                ArrayList<Integer> dayList = new ArrayList<Integer>();
 
-                dayList.add("일");
-                dayList.add("월");
-                dayList.add("화");
-                dayList.add("수");
-                dayList.add("목");
-                dayList.add("금");
-                dayList.add("토");
 
-                for(int j = 1; j < dayNum; j++) {
-                    dayList.add("");
-                }
+                dayList.add(startYear);
+                dayList.add(i+1);
+                dayList.add(dayNum-1);
                 int finalDate = c.getActualMaximum(Calendar.DAY_OF_MONTH);
                 Log.d("데이오브먼스", String.valueOf(finalDate));
-                for (int j = 0; j < finalDate; j++) {
-                    dayList.add(String.valueOf(j + 1));
+                dayList.add(finalDate);
+                if(i== startMonth) {
+                    dayList.add(startDate);
+                    Log.d("시작일", String.valueOf(startDate));
+                } else {
+                    dayList.add(0);
+                    Log.d("시작일", String.valueOf(0));
+                }
+                if (i == endMonth) {
+                    dayList.add(endDate);
+                    Log.d("끝일", String.valueOf(endDate));
+                } else {
+                    dayList.add(0);
+                    Log.d("끝일", String.valueOf(0));
                 }
                 Calendars.add(dayList);
-                dayList.add(startYear+"년 "+(i+1)+"월");
             }
 
             return Calendars;
@@ -190,8 +209,8 @@ public class CustomDatePickerDialog extends DialogBase {
 
     private class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.CalendarHolder> {
         private Context context;
-        private ArrayList<ArrayList<String>> calendarList;
-        CalendarAdapter(Context context, ArrayList<ArrayList<String>> calendarList) {
+        private ArrayList<ArrayList<Integer>> calendarList;
+        CalendarAdapter(Context context, ArrayList<ArrayList<Integer>> calendarList) {
             this.context = context;
             this.calendarList = calendarList;
         }
@@ -264,24 +283,29 @@ public class CustomDatePickerDialog extends DialogBase {
 
     private class CalendarGridAdapter extends BaseAdapter {
         private Context context;
-        private Date start, end;
-        private Date exception;
-        private ArrayList<String> dayList;
+        private int start, end;
+        private ArrayList<Integer> dayList;
+        private int blankNum;
+        private int finalDate;
+        int date = 1;
 
-
-        CalendarGridAdapter(Context context, ArrayList<String> dayList) {
+        CalendarGridAdapter(Context context, ArrayList<Integer> dayList) {
             this.dayList = dayList;
+            this.blankNum = dayList.get(2);
+            this.finalDate = dayList.get(3);
+            this.start = dayList.get(4);
+            this.end = dayList.get(5);
             this.context = context;
         }
 
         @Override
         public int getCount() {
-            return dayList.size();
+            return (blankNum+finalDate+7);
         }
 
         @Override
         public Object getItem(int i) {
-            return dayList.get(i);
+            return (blankNum+i+7);
         }
 
         @Override
@@ -291,34 +315,109 @@ public class CustomDatePickerDialog extends DialogBase {
 
         @Override
         public boolean isEnabled(int position) {
-            if(position%7 == 0 ||position%7 == 6 || position < 7)
+            if(position%7 == 0 ||position%7 == 6 || position < 7) {
                 return false;
-            else
-                return true;
+            } else {
+                if (start != 0 && end != 0) {
+                    if(position < (7+blankNum+start) || (position > (6+blankNum+end)&&position<(7+blankNum+finalDate))) {
+                        return false;
+                    } else{
+                        return true;
+
+                    }
+                } else if (start != 0) {
+                    if (position < (7 + blankNum + start)) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                } else if (end != 0) {
+                    if((position > (6+blankNum+end)&&position<(7+blankNum+finalDate))) {
+                        return false;
+                    } else{
+                        return true;
+                    }
+                } else {
+                    return true;
+                }
+            }
         }
 
         @Override
         public View getView(int position, View view, ViewGroup viewGroup) {
             NotoTextView tvDate = new NotoTextView(this.context);
-
             tvDate.setGravity(Gravity.CENTER);
-
             tvDate.setLayoutParams(new GridView.LayoutParams(width, width));
             tvDate.setTextSize(12);
-            if(position%7 == 0 ||position%7 == 6 ) {
-                tvDate.setText(dayList.get(position));
+            tvDate.setTextColor(getContext().getResources().getColor(R.color.TextBlack));
+            if (position < 7) {
+                switch (position) {
+                    case 0 :tvDate.setText("일");
+                            tvDate.setTextColor(getContext().getResources().getColor(R.color.AchCF));
+                            tvDate.setEnabled(false);
+                            break;
+                    case 1 :tvDate.setText("월");
+                            break;
+                    case 2 :tvDate.setText("화");
+                            break;
+                    case 3 :tvDate.setText("수");
+                            break;
+                    case 4 : tvDate.setText("목");
+                            break;
+                    case 5 :tvDate.setText("금");
+                            break;
+                    case 6 :tvDate.setText("토");
+                            tvDate.setTextColor(getContext().getResources().getColor(R.color.AchCF));
+                            tvDate.setEnabled(false);
+                            break;
+                }
+            } else if(position < (7+blankNum)) {
+                tvDate.setText("");
+            } else if(position%7 == 0 ||position%7 == 6 ) {
+                tvDate.setText(String.valueOf(date));
                 tvDate.setTextColor(getContext().getResources().getColor(R.color.AchCF));
                 tvDate.setEnabled(false);
-
-            } else if (position == dayList.size()-1) {
-                tvDate.setText("");
+                date++;
+                if (position == 6+blankNum+finalDate) { date = 1;}
             } else {
-                tvDate.setText(dayList.get(position));
-                tvDate.setTextColor(getContext().getResources().getColor(R.color.TextBlack));
+                if (start != 0 && end != 0) {
+                    if(position < (7+blankNum+start) || (position > (6+blankNum+end)&&position<(7+blankNum+finalDate))) {
+                        tvDate.setText(String.valueOf(date));
+                        tvDate.setTextColor(getContext().getResources().getColor(R.color.AchCF));
+                        tvDate.setEnabled(false);
+                    } else{
+                        tvDate.setText(String.valueOf(date));
+                    }
+                } else if (start != 0) {
+                    if (position < (7 + blankNum + start)) {
+                        tvDate.setText(String.valueOf(date));
+                        tvDate.setTextColor(getContext().getResources().getColor(R.color.AchCF));
+                        tvDate.setEnabled(false);
+                    } else {
+                        tvDate.setText(String.valueOf(date));
+                    }
+                } else if (end != 0) {
+                    if((position > (6+blankNum+end)&&position<(7+blankNum+finalDate))) {
+                        tvDate.setText(String.valueOf(date));
+                        tvDate.setTextColor(getContext().getResources().getColor(R.color.AchCF));
+                        tvDate.setEnabled(false);
+                    } else{
+                        tvDate.setText(String.valueOf(date));
+                    }
+                } else {
+                    tvDate.setText(String.valueOf(date));
+                }
+                date++;
+                if (position == 6+blankNum+finalDate) { date = 1;}
             }
+
             return tvDate;
         }
     }
+
+
+
+
 
 
 }
