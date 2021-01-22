@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Ticket {
     public Ticket (int routeID, int boarding_via_id, int alighting_via_id, String start_date, String end_date){
-        this.route = routeID;
+        this.routeID = routeID;
         this.start_via = boarding_via_id;
         this.end_via = alighting_via_id;
         this.start_date = start_date;
@@ -13,7 +13,8 @@ public class Ticket {
     }
     public int id;
     public int userID;
-    public int route;
+    public int routeID;
+    public Route route;
     public int start_via;
     public int end_via;
     public String status;

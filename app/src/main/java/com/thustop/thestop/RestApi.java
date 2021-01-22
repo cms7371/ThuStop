@@ -13,6 +13,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -33,6 +34,8 @@ public interface RestApi {
 
     @POST("bus/api/tickets/")
     Call<Ticket> postTicket(@Header("Authorization") String auth, @Body Ticket ticket);
+    @PATCH("bus/api/tickets/{id}")
+    Call<Ticket> updateTicket(@Header("Authorization") String auth, @Path("id") int id, @Body Ticket ticket);
     
 }
 

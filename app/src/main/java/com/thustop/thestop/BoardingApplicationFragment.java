@@ -8,20 +8,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.pixplicity.easyprefs.library.Prefs;
 import com.thustop.R;
 import com.thustop.databinding.FragmentBoardingApplicationBinding;
 import com.thustop.thestop.model.Route;
+import com.thustop.thestop.model.Ticket;
 import com.thustop.thestop.model.Via;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class BoardingApplicationFragment extends FragmentBase {
     private FragmentBoardingApplicationBinding binding;
     private Route route;
+    private Ticket ticket = null; // 출도착지 수정의 경우에만
     private int boarding_stop_num;
     private int alighting_stop_num;
     private static int phase; //0이면 선택  X, 1이면 출발지 선택완료, 2면 도착지 선택 완료
@@ -38,6 +48,17 @@ public class BoardingApplicationFragment extends FragmentBase {
         fragment.route = route;
         fragment.boarding_stop_num = route.boarding_stops.size();
         fragment.alighting_stop_num = route.alighting_stops.size();
+        return fragment;
+    }
+
+    public static BoardingApplicationFragment newInstance(Ticket ticket) {
+        BoardingApplicationFragment fragment = new BoardingApplicationFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        fragment.ticket = ticket;
+        fragment.route = ticket.route;
+        fragment.boarding_stop_num = ticket.route.boarding_stops.size();
+        fragment.alighting_stop_num = ticket.route.alighting_stops.size();
         return fragment;
     }
 
@@ -60,8 +81,32 @@ public class BoardingApplicationFragment extends FragmentBase {
         return binding.getRoot();
     }
 
-    public void onBtIssOkClick(View view) {
-        _listener.addFragment(BoardingApplicationPassengerInfoFragment.newInstance(route, start_focus, end_focus - boarding_stop_num));
+    public void onOkClick(View view) {
+        if (ticket != null){
+            ticket.start_via = route.vias.get(start_focus).id;
+            ticket.end_via = route.vias.get(end_focus).id;
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(Constant.SERVER_URL).addConverterFactory(GsonConverterFactory.create()).build();
+            RestApi api = retrofit.create(RestApi.class);
+            Call<Ticket> call = api.updateTicket(Prefs.getString(Constant.LOGIN_KEY, ""), ticket.id, ticket);
+            call.enqueue(new Callback<Ticket>() {
+                @Override
+                public void onResponse(Call<Ticket> call, Response<Ticket> response) {
+                    if (response.isSuccessful() && response.body() != null)
+                        _listener.setFragment(DoneFragment.newInstance("출도착지 변경이 완료되었습니다.", "", false));
+                    else {
+                        Toast.makeText(getContext(), "서버에 에러가 발생했습니다. 고객센터로 문의해주세요", Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "onResponse: 티켓 업데이트 서버 에러 발생" + response.message(), new Throwable());
+                    }
+                }
+                @Override
+                public void onFailure(Call<Ticket> call, Throwable t) {
+                    Toast.makeText(getContext(), "서버에 에러가 발생했습니다. 고객센터로 문의해주세요", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "onFailure: 티켓 업데이트 서버 에러 발생", t);
+                }
+            });
+        } else
+            _listener.addFragment(BoardingApplicationPassengerInfoFragment.newInstance(route, start_focus, end_focus - boarding_stop_num));
     }
 
     private void updateFragmentPhase() {

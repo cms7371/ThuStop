@@ -369,7 +369,11 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         //제목을 설정하는 부분 null일 시 메인 타이틀
 
         //툴바 설정하는 부분
-        actionbar.show();
+        if (toolbarState == INVISIBLE)
+            actionbar.hide();
+        else
+            actionbar.show();
+
         isExitEnabled = false;
         isBackEnabled = false;
         toolbar.animate().alpha(0f).setDuration(250).withEndAction(()->{
