@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.Certification;
 import com.thustop.R;
 import com.thustop.databinding.FragmentRegisterVerificationBinding;
+import com.thustop.thestop.model.Auth;
 
 import java.io.IOException;
 
@@ -38,24 +40,26 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
 public class RegisterVerificationFragment extends FragmentBase {
     // Databinding
     FragmentRegisterVerificationBinding binding;
-
     InputMethodManager imm;
-
-    // Set timer for identity verification
-    final int TIME = 180*1000; //3minutes
-    final int COUNT_INTERVAL = 1000; //count interval is 1sec
-    // set textview showing timer
-    CountDownTimer countDownTimer;
-
+    Auth auth;
+    private final static String TAG = "VerificationFragment";
 
     public RegisterVerificationFragment() {
         // Required empty public constructor
     }
 
-
     public static RegisterVerificationFragment newInstance() {
         RegisterVerificationFragment fragment = new RegisterVerificationFragment();
         Bundle args = new Bundle();
+        fragment.auth = null;
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public static RegisterVerificationFragment newInstance(Auth auth){
+        RegisterVerificationFragment fragment = new RegisterVerificationFragment();
+        Bundle args = new Bundle();
+        fragment.auth = auth;
         fragment.setArguments(args);
         return fragment;
     }
@@ -73,7 +77,77 @@ public class RegisterVerificationFragment extends FragmentBase {
         binding.setIDVerfrag(this);
 
         imm = (InputMethodManager)getActivity().getSystemService(INPUT_METHOD_SERVICE);
-        // use normal adapter
+
+
+        _listener.setToolbarStyle(_listener.WHITE_BACK, "휴대폰 본인인증");
+        WebSettings webSettings = binding.wvCertification.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setBuiltInZoomControls(true);
+        webSettings.setLoadWithOverviewMode(true);
+        webSettings.setDefaultTextEncodingName("UTF-8");
+        webSettings.setDisplayZoomControls(false);
+        binding.wvCertification.setWebChromeClient(new WebChromeClient());
+        binding.wvCertification.setWebViewClient(new WebViewClient());
+        binding.wvCertification.addJavascriptInterface(new JsHandler(), "Android");
+        binding.wvCertification.loadUrl("file:///android_asset/iamport.html");
+
+
+
+        // Inflate the layout for this fragment
+        return binding.getRoot();
+    }
+
+    public class JsHandler {
+        public IamportClient iamportClient;
+        private Context context;
+
+        public JsHandler(){
+            iamportClient = new IamportClient(Constant.IAMPORT_API_KEY, Constant.IAMPORT_API_SECRET);
+
+        }
+
+        @JavascriptInterface
+        public void getData(String impUid) throws IOException, IamportResponseException {
+            Certification data =  iamportClient.certificationByImpUid(impUid).getResponse();
+            if (auth != null)
+                kakaoRegister(data);
+            else
+                basicRegister(data);
+            Toast.makeText(getContext(), data.getName() + data.getPhone(), Toast.LENGTH_LONG).show();
+            //TODO 핸드폰 번호 받을 수 있도록 문의해야함 후....
+
+
+        }
+
+        @JavascriptInterface
+        public void onFailure(String msg) {
+            Toast.makeText(getContext(), "본인인증에 에러가 발생했습니다. 계속 문제 발생 시 고객센터에 문의 바랍니다.", Toast.LENGTH_LONG).show();
+            Log.e(TAG, "onFailure: ", new Throwable(msg));
+            _listener.setFragment(MainFragment.newInstance());
+        }
+    }
+
+    public void kakaoRegister(Certification data){
+
+    }
+
+    public void basicRegister(Certification data){
+
+    }
+
+    public void certificationToAuth(Certification cert, Auth auth){
+        if (auth.username == null)
+            auth.username = cert.getPhone();
+        auth.name = cert.getName();
+        auth.phone = cert.getPhone();
+        auth.gender = cert.getGender();
+        auth.birth = cert.getBirth().toString();
+    }
+}
+
+//삭제 예정 코드
+//onCreateView
+/*      // use normal adapter
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.support_simple_spinner_dropdown_item,(String[])getResources().getStringArray(R.array.nationality));
         // use custom adapter for set hint for spinner
         MySpinnerAdapter adapter1 = new MySpinnerAdapter(getActivity(), R.layout.support_simple_spinner_dropdown_item,(String[])getResources().getStringArray(R.array.agency));
@@ -124,25 +198,7 @@ public class RegisterVerificationFragment extends FragmentBase {
             }
         });
 
-        _listener.setToolbarStyle(_listener.WHITE_BACK, "휴대폰 본인인증");
-        WebSettings webSettings = binding.wvCertification.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setBuiltInZoomControls(true);
-        webSettings.setLoadWithOverviewMode(true);
-        webSettings.setDefaultTextEncodingName("UTF-8");
-        webSettings.setDisplayZoomControls(false);
-        binding.wvCertification.setWebChromeClient(new WebChromeClient());
-        binding.wvCertification.setWebViewClient(new WebViewClient());
-        binding.wvCertification.addJavascriptInterface(new JsHandler(getContext()), "Android");
-        binding.wvCertification.loadUrl("file:///android_asset/iamport.html");
-
-
-
-        // Inflate the layout for this fragment
-        return binding.getRoot();
-    }
-
-    // 인증번호 보내기 버튼 클릭
+        // 인증번호 보내기 버튼 클릭
     public void onSendClick(View view) {
         // 전화번호 유효확인, 인증번호 시스템 연결
         //정상적일때 가정하고 타이머 가동
@@ -203,25 +259,4 @@ public class RegisterVerificationFragment extends FragmentBase {
 
             }
         }.start();
-    }
-
-    public class JsHandler {
-        public IamportClient iamportClient;
-        private Context context;
-
-        public JsHandler(Context context){
-            iamportClient = new IamportClient(Constant.IAMPORT_API_KEY, Constant.IAMPORT_API_SECRET);
-            this.context = context;
-        }
-
-        @JavascriptInterface
-        public Certification getData(String impUid) throws IOException, IamportResponseException {
-            Certification data =  iamportClient.certificationByImpUid(impUid).getResponse();
-            Toast.makeText(context, "사용자 이름 : " + data.getName(), Toast.LENGTH_LONG).show();
-            return data;
-        }
-
-
-    }
-
-}
+    }*/

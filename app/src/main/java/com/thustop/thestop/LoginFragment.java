@@ -13,12 +13,12 @@ import com.kakao.sdk.user.UserApiClient;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.thustop.databinding.FragmentLoginBinding;
 import com.thustop.thestop.model.Auth;
+import com.thustop.thestop.model.Login;
 import com.thustop.thestop.model.Token;
 import com.thustop.thestop.model.UserDetails;
 
 import org.jetbrains.annotations.NotNull;
 
-import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -65,7 +65,7 @@ public class LoginFragment extends FragmentBase {
                         Log.e(TAG, "사용자 정보 요청 실패", meError);
                     } else {
                         Log.i(TAG, user.toString());
-                        testKakaoLogin(user.getId());
+                        kakaoLogin(user.getId());
                     }
                     return null;
                 });
@@ -75,8 +75,8 @@ public class LoginFragment extends FragmentBase {
 
     }
 
-    private void testKakaoLogin(long ID) {
-        Auth auth = new Auth();
+    private void kakaoLogin(long ID) {
+        Login auth = new Login();
         auth.password = auth.username = "kakao" + ID;
 
         //retrofit 객체 선언
@@ -87,7 +87,6 @@ public class LoginFragment extends FragmentBase {
         RestApi api = retrofit.create(RestApi.class);
 
         Call<Token> call = api.login(auth);
-        Log.d(TAG, "testKakaoLogin: 서버 로그인 요청" + auth.username + auth.password);
         call.enqueue(new Callback<Token>() {
             @Override
             public void onResponse(@NotNull Call<Token> call, @NotNull Response<Token> response) {

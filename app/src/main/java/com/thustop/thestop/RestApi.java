@@ -3,6 +3,7 @@ package com.thustop.thestop;
 
 import com.thustop.thestop.model.Auth;
 import com.thustop.thestop.model.FCMReg;
+import com.thustop.thestop.model.Login;
 import com.thustop.thestop.model.PageResponse;
 import com.thustop.thestop.model.Route;
 import com.thustop.thestop.model.Ticket;
@@ -21,7 +22,7 @@ public interface RestApi {
     @POST("rest-auth/registration/")
     Call<Token> register(@Body Auth auth);
     @POST("rest-auth/login/")
-    Call<Token> login(@Body Auth auth);
+    Call<Token> login(@Body Login login);
     @POST("api/devices/")
     Call<FCMReg> registerDevice(@Header("Authorization") String auth, @Body FCMReg reg);
     @GET("rest-auth/user/")
