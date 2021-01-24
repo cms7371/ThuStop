@@ -3,6 +3,7 @@ package com.thustop.thestop;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -149,7 +150,8 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
                 if (response.isSuccessful() && response.body() != null){
                     Toast.makeText(getContext(), "티켓 생성됨", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getContext(), "티켓 띠용쓰", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "티켓 생성실패", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "onResponse: 티켓 생성 실패" + response.message());
                 }
             }
 

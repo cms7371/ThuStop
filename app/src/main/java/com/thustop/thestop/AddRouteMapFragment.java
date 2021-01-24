@@ -35,10 +35,6 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
     private boolean isStart;
     private boolean isDragged = false;
     private GpsTracker gpsTracker = null;
-    private MapPOIItem gpsMarker = null;
-    private static final int GPS_ENABLE_REQUEST_CODE = 2001;
-    private static final int PERMISSIONS_REQUEST_CODE = 100;
-    String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
 
     MapReverseGeoCoder.ReverseGeoCodingResultListener resultListener;
 
@@ -66,12 +62,12 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
         binding.map.setMapViewEventListener(this);
         //입력이 null로 fragment가 선언되면(메인에서 넘어올 때) 현재 위치로 초기화 해줍니다.
         if (startLocation == null) {
-            if(_listener.getGPSServiceStatus()){
+            if (_listener.getGPSServiceStatus()) {
                 startLocation = new Address();
                 endLocation = new Address();
                 getCurrentLocation(startLocation);
                 getCurrentLocation(endLocation);
-            } else{
+            } else {
                 startLocation = Address.newInstance(null, 37.56667, 126.97847);
                 endLocation = Address.newInstance(null, 37.56667, 126.97847);
             }
@@ -91,6 +87,9 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
             binding.map.setMapCenterPoint(
                     MapPoint.mapPointWithGeoCoord(startLocation.getLatitude(), startLocation.getLongitude()), true);
         }
+        if (gpsTracker == null)
+            gpsTracker = new GpsTracker(getContext());
+
         return binding.getRoot();
     }
 
@@ -99,6 +98,7 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
         super.onPause();
         binding.map.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOff);
         binding.map.setShowCurrentLocationMarker(false);
+        gpsTracker.stopUsingGPS();
     }
 
     public void onStartClick(View view) {
@@ -138,7 +138,7 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
     }
 
     //TODO:gps 벡터 잘되나 확인!(안되면 마커는 png로 변경)
-    public void onGPSClick(View view){
+    public void onGPSClick(View view) {
         if (_listener.getGPSServiceStatus()) {
             if (binding.map.getCurrentLocationTrackingMode() == MapView.CurrentLocationTrackingMode.TrackingModeOff) {
                 binding.map.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeadingWithoutMapMoving);
@@ -160,7 +160,6 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
     }
 
     public void getCurrentLocation(Address address) {
-        GpsTracker gpsTracker = new GpsTracker(getActivity());
         address.setLatitude(gpsTracker.getLatitude());
         address.setLongitude(gpsTracker.getLongitude());
     }
@@ -197,9 +196,6 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
     }
 
 
-
-
-
     @Override
     public void onMapViewInitialized(MapView mapView) {
 
@@ -207,7 +203,7 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
 
     @Override
     public void onMapViewCenterPointMoved(MapView mapView, MapPoint mapPoint) {
-        isDragged = true;
+
     }
 
     @Override
@@ -242,10 +238,7 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
 
     @Override
     public void onMapViewMoveFinished(MapView mapView, MapPoint mapPoint) {
-        if (isDragged) {
-            centerPoint = binding.map.getMapCenterPoint();
-            getAddr();
-            isDragged = false;
-        }
+        centerPoint = binding.map.getMapCenterPoint();
+        getAddr();
     }
 }

@@ -28,6 +28,9 @@ import com.thustop.thestop.model.PageResponse;
 import com.thustop.thestop.model.Route;
 import com.thustop.thestop.widgets.NotoTextView;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -58,6 +61,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     private GridView regionGrid;
     private RegionGridAdapter regionAdapter;
     private boolean isRefreshing = false;
+    private GpsTracker gpsTracker = null;
 
 
     public static MainFragment newInstance() {
@@ -134,6 +138,14 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         regionGrid.setAdapter(regionAdapter);
         // Inflate the layout for this fragment
         return binding.getRoot();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (gpsTracker != null) {
+            gpsTracker.stopUsingGPS();
+        }
     }
 
     /**
@@ -267,18 +279,23 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         Call<PageResponse<Route>> call = api.listRoutes(Prefs.getString(Constant.LOGIN_KEY, ""));
         call.enqueue(new Callback<PageResponse<Route>>() {
             @Override
-            public void onResponse(Call<PageResponse<Route>> call, Response<PageResponse<Route>> response) {
+            public void onResponse(@NotNull Call<PageResponse<Route>> call, @NotNull Response<PageResponse<Route>> response) {
                 if (response.isSuccessful() && (response.body() != null)) {
                     routes = response.body().results;
+                    if (_listener.getGPSServiceStatus() && gpsTracker == null)
+                        gpsTracker = new GpsTracker(getContext());
                     for (Route r : routes) {
                         r.initialize();
+                        if (_listener.getGPSServiceStatus())
+                            r.updateMinimumDistance(gpsTracker.getLatitude(), gpsTracker.getLongitude());
                     }
                     Log.d(TAG, "onResponse: 노선 업데이트 됨");
+                    routes.sort(Comparator.comparing(Route::getMinimumDistance));
                     mainAdapter.changeDataSet(routes);
                 }
             }
             @Override
-            public void onFailure(Call<PageResponse<Route>> call, Throwable t) {
+            public void onFailure(@NotNull Call<PageResponse<Route>> call, @NotNull Throwable t) {
                 Log.e(TAG, "RestApi onFailure: 노선 정보 수신 실패", null);
             }
         });

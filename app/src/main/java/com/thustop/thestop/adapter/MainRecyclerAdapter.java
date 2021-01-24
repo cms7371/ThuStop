@@ -1,6 +1,7 @@
 package com.thustop.thestop.adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -118,7 +120,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             ((RouteViewHolder) holder).tvStatus.setText(cnt_route.status);
             ((RouteViewHolder) holder).tvPeople.setText(String.format("%d/%d", cnt_route.cnt_passenger, cnt_route.max_passenger));
             if (cnt_route.status.equals("모집중")) {
-                ((RouteViewHolder) holder).tvStatus.setBackground(context.getDrawable(R.drawable.bg_round12_red));
+                ((RouteViewHolder) holder).tvStatus.setBackground(ContextCompat.getDrawable(context, R.drawable.bg_round12_red));
             }
             //시간 반영
             ((RouteViewHolder) holder).tvDepartureTime.setText(cnt_route.boarding_stops.get(0).time);
@@ -134,13 +136,13 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             if (alighting_stop_num != 2) {
                 ((RouteViewHolder) holder).tvDestination2.setText(cnt_route.getAlightingStopName(alighting_stop_num / 2));
             }
-            ((RouteViewHolder) holder).tvDestination3.setText(cnt_route.getAlightingStopName(boarding_stop_num - 1));
+            ((RouteViewHolder) holder).tvDestination3.setText(cnt_route.getAlightingStopName(alighting_stop_num - 1));
         } else if (isFreeTicket && holder instanceof TitleViewHolder) {
             ((TitleViewHolder) holder).title.setText("탑승 가능 노선");
-            ((TitleViewHolder) holder).title.setTextColor(context.getResources().getColor(R.color.TextBlack));
+            ((TitleViewHolder) holder).title.setTextColor(ContextCompat.getColor(context, R.color.TextBlack));
         } else if ((data != null) && (position == (data.size() + 2)) && (holder instanceof TitleViewHolder)) {
-            ((TitleViewHolder) holder).layout.setBackground(context.getDrawable(R.color.Primary));
-            ((TitleViewHolder) holder).title.setTextColor(context.getResources().getColor(R.color.White));
+            ((TitleViewHolder) holder).layout.setBackground(ContextCompat.getDrawable(context, R.color.Primary));
+            ((TitleViewHolder) holder).title.setTextColor(ContextCompat.getColor(context, R.color.White));
             ((TitleViewHolder) holder).title.setText(R.string.business_information_content);
             ((TitleViewHolder) holder).title.setTextSize(12);
             //TODO 메인화면 사업자 표시용 코드, 없애야함.
