@@ -56,9 +56,9 @@ public class BoardingApplicationFragment extends FragmentBase {
         Bundle args = new Bundle();
         fragment.setArguments(args);
         fragment.ticket = ticket;
-        fragment.route = ticket.route;
-        fragment.boarding_stop_num = ticket.route.boarding_stops.size();
-        fragment.alighting_stop_num = ticket.route.alighting_stops.size();
+        fragment.route = ticket.route_obj;
+        fragment.boarding_stop_num = ticket.route_obj.boarding_stops.size();
+        fragment.alighting_stop_num = ticket.route_obj.alighting_stops.size();
         return fragment;
     }
 

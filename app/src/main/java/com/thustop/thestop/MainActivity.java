@@ -41,6 +41,8 @@ import com.thustop.thestop.intro.IntroBaseFragment;
 
 import java.util.Objects;
 
+import kr.co.bootpay.BootpayAnalytics;
+
 
 /*
  * Copyright (c) 2019 by ThusTop INC. all rights reserved
@@ -107,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             Log.d(TAG, "onCreate: FCM 등록 시도");
             Utils.registerDevice();
         }
+        BootpayAnalytics.init(this, Constant.BOOTPAY_KEY);
         Log.d(TAG, "onCreate: GPSServiceStatus is " + GPSServiceStatus);
         checkFirstRun();
     }

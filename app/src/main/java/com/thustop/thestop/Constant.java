@@ -8,6 +8,7 @@ public class Constant {
     public final static String PLACES_API_KEY = "AIzaSyALQ21GnW2L862VunvAGREdVli1hlD1mBk";
     public final static String IAMPORT_API_KEY = "6610051266560498";
     public final static String IAMPORT_API_SECRET = "t4uube8QSfVVL5crHK6Me4FeKPnZV5Vp9pUkE2bwh6r3cEvTpBGDGlSqafq6klwuLqOpt0WL7oOj2jcr";
+    public final static String BOOTPAY_KEY = "600e6cd75b2948002751ec88";
     public final static String FRAGMENT = "fragment";
     public static final String FID = "fid";
     public static final String STOP = "stop";

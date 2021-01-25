@@ -60,6 +60,8 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
         _listener.setToolbarStyle(_listener.INVISIBLE, "");
         isStart = true;
         binding.map.setMapViewEventListener(this);
+        if (_listener.getGPSServiceStatus() && gpsTracker == null)
+            gpsTracker = new GpsTracker(getContext());
         //입력이 null로 fragment가 선언되면(메인에서 넘어올 때) 현재 위치로 초기화 해줍니다.
         if (startLocation == null) {
             if (_listener.getGPSServiceStatus()) {
@@ -68,8 +70,8 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
                 getCurrentLocation(startLocation);
                 getCurrentLocation(endLocation);
             } else {
-                startLocation = Address.newInstance(null, 37.56667, 126.97847);
-                endLocation = Address.newInstance(null, 37.56667, 126.97847);
+                startLocation = Address.newInstance("", 37.56667, 126.97847);
+                endLocation = Address.newInstance("", 37.56667, 126.97847);
             }
 
         }
@@ -87,8 +89,7 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
             binding.map.setMapCenterPoint(
                     MapPoint.mapPointWithGeoCoord(startLocation.getLatitude(), startLocation.getLongitude()), true);
         }
-        if (gpsTracker == null)
-            gpsTracker = new GpsTracker(getContext());
+
 
         return binding.getRoot();
     }
@@ -160,8 +161,10 @@ public class AddRouteMapFragment extends FragmentBase implements MapView.MapView
     }
 
     public void getCurrentLocation(Address address) {
-        address.setLatitude(gpsTracker.getLatitude());
-        address.setLongitude(gpsTracker.getLongitude());
+        if (gpsTracker != null){
+            address.setLatitude(gpsTracker.getLatitude());
+            address.setLongitude(gpsTracker.getLongitude());
+        }
     }
 
     public void getAddr() {

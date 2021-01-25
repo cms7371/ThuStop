@@ -80,6 +80,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         binding = FragmentMainBinding.inflate(inflater);
         binding.setMainfrag(this);
         if (_listener.getGPSServiceStatus() == null) {
+            _listener.setGPSServiceStatus(false);
             checkRunTimePermission();
         }
         colorText(binding.tvLocal1, R.string.tv_local1_color, getResources().getColor(R.color.Primary));

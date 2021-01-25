@@ -56,14 +56,14 @@
             android:id="@+id/tv_mrv_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
             android:text="10/16"
-            android:textColor="#b4b4b4"
-            android:textSize="11sp"
-            app:layout_constraintBottom_toBottomOf="@id/tv_mrv_state"
-            app:layout_constraintStart_toEndOf="@id/tv_mrv_state"
-            app:layout_constraintTop_toTopOf="@id/tv_mrv_state"
-            app:notoTextStyle="medium" />
+            android:textColor="@color/TextGray"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:notoTextStyle="regular" />
 
         <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_mrv_time_departure"
@@ -213,6 +213,16 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:notoTextStyle="regular" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_mrv_num"
+            app:layout_constraintEnd_toStartOf="@+id/tv_mrv_num"
+            app:layout_constraintTop_toTopOf="@+id/tv_mrv_num"
+            app:srcCompat="@drawable/ic_portrait_thin" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
