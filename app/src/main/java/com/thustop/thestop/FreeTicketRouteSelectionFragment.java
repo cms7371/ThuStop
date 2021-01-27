@@ -67,7 +67,7 @@ public class FreeTicketRouteSelectionFragment extends FragmentBase implements Ma
                         for (Route r : routes) {
                             r.initialize();
                         }
-                        mainAdapter.changeDataSet(routes);
+                        mainAdapter.updateRoutes(routes);
                     }
                 }
                 @Override

@@ -35,6 +35,8 @@ public interface RestApi {
 
     @POST("bus/api/tickets/")
     Call<Ticket> postTicket(@Header("Authorization") String auth, @Body Ticket ticket);
+    @GET("bus/api/tickets/")
+    Call<PageResponse<Ticket>> getTickets(@Header("Authorization") String auth);
     @PATCH("bus/api/tickets/{id}")
     Call<Ticket> updateTicket(@Header("Authorization") String auth, @Path("id") int id, @Body Ticket ticket);
     

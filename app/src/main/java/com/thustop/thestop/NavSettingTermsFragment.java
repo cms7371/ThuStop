@@ -2,6 +2,7 @@ package com.thustop.thestop;
 
 import android.os.Bundle;
 
+import androidx.annotation.IntDef;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -21,6 +22,15 @@ public class NavSettingTermsFragment extends FragmentBase {
     int position;
 
     private static final String ARG_PARAM1 = "param1";
+    public static final int SERVICE = 0;
+    public static final int PERSONAL_INFO = 1;
+    public static final int MARKETING = 2;
+
+    @IntDef({SERVICE, PERSONAL_INFO, MARKETING})
+    public @interface contentsType{
+    }
+
+
 
 
     public static NavSettingTermsFragment newInstance(int position) {
@@ -49,15 +59,15 @@ public class NavSettingTermsFragment extends FragmentBase {
         return binding.getRoot();
     }
 
-    public void textSetting(int position) {
+    public void textSetting(@contentsType int contentType) {
         switch (position) {
             case 0:
-                binding.tvTermsContainer.setText(R.string.service_terms_content);
-                _listener.setToolbarStyle(_listener.WHITE_BACK, getString(R.string.tv_service_terms));
+                binding.tvTermsContainer.setText(R.string.terms_of_service_content);
+                _listener.setToolbarStyle(_listener.WHITE_BACK, "서비스 이용약관");
                 break;
             case 1:
-                binding.tvTermsContainer.setText(R.string.location_terms_content);
-                _listener.setToolbarStyle(_listener.WHITE_BACK, getString(R.string.tv_location_terms));
+                binding.tvTermsContainer.setText(R.string.terms_of_personal_info_content);
+                _listener.setToolbarStyle(_listener.WHITE_BACK, "개인정보 보호정책");
                 break;
             case 2:
                 binding.tvTermsContainer.setText(R.string.personal_data_policies_content);

@@ -1,7 +1,6 @@
 package com.thustop.thestop.adapter;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +14,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.thustop.R;
 import com.thustop.thestop.model.Route;
+import com.thustop.thestop.model.Ticket;
 
 import java.util.List;
+import java.util.Locale;
 
 //Adapter for recyclerview in main fragment. There are 3 kinds of items, button for new route,
 //title to display current location, route for bus operation information
 public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     //It stores routes data to be displayed.
-    private List<Route> data;
+    private List<Route> routes;
+    private List<Ticket> tickets;
     private Context context;
     private boolean isFreeTicket;
     private int routeOffset;
@@ -43,7 +45,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public MainRecyclerAdapter(Context context, boolean isFreeTicket, List<Route> in, OnListItemSelectedInterface listener) {
         this.context = context;
         this.isFreeTicket = isFreeTicket;
-        this.data = in;
+        this.routes = in;
         this.mListener = listener;
         if (isFreeTicket)
             routeOffset = 1;
@@ -53,15 +55,18 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
 
-    public void changeDataSet(List<Route> data) {
-        if (this.data != null) {
-            this.data = null;
-            notifyDataSetChanged();
+    public void updateRoutes(List<Route> data) {
+        if (this.routes != null) {
+            notifyItemRangeRemoved(routeOffset, this.routes.size());
         }
-        this.data = data;
-        for (int i = 0; i < data.size(); i++) {
-            notifyItemInserted(i + routeOffset);
-        }
+        this.routes = data;
+        notifyItemRangeInserted(routeOffset, this.routes.size());
+    }
+
+    public void updateTickets(List<Ticket> tickets){
+        this.tickets = tickets;
+        notifyItemRemoved(0);
+        notifyItemInserted(0);
     }
 
 
@@ -76,12 +81,14 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 return VIEW_TYPE_ROUTE;
         } else {
             if (position == 0) {
-                return VIEW_TYPE_TICKET; //TODO 티켓 class에 따라 버튼을 만들어야 할 수도 있음
-            } /*else if (position == 0) {
-            return VIEW_TYPE_BUTTON;
-        }*/ else if (position == 1) {
+                //TODO 티켓 class에 따라 버튼을 만들어야 할 수도 있음
+                if (tickets == null)
+                    return VIEW_TYPE_BUTTON;
+                else
+                    return VIEW_TYPE_TICKET;
+            } else if (position == 1) {
                 return VIEW_TYPE_TITLE;
-            } else if (position == (data.size() + 2)) {
+            } else if (position == (routes.size() + 2)) {
                 return VIEW_TYPE_TITLE; //TODO 이거도 사업자 정보 지워야함
             } else if (position >= 2) {
                 return VIEW_TYPE_ROUTE;
@@ -112,13 +119,13 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof RouteViewHolder) {
-            Route cnt_route = data.get(position - routeOffset);
+       if (holder instanceof RouteViewHolder) {
+            Route cnt_route = routes.get(position - routeOffset);
             int boarding_stop_num = cnt_route.boarding_stops.size();
             int alighting_stop_num = cnt_route.alighting_stops.size();
             ((RouteViewHolder) holder).tvName.setText(cnt_route.name);
             ((RouteViewHolder) holder).tvStatus.setText(cnt_route.status);
-            ((RouteViewHolder) holder).tvPeople.setText(String.format("%d/%d", cnt_route.cnt_passenger, cnt_route.max_passenger));
+            ((RouteViewHolder) holder).tvPeople.setText(String.format(Locale.KOREA,"%d/%d", cnt_route.cnt_passenger, cnt_route.max_passenger));
             if (cnt_route.status.equals("모집중")) {
                 ((RouteViewHolder) holder).tvStatus.setBackground(ContextCompat.getDrawable(context, R.drawable.bg_round12_red));
             }
@@ -140,7 +147,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         } else if (isFreeTicket && holder instanceof TitleViewHolder) {
             ((TitleViewHolder) holder).title.setText("탑승 가능 노선");
             ((TitleViewHolder) holder).title.setTextColor(ContextCompat.getColor(context, R.color.TextBlack));
-        } else if ((data != null) && (position == (data.size() + 2)) && (holder instanceof TitleViewHolder)) {
+        } else if ((routes != null) && (position == (routes.size() + 2)) && (holder instanceof TitleViewHolder)) {
             ((TitleViewHolder) holder).layout.setBackground(ContextCompat.getDrawable(context, R.color.Primary));
             ((TitleViewHolder) holder).title.setTextColor(ContextCompat.getColor(context, R.color.White));
             ((TitleViewHolder) holder).title.setText(R.string.business_information_content);
@@ -154,16 +161,16 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public int getItemCount() {
         if (isFreeTicket) {
-            if (data == null)
+            if (routes == null)
                 return 1;
             else
-                return data.size() + 1;
+                return routes.size() + 1;
         } else {
-            if (data == null)
+            if (routes == null)
                 return 2; //TODO 이 값은 테스트를 위한 값임 route 클래스 넣고 나중에 지울 수 있도록 합니다.
             else
                 //TODO 마지막 사업자 정보 지워야함
-                return data.size() + 3;
+                return routes.size() + 3;
         }
     }
 
@@ -188,7 +195,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         public TicketRecyclerHolder(@NonNull View itemView) {
             super(itemView);
             this.rv = itemView.findViewById(R.id.rv_tickets);
-            this.adapter = new TicketRecyclerAdapter(context, null, true); //TODO null말고 ticket array 넣을 것!
+            this.adapter = new TicketRecyclerAdapter(context, tickets, true); //TODO null말고 ticket array 넣을 것!
             adapter.setListener((view, position) -> mListener.onItemSelected(view, 0, position));
             this.rv.setAdapter(this.adapter);
             PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
@@ -250,46 +257,5 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             });
         }
     }
-
-    /*public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketViewHolder> {
-        private ArrayList<Ticket> tickets;
-
-        TicketAdapter(ArrayList<Ticket> in) {
-            this.tickets = in;
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull TicketAdapter.TicketViewHolder holder, int position) {
-            //TODO 위치에 따라 ticket 클래스 값 할당, 리스너 등록
-        }
-
-        private class TicketViewHolder extends RecyclerView.ViewHolder {
-            public TicketViewHolder(@NonNull View itemView) {
-                super(itemView);
-                itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        //TODO 테스트를 위해 바꿔놓은거 원래대로
-                        mListener.onItemSelected(view, 0, -1);
-                        //mListener.onItemSelected(view, 0, getAdapterPosition());
-                    }
-                });
-                //TODO 아이템들 로컬 변수로 묶어줄 것
-            }
-        }
-
-        @NonNull
-        @Override
-        public TicketViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View itemView = LayoutInflater.from(context).inflate(R.layout.item_ticket, parent, false);
-            return new TicketViewHolder(itemView);
-        }
-
-        @Override
-        public int getItemCount() {
-            return 3; //TODO 티켓 갯수에 따라 길이 바꿔주도록 해야합니다.
-        }
-
-    }*/
 
 }

@@ -46,9 +46,9 @@ public class RegisterTermsFragment extends FragmentBase implements CompoundButto
         _listener.setToolbarStyle(_listener.WHITE_BACK, "");
 
         binding.cbAgreeAll.setOnCheckedChangeListener(this);
-        binding.cbAgree1.setOnCheckedChangeListener(this);
-        binding.cbAgree2.setOnCheckedChangeListener(this);
-        binding.cbAgree3.setOnCheckedChangeListener(this);
+        binding.cbTermsOfService.setOnCheckedChangeListener(this);
+        binding.cbTermsOfPersonalInfo.setOnCheckedChangeListener(this);
+        binding.cbTermsOfMarketing.setOnCheckedChangeListener(this);
         binding.cbAgree4.setOnCheckedChangeListener(this);
         binding.cbAgree5.setOnCheckedChangeListener(this);
         binding.cbAgree6.setOnCheckedChangeListener(this);
@@ -58,23 +58,33 @@ public class RegisterTermsFragment extends FragmentBase implements CompoundButto
 
     public void onAgreeClick(View view) {_listener.addFragment(RegisterVerificationFragment.newInstance());}
 
+
+
+    public void onTermsOfServiceClick(View view) {
+        _listener.addFragment(NavSettingTermsFragment.newInstance(NavSettingTermsFragment.SERVICE));
+    }
+
+    public void onTermsOfPersonalInfoClick(View view) {
+        _listener.addFragment(NavSettingTermsFragment.newInstance(NavSettingTermsFragment.PERSONAL_INFO));
+    }
+
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
         switch (compoundButton.getId()){
             case R.id.cb_agree_all :
                 if(binding.cbAgreeAll.isChecked()) {
-                    binding.cbAgree1.setChecked(true);
-                    binding.cbAgree2.setChecked(true);
-                    binding.cbAgree3.setChecked(true);
+                    binding.cbTermsOfService.setChecked(true);
+                    binding.cbTermsOfPersonalInfo.setChecked(true);
+                    binding.cbTermsOfMarketing.setChecked(true);
                     binding.cbAgree4.setChecked(true);
                     binding.cbAgree5.setChecked(true);
                     binding.cbAgree6.setChecked(true);
                     Clickable(true);
                 } else {
                     if(binding.cbAgreeAll.isPressed()){
-                        binding.cbAgree1.setChecked(false);
-                        binding.cbAgree2.setChecked(false);
-                        binding.cbAgree3.setChecked(false);
+                        binding.cbTermsOfService.setChecked(false);
+                        binding.cbTermsOfPersonalInfo.setChecked(false);
+                        binding.cbTermsOfMarketing.setChecked(false);
                         binding.cbAgree4.setChecked(false);
                         binding.cbAgree5.setChecked(false);
                         binding.cbAgree6.setChecked(false);
@@ -83,15 +93,15 @@ public class RegisterTermsFragment extends FragmentBase implements CompoundButto
                 }
                 break;
             default:
-                    binding.cbAgreeAll.setChecked(binding.cbAgree1.isChecked()
-                            && binding.cbAgree2.isChecked()
-                            && binding.cbAgree3.isChecked()
+                    binding.cbAgreeAll.setChecked(binding.cbTermsOfService.isChecked()
+                            && binding.cbTermsOfPersonalInfo.isChecked()
+                            && binding.cbTermsOfMarketing.isChecked()
                             && binding.cbAgree4.isChecked()
                             && binding.cbAgree5.isChecked()
                             && binding.cbAgree6.isChecked());
-                    Clickable(binding.cbAgree1.isChecked()
-                            && binding.cbAgree2.isChecked()
-                            && binding.cbAgree3.isChecked()
+                    Clickable(binding.cbTermsOfService.isChecked()
+                            && binding.cbTermsOfPersonalInfo.isChecked()
+                            && binding.cbTermsOfMarketing.isChecked()
                             && binding.cbAgree4.isChecked()
                             && binding.cbAgree5.isChecked());
         }

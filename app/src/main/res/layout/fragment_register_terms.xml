@@ -6,6 +6,7 @@
             name="AgreeTermsfrag"
             type="com.thustop.thestop.RegisterTermsFragment" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,13 +23,13 @@
             android:id="@+id/tv_agree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:letterSpacing="-0.1"
             android:text="@string/tv_agree"
             android:textColor="@color/Black"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:letterSpacing="-0.1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/guideline1"
@@ -39,117 +40,130 @@
             android:layout_width="234dp"
             android:layout_height="246dp"
             android:layout_marginTop="27dp"
-            app:srcCompat="@drawable/img_terms"
-            app:layout_constraintTop_toBottomOf="@id/tv_agree"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"            />
+            app:layout_constraintTop_toBottomOf="@id/tv_agree"
+            app:srcCompat="@drawable/img_terms" />
 
         <CheckBox
             android:id="@+id/cb_agree_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:layout_marginStart="50dp"
+            android:layout_marginTop="15dp"
             android:button="@drawable/checkbox_round"
+            android:letterSpacing="-0.1"
             android:paddingStart="10dp"
             android:text="@string/cb_agree_all"
             android:textColor="@color/Black"
             android:textSize="14sp"
-            android:letterSpacing="-0.1"
-            app:notoTextStyle="regular"
-            app:layout_constraintTop_toBottomOf="@id/iv_agree"
+            app:layout_constraintBottom_toTopOf="@id/cb_terms_of_service"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/cb_agree1" />
+            app:layout_constraintTop_toBottomOf="@id/iv_agree"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:notoTextStyle="regular" />
 
 
         <CheckBox
-            android:id="@+id/cb_agree1"
+            android:id="@+id/cb_terms_of_service"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="17dp"
             android:button="@drawable/checkbox_transparent"
+            android:letterSpacing="-0.1"
             android:paddingStart="10dp"
-            android:text="@string/cb_agree1"
+            android:text="@string/cb_terms_of_service"
             android:textColor="@color/TextBlack"
             android:textSize="12sp"
-            android:letterSpacing="-0.1"
-            app:notoTextStyle="regular"
-            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintBottom_toTopOf="@id/cb_terms_of_personal_info"
+            app:layout_constraintStart_toStartOf="@id/cb_agree_all"
             app:layout_constraintTop_toBottomOf="@id/cb_agree_all"
-            app:layout_constraintStart_toStartOf="@id/cb_agree_all"
-            app:layout_constraintBottom_toTopOf="@id/cb_agree2"/>
+            app:layout_constraintVertical_chainStyle="packed"
+            app:notoTextStyle="regular" />
 
 
         <com.thustop.thestop.widgets.NotoTextView
-            android:id="@+id/tv_agree1"
+            android:id="@+id/tv_terms_of_service"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="52dp"
+            android:layout_marginEnd="48dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="3dp"
             android:text="@string/tv_view"
             android:textColor="@color/TextGray"
             android:textSize="11sp"
-            app:notoTextStyle="regular"
+            android:onClick="@{AgreeTermsfrag::onTermsOfServiceClick}"
+            app:layout_constraintBottom_toBottomOf="@id/cb_terms_of_service"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/cb_agree1"
-            app:layout_constraintBottom_toBottomOf="@id/cb_agree1"/>
+            app:layout_constraintTop_toTopOf="@id/cb_terms_of_service"
+            app:layout_constraintVertical_bias="1.0"
+            app:notoTextStyle="regular" />
 
         <CheckBox
-            android:id="@+id/cb_agree2"
+            android:id="@+id/cb_terms_of_personal_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:button="@drawable/checkbox_transparent"
-            android:paddingStart="10dp"
             android:letterSpacing="-0.1"
-            android:text="@string/cb_agree2"
+            android:paddingStart="10dp"
+            android:text="@string/cb_terms_of_personal_info"
             android:textColor="@color/TextBlack"
             android:textSize="12sp"
-            app:notoTextStyle="regular"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintTop_toBottomOf="@id/cb_agree1"
+            app:layout_constraintBottom_toTopOf="@id/cb_terms_of_marketing"
             app:layout_constraintStart_toStartOf="@id/cb_agree_all"
-            app:layout_constraintBottom_toTopOf="@id/cb_agree3"/>
+            app:layout_constraintTop_toBottomOf="@id/cb_terms_of_service"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:notoTextStyle="regular" />
 
         <com.thustop.thestop.widgets.NotoTextView
-            android:id="@+id/tv_agree2"
+            android:id="@+id/tv_terms_of_personal_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="3dp"
             android:text="@string/tv_view"
             android:textColor="@color/TextGray"
             android:textSize="11sp"
-            app:notoTextStyle="regular"
-            app:layout_constraintEnd_toEndOf="@id/tv_agree1"
-            app:layout_constraintTop_toTopOf="@id/cb_agree2"
-            app:layout_constraintBottom_toBottomOf="@id/cb_agree2"/>
+            android:onClick="@{AgreeTermsfrag::onTermsOfPersonalInfoClick}"
+            app:layout_constraintBottom_toBottomOf="@id/cb_terms_of_personal_info"
+            app:layout_constraintEnd_toEndOf="@id/tv_terms_of_service"
+            app:layout_constraintTop_toTopOf="@id/cb_terms_of_personal_info"
+            app:notoTextStyle="regular" />
 
         <CheckBox
-            android:id="@+id/cb_agree3"
+            android:id="@+id/cb_terms_of_marketing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:button="@drawable/checkbox_transparent"
-            android:paddingStart="10dp"
             android:letterSpacing="-0.1"
-            android:text="@string/cb_agree3"
+            android:paddingStart="10dp"
+            android:text="@string/cb_terms_of_marketing"
             android:textColor="@color/TextBlack"
             android:textSize="12sp"
-            app:notoTextStyle="regular"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintTop_toBottomOf="@id/cb_agree2"
+            app:layout_constraintBottom_toTopOf="@id/cb_agree4"
             app:layout_constraintStart_toStartOf="@id/cb_agree_all"
-            app:layout_constraintBottom_toTopOf="@id/cb_agree4"/>
+            app:layout_constraintTop_toBottomOf="@id/cb_terms_of_personal_info"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:notoTextStyle="regular" />
 
         <com.thustop.thestop.widgets.NotoTextView
-            android:id="@+id/tv_agree3"
+            android:id="@+id/tv_terms_of_marketing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="3dp"
             android:text="@string/tv_view"
             android:textColor="@color/TextGray"
             android:textSize="11sp"
-            app:notoTextStyle="regular"
-            app:layout_constraintEnd_toEndOf="@id/tv_agree1"
-            app:layout_constraintTop_toTopOf="@id/cb_agree3"
-            app:layout_constraintBottom_toBottomOf="@id/cb_agree3"/>
+            app:layout_constraintBottom_toBottomOf="@id/cb_terms_of_marketing"
+            app:layout_constraintEnd_toEndOf="@id/tv_terms_of_service"
+            app:layout_constraintTop_toTopOf="@id/cb_terms_of_marketing"
+            app:notoTextStyle="regular" />
 
         <CheckBox
             android:id="@+id/cb_agree4"
@@ -157,27 +171,33 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:button="@drawable/checkbox_transparent"
-            android:paddingStart="10dp"
             android:letterSpacing="-0.1"
+            android:paddingStart="10dp"
             android:text="@string/cb_agree4"
             android:textColor="@color/TextBlack"
             android:textSize="12sp"
-            app:notoTextStyle="regular"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintTop_toBottomOf="@id/cb_agree3"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/cb_agree5"
             app:layout_constraintStart_toStartOf="@id/cb_agree_all"
-            app:layout_constraintBottom_toTopOf="@id/cb_agree5"/>
+            app:layout_constraintTop_toBottomOf="@id/cb_terms_of_marketing"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:notoTextStyle="regular" />
+
         <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_agree4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="3dp"
             android:text="@string/tv_view"
             android:textColor="@color/TextGray"
             android:textSize="11sp"
-            app:notoTextStyle="regular"
-            app:layout_constraintEnd_toEndOf="@id/tv_agree1"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/cb_agree4"
+            app:layout_constraintEnd_toEndOf="@id/tv_terms_of_service"
             app:layout_constraintTop_toTopOf="@id/cb_agree4"
-            app:layout_constraintBottom_toBottomOf="@id/cb_agree4"/>
+            app:notoTextStyle="regular" />
 
         <CheckBox
             android:id="@+id/cb_agree5"
@@ -185,28 +205,33 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:button="@drawable/checkbox_transparent"
-            android:paddingStart="10dp"
             android:letterSpacing="-0.1"
+            android:paddingStart="10dp"
             android:text="@string/cb_agree5"
             android:textColor="@color/TextBlack"
             android:textSize="12sp"
-            app:notoTextStyle="regular"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintTop_toBottomOf="@id/cb_agree4"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/cb_agree6"
             app:layout_constraintStart_toStartOf="@id/cb_agree_all"
-            app:layout_constraintBottom_toTopOf="@id/cb_agree6"/>
+            app:layout_constraintTop_toBottomOf="@id/cb_agree4"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:notoTextStyle="regular" />
 
         <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_agree5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="3dp"
             android:text="@string/tv_view"
             android:textColor="@color/TextGray"
             android:textSize="11sp"
-            app:notoTextStyle="regular"
-            app:layout_constraintEnd_toEndOf="@id/tv_agree1"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/cb_agree5"
+            app:layout_constraintEnd_toEndOf="@id/tv_terms_of_service"
             app:layout_constraintTop_toTopOf="@id/cb_agree5"
-            app:layout_constraintBottom_toBottomOf="@id/cb_agree5"/>
+            app:notoTextStyle="regular" />
 
         <CheckBox
             android:id="@+id/cb_agree6"
@@ -214,28 +239,33 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:button="@drawable/checkbox_transparent"
-            android:paddingStart="10dp"
             android:letterSpacing="-0.1"
+            android:paddingStart="10dp"
             android:text="@string/cb_agree6"
             android:textColor="@color/TextBlack"
             android:textSize="12sp"
-            app:notoTextStyle="regular"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintTop_toBottomOf="@id/cb_agree5"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/bt_agree"
-            app:layout_constraintStart_toStartOf="@id/cb_agree_all"/>
+            app:layout_constraintStart_toStartOf="@id/cb_agree_all"
+            app:layout_constraintTop_toBottomOf="@id/cb_agree5"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:notoTextStyle="regular" />
 
         <com.thustop.thestop.widgets.NotoTextView
             android:id="@+id/tv_agree6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="3dp"
             android:text="@string/tv_view"
             android:textColor="@color/TextGray"
             android:textSize="11sp"
-            app:notoTextStyle="regular"
-            app:layout_constraintEnd_toEndOf="@id/tv_agree1"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/cb_agree6"
+            app:layout_constraintEnd_toEndOf="@id/tv_terms_of_service"
             app:layout_constraintTop_toTopOf="@id/cb_agree6"
-            app:layout_constraintBottom_toBottomOf="@id/cb_agree6"/>
+            app:notoTextStyle="regular" />
 
         <com.thustop.thestop.widgets.NotoButton
             android:id="@+id/bt_agree"

@@ -26,6 +26,7 @@ import com.thustop.thestop.adapter.MainRecyclerAdapter;
 import com.thustop.databinding.FragmentMainBinding;
 import com.thustop.thestop.model.PageResponse;
 import com.thustop.thestop.model.Route;
+import com.thustop.thestop.model.Ticket;
 import com.thustop.thestop.widgets.NotoTextView;
 
 import org.jetbrains.annotations.NotNull;
@@ -62,6 +63,9 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     private RegionGridAdapter regionAdapter;
     private boolean isRefreshing = false;
     private GpsTracker gpsTracker = null;
+
+    private Retrofit retrofit = null;
+    private RestApi restApi = null;
 
 
     public static MainFragment newInstance() {
@@ -156,7 +160,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     public void onItemSelected(View v, int position, int ticket_position) {
         if (position == 0) {
             //TODO 수정하세요 티켓 위치
-            if (true) {
+            if (ticket_position == -1) {
                 _listener.addFragment(AddRouteMapFragment.newInstance(null, null));
             } else {
                 Toast.makeText(getContext(), ticket_position + "번째 티켓 눌림", Toast.LENGTH_SHORT).show();
@@ -190,20 +194,20 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     public void onRefreshClick(View view) {
         if (!isRefreshing) {
             isRefreshing = true;
-            updateRoutes();
-            view.animate().rotation(720f).setDuration(750).setInterpolator(new AccelerateDecelerateInterpolator()).withEndAction(() ->
-                    view.animate().translationX(0).setDuration(500).withEndAction(() ->
-                            view.animate().rotation(1440f).setDuration(750).setInterpolator(new AccelerateDecelerateInterpolator()).withEndAction(() -> {
-                                        isRefreshing = false;
-                                        view.setRotation(0f);
-                                    }
-                            ).start()
-                    ).start()
+            view.animate().rotation(720f).setDuration(750).setInterpolator(new AccelerateDecelerateInterpolator()).withEndAction(() -> {
+                        updateRoutes();
+                        getTickets();
+                        view.animate().translationX(0).setDuration(500).withEndAction(() ->
+                                view.animate().rotation(1440f).setDuration(750).setInterpolator(new AccelerateDecelerateInterpolator()).withEndAction(() -> {
+                                            isRefreshing = false;
+                                            view.setRotation(0f);
+                                        }
+                                ).start()
+                        ).start();
+                    }
             ).start();
         }
     }
-
-
 
 
     /**
@@ -273,11 +277,16 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         }
     }
 
+    private void initializeRestApi() {
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder().baseUrl(Constant.SERVER_URL).addConverterFactory(GsonConverterFactory.create()).build();
+            restApi = retrofit.create(RestApi.class);
+        }
+    }
+
     private void updateRoutes() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constant.SERVER_URL).addConverterFactory(GsonConverterFactory.create()).build();
-        RestApi api = retrofit.create(RestApi.class);
-        Call<PageResponse<Route>> call = api.listRoutes(Prefs.getString(Constant.LOGIN_KEY, ""));
+        initializeRestApi();
+        Call<PageResponse<Route>> call = restApi.listRoutes(Prefs.getString(Constant.LOGIN_KEY, ""));
         call.enqueue(new Callback<PageResponse<Route>>() {
             @Override
             public void onResponse(@NotNull Call<PageResponse<Route>> call, @NotNull Response<PageResponse<Route>> response) {
@@ -292,12 +301,33 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
                     }
                     Log.d(TAG, "onResponse: 노선 업데이트 됨");
                     routes.sort(Comparator.comparing(Route::getMinimumDistance));
-                    mainAdapter.changeDataSet(routes);
+                    mainAdapter.updateRoutes(routes);
                 }
             }
+
             @Override
             public void onFailure(@NotNull Call<PageResponse<Route>> call, @NotNull Throwable t) {
                 Log.e(TAG, "RestApi onFailure: 노선 정보 수신 실패", null);
+            }
+        });
+    }
+
+    private void getTickets() {
+        initializeRestApi();
+        Call<PageResponse<Ticket>> call = restApi.getTickets(Prefs.getString(Constant.LOGIN_KEY, ""));
+        call.enqueue(new Callback<PageResponse<Ticket>>() {
+            @Override
+            public void onResponse(@NotNull Call<PageResponse<Ticket>> call, @NotNull Response<PageResponse<Ticket>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Log.d(TAG, "onResponse: 티켓 로딩 성공" + response.body().results);
+                    mainAdapter.updateTickets(response.body().results);
+                    Toast.makeText(getContext(),"노선 탑승 인원" + response.body().results.get(0).route_obj.cnt_passenger, Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<PageResponse<Ticket>> call, @NotNull Throwable t) {
+
             }
         });
     }

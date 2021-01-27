@@ -95,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/pb_personnel"
+            app:layout_constraintBottom_toTopOf="@+id/pb_ticket_capacity"
             app:layout_constraintEnd_toEndOf="@+id/iv_ticket_departure"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/iv_ticket_departure"
@@ -151,7 +151,7 @@
             app:layout_constraintTop_toTopOf="@id/iv_ticket_destination" />
 
         <ProgressBar
-            android:id="@+id/pb_personnel"
+            android:id="@+id/pb_ticket_capacity"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="199dp"
             android:layout_height="4dp"
@@ -163,14 +163,14 @@
             app:layout_constraintTop_toBottomOf="@+id/iv_ticket_destination" />
 
         <com.thustop.thestop.widgets.NotoTextView
-            android:id="@+id/tv_personnel"
+            android:id="@+id/tv_ticket_capacity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="10/16"
             android:textColor="@color/TextGray"
             android:textSize="9sp"
-            app:layout_constraintBottom_toTopOf="@id/pb_personnel"
-            app:layout_constraintEnd_toEndOf="@id/pb_personnel" />
+            app:layout_constraintBottom_toTopOf="@id/pb_ticket_capacity"
+            app:layout_constraintEnd_toEndOf="@id/pb_ticket_capacity" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
