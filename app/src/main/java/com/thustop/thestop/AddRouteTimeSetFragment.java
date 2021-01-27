@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import com.thustop.databinding.FragmentAddRouteTimeSetBinding;
 import com.thustop.thestop.model.Address;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 /**
@@ -24,6 +25,7 @@ public class AddRouteTimeSetFragment extends FragmentBase implements MainActivit
     String noon;
     final Calendar cal = Calendar.getInstance();
     Address startLocation, endLocation;
+    private static final DecimalFormat FORMATTER = new DecimalFormat("00");
 
     public AddRouteTimeSetFragment() {
         // Required empty public constructor
@@ -77,13 +79,12 @@ public class AddRouteTimeSetFragment extends FragmentBase implements MainActivit
     public void onTimeSetClick(View view) {
         CustomTimePickerDialog timePickerDialog = new CustomTimePickerDialog(getActivity());
         timePickerDialog.setDialogListener(new CustomTimePickerDialog.CustomTimePickerDialogListener() {
-            //TODO : 00 찍히는 거는 해결. 피커 특성상 언어 설정으로 인해 AM PM이 한글로 오전 오후로 나오는데 통일이 낫지 않을까?
             @Override
             public void onOkClick(int hour, int minute, String n) {
                 h = hour;
                 min = minute;
                 noon = n;
-                binding.tvTimePicker.setText(noon+"              "+String.valueOf(h)+"              "+String.valueOf(min));
+                binding.tvTimePicker.setText(noon+"              "+String.valueOf(h)+"              "+String.valueOf(FORMATTER.format(min)));
             }
 
 
@@ -95,13 +96,13 @@ public class AddRouteTimeSetFragment extends FragmentBase implements MainActivit
     private void setCurTime(){
         String n;
         if(cal.get(Calendar.AM_PM) == 0) {
-            n = "AM";
+            n = "오전";
         } else {
-            n = "PM";
+            n = "오후";
         }
         int h = cal.get(Calendar.HOUR);
         int m = (cal.get(Calendar.MINUTE)/10)*10;
-        binding.tvTimePicker.setText(n+"              "+String.valueOf(h)+"              "+String.valueOf(m));
+        binding.tvTimePicker.setText(n+"              "+String.valueOf(h)+"              "+String.valueOf(FORMATTER.format(m)));
 
     }
 

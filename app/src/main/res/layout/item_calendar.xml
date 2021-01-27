@@ -6,7 +6,7 @@
     <GridView
         android:id="@+id/gv_calendar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="258dp"
         android:layout_marginHorizontal="10dp"
         android:numColumns="7"
         android:gravity="center"

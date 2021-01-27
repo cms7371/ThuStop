@@ -15,6 +15,7 @@ import android.widget.GridView;
 import android.widget.Switch;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,6 +40,7 @@ public class CustomDatePickerDialog extends DialogBase {
     private int year, month, day;
     private int preposition = -1;
     private NotoTextView preSelectedItem;
+
 
 
     public CustomDatePickerDialog(@NonNull Context context, Calendar start, Calendar end) {
@@ -208,6 +210,7 @@ public class CustomDatePickerDialog extends DialogBase {
 
 
     private class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.CalendarHolder> {
+        private int maxLow;
         private Context context;
         private ArrayList<ArrayList<Integer>> calendarList;
         CalendarAdapter(Context context, ArrayList<ArrayList<Integer>> calendarList) {
@@ -225,11 +228,8 @@ public class CustomDatePickerDialog extends DialogBase {
         @Override
         public void onBindViewHolder(@NonNull CalendarHolder holder, int position) {
 
-
             CalendarGridAdapter adapter = new CalendarGridAdapter(context, calendarList.get(position));
             holder.gv.setAdapter(adapter);
-
-
         }
 
         @Override
@@ -252,7 +252,7 @@ public class CustomDatePickerDialog extends DialogBase {
                         if (view instanceof NotoTextView) {
                             if (preposition != -1) {
                                 preSelectedItem.setBackgroundResource(R.color.White);
-                                preSelectedItem.setTextColor(context.getResources().getColor(R.color.TextBlack));
+                                preSelectedItem.setTextColor(ContextCompat.getColor(context, R.color.TextBlack));
                             }
                             if (preposition == position) {
                                 preposition = -1;
@@ -260,7 +260,7 @@ public class CustomDatePickerDialog extends DialogBase {
                                 day = 0;
                             } else {
                                 view.setBackgroundResource(R.drawable.bg_round25_green);
-                                ((NotoTextView)view).setTextColor(context.getResources().getColor(R.color.White));
+                                ((NotoTextView)view).setTextColor(ContextCompat.getColor(context, R.color.White));
                                 String ym = yearMonth.getText().toString();
                                 int ymLen = ym.length();
                                 year = Integer.parseInt(ym.substring(0,4));
@@ -349,11 +349,11 @@ public class CustomDatePickerDialog extends DialogBase {
             tvDate.setGravity(Gravity.CENTER);
             tvDate.setLayoutParams(new GridView.LayoutParams(width, width));
             tvDate.setTextSize(12);
-            tvDate.setTextColor(getContext().getResources().getColor(R.color.TextBlack));
+            tvDate.setTextColor(ContextCompat.getColor(context, R.color.TextBlack));
             if (position < 7) {
                 switch (position) {
                     case 0 :tvDate.setText("일");
-                            tvDate.setTextColor(getContext().getResources().getColor(R.color.AchCF));
+                            tvDate.setTextColor(ContextCompat.getColor(context, R.color.AchCF));
                             tvDate.setEnabled(false);
                             break;
                     case 1 :tvDate.setText("월");
@@ -367,7 +367,7 @@ public class CustomDatePickerDialog extends DialogBase {
                     case 5 :tvDate.setText("금");
                             break;
                     case 6 :tvDate.setText("토");
-                            tvDate.setTextColor(getContext().getResources().getColor(R.color.AchCF));
+                            tvDate.setTextColor(ContextCompat.getColor(context, R.color.AchCF));
                             tvDate.setEnabled(false);
                             break;
                 }
@@ -375,7 +375,7 @@ public class CustomDatePickerDialog extends DialogBase {
                 tvDate.setText("");
             } else if(position%7 == 0 ||position%7 == 6 ) {
                 tvDate.setText(String.valueOf(date));
-                tvDate.setTextColor(getContext().getResources().getColor(R.color.AchCF));
+                tvDate.setTextColor(ContextCompat.getColor(context, R.color.AchCF));
                 tvDate.setEnabled(false);
                 date++;
                 if (position == 6+blankNum+finalDate) { date = 1;}
@@ -383,7 +383,7 @@ public class CustomDatePickerDialog extends DialogBase {
                 if (start != 0 && end != 0) {
                     if(position < (7+blankNum+start) || (position > (6+blankNum+end)&&position<(7+blankNum+finalDate))) {
                         tvDate.setText(String.valueOf(date));
-                        tvDate.setTextColor(getContext().getResources().getColor(R.color.AchCF));
+                        tvDate.setTextColor(ContextCompat.getColor(context, R.color.AchCF));
                         tvDate.setEnabled(false);
                     } else{
                         tvDate.setText(String.valueOf(date));
@@ -391,7 +391,7 @@ public class CustomDatePickerDialog extends DialogBase {
                 } else if (start != 0) {
                     if (position < (7 + blankNum + start)) {
                         tvDate.setText(String.valueOf(date));
-                        tvDate.setTextColor(getContext().getResources().getColor(R.color.AchCF));
+                        tvDate.setTextColor(ContextCompat.getColor(context, R.color.AchCF));
                         tvDate.setEnabled(false);
                     } else {
                         tvDate.setText(String.valueOf(date));
@@ -399,7 +399,7 @@ public class CustomDatePickerDialog extends DialogBase {
                 } else if (end != 0) {
                     if((position > (6+blankNum+end)&&position<(7+blankNum+finalDate))) {
                         tvDate.setText(String.valueOf(date));
-                        tvDate.setTextColor(getContext().getResources().getColor(R.color.AchCF));
+                        tvDate.setTextColor(ContextCompat.getColor(context, R.color.AchCF));
                         tvDate.setEnabled(false);
                     } else{
                         tvDate.setText(String.valueOf(date));
@@ -410,7 +410,7 @@ public class CustomDatePickerDialog extends DialogBase {
                 date++;
                 if (position == 6+blankNum+finalDate) { date = 1;}
             }
-
+            Log.d("포지션", String.valueOf(date));
             return tvDate;
         }
     }

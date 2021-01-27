@@ -41,7 +41,7 @@ public class NotificationFragment extends FragmentBase {
                              Bundle savedInstanceState) {
         binding = FragmentNotificationBinding.inflate(inflater);
         binding.setNotificationFrag(this);
-
+        _listener.setToolbarStyle(_listener.WHITE_BACK, "알림");
 
 
 

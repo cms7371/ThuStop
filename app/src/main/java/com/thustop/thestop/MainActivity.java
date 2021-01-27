@@ -41,6 +41,7 @@ import com.thustop.thestop.intro.IntroBaseFragment;
 
 import java.util.Objects;
 
+import kotlin._Assertions;
 import kr.co.bootpay.BootpayAnalytics;
 
 
@@ -132,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             case R.id.bt_notification: {
                 if (isExitEnabled) setFragment(MainFragment.newInstance());
                 else Toast.makeText(getApplicationContext(), "알림버튼 눌림", Toast.LENGTH_SHORT).show();
+                addFragment(NotificationFragment.newInstance());
             }
         }
         return super.onOptionsItemSelected(item);

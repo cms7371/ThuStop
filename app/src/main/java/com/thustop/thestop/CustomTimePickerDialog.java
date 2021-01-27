@@ -71,9 +71,9 @@ public class CustomTimePickerDialog extends DialogBase {
             @Override
             public void onClick(View view) {
                 if(h <12) {
-                    noon = "AM";
+                    noon = "오전";
                 } else {
-                    noon = "PM";
+                    noon = "오후";
                     if(h != 12) {h = h-12;}
                 }
                 dialogListener.onOkClick(h,min,noon);
