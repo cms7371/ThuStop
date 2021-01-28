@@ -58,6 +58,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     private NotoTextView preSelectedItem, curSelectedItem;
     private MainRecyclerAdapter mainAdapter = null;
     private List<Route> routes;
+    private List<Ticket> tickets;
     private String[] test_region_list;
     private GridView regionGrid;
     private RegionGridAdapter regionAdapter;
@@ -103,7 +104,10 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         if (mainAdapter == null) {
             mainAdapter = new MainRecyclerAdapter(getContext(), false, null, this);
             mainRecycler.setAdapter(mainAdapter);
-            new Handler(Looper.getMainLooper()).postDelayed(this::updateRoutes, 300);
+            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                getRoutes();
+                getTickets();
+            }, 300);
         } else {
             mainRecycler.setAdapter(mainAdapter);
         }
@@ -195,7 +199,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         if (!isRefreshing) {
             isRefreshing = true;
             view.animate().rotation(720f).setDuration(750).setInterpolator(new AccelerateDecelerateInterpolator()).withEndAction(() -> {
-                        updateRoutes();
+                        getRoutes();
                         getTickets();
                         view.animate().translationX(0).setDuration(500).withEndAction(() ->
                                 view.animate().rotation(1440f).setDuration(750).setInterpolator(new AccelerateDecelerateInterpolator()).withEndAction(() -> {
@@ -284,7 +288,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         }
     }
 
-    private void updateRoutes() {
+    private void getRoutes() {
         initializeRestApi();
         Call<PageResponse<Route>> call = restApi.listRoutes(Prefs.getString(Constant.LOGIN_KEY, ""));
         call.enqueue(new Callback<PageResponse<Route>>() {
@@ -320,8 +324,10 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
             public void onResponse(@NotNull Call<PageResponse<Ticket>> call, @NotNull Response<PageResponse<Ticket>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Log.d(TAG, "onResponse: 티켓 로딩 성공" + response.body().results);
+                    for (Ticket ticket : response.body().results)
+                        ticket.route_obj.initialize();
                     mainAdapter.updateTickets(response.body().results);
-                    Toast.makeText(getContext(),"노선 탑승 인원" + response.body().results.get(0).route_obj.cnt_passenger, Toast.LENGTH_LONG).show();
+                    _listener.putTickets(response.body().results);
                 }
             }
 

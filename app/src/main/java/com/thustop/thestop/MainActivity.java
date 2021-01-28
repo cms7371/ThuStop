@@ -38,10 +38,11 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.thustop.R;
 import com.thustop.databinding.ActivityMainBinding;
 import com.thustop.thestop.intro.IntroBaseFragment;
+import com.thustop.thestop.model.Ticket;
 
+import java.util.List;
 import java.util.Objects;
 
-import kotlin._Assertions;
 import kr.co.bootpay.BootpayAnalytics;
 
 
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     //GPS 권한 허용과 위치서비스 활용이 모두 켜져 있어야 true
     private static Boolean GPSServiceStatus = null;
+    private List<Ticket> tickets;
 
     private onBackPressedListener BackListener;
     private final static String TAG = "MainActivity";
@@ -520,6 +522,16 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     public int covertDPtoPX(int dp) {
         float density = this.getResources().getDisplayMetrics().density;
         return Math.round((float) dp * density);
+    }
+
+    @Override
+    public void putTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
+    @Override
+    public List<Ticket> getTickets() {
+        return this.tickets;
     }
 
 

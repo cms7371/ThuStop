@@ -15,7 +15,7 @@ import com.thustop.databinding.FragmentDoneBinding;
  * Use the {@link DoneFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DoneFragment extends FragmentBase {
+public class DoneFragment extends FragmentBase implements MainActivity.onBackPressedListener{
 
     FragmentDoneBinding binding;
     private static String colorBase="#565b59";
@@ -51,6 +51,7 @@ public class DoneFragment extends FragmentBase {
             text2 = getArguments().getString(ARG_PARAM2);
             green = getArguments().getBoolean(ARG_PARAM3);
         }
+        _listener.setOnBackPressedListener(this);
     }
 
     @Override
@@ -73,6 +74,11 @@ public class DoneFragment extends FragmentBase {
     }
 
     public void onDoneClick(View view) {
+        _listener.setFragment(MainFragment.newInstance());
+    }
+
+    @Override
+    public void onBack() {
         _listener.setFragment(MainFragment.newInstance());
     }
 }

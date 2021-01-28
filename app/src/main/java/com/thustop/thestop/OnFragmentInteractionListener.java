@@ -2,6 +2,10 @@ package com.thustop.thestop;
 
 import androidx.annotation.IntDef;
 
+import com.thustop.thestop.model.Ticket;
+
+import java.util.List;
+
 public interface OnFragmentInteractionListener {
 
     @IntDef({INVISIBLE, GREEN_HAMBURGER, GREEN_BACK, GREEN_BACK_EXIT, WHITE_HAMBURGER, WHITE_BACK, WHITE_BACK_EXIT})
@@ -45,6 +49,10 @@ public interface OnFragmentInteractionListener {
     Boolean getGPSServiceStatus();
 
     int covertDPtoPX(int dp);
+
+    void putTickets(List<Ticket> tickets);
+
+    List<Ticket> getTickets();
 
 
 }

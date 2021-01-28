@@ -14,7 +14,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.thustop.databinding.FragmentRegisterPassowordBinding;
 import com.thustop.thestop.model.Auth;
 import com.thustop.thestop.model.Token;
-import com.thustop.thestop.model.UserData;
+import com.thustop.thestop.model.User;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -37,7 +37,7 @@ public class RegisterPasswordFragment extends FragmentBase {
     private Context context;
 
 
-    public void RegisterRequest(UserData user) {
+    public void RegisterRequest(User user) {
 
         OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
@@ -46,7 +46,7 @@ public class RegisterPasswordFragment extends FragmentBase {
 
         Auth NewUser = new Auth();
         NewUser.username = user.username;
-        NewUser.password1 = NewUser.password = user.password1;
+        NewUser.password1 = NewUser.password = "00";
         Log.d("test1 regi", "등록중1");
 
         //RestApi restApi = new RestRequestHelper().getRetrofit();

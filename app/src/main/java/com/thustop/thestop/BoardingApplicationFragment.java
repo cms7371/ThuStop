@@ -14,12 +14,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.thustop.R;
 import com.thustop.databinding.FragmentBoardingApplicationBinding;
 import com.thustop.thestop.model.Route;
 import com.thustop.thestop.model.Ticket;
 import com.thustop.thestop.model.Via;
+
+import org.jetbrains.annotations.NotNull;
+import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -83,24 +87,29 @@ public class BoardingApplicationFragment extends FragmentBase {
 
     public void onOkClick(View view) {
         if (ticket != null){
-            ticket.start_via = route.vias.get(start_focus).id;
-            ticket.end_via = route.vias.get(end_focus).id;
+            Ticket new_ticket = ticket.cloneTicket();
+            new_ticket.start_via = route.vias.get(start_focus).id;
+            new_ticket.end_via = route.vias.get(end_focus).id;
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(Constant.SERVER_URL).addConverterFactory(GsonConverterFactory.create()).build();
             RestApi api = retrofit.create(RestApi.class);
-            Call<Ticket> call = api.updateTicket(Prefs.getString(Constant.LOGIN_KEY, ""), ticket.id, ticket);
+            Call<Ticket> call = api.updateTicket(Prefs.getString(Constant.LOGIN_KEY, ""), ticket.id, new_ticket);
             call.enqueue(new Callback<Ticket>() {
                 @Override
-                public void onResponse(Call<Ticket> call, Response<Ticket> response) {
-                    if (response.isSuccessful() && response.body() != null)
+                public void onResponse(@NotNull Call<Ticket> call, @NotNull Response<Ticket> response) {
+                    if (response.isSuccessful() && response.body() != null) {
                         _listener.setFragment(DoneFragment.newInstance("출도착지 변경이 완료되었습니다.", "", false));
+                        Gson gson = new Gson();
+                        Log.d(TAG, "onResponse: 보낸 데이터" + gson.toJson(ticket));
+                        Log.d(TAG, "onResponse: 받은 데이터" + gson.toJson(response.body()));
+                    }
                     else {
                         Toast.makeText(getContext(), "서버에 에러가 발생했습니다. 고객센터로 문의해주세요", Toast.LENGTH_SHORT).show();
-                        Log.e(TAG, "onResponse: 티켓 업데이트 서버 에러 발생" + response.message(), new Throwable());
+                        Log.e(TAG, "onResponse: 티켓 업데이트 서버 에러 발생 " + response.message(), new Throwable());
                     }
                 }
                 @Override
-                public void onFailure(Call<Ticket> call, Throwable t) {
+                public void onFailure(@NotNull Call<Ticket> call, @NotNull Throwable t) {
                     Toast.makeText(getContext(), "서버에 에러가 발생했습니다. 고객센터로 문의해주세요", Toast.LENGTH_SHORT).show();
                     Log.e(TAG, "onFailure: 티켓 업데이트 서버 에러 발생", t);
                 }

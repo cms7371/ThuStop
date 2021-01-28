@@ -11,6 +11,11 @@ public class Ticket {
         this.start_date = start_date;
         this.end_date = end_date;
     }
+
+    public Ticket cloneTicket(){
+        return new Ticket(this.route, this.start_via, this.end_via, this.start_date, this.end_date);
+    }
+
     public int id;
     public int route;
     public Route route_obj;

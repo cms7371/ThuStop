@@ -14,8 +14,9 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.thustop.databinding.FragmentLoginBinding;
 import com.thustop.thestop.model.Auth;
 import com.thustop.thestop.model.Login;
+import com.thustop.thestop.model.PageResponse;
 import com.thustop.thestop.model.Token;
-import com.thustop.thestop.model.UserDetails;
+import com.thustop.thestop.model.User;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -152,19 +153,21 @@ public class LoginFragment extends FragmentBase {
                 .build();
         RestApi api = retrofit.create(RestApi.class);
 
-        Call<UserDetails> call = api.getUserDetails("Token " + token);
-        call.enqueue(new Callback<UserDetails>() {
+        Call<User> call = api.getUserDetails("Token " + token);
+        call.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(@NotNull Call<UserDetails> call, @NotNull Response<UserDetails> response) {
+            public void onResponse(@NotNull Call<User> call, @NotNull Response<User> response) {
                 if (response.isSuccessful() && (response.body() != null)) {
-                    Toast.makeText(getContext(), response.body().first_name + "로그인 성공", Toast.LENGTH_LONG).show();
+                    Log.d(TAG, "onResponse: " + response.body().name);
+/*                    UserData data = response.body().results.get(0);
+                    Toast.makeText(getContext(), data.username + data.name + "로그인 성공", Toast.LENGTH_LONG).show();*/
                 } else {
                     Toast.makeText(getContext(), "유저 정보 불러오기 실패" + response.message(), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onFailure(@NotNull Call<UserDetails> call, @NotNull Throwable t) {
+            public void onFailure(@NotNull Call<User> call, @NotNull Throwable t) {
                 Log.e(TAG, "onFailure: 유저 정보 불러오기 실패함", t);
             }
         });
