@@ -30,6 +30,8 @@ public interface OnFragmentInteractionListener {
 
     void finishActivity();
 
+    void pressBackButton();
+
     void openDrawer();
 
     void closeDrawer();
@@ -53,6 +55,8 @@ public interface OnFragmentInteractionListener {
     void putTickets(List<Ticket> tickets);
 
     List<Ticket> getTickets();
+
+    void updateLoginState();
 
 
 }

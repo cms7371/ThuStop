@@ -1,6 +1,6 @@
 package com.thustop.thestop.model;
 
-public class Certification {
+public class CertificationBootPay {
     String action;
     String phone;
     String birth;

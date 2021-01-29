@@ -39,11 +39,19 @@ import com.thustop.R;
 import com.thustop.databinding.ActivityMainBinding;
 import com.thustop.thestop.intro.IntroBaseFragment;
 import com.thustop.thestop.model.Ticket;
+import com.thustop.thestop.model.User;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
 
 import kr.co.bootpay.BootpayAnalytics;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 /*
@@ -94,7 +102,9 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         /* Link activity_main as binding, with doing setContentView(R.layout.activity_main);*/
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setActivityMain(this);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN); // edittext view layout problem
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);// edittext view layout problem
+        //TODO 이놈으로 창 크기 조절 시도해봐야함 getWindow().setDecorFitsSystemWindows();
+
         /* Setting toolbar referred  https://blog.naver.com/qbxlvnf11/221328098468*/
         toolbar = binding.tbMain;
         setSupportActionBar(toolbar);
@@ -198,13 +208,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         addFragment(NavServiceFAQFragment.newInstance());
     }
 
-    public void testToolbarLogin(View view) {
-        binding.clDrawerHeadGuest.setVisibility(View.GONE);
-        binding.clDrawerHeadMember.setVisibility(View.VISIBLE);
-        binding.clMyPage.setVisibility(View.VISIBLE);
-        binding.btLogout.setVisibility(View.VISIBLE);
-        binding.tvLogout.setVisibility(View.VISIBLE);
-    }
+
 
     public void onCounselClick(View view) {
         addFragment(CounsellingFragment.newInstance());
@@ -345,6 +349,11 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     @Override
     public void finishActivity() {
         finish();
+    }
+
+    @Override
+    public void pressBackButton() {
+        onBackPressed();
     }
 
     @Override
@@ -532,6 +541,37 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     @Override
     public List<Ticket> getTickets() {
         return this.tickets;
+    }
+
+    @Override
+    public void updateLoginState(){
+        if (!Prefs.getString(Constant.LOGIN_KEY, "").isEmpty()){
+            Retrofit retrofit = new Retrofit.Builder().baseUrl(Constant.SERVER_URL).addConverterFactory(GsonConverterFactory.create()).build();
+            RestApi restApi = retrofit.create(RestApi.class);
+            Call<User> call = restApi.getUserDetails(Prefs.getString(Constant.LOGIN_KEY, ""));
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(@NotNull Call<User> call, @NotNull Response<User> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        User data = response.body();
+                        if (data.name != null)
+                            binding.tvMemberName.setText(data.name);
+                        binding.clDrawerHeadGuest.setVisibility(View.GONE);
+                        binding.clDrawerHeadMember.setVisibility(View.VISIBLE);
+                        binding.clMyPage.setVisibility(View.VISIBLE);
+                        binding.btLogout.setVisibility(View.VISIBLE);
+                        binding.tvLogout.setVisibility(View.VISIBLE);
+                    } else {
+                        Log.e(TAG, "onResponse: 유저 정보 호출 에러" + response.message(), new Throwable());
+                    }
+                }
+
+                @Override
+                public void onFailure(@NotNull Call<User> call, @NotNull Throwable t) {
+                    Log.e(TAG, "onResponse: 유저 정보 서버 통신 에러", t);
+                }
+            });
+        }
     }
 
 

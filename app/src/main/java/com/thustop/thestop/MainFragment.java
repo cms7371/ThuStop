@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -76,10 +77,15 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         return fragment;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //_listener.updateLoginState();
+    }
 
     @SuppressLint("ResourceType")
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         binding = FragmentMainBinding.inflate(inflater);
@@ -88,7 +94,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
             _listener.setGPSServiceStatus(false);
             checkRunTimePermission();
         }
-        colorText(binding.tvLocal1, R.string.tv_local1_color, getResources().getColor(R.color.Primary));
+        colorText(binding.tvLocal1, R.string.tv_local1_color, ContextCompat.getColor(requireContext(), R.color.Primary));
         toggle = false;
         //Activity 기본 세팅
         _listener.setToolbarStyle(_listener.GREEN_HAMBURGER, null);

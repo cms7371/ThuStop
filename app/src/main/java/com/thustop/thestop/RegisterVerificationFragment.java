@@ -1,46 +1,33 @@
 package com.thustop.thestop;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.gson.Gson;
 import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
-import com.thustop.R;
+import com.siot.IamportRestClient.response.Certification;
 import com.thustop.databinding.FragmentRegisterVerificationBinding;
 import com.thustop.thestop.model.Auth;
-import com.thustop.thestop.model.Certification;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.thustop.thestop.model.CertificationBootPay;
 
 import java.io.IOException;
-
-import kr.co.bootpay.Bootpay;
-import kr.co.bootpay.enums.Method;
-import kr.co.bootpay.enums.PG;
-import kr.co.bootpay.enums.UX;
-import kr.co.bootpay.listener.ConfirmListener;
-import kr.co.bootpay.listener.DoneListener;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
@@ -49,7 +36,9 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
  * Use the {@link RegisterVerificationFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RegisterVerificationFragment extends FragmentBase {
+public class RegisterVerificationFragment extends FragmentBase{
+
+
     // Databinding
     FragmentRegisterVerificationBinding binding;
     InputMethodManager imm;
@@ -77,11 +66,6 @@ public class RegisterVerificationFragment extends FragmentBase {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -91,18 +75,20 @@ public class RegisterVerificationFragment extends FragmentBase {
         imm = (InputMethodManager)getActivity().getSystemService(INPUT_METHOD_SERVICE);
 
 
-/*        _listener.setToolbarStyle(_listener.WHITE_BACK, "휴대폰 본인인증");
+        _listener.setToolbarStyle(_listener.WHITE_BACK, "휴대폰 본인인증");
         WebSettings webSettings = binding.wvCertification.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setBuiltInZoomControls(true);
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setDefaultTextEncodingName("UTF-8");
         webSettings.setDisplayZoomControls(false);
-        binding.wvCertification.setWebChromeClient(new WebChromeClient());
+        binding.wvCertification.setWebChromeClient(new CustomChromeClient());
         binding.wvCertification.setWebViewClient(new WebViewClient());
         binding.wvCertification.addJavascriptInterface(new JsHandler(), "Android");
-        binding.wvCertification.loadUrl("file:///android_asset/iamport.html");*/
-        Bootpay.init(getParentFragmentManager())
+        binding.wvCertification.loadUrl("file:///android_asset/certification.html");
+
+
+/*        Bootpay.init(getParentFragmentManager())
                 .setApplicationId(Constant.BOOTPAY_KEY)
                 .setPG(PG.DANAL)
                 .setMethod(Method.AUTH)
@@ -114,10 +100,10 @@ public class RegisterVerificationFragment extends FragmentBase {
                     @Override
                     public void onDone(String data) {
                         Gson gson = new Gson();
-                        Certification certification = gson.fromJson(data, Certification.class);
+                        CertificationBootPay certification = gson.fromJson(data, CertificationBootPay.class);
                         Toast.makeText(getContext(), "사용자 " + certification.getName() + " 본인인증 완료", Toast.LENGTH_LONG).show();
                     }
-                }).request();
+                }).request();*/
 
 
 
@@ -125,7 +111,7 @@ public class RegisterVerificationFragment extends FragmentBase {
         return binding.getRoot();
     }
 
-/*    public class JsHandler {
+    public class JsHandler {
         public IamportClient iamportClient;
         private Context context;
 
@@ -153,7 +139,15 @@ public class RegisterVerificationFragment extends FragmentBase {
             Log.e(TAG, "onFailure: ", new Throwable(msg));
             _listener.setFragment(MainFragment.newInstance());
         }
-    }*/
+    }
+
+    public class CustomChromeClient extends WebChromeClient {
+        @Override
+        public void onCloseWindow(WebView window) {
+            _listener.pressBackButton();
+            super.onCloseWindow(window);
+        }
+    }
 
     public void kakaoRegister(Certification data){
 
@@ -163,7 +157,7 @@ public class RegisterVerificationFragment extends FragmentBase {
 
     }
 
-    public void certificationToAuth(Certification cert, Auth auth){
+    public void certificationToAuth(CertificationBootPay cert, Auth auth){
         if (auth.username == null)
             auth.username = cert.getPhone();
         auth.name = cert.getName();
