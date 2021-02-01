@@ -110,7 +110,7 @@ public class NavPersonalHistoryTicketFragment extends FragmentBase {
     }
 
     public void onTicketPointClick(View view) {
-        _listener.addFragment(NavPersonalHistoryTicketPointFragment.newInstance());
+        _listener.addFragment(NavPersonalHistoryTicketPointFragment.newInstance(tickets.get(current_position)));
     }
 
     public void onTransformInfoClick(View view) {

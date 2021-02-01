@@ -19,7 +19,12 @@ import com.thustop.thestop.model.Ticket;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,8 +44,10 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
     private int boarding_stop_position;
     private int alighting_stop_position;
     private int year, month, day;
-    private String date;
+    private String boarding_start, boarding_end;
     private Ticket ticket;
+
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
 
 
     public static BoardingApplicationPassengerInfoFragment newInstance(Route route, int boarding_stop_position, int alighting_stop_position) {
@@ -112,21 +119,36 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
 
     //TODO: 데이트피커 변경중. 나중에 재적용 필요
 
+
     public void onCalendarClick(View view) {
-        // 임시 적용 중
-        Calendar start = Calendar.getInstance();
-        Calendar end = Calendar.getInstance();
-        end.set(2021,1,27);
-        CustomDatePickerDialog datePickerDialog = new CustomDatePickerDialog(getContext(), start, end);
+        // 캘린더 객체 생성(현재 날짜)
+        Calendar application_start = Calendar.getInstance();
+        Calendar application_end = Calendar.getInstance();
+        //Status 처리(운행중이 아닐 경우 시작일로 셋팅 필요)
+        if(route.status == "모집중" || route.status == "운행대기") {
+            // TODO : route 시작일로 변경 필요.
+
+            try {
+                Date start_date = dateFormat.parse("2021-02-13");
+                application_start.setTime(start_date);
+                application_start.add(Calendar.DATE,-1);
+                application_end.setTime(start_date);
+                application_end.add(Calendar.DATE,-1);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        // 최대 탑승 신청기간은 가능일(다음날)로 부터 1주일
+        application_end.add(Calendar.DATE, 7);
+        CustomDatePickerDialog datePickerDialog = new CustomDatePickerDialog(getContext(), application_start, application_end);
         datePickerDialog.setDialogListener(new CustomDatePickerDialog.CustomDatePickerDialogListener() {
             @Override
             public void onOkClick(int year_picker, int month_picker, int day_picker) {
-                year = year_picker;
-                month = month_picker + 1;
-                day = day_picker;
-                date = String.format("%d-%02d-%02d", year, month, day);
+                boarding_start = String.format("%d-%02d-%02d", year_picker, month_picker, day_picker);
+                setBoardingEndDate(boarding_start);
+                Log.d("끝나는 날", boarding_end);
                 binding.etvFbapiBoardingDate.setTextColor(getResources().getColor(R.color.TextBlack));
-                binding.etvFbapiBoardingDate.setText(date);
+                binding.etvFbapiBoardingDate.setText(boarding_start);
             }
         });
         datePickerDialog.show();
@@ -135,7 +157,7 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
     private void postTestTicket(){
         int boarding_via_id = route.boarding_stops.get(boarding_stop_position).id;
         int alighting_via_id = route.alighting_stops.get(alighting_stop_position).id;
-        ticket = new Ticket(route.id, boarding_via_id, alighting_via_id, date, date);
+        ticket = new Ticket(route.id, boarding_via_id, alighting_via_id, boarding_start, boarding_end);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constant.SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -180,5 +202,18 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
             }
         });
         dialog.show();
+    }
+
+    private void setBoardingEndDate(String boarding_start) {
+        try {
+            Date end_date = dateFormat.parse(boarding_start);
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(end_date);
+            cal.add(Calendar.MONTH, 1);
+            boarding_end = dateFormat.format(cal.getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 }

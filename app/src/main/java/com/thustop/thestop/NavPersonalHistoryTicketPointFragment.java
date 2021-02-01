@@ -10,10 +10,15 @@ import android.view.ViewGroup;
 
 
 import com.thustop.databinding.FragmentNavPersonalHistoryTicketPointBinding;
+import com.thustop.thestop.model.Ticket;
 
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,20 +27,24 @@ import java.util.Calendar;
  */
 public class NavPersonalHistoryTicketPointFragment extends FragmentBase  {
     FragmentNavPersonalHistoryTicketPointBinding binding;
+    private Ticket ticket;
     private Calendar start, end;
     private ArrayList<ArrayList<String>> calendarList = new ArrayList<>();
     private int year, month, day;
     private int point;
+    private String refundDate;
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 
     public NavPersonalHistoryTicketPointFragment() {
-        // Required empty public constructor
+
     }
 
 
-    public static NavPersonalHistoryTicketPointFragment newInstance() {
+    public static NavPersonalHistoryTicketPointFragment newInstance(Ticket ticket) {
         NavPersonalHistoryTicketPointFragment fragment = new NavPersonalHistoryTicketPointFragment();
         Bundle args = new Bundle();
+        fragment.ticket = ticket;
         fragment.setArguments(args);
         return fragment;
     }
@@ -54,9 +63,19 @@ public class NavPersonalHistoryTicketPointFragment extends FragmentBase  {
         binding.setNavPersonalHistoryTicketPointFrag(this);
         start = Calendar.getInstance();
         end = Calendar.getInstance();
-        start.set(2020, 0, 15);
-        end.set(2021,2,26);
 
+        try {
+            Date startDate = dateFormat.parse(ticket.start_date);
+            start.setTime(startDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        try {
+            Date endDate = dateFormat.parse(ticket.end_date);
+            end.setTime(endDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         return binding.getRoot();
     }
@@ -68,14 +87,13 @@ public class NavPersonalHistoryTicketPointFragment extends FragmentBase  {
 
             @Override
             public void onOkClick(int year_picker, int month_picker, int day_picker) {
-                year = year_picker;
-                month = month_picker;
-                day = day_picker;
+
+                refundDate = String.format("%d-%02d-%02d", year_picker, month_picker, day_picker);
                 //임시로 포인트 처리
                 point = 1300;
-                binding.tvYearValue.setText(String.valueOf(year));
-                binding.tvMonthValue.setText(String.valueOf(month));
-                binding.tvDayValue.setText(String.valueOf(day));
+                binding.tvYearValue.setText(String.valueOf(year_picker));
+                binding.tvMonthValue.setText(String.valueOf(month_picker));
+                binding.tvDayValue.setText(String.valueOf(day_picker));
                 binding.tvPointValue.setText(String.format("%d P", point));
             }
         });

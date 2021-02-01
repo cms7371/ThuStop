@@ -3,6 +3,7 @@ package com.thustop.thestop;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Switch;
 
 import androidx.annotation.NonNull;
@@ -22,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.thustop.R;
 import com.thustop.thestop.widgets.NotoTextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -41,6 +44,7 @@ public class CustomDatePickerDialog extends DialogBase {
     private int preposition = -1;
     private NotoTextView preSelectedItem;
 
+    private ImageView left, right;
 
 
     public CustomDatePickerDialog(@NonNull Context context, Calendar start, Calendar end) {
@@ -60,16 +64,24 @@ public class CustomDatePickerDialog extends DialogBase {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_date_picker);
         Objects.requireNonNull(getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+         left = findViewById(R.id.iv_chevron_l);
+         right = findViewById(R.id.iv_chevron_r);
+
 
         calendarList = setCalendarList(start, end);
-
 
         yearMonth = findViewById(R.id.tv_year_month);
         calendar = findViewById(R.id.date_picker);
         CalendarAdapter rvAdapter = new CalendarAdapter(context, calendarList);
         calendar.setAdapter(rvAdapter);
+        if (calendar.getAdapter().getItemCount() == 1) {
+            year = calendarList.get(0).get(0);
+            month = calendarList.get(0).get(1);
+            yearMonth.setText(String.format("%d년 %d월",year, month));
+            left.setVisibility(View.GONE);
+            right.setVisibility(View.GONE);
 
-
+        }
 
 
         PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
@@ -83,7 +95,10 @@ public class CustomDatePickerDialog extends DialogBase {
                     @Override
                     public void onSnapped(int position) {
                         Log.d("스냅", String.valueOf(position));
-                        yearMonth.setText(String.format("%d년 %d월",calendarList.get(position).get(0), calendarList.get(position).get(1)));
+                        year = calendarList.get(position).get(0);
+                        month = calendarList.get(position).get(1);
+                        yearMonth.setText(String.format("%d년 %d월",year, month));
+
                     }
                 }
         );
@@ -158,6 +173,7 @@ public class CustomDatePickerDialog extends DialogBase {
             ArrayList<Integer> dayList = new ArrayList<Integer>();
             dayList.add(startYear);
             dayList.add(startMonth+1);
+            Log.d("스타트먼스", String.valueOf(startMonth));
             dayList.add(dayNum-1);
             int finalDate = c.getActualMaximum(Calendar.DAY_OF_MONTH);
             Log.d("데이오브먼스", String.valueOf(finalDate));
@@ -261,12 +277,6 @@ public class CustomDatePickerDialog extends DialogBase {
                             } else {
                                 view.setBackgroundResource(R.drawable.bg_round25_green);
                                 ((NotoTextView)view).setTextColor(ContextCompat.getColor(context, R.color.White));
-                                String ym = yearMonth.getText().toString();
-                                int ymLen = ym.length();
-                                year = Integer.parseInt(ym.substring(0,4));
-                                Log.d("년", String.valueOf(year));
-                                month = Integer.parseInt(ym.substring(6,ymLen-1));
-                                Log.d("달", String.valueOf(month));
                                 day = Integer.parseInt(((NotoTextView)view).getText().toString());
                                 preposition = position;
                                 preSelectedItem = (NotoTextView)view;
