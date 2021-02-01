@@ -116,7 +116,6 @@
         <com.thustop.thestop.widgets.NotoButton
             android:id="@+id/bt_kako_login"
             style="@style/btStyle"
-            android:layout_marginBottom="40dp"
             android:background="@drawable/bg_kakao_button"
             android:onClick="@{LoginFrag::onKakaoLoginClick}"
             android:text="카카오톡 로그인"

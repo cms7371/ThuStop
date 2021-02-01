@@ -28,6 +28,8 @@ public interface OnFragmentInteractionListener {
 
     void setOnBackPressedListener(MainActivity.onBackPressedListener listener);
 
+    void setOnKeyboardStateChangedListener(MainActivity.OnKeyboardStateChangedListener listener);
+
     void finishActivity();
 
     void pressBackButton();

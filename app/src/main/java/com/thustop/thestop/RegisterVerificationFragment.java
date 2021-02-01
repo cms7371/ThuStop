@@ -1,13 +1,11 @@
 package com.thustop.thestop;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
@@ -16,8 +14,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import com.siot.IamportRestClient.IamportClient;
@@ -72,10 +69,24 @@ public class RegisterVerificationFragment extends FragmentBase{
         binding= FragmentRegisterVerificationBinding.inflate(inflater);
         binding.setIDVerfrag(this);
 
-        imm = (InputMethodManager)getActivity().getSystemService(INPUT_METHOD_SERVICE);
-
+        imm = (InputMethodManager)requireActivity().getSystemService(INPUT_METHOD_SERVICE);
 
         _listener.setToolbarStyle(_listener.WHITE_BACK, "휴대폰 본인인증");
+        _listener.setOnKeyboardStateChangedListener(new MainActivity.OnKeyboardStateChangedListener() {
+            @Override
+            public void onKeyboardShown(int currentKeyboardHeight) {
+                ConstraintLayout.LayoutParams newLayoutParams = (ConstraintLayout.LayoutParams) binding.wvCertification.getLayoutParams();
+                newLayoutParams.bottomMargin = currentKeyboardHeight;
+                binding.wvCertification.setLayoutParams(newLayoutParams);
+            }
+
+            @Override
+            public void onKeyboardHidden() {
+                ConstraintLayout.LayoutParams newLayoutParams = (ConstraintLayout.LayoutParams) binding.wvCertification.getLayoutParams();
+                newLayoutParams.bottomMargin = 0;
+                binding.wvCertification.setLayoutParams(newLayoutParams);
+            }
+        });
         WebSettings webSettings = binding.wvCertification.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setBuiltInZoomControls(true);
@@ -109,6 +120,12 @@ public class RegisterVerificationFragment extends FragmentBase{
 
         // Inflate the layout for this fragment
         return binding.getRoot();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        _listener.setOnKeyboardStateChangedListener(null);
     }
 
     public class JsHandler {

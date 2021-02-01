@@ -14,7 +14,6 @@ import com.pixplicity.easyprefs.library.Prefs;
 import com.thustop.databinding.FragmentLoginBinding;
 import com.thustop.thestop.model.Auth;
 import com.thustop.thestop.model.Login;
-import com.thustop.thestop.model.PageResponse;
 import com.thustop.thestop.model.Token;
 import com.thustop.thestop.model.User;
 

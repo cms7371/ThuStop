@@ -41,17 +41,19 @@ public class TicketRecyclerAdapter extends RecyclerView.Adapter<TicketRecyclerAd
     @Override
     public void onBindViewHolder(@NonNull TicketRecyclerAdapter.TicketViewHolder holder, int position) {
         //TODO 위치에 따라 ticket 클래스 값 할당, 리스너 등록
-        Ticket ticket = tickets.get(position);
-        holder.busName.setText(ticket.route_obj.name);
-        holder.departure.setText(ticket.start_via_obj.stop.name);
-        holder.departureTime.setText(ticket.start_via_obj.time);
-        holder.destination.setText(ticket.end_via_obj.stop.name);
-        holder.destinationTime.setText(ticket.end_via_obj.time);
-        holder.ticketState.setText(ticket.status);
-        holder.capacity.setText(String.format(Locale.KOREA, "%d/%d",
-                ticket.route_obj.cnt_passenger, ticket.route_obj.max_passenger));
-        holder.pb_capacity.setMax(ticket.route_obj.max_passenger);
-        holder.pb_capacity.setProgress(ticket.route_obj.cnt_passenger);
+        if (tickets != null) {
+            Ticket ticket = tickets.get(position);
+            holder.busName.setText(ticket.route_obj.name);
+            holder.departure.setText(ticket.start_via_obj.stop.name);
+            holder.departureTime.setText(ticket.start_via_obj.time);
+            holder.destination.setText(ticket.end_via_obj.stop.name);
+            holder.destinationTime.setText(ticket.end_via_obj.time);
+            holder.ticketState.setText(ticket.status);
+            holder.capacity.setText(String.format(Locale.KOREA, "%d/%d",
+                    ticket.route_obj.cnt_passenger, ticket.route_obj.max_passenger));
+            holder.pb_capacity.setMax(ticket.route_obj.max_passenger);
+            holder.pb_capacity.setProgress(ticket.route_obj.cnt_passenger);
+        }
     }
 
     public class TicketViewHolder extends RecyclerView.ViewHolder {
@@ -97,7 +99,10 @@ public class TicketRecyclerAdapter extends RecyclerView.Adapter<TicketRecyclerAd
 
     @Override
     public int getItemCount() {
-        return tickets.size(); //TODO 티켓 갯수에 따라 길이 바꿔주도록 해야합니다.
+        if (tickets != null)
+            return tickets.size(); //TODO 티켓 갯수에 따라 길이 바꿔주도록 해야합니다.
+        else
+            return 3;
     }
 
 }

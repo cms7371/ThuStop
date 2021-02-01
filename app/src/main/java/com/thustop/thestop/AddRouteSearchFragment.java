@@ -76,9 +76,9 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
 
         //apiKey로 구글 클라이언트 시작
         if (!Places.isInitialized()) {
-            Places.initialize(Objects.requireNonNull(getContext()), PLACES_API_KEY);
+            Places.initialize(requireContext(), PLACES_API_KEY);
         }
-        placesClient = Places.createClient(Objects.requireNonNull(getContext()));
+        placesClient = Places.createClient(requireContext());
         autocompleteAdapter = new LocationAutocompleteAdapter(getContext(), this);
         binding.rvLocationPrediction.setAdapter(autocompleteAdapter);
         autocompleteAdapter.notifyDataSetChanged();
@@ -106,7 +106,7 @@ public class AddRouteSearchFragment extends FragmentBase implements LocationAuto
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 v.setCursorVisible(false);
                 InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputManager.hideSoftInputFromWindow(Objects.requireNonNull(getActivity().getCurrentFocus()).getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                inputManager.hideSoftInputFromWindow(requireActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 return true;
             }
         };

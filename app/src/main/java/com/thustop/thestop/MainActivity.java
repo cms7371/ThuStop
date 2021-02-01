@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -87,12 +88,19 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     private List<Ticket> tickets;
 
     private onBackPressedListener BackListener;
+    private OnKeyboardStateChangedListener keyboardListener;
     private final static String TAG = "MainActivity";
 
 
     //private long pressedTime = 0;
     public interface onBackPressedListener {
         void onBack();
+    }
+
+    public interface OnKeyboardStateChangedListener {
+        void onKeyboardShown(int currentKeyboardHeight);
+
+        void onKeyboardHidden();
     }
 
 
@@ -115,6 +123,33 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         toolbar.setNavigationIcon(R.drawable.ic_hamburger_white);
         /* At start, display splash fragment during loading*/
         actionbar.hide();
+        final View decorView = getWindow().getDecorView();
+        decorView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            private final Rect windowVisibleDisplayFrame = new Rect();
+            private int lastVisibleDecorViewHeight = decorView.getHeight();
+
+            @Override
+            public void onGlobalLayout() {
+                // 윈도우 내 보이는 rectangle 호출
+                decorView.getWindowVisibleDisplayFrame(windowVisibleDisplayFrame);
+                final int visibleDecorViewHeight = windowVisibleDisplayFrame.height();
+
+                // 변경된 데코 뷰 높이로부터 키보드 상태 확인
+                if (lastVisibleDecorViewHeight > visibleDecorViewHeight + 150) {
+                    // 키보드 높이 계산(전체화면 모드일 때 네비게이션 바 높이 계산하는 것도 포함)
+                    int currentKeyboardHeight = decorView.getHeight() - windowVisibleDisplayFrame.bottom;
+                    // 리스너에 키보드 보임 알림
+                    if (keyboardListener != null)
+                        keyboardListener.onKeyboardShown(currentKeyboardHeight);
+                } else if (lastVisibleDecorViewHeight + 150 < visibleDecorViewHeight) {
+                    // 리스너에 키보드 숨김 알림
+                    if (keyboardListener != null)
+                        keyboardListener.onKeyboardHidden();
+                }
+                // 다음번 불릴 경우를 고려해 현재 높이 값 저장
+                lastVisibleDecorViewHeight = visibleDecorViewHeight;
+            }
+        });
         setFragment(SplashFragment.newInstance());
         FirebaseApp.initializeApp(this);
         Log.d(TAG, "onCreate: 로그인키 " + Prefs.getString(Constant.LOGIN_KEY, null));
@@ -125,6 +160,14 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         BootpayAnalytics.init(this, Constant.BOOTPAY_KEY);
         Log.d(TAG, "onCreate: GPSServiceStatus is " + GPSServiceStatus);
         checkFirstRun();
+
+        //TODO 지워야함
+        binding.clCustomerCenter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateLoginState();
+            }
+        });
     }
 
     @Override
@@ -151,10 +194,6 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         return super.onOptionsItemSelected(item);
     }
 
-    /*back button listener*/
-    public void setOnBackPressedListener(onBackPressedListener listener) {
-        BackListener = listener;
-    }
 
     @Override
     public void onBackPressed() {
@@ -207,7 +246,6 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         closeDrawer();
         addFragment(NavServiceFAQFragment.newInstance());
     }
-
 
 
     public void onCounselClick(View view) {
@@ -392,7 +430,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
 
         isExitEnabled = false;
         isBackEnabled = false;
-        toolbar.animate().alpha(0f).setDuration(250).withEndAction(()->{
+        toolbar.animate().alpha(0f).setDuration(250).withEndAction(() -> {
             if (title == null) {
                 findViewById(R.id.iv_title).setVisibility(View.VISIBLE);
                 findViewById(R.id.tv_title).setVisibility(View.GONE);
@@ -460,6 +498,17 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             toolbar.animate().alpha(1f).setDuration(250).start();
         }).start();
 
+    }
+
+    /*back button listener*/
+    @Override
+    public void setOnBackPressedListener(onBackPressedListener listener) {
+        BackListener = listener;
+    }
+
+    @Override
+    public void setOnKeyboardStateChangedListener(OnKeyboardStateChangedListener listener) {
+        keyboardListener = listener;
     }
 
     @Override
@@ -544,8 +593,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     }
 
     @Override
-    public void updateLoginState(){
-        if (!Prefs.getString(Constant.LOGIN_KEY, "").isEmpty()){
+    public void updateLoginState() {
+        if (!Prefs.getString(Constant.LOGIN_KEY, "").isEmpty()) {
             Retrofit retrofit = new Retrofit.Builder().baseUrl(Constant.SERVER_URL).addConverterFactory(GsonConverterFactory.create()).build();
             RestApi restApi = retrofit.create(RestApi.class);
             Call<User> call = restApi.getUserDetails(Prefs.getString(Constant.LOGIN_KEY, ""));
@@ -571,6 +620,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                     Log.e(TAG, "onResponse: 유저 정보 서버 통신 에러", t);
                 }
             });
+        } else{
+            binding.clDrawerHeadGuest.setVisibility(View.GONE);
+            binding.clDrawerHeadMember.setVisibility(View.VISIBLE);
+            binding.clMyPage.setVisibility(View.VISIBLE);
+            binding.btLogout.setVisibility(View.VISIBLE);
+            binding.tvLogout.setVisibility(View.VISIBLE);
         }
     }
 

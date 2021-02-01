@@ -351,7 +351,6 @@
                         android:id="@+id/tv_customer_center"
                         style="@style/tvToolbarCategory"
                         android:text="고객센터"
-                        android:onClick="testToolbarLogin"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
