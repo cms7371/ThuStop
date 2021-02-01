@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
@@ -23,7 +24,6 @@ import com.thustop.thestop.model.Ticket;
 import com.thustop.thestop.model.Via;
 
 import org.jetbrains.annotations.NotNull;
-import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -114,8 +114,11 @@ public class BoardingApplicationFragment extends FragmentBase {
                     Log.e(TAG, "onFailure: 티켓 업데이트 서버 에러 발생", t);
                 }
             });
-        } else
+        } else if(route.status.equals("모집중"))
             _listener.addFragment(BoardingApplicationPassengerInfoFragment.newInstance(route, start_focus, end_focus - boarding_stop_num));
+        else
+            _listener.addFragment(PaymentInformationFragment.newInstance(route, start_focus, end_focus - boarding_stop_num));
+
     }
 
     private void updateFragmentPhase() {
@@ -123,33 +126,33 @@ public class BoardingApplicationFragment extends FragmentBase {
         adapter.notifyDataSetChanged();
         if (phase == 0) {
             _listener.setToolbarStyle(_listener.GREEN_BACK, "출발 위치 선택");
-            binding.ivFbaLeftDots.setImageDrawable(getContext().getDrawable(R.drawable.ic_3dots_gray));
-            binding.tvFbaPhase2.setBackground(getContext().getDrawable(R.drawable.bg_round12_graycf));
+            binding.ivFbaLeftDots.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_3dots_gray));
+            binding.tvFbaPhase2.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.bg_round12_graycf));
             binding.tvFbaBig.setText(R.string.tv_fba_big_boarding);
-            colorText(binding.tvFbaBig, R.string.tv_fba_big_boarding_colored, getResources().getColor(R.color.Primary));
+            colorText(binding.tvFbaBig, R.string.tv_fba_big_boarding_colored, ContextCompat.getColor(requireContext(), R.color.Primary));
             binding.tvFbaSmall.setText(R.string.tv_fba_small_boarding);
-            colorText(binding.tvFbaSmall, R.string.tv_fba_small_boarding, getResources().getColor(R.color.Primary));
-            binding.tvFbaStage.setBackground(getContext().getDrawable(R.drawable.bg_round25_green));
+            colorText(binding.tvFbaSmall, R.string.tv_fba_small_boarding, ContextCompat.getColor(requireContext(), R.color.Primary));
+            binding.tvFbaStage.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.bg_round25_green));
             binding.tvFbaStage.setText("출발");
-            binding.btFbaOk.setBackgroundColor(getResources().getColor(R.color.ButtonGray));
+            binding.btFbaOk.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.ButtonGray));
             binding.btFbaOk.setEnabled(false);
         } else{
             _listener.setToolbarStyle(_listener.GREEN_BACK, "도착 위치 선택");
-            binding.ivFbaLeftDots.setImageDrawable(getContext().getDrawable(R.drawable.ic_3dots_green));
-            binding.ivFbaRightDots.setImageDrawable(getContext().getDrawable(R.drawable.ic_3dots_gray));
-            binding.tvFbaPhase2.setBackground(getContext().getDrawable(R.drawable.bg_round12_green));
+            binding.ivFbaLeftDots.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_3dots_green));
+            binding.ivFbaRightDots.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_3dots_gray));
+            binding.tvFbaPhase2.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.bg_round12_green));
             binding.tvFbaBig.setText(R.string.tv_fba_big_alighting);
-            colorText(binding.tvFbaBig, R.string.tv_fba_big_alighting_colored, getResources().getColor(R.color.Red));
+            colorText(binding.tvFbaBig, R.string.tv_fba_big_alighting_colored, ContextCompat.getColor(requireContext(), R.color.Red));
             binding.tvFbaSmall.setText(R.string.tv_fba_small_alighting);
-            colorText(binding.tvFbaSmall, R.string.tv_fba_small_alighting, getResources().getColor(R.color.Red));
-            binding.tvFbaStage.setBackground(getContext().getDrawable(R.drawable.bg_round25_red));
+            colorText(binding.tvFbaSmall, R.string.tv_fba_small_alighting, ContextCompat.getColor(requireContext(), R.color.Red));
+            binding.tvFbaStage.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.bg_round25_red));
             binding.tvFbaStage.setText("도착");
         }
         if (phase == 2){
-            binding.btFbaOk.setBackgroundColor(getResources().getColor(R.color.Primary));
+            binding.btFbaOk.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.Primary));
             binding.btFbaOk.setEnabled(true);
         } else {
-            binding.btFbaOk.setBackgroundColor(getResources().getColor(R.color.ButtonGray));
+            binding.btFbaOk.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.ButtonGray));
             binding.btFbaOk.setEnabled(false);
         }
     }
@@ -223,14 +226,14 @@ public class BoardingApplicationFragment extends FragmentBase {
                 }
             });
             //오동작 막기 위한 재정의
-            holder.v_upper_line.setBackground(getContext().getDrawable(R.drawable.bg_round12_graycf));
+            holder.v_upper_line.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.bg_round12_graycf));
             holder.v_upper_line.setVisibility(View.VISIBLE);
-            holder.v_lower_line.setBackground(getContext().getDrawable(R.drawable.bg_round12_graycf));
+            holder.v_lower_line.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.bg_round12_graycf));
             holder.v_lower_line.setVisibility(View.VISIBLE);
-            holder.iv_checkbox.setImageDrawable(getContext().getDrawable(R.drawable.icon_stop_selector_empty));
+            holder.iv_checkbox.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.icon_stop_selector_empty));
             holder.iv_checkbox.setVisibility(View.VISIBLE);
             holder.tv_name.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "NotoSansKR-Regular-Hestia.otf"));
-            holder.tv_name.setTextColor(getContext().getResources().getColor(R.color.TextBlack));
+            holder.tv_name.setTextColor(ContextCompat.getColor(requireContext(), R.color.TextBlack));
 
             //시간 이름 할당해주는 부분
             if (position < boarding_stop_num) {
@@ -255,31 +258,31 @@ public class BoardingApplicationFragment extends FragmentBase {
                 }
             } else if (phase == 1) {
                 if (position == start_focus) {
-                    holder.iv_checkbox.setImageDrawable(getContext().getDrawable(R.drawable.icon_stop_selector_green));
-                    holder.tv_name.setTextColor(getContext().getResources().getColor(R.color.Primary));
+                    holder.iv_checkbox.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.icon_stop_selector_green));
+                    holder.tv_name.setTextColor(ContextCompat.getColor(requireContext(), R.color.Primary));
                 } else if (position < boarding_stop_num) {
                     holder.iv_checkbox.setVisibility(View.GONE);
                 }
             } else if (phase == 2) {
                 if (position < start_focus) {
                     holder.iv_checkbox.setVisibility(View.GONE);
-                    holder.tv_name.setTextColor(getContext().getResources().getColor(R.color.TextGray));
+                    holder.tv_name.setTextColor(ContextCompat.getColor(requireContext(), R.color.TextGray));
                 } else if (position == start_focus) {
-                    holder.iv_checkbox.setImageDrawable(getContext().getDrawable(R.drawable.icon_stop_selector_green));
-                    holder.tv_name.setTextColor(getContext().getResources().getColor(R.color.Primary));
-                    holder.v_lower_line.setBackground(getContext().getDrawable(R.color.Primary));
+                    holder.iv_checkbox.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.icon_stop_selector_green));
+                    holder.tv_name.setTextColor(ContextCompat.getColor(requireContext(), R.color.Primary));
+                    holder.v_lower_line.setBackground(ContextCompat.getDrawable(requireContext(), R.color.Primary));
                 } else if (position < end_focus) {
                     holder.iv_checkbox.setVisibility(View.GONE);
-                    holder.v_upper_line.setBackground(getContext().getDrawable(R.color.Primary));
-                    holder.v_lower_line.setBackground(getContext().getDrawable(R.color.Primary));
-                    holder.tv_name.setTextColor(getContext().getResources().getColor(R.color.TextGray));
+                    holder.v_upper_line.setBackground(ContextCompat.getDrawable(requireContext(), R.color.Primary));
+                    holder.v_lower_line.setBackground(ContextCompat.getDrawable(requireContext(), R.color.Primary));
+                    holder.tv_name.setTextColor(ContextCompat.getColor(requireContext(), R.color.TextGray));
                 } else if (position == end_focus) {
-                    holder.iv_checkbox.setImageDrawable(getContext().getDrawable(R.drawable.icon_stop_selector_red));
-                    holder.v_upper_line.setBackground(getContext().getDrawable(R.color.Primary));
-                    holder.tv_name.setTextColor(getContext().getResources().getColor(R.color.Red));
+                    holder.iv_checkbox.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.icon_stop_selector_red));
+                    holder.v_upper_line.setBackground(ContextCompat.getDrawable(requireContext(), R.color.Primary));
+                    holder.tv_name.setTextColor(ContextCompat.getColor(requireContext(), R.color.Red));
                 } else {
                     holder.iv_checkbox.setVisibility(View.GONE);
-                    holder.tv_name.setTextColor(getContext().getResources().getColor(R.color.TextGray));
+                    holder.tv_name.setTextColor(ContextCompat.getColor(requireContext(), R.color.TextGray));
                 }
             }
         }

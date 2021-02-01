@@ -10,7 +10,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
@@ -93,7 +92,7 @@ public class RegisterVerificationFragment extends FragmentBase{
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setDefaultTextEncodingName("UTF-8");
         webSettings.setDisplayZoomControls(false);
-        binding.wvCertification.setWebChromeClient(new CustomChromeClient());
+        binding.wvCertification.setWebChromeClient(new WebChromeClient());
         binding.wvCertification.setWebViewClient(new WebViewClient());
         binding.wvCertification.addJavascriptInterface(new JsHandler(), "Android");
         binding.wvCertification.loadUrl("file:///android_asset/certification.html");
@@ -158,13 +157,7 @@ public class RegisterVerificationFragment extends FragmentBase{
         }
     }
 
-    public class CustomChromeClient extends WebChromeClient {
-        @Override
-        public void onCloseWindow(WebView window) {
-            _listener.pressBackButton();
-            super.onCloseWindow(window);
-        }
-    }
+
 
     public void kakaoRegister(Certification data){
 

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.pixplicity.easyprefs.library.Prefs;
@@ -23,6 +24,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.Date;
 import java.util.Locale;
 
@@ -65,30 +67,7 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
                              Bundle savedInstanceState) {
         binding = FragmentBoardingApplicationPassengerInfoBinding.inflate(inflater);
         binding.setBoardingApplicationPassengerInfoFrag(this);
-        binding.etvFbapiName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (editable.length() > 1) {
-                    if (binding.etvFbapiBoardingDate.length() > 0) {
-                        binding.btFbapiOk.setBackgroundColor(getResources().getColor(R.color.Primary));
-                        binding.btFbapiOk.setEnabled(true);
-                    }
-                } else {
-                    binding.btFbapiOk.setBackgroundColor(getResources().getColor(R.color.ButtonGray));
-                    binding.btFbapiOk.setEnabled(false);
-                }
-            }
-        });
         binding.etvFbapiBoardingDate.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -101,12 +80,10 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (editable.length() > 0) {
-                    if (binding.etvFbapiName.length() > 1) {
-                        binding.btFbapiOk.setBackgroundColor(getResources().getColor(R.color.Primary));
-                        binding.btFbapiOk.setEnabled(true);
-                    }
+                    binding.btFbapiOk.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.Primary));
+                    binding.btFbapiOk.setEnabled(true);
                 } else {
-                    binding.btFbapiOk.setBackgroundColor(getResources().getColor(R.color.ButtonGray));
+                    binding.btFbapiOk.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.ButtonGray));
                     binding.btFbapiOk.setEnabled(false);
                 }
             }
@@ -118,7 +95,6 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
     }
 
     //TODO: 데이트피커 변경중. 나중에 재적용 필요
-
 
     public void onCalendarClick(View view) {
         // 캘린더 객체 생성(현재 날짜)
@@ -154,7 +130,7 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
         datePickerDialog.show();
     }
 
-    private void postTestTicket(){
+    private void postTestTicket() {
         int boarding_via_id = route.boarding_stops.get(boarding_stop_position).id;
         int alighting_via_id = route.alighting_stops.get(alighting_stop_position).id;
         ticket = new Ticket(route.id, boarding_via_id, alighting_via_id, boarding_start, boarding_end);
@@ -169,7 +145,7 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
 
             @Override
             public void onResponse(@NotNull Call<Ticket> call, @NotNull Response<Ticket> response) {
-                if (response.isSuccessful() && response.body() != null){
+                if (response.isSuccessful() && response.body() != null) {
                     Toast.makeText(getContext(), "티켓 생성됨", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getContext(), "티켓 생성실패", Toast.LENGTH_SHORT).show();
