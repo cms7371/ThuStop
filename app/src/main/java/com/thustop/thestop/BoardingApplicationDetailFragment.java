@@ -39,7 +39,7 @@ public class BoardingApplicationDetailFragment extends FragmentBase {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentBoardingApplicationDetailBinding.inflate(inflater);
         binding.setRouteDetailFrag(this);
-        _listener.setToolbarStyle(_listener.GREEN_HAMBURGER, null);
+        _listener.setToolbarStyle(_listener.GREEN_BACK, "노선정보");
 
         binding.tvBusId.setText(route.name);
         binding.tvDeparture.setText(route.getBoardingStopName(0));

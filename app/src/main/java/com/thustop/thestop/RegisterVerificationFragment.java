@@ -129,7 +129,6 @@ public class RegisterVerificationFragment extends FragmentBase{
 
     public class JsHandler {
         public IamportClient iamportClient;
-        private Context context;
 
         public JsHandler(){
             iamportClient = new IamportClient(Constant.IAMPORT_API_KEY, Constant.IAMPORT_API_SECRET);

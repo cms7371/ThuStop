@@ -1,5 +1,6 @@
 package com.thustop.thestop;
 
+import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,6 +44,7 @@ public class BoardingApplicationFragment extends FragmentBase {
     private static int end_focus;
     private StopSelectorAdapter adapter;
     private static final String TAG = "BoardingApplication";
+    private boolean isDialogUp = false;
 
 
     public static BoardingApplicationFragment newInstance(Route route) {
@@ -173,7 +175,7 @@ public class BoardingApplicationFragment extends FragmentBase {
                 @Override
                 public void onClick(View view) {
                     //아무것도 선택되지 않았을 때 -> 시작점으로 지정됨
-                    if (phase == 0) {
+                    if (phase == 0 && !isDialogUp) {
                         //position에 따라 출발 via 도착 via 중 하나 반환하여
                         if (position < boarding_stop_num) {
                             Via currentVia = route.boarding_stops.get(position);
@@ -188,11 +190,17 @@ public class BoardingApplicationFragment extends FragmentBase {
                                     updateFragmentPhase();
                                 }
                             });
+                            dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialog) {
+                                    isDialogUp = false;
+                                }
+                            });
+                            isDialogUp = true;
                             dialog.show();
                         }
-
                         //출발지가 선택된 경우에 눌렸을 때
-                    } else if (phase == 1) {
+                    } else if (phase == 1 && !isDialogUp) {
                         //출발지를 다시한번 누르면 선택 취소함
                         if (position == start_focus) {
                             phase = 0;
@@ -214,6 +222,13 @@ public class BoardingApplicationFragment extends FragmentBase {
                                     updateFragmentPhase();
                                 }
                             });
+                            dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialog) {
+                                    isDialogUp = false;
+                                }
+                            });
+                            isDialogUp = true;
                             dialog.show();
                         }
                     } else if (phase == 2) {

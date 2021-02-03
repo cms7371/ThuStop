@@ -36,77 +36,6 @@
                 android:layout_height="wrap_content">
 
                 <com.thustop.thestop.widgets.NotoTextView
-                    android:id="@+id/tv_fpm_phase1"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="33dp"
-                    android:background="@drawable/bg_round12_green"
-                    android:gravity="center"
-                    android:text="1"
-                    android:textColor="@color/White"
-                    android:textSize="9sp"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_fbapi_phase2"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintHorizontal_chainStyle="spread_inside"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:notoTextStyle="bold" />
-
-                <com.thustop.thestop.widgets.NotoTextView
-                    android:id="@+id/tv_fpm_phase2"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="33dp"
-                    android:background="@drawable/bg_round12_green"
-                    android:gravity="center"
-                    android:text="2"
-                    android:textColor="@color/White"
-                    android:textSize="9sp"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_fpm_phase3"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/tv_fpm_phase1"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:notoTextStyle="bold" />
-
-                <com.thustop.thestop.widgets.NotoTextView
-                    android:id="@+id/tv_fpm_phase3"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="33dp"
-                    android:layout_marginEnd="50dp"
-                    android:background="@drawable/bg_round12_green"
-                    android:gravity="center"
-                    android:text="3"
-                    android:textColor="@color/White"
-                    android:textSize="9sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/tv_fbapi_phase2"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:notoTextStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/iv_fpm_left_dots"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_fpm_phase1"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_fpm_phase2"
-                    app:layout_constraintStart_toEndOf="@+id/tv_fpm_phase1"
-                    app:layout_constraintTop_toTopOf="@+id/tv_fpm_phase1"
-                    app:srcCompat="@drawable/ic_3dots_green" />
-
-                <ImageView
-                    android:id="@+id/iv_fpm_right_dots"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_fpm_phase2"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_fpm_phase3"
-                    app:layout_constraintStart_toEndOf="@id/tv_fpm_phase2"
-                    app:layout_constraintTop_toTopOf="@+id/tv_fpm_phase2"
-                    app:srcCompat="@drawable/ic_3dots_green" />
-
-                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fpm_departure"
                     android:layout_width="0dp"
                     android:layout_height="59dp"
@@ -119,12 +48,12 @@
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
                     android:text="미사강변도시"
-                    android:textColor="@color/TextBlack"
 
+                    android:textColor="@color/TextBlack"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_fpm_phase2" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/notoTextView3"
@@ -174,50 +103,6 @@
                     app:layout_constraintTop_toTopOf="@id/tv_fpm_destination"
                     app:notoTextStyle="medium" />
 
-                <com.thustop.thestop.widgets.NotoTextView
-                    android:id="@+id/tv_fpm_boarding_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginTop="26dp"
-                    android:text="탑승 시작일"
-                    android:textColor="@color/TextBlack"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="@+id/tv_fpm_destination"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_fpm_destination"
-                    app:notoTextStyle="medium" />
-
-
-
-                <com.thustop.thestop.widgets.NotoTextView
-                    android:id="@+id/etv_fpm_boarding_date"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/bg_round25_grayf5"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:gravity="center_vertical"
-                    android:hint="yyyy/mm/dd"
-                    android:onClick="@{PaymentInfoFlag::onCalendarClick}"
-                    android:paddingStart="36dp"
-                    android:textColor="@color/TextBlack"
-                    android:textColorHint="@color/TextGray"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="@+id/tv_fpm_destination"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="@+id/tv_fpm_destination"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_fpm_boarding_date" />
-
-                <ImageView
-                    android:id="@+id/iv_fpm_calendar"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="20dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/etv_fpm_boarding_date"
-                    app:layout_constraintEnd_toEndOf="@+id/etv_fpm_boarding_date"
-                    app:layout_constraintTop_toTopOf="@+id/etv_fpm_boarding_date"
-                    app:srcCompat="@drawable/ic_calendar" />
 
                 <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/notoTextView6"
@@ -238,11 +123,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="24dp"
-                    android:text="99,000 원"
 
+                    android:text="99,000 원"
                     android:textColor="@color/Primary"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/etv_fpm_boarding_date"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_fpm_destination"
                     app:notoTextStyle="medium" />
 
                 <View
@@ -275,7 +160,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="34dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="7dp"
                     android:layout_marginEnd="50dp"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -291,6 +176,8 @@
                         android:button="@drawable/radio_button"
                         android:paddingStart="4dp"
                         android:paddingEnd="0dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:text="쿠폰"
                         android:textColor="@color/TextBlack"
                         android:textSize="13sp" />
@@ -303,6 +190,8 @@
                         android:button="@drawable/radio_button"
                         android:paddingStart="4dp"
                         android:paddingEnd="0dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:text="제휴"
                         android:textColor="@color/TextBlack"
                         android:textSize="13sp" />
@@ -315,6 +204,8 @@
                         android:button="@drawable/radio_button"
                         android:paddingStart="4dp"
                         android:paddingEnd="0dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:text="사용안함"
                         android:textColor="@color/TextBlack"
                         android:textSize="13sp" />
@@ -340,7 +231,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="34dp"
+                    android:layout_marginTop="29dp"
                     android:text="포인트 사용"
                     android:textColor="@color/TextBlack"
                     android:textSize="15sp"
@@ -421,7 +312,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="34dp"
-                    android:layout_marginTop="26dp"
+                    android:layout_marginTop="21dp"
                     android:layout_marginEnd="30dp"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -437,6 +328,8 @@
                         android:maxLines="1"
                         android:paddingStart="4dp"
                         android:paddingEnd="0dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:text="신용/체크카드"
                         android:textColor="@color/TextBlack"
                         android:textSize="13sp" />
@@ -450,6 +343,8 @@
                         android:drawableStart="@drawable/icon_kakao_pay"
                         android:paddingStart="4dp"
                         android:paddingEnd="0dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:textColor="@color/TextBlack"
                         android:textSize="13sp" />
 
@@ -461,6 +356,8 @@
                         android:button="@drawable/radio_button"
                         android:paddingStart="4dp"
                         android:paddingEnd="0dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:text="가상계좌"
                         android:textColor="@color/TextBlack"
                         android:textSize="13sp" />
@@ -470,7 +367,7 @@
                     android:id="@+id/v_fpm_stroke2"
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="25dp"
                     android:background="@color/Stroke"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -500,53 +397,69 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tv_fpm_original_price2" />
 
-                <com.thustop.thestop.widgets.NotoTextView
-                    android:id="@+id/tv_fpm_coupon_discount"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_coupon_discount"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="19dp"
-                    android:text="-1,300원"
-                    android:textColor="@color/TextBlack"
-                    android:textSize="13sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_fpm_original_price2" />
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fpm_original_price2">
 
-                <com.thustop.thestop.widgets.NotoTextView
-                    android:id="@+id/notoTextView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="22dp"
-                    android:text="쿠폰 할인"
-                    android:textColor="@color/TextBlack"
-                    android:textSize="13sp"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_fpm_coupon_discount"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tv_fpm_coupon_discount" />
+                    <com.thustop.thestop.widgets.NotoTextView
+                        android:id="@+id/tv_fpm_coupon_discount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="19dp"
+                        android:text="-1,300원"
+                        android:textColor="@color/TextBlack"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <com.thustop.thestop.widgets.NotoTextView
-                    android:id="@+id/tv_fpm_point_discount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="19dp"
-                    android:text="-1,300원"
-                    android:textColor="@color/TextBlack"
-                    android:textSize="13sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_fpm_coupon_discount" />
+                    <com.thustop.thestop.widgets.NotoTextView
+                        android:id="@+id/notoTextView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="22dp"
+                        android:text="쿠폰 할인"
+                        android:textColor="@color/TextBlack"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_fpm_coupon_discount"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_fpm_coupon_discount" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <com.thustop.thestop.widgets.NotoTextView
-                    android:id="@+id/notoTextView10"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_point_discount"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="22dp"
-                    android:text="포인트 할인"
-                    android:textColor="@color/TextBlack"
-                    android:textSize="13sp"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_fpm_point_discount"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tv_fpm_point_discount" />
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/cl_coupon_discount">
+
+                    <com.thustop.thestop.widgets.NotoTextView
+                        android:id="@+id/tv_fpm_point_discount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="19dp"
+                        android:text="-1,300원"
+                        android:textColor="@color/TextBlack"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.thustop.thestop.widgets.NotoTextView
+                        android:id="@+id/notoTextView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="22dp"
+                        android:text="포인트 할인"
+                        android:textColor="@color/TextBlack"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_fpm_point_discount"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_fpm_point_discount" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fpm_final_price"
@@ -554,11 +467,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"
                     android:layout_marginEnd="15dp"
-                    android:text="94,700원"
+                    android:text="99,900원"
                     android:textColor="@color/TextBlack"
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_fpm_point_discount"
+                    app:layout_constraintTop_toBottomOf="@id/cl_point_discount"
                     app:notoTextStyle="bold" />
 
                 <com.thustop.thestop.widgets.NotoTextView
@@ -593,7 +506,7 @@
                     android:layout_marginStart="49dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="50dp"
-                    android:text="첫번째 주의사항입니다.\n많이많이 타세요~"
+                    android:text="첫번째 주의사항입니다."
                     android:textSize="11sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -660,6 +573,7 @@
             android:textColor="@color/White"
             android:textSize="16sp"
             android:enabled="false"
+            android:onClick="@{PaymentInfoFlag::onMakePaymentClick}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

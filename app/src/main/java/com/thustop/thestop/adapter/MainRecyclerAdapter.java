@@ -63,7 +63,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         notifyItemRangeInserted(routeOffset, this.routes.size());
     }
 
-    public void updateTickets(List<Ticket> tickets){
+    public void updateTickets(List<Ticket> tickets) {
         this.tickets = tickets;
         notifyItemRemoved(0);
         notifyItemInserted(0);
@@ -119,13 +119,13 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-       if (holder instanceof RouteViewHolder) {
+        if (holder instanceof RouteViewHolder) {
             Route cnt_route = routes.get(position - routeOffset);
             int boarding_stop_num = cnt_route.boarding_stops.size();
             int alighting_stop_num = cnt_route.alighting_stops.size();
             ((RouteViewHolder) holder).tvName.setText(cnt_route.name);
             ((RouteViewHolder) holder).tvStatus.setText(cnt_route.status);
-            ((RouteViewHolder) holder).tvPeople.setText(String.format(Locale.KOREA,"%d/%d", cnt_route.cnt_passenger, cnt_route.max_passenger));
+            ((RouteViewHolder) holder).tvPeople.setText(String.format(Locale.KOREA, "%d/%d", cnt_route.cnt_passenger, cnt_route.max_passenger));
             if (cnt_route.status.equals("모집중")) {
                 ((RouteViewHolder) holder).tvStatus.setBackground(ContextCompat.getDrawable(context, R.drawable.bg_round12_red));
             }

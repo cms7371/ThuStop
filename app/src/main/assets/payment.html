@@ -6,16 +6,25 @@
     <script type="text/javascript">
         var IMP = window.IMP;
         IMP.init('imp06112179');
-        IMP.certification({merchant_uid : 'merchant_' + new Date().getTime()},
-        function(rsp) {
-           if (rsp.success) {
-            Android.getData(rsp.imp_uid)
-           } else {
-            var msg = '인증에 실패하였습니다.';
-            msg += '에러내용 : ' + rsp.error_msg;
-            Android.onFailure(msg);
-           }
-        });
+        IMP.request_pay({
+            pg: Android.getPG(),
+            pay_method: Android.getMethod(),
+            merchant_uid : 'merchant_' + new Date().getTime(),
+            name: Android.getName(),
+            amount: Android.getPrice(),
+            buyer_tel: '010-2692-7371',
+            biz_num: '4198701451'
+            },
+            function(rsp) {
+               if (rsp.success) {
+                  Android.onSuccess(rsp.imp_uid)
+               } else {
+                  var msg = '결제에 실패하였습니다.';
+                  msg += '에러내용 : ' + rsp.error_msg;
+                  Android.onFailure(msg);
+               }
+            }
+        );
     </script>
 </head>
 </html>
