@@ -45,7 +45,6 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
     private Route route;
     private int boarding_stop_position;
     private int alighting_stop_position;
-    private int year, month, day;
     private String boarding_start, boarding_end;
     private Ticket ticket;
 
@@ -63,7 +62,7 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentBoardingApplicationPassengerInfoBinding.inflate(inflater);
         binding.setBoardingApplicationPassengerInfoFrag(this);
@@ -101,33 +100,43 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
         Calendar application_start = Calendar.getInstance();
         Calendar application_end = Calendar.getInstance();
         //Status 처리(운행중이 아닐 경우 시작일로 셋팅 필요)
-        if(route.status == "모집중" || route.status == "운행대기") {
+        if (route.status.equals("모집중") || route.status.equals("운행대기")) {
             // TODO : route 시작일로 변경 필요.
 
             try {
                 Date start_date = dateFormat.parse("2021-02-13");
                 application_start.setTime(start_date);
-                application_start.add(Calendar.DATE,-1);
+                application_start.add(Calendar.DATE, -1);
                 application_end.setTime(start_date);
-                application_end.add(Calendar.DATE,-1);
+                application_end.add(Calendar.DATE, -1);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
         }
         // 최대 탑승 신청기간은 가능일(다음날)로 부터 1주일
         application_end.add(Calendar.DATE, 7);
-        CustomDatePickerDialog datePickerDialog = new CustomDatePickerDialog(getContext(), application_start, application_end);
+        CustomDatePickerDialog datePickerDialog = new CustomDatePickerDialog(requireContext(), application_start, application_end);
         datePickerDialog.setDialogListener(new CustomDatePickerDialog.CustomDatePickerDialogListener() {
             @Override
             public void onOkClick(int year_picker, int month_picker, int day_picker) {
-                boarding_start = String.format("%d-%02d-%02d", year_picker, month_picker, day_picker);
+                boarding_start = String.format(Locale.KOREA, "%d-%02d-%02d", year_picker, month_picker, day_picker);
                 setBoardingEndDate(boarding_start);
                 Log.d("끝나는 날", boarding_end);
-                binding.etvFbapiBoardingDate.setTextColor(getResources().getColor(R.color.TextBlack));
+                binding.etvFbapiBoardingDate.setTextColor(ContextCompat.getColor(requireContext(), R.color.TextBlack));
                 binding.etvFbapiBoardingDate.setText(boarding_start);
             }
         });
         datePickerDialog.show();
+    }
+
+
+    public void onBtOkClick(View view) {
+        // TODO 확인 화면 다이얼로그로 바꾸고 결제화면 연결해야함
+        if (route.status.equals("모집중"))
+            postTestTicket();
+        else
+            //TODO 날짜도 넘겨줘야함
+            _listener.addFragment(PaymentInformationFragment.newInstance(route, boarding_stop_position, alighting_stop_position));
     }
 
     private void postTestTicket() {
@@ -142,7 +151,6 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
 
         Call<Ticket> call = api.postTicket(Prefs.getString(Constant.LOGIN_KEY, ""), ticket);
         call.enqueue(new Callback<Ticket>() {
-
             @Override
             public void onResponse(@NotNull Call<Ticket> call, @NotNull Response<Ticket> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -158,26 +166,6 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
                 Toast.makeText(getContext(), "아예 에러남", Toast.LENGTH_SHORT).show();
             }
         });
-
-    }
-
-
-    public void onBtOkClick(View view) {
-        // TODO 확인 화면 다이얼로그로 바꾸고 결제화면 연결해야함
-
-        BoardingApplicationCheckDialog dialog = new BoardingApplicationCheckDialog(getContext() ,route.getBoardingStopName(boarding_stop_position), route.getAlightingStopName(alighting_stop_position));
-        dialog.setListener(new BoardingApplicationCheckDialog.BoardingCheckDialogListener() {
-            @Override
-            public void onBoardingConfirm() {
-                //TODO 결제 프로세스 연결 또는 탑승 신청 완료로 연결
-                postTestTicket();
-/*                _listener.addFragment(PaymentFragment.newInstance());
-                //_listener.setFragment(DoneFragment.newInstance("탑승 신청이 완료되었습니다.", "배차가 확정되면 푸시알림, 또는 문자를 드립니다.",true));
-                Handler H = new Handler(Looper.getMainLooper());
-                H.postDelayed(dialog::dismiss, 500);*/
-            }
-        });
-        dialog.show();
     }
 
     private void setBoardingEndDate(String boarding_start) {
@@ -190,6 +178,5 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
     }
 }

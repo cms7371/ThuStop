@@ -118,7 +118,6 @@ public class PaymentInformationFragment extends FragmentBase {
     }
 
     public void onMakePaymentClick(View view) {
-        String m;
         if (paymentMethod == CREDIT_CARD)
             _listener.addFragment(PaymentFragment.newInstance("danal_tpay", "card",route));
         else if (paymentMethod == KAKAO_PAY)

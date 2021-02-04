@@ -21,16 +21,14 @@ import androidx.annotation.Nullable;
 import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.Payment;
-import com.thustop.databinding.FragmentRegisterVerificationBinding;
+import com.thustop.databinding.FragmentWebViewBinding;
 import com.thustop.thestop.model.Route;
-
-import org.junit.internal.Throwables;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class PaymentFragment extends FragmentBase{
-    private FragmentRegisterVerificationBinding binding;
+    private FragmentWebViewBinding binding;
     private final static String TAG = "PaymentFragment";
     private String pg;
     private String method;
@@ -49,7 +47,7 @@ public class PaymentFragment extends FragmentBase{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentRegisterVerificationBinding.inflate(inflater);
+        binding = FragmentWebViewBinding.inflate(inflater);
 
 
         WebSettings webSettings = binding.wvCertification.getSettings();
@@ -109,7 +107,7 @@ public class PaymentFragment extends FragmentBase{
         @JavascriptInterface
         public void onSuccess(String imp_uid) throws IOException, IamportResponseException {
             Payment result = iamportClient.paymentByImpUid(imp_uid).getResponse();
-            Toast.makeText(requireContext(), "결제 결과" + result.getStatus() + "로 성공! 메인화면으로 돌아갑니다.", Toast.LENGTH_LONG).show();
+            Toast.makeText(requireContext(), "결제 결과 " + result.getStatus() + "로 성공! 메인화면으로 돌아갑니다.", Toast.LENGTH_LONG).show();
             _listener.setFragment(MainFragment.newInstance());
         }
 

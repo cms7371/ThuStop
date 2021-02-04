@@ -1,6 +1,5 @@
 package com.thustop.thestop;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.Certification;
-import com.thustop.databinding.FragmentRegisterVerificationBinding;
+import com.thustop.databinding.FragmentWebViewBinding;
 import com.thustop.thestop.model.Auth;
 import com.thustop.thestop.model.CertificationBootPay;
 
@@ -36,7 +35,7 @@ public class RegisterVerificationFragment extends FragmentBase{
 
 
     // Databinding
-    FragmentRegisterVerificationBinding binding;
+    FragmentWebViewBinding binding;
     InputMethodManager imm;
     Auth auth;
     private final static String TAG = "VerificationFragment";
@@ -65,7 +64,7 @@ public class RegisterVerificationFragment extends FragmentBase{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        binding= FragmentRegisterVerificationBinding.inflate(inflater);
+        binding= FragmentWebViewBinding.inflate(inflater);
         binding.setIDVerfrag(this);
 
         imm = (InputMethodManager)requireActivity().getSystemService(INPUT_METHOD_SERVICE);
