@@ -187,8 +187,9 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             }
             case R.id.bt_notification: {
                 if (isExitEnabled) setFragment(MainFragment.newInstance());
-                else Toast.makeText(getApplicationContext(), "알림버튼 눌림", Toast.LENGTH_SHORT).show();
-                addFragment(NotificationFragment.newInstance());
+                TicketDetailMapDialog ticketDetailMapDialog = new TicketDetailMapDialog(this);
+                ticketDetailMapDialog.show();
+
             }
         }
         return super.onOptionsItemSelected(item);

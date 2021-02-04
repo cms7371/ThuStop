@@ -103,6 +103,9 @@ dependencies {
     /*Carousel View 동그란 리사이클러*/
     implementation 'com.gtomato.android.library:carouselview:2.0.1'
 
+    /*Sliding up panel*/
+    implementation 'com.sothree.slidinguppanel:library:3.4.0'
+
     implementation 'com.github.iamport:iamport-rest-client-java:0.2.13'
     implementation 'com.github.bootpay:client_android_java:3.3.91'
 }
