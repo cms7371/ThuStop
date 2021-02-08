@@ -202,6 +202,12 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     }
 
     public void onRefreshClick(View view) {
+        TicketDetailMapDialog ticketDetailMapDialog = new TicketDetailMapDialog(getContext(), routes.get(1), getActivity());
+        Log.d("출발지", String.valueOf(routes.get(1).boarding_stops.size()));
+        ticketDetailMapDialog.show();
+
+        //TODO:다이얼로그 확인차 여기다 집어넣음. 나중에 주석 풀기 필수!
+        /***
         if (!isRefreshing) {
             isRefreshing = true;
             view.animate().rotation(720f).setDuration(750).setInterpolator(new AccelerateDecelerateInterpolator()).withEndAction(() -> {
@@ -217,6 +223,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
                     }
             ).start();
         }
+         ***/
     }
 
 

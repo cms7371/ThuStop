@@ -187,8 +187,6 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             }
             case R.id.bt_notification: {
                 if (isExitEnabled) setFragment(MainFragment.newInstance());
-                TicketDetailMapDialog ticketDetailMapDialog = new TicketDetailMapDialog(this);
-                ticketDetailMapDialog.show();
 
             }
         }

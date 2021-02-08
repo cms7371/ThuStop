@@ -8,6 +8,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.slidingpanelayout.widget.SlidingPaneLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,7 +19,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sothree.slidinguppanel.ScrollableViewHelper;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.thustop.R;
+import com.thustop.thestop.adapter.RouteDetailAdapter;
+import com.thustop.thestop.model.Route;
+import com.thustop.thestop.model.Ticket;
 import com.thustop.thestop.model.Via;
 import com.thustop.thestop.widgets.NotoTextView;
 
@@ -30,8 +37,20 @@ import java.util.Objects;
 
 
 public class TicketDetailMapDialog extends DialogBase {
-    public TicketDetailMapDialog(@NonNull Context context) {
+    private Ticket ticket;
+    private Context context;
+    private Route route;
+    private Activity activity;
+    protected OnFragmentInteractionListener _listener;
+
+
+    //TODO:루트 티켓으로 변경 필요/
+    public TicketDetailMapDialog(@NonNull Context context, Route route, Activity activity) {
         super(context, R.style.CustomFullDialog);
+        this.context = context;
+        this.route = route;
+        this.activity = activity;
+        //this.ticket = ticket;
     }
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +58,38 @@ public class TicketDetailMapDialog extends DialogBase {
         setContentView(R.layout.dialog_ticket_detail_map);
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
+        if (activity instanceof OnFragmentInteractionListener) {
+            _listener = (OnFragmentInteractionListener) activity;
+            _listener.setOnBackPressedListener(null);
+        }
+
+        ImageView ivBack = findViewById(R.id.bt_dtdm_back);
+        RecyclerView rvRoute = findViewById(R.id.rv_dtdm_vias);
+
+
+        SlidingUpPanelLayout spl = findViewById(R.id.main_panel);
+
+
+
+        spl.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+            @Override
+            public void onPanelSlide(View panel, float slideOffset) {
+
+            }
+
+            @Override
+            public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+                if(newState == SlidingUpPanelLayout.PanelState.ANCHORED) {
+                    ivBack.setVisibility(View.GONE);
+                }
+            }
+        });
+        spl.setScrollableView(rvRoute);
+        ScrollableViewHelper helper = new ScrollableViewHelper();
+        spl.setScrollableViewHelper(helper);
+        Log.d("출발지", String.valueOf(route.boarding_stops.size()));
+        RouteDetailAdapter adapter = new RouteDetailAdapter(context, route, _listener);
+        rvRoute.setAdapter(adapter);
     }
 
 
