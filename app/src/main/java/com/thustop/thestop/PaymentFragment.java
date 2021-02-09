@@ -44,7 +44,6 @@ public class PaymentFragment extends FragmentBase{
         return fragment;
     }
 
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentWebViewBinding.inflate(inflater);
