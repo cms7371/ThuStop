@@ -47,7 +47,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Objects;
 
-import kr.co.bootpay.BootpayAnalytics;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -157,7 +156,6 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             Log.d(TAG, "onCreate: FCM 등록 시도");
             Utils.registerDevice();
         }
-        BootpayAnalytics.init(this, Constant.BOOTPAY_KEY);
         Log.d(TAG, "onCreate: GPSServiceStatus is " + GPSServiceStatus);
         checkFirstRun();
 

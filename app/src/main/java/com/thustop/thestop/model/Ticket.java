@@ -11,6 +11,16 @@ public class Ticket {
         this.start_date = start_date;
         this.end_date = end_date;
     }
+    public Ticket (Route route, int boarding_offset, int alighting_offset, String start_date){
+        this.route_obj = route;
+        this.route = route.id;
+        this.status = route.status;
+        this.start_via_obj = route.boarding_stops.get(boarding_offset);
+        this.start_via = this.start_via_obj.id;
+        this.end_via_obj = route.alighting_stops.get(alighting_offset);
+        this.end_via = this.end_via_obj.id;
+        this.start_date = start_date;
+    }
 
     public Ticket cloneTicket(){
         return new Ticket(this.route, this.start_via, this.end_via, this.start_date, this.end_date);

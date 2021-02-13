@@ -50,6 +50,21 @@
                     app:notoTextStyle="bold" />
 
                 <com.thustop.thestop.widgets.NotoTextView
+                    android:id="@+id/tv_fbd_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:background="@drawable/bg_round12_green"
+                    android:text="운행대기"
+                    android:textColor="@color/White"
+                    android:textSize="11sp"
+                    android:paddingStart="6dp"
+                    android:paddingEnd="6dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_bus_id"
+                    app:layout_constraintStart_toEndOf="@+id/tv_bus_id"
+                    app:layout_constraintTop_toTopOf="@+id/tv_bus_id" />
+
+                <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_departure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -135,18 +150,17 @@
                     app:layout_constraintTop_toBottomOf="@id/rv_vias"
                     app:notoTextStyle="medium" />
 
-                <com.thustop.thestop.widgets.NotoTextView
+                <ImageView
                     android:id="@+id/tv_nop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
-                    android:text="탑승객"
                     android:textColor="@color/TextBlack"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toStartOf="@id/tv_how_far"
                     app:layout_constraintStart_toEndOf="@id/tv_bus_type"
                     app:layout_constraintTop_toBottomOf="@id/rv_vias"
-                    app:notoTextStyle="medium" />
+                    app:srcCompat="@drawable/ic_portrait" />
 
                 <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_how_far"
@@ -206,7 +220,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="40dp"
-                    android:text="주의사항"
+                    android:text="유의사항"
                     android:textColor="@color/TextBlack"
                     android:textSize="13sp"
                     app:layout_constraintStart_toStartOf="parent"

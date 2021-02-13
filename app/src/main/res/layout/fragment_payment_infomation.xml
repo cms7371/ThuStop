@@ -225,6 +225,7 @@
                     app:layout_constraintTop_toBottomOf="@id/rg_fpm_coupon_affiliation">
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+<!--
 
                 <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fpm_point_use"
@@ -293,6 +294,7 @@
                     android:textSize="10sp"
                     app:layout_constraintEnd_toEndOf="@id/tv_fpm_point_to_use"
                     app:layout_constraintTop_toBottomOf="@id/tv_fpm_point_to_use" />
+-->
 
                 <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fpm_method"
@@ -304,7 +306,7 @@
                     android:textColor="@color/TextBlack"
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cb_fpm_point_all_in"
+                    app:layout_constraintTop_toBottomOf="@+id/cl_fpm_coupon_container"
                     app:notoTextStyle="medium" />
 
                 <RadioGroup
@@ -429,7 +431,7 @@
                         app:layout_constraintTop_toTopOf="@id/tv_fpm_coupon_discount" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+<!--                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_point_discount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -459,7 +461,7 @@
                         app:layout_constraintBottom_toBottomOf="@id/tv_fpm_point_discount"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/tv_fpm_point_discount" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>-->
 
                 <com.thustop.thestop.widgets.NotoTextView
                     android:id="@+id/tv_fpm_final_price"
@@ -471,7 +473,7 @@
                     android:textColor="@color/TextBlack"
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cl_point_discount"
+                    app:layout_constraintTop_toBottomOf="@id/cl_coupon_discount"
                     app:notoTextStyle="bold" />
 
                 <com.thustop.thestop.widgets.NotoTextView

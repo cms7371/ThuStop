@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="FragTicketQR"
+            type="com.thustop.thestop.TicketQRFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/Primary">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/toolbar_height" />
+
+        <com.thustop.thestop.widgets.NotoTextView
+            android:id="@+id/tv_ftq_manage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_ticket_qr_upper"
+            android:bufferType="spannable"
+            android:paddingStart="20dp"
+            android:paddingTop="28dp"
+            android:paddingBottom="28dp"
+            android:text="김민규 님의 티켓"
+            android:textColor="@color/TextBlack"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline8"
+            app:notoTextStyle="light" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="10dp"
+            android:layout_height="18dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_ftq_manage"
+            app:layout_constraintEnd_toEndOf="@+id/tv_ftq_manage"
+            app:layout_constraintTop_toTopOf="@+id/tv_ftq_manage"
+            app:srcCompat="@drawable/ic_thin_arrow" />
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:layerType="software"
+            android:src="@drawable/ic_dotted_line_green"
+            app:layout_constraintBottom_toTopOf="@id/cl_ftq_qr"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_ftq_manage" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_ftq_qr"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_round10_white"
+            app:layout_constraintBottom_toTopOf="@+id/cl_ftq_functions"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_ftq_manage">
+
+            <com.thustop.thestop.widgets.NotoTextView
+                android:id="@+id/tv_ftq_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="07 : 15"
+                android:textColor="@color/Ach20"
+                android:textSize="45sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_ftq_start"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread"
+                app:notoTextStyle="medium" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_ftq_start"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_ftq_start"
+                app:srcCompat="@drawable/ic_arrow_gray_left" />
+
+            <com.thustop.thestop.widgets.NotoTextView
+                android:id="@+id/tv_ftq_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="11dp"
+                android:text="선릉역 1번 출구"
+                android:textColor="@color/TextGray"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toTopOf="@+id/iv_ftq_qr"
+                app:layout_constraintEnd_toStartOf="@+id/imageView6"
+                app:layout_constraintTop_toBottomOf="@+id/tv_ftq_time" />
+
+            <com.thustop.thestop.widgets.NotoTextView
+                android:id="@+id/tv_ftq_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="11dp"
+                android:text="수원 성균관대학교"
+                android:textColor="@color/TextGray"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_ftq_start"
+                app:layout_constraintStart_toEndOf="@+id/imageView6"
+                app:layout_constraintTop_toTopOf="@+id/tv_ftq_start" />
+
+            <ProgressBar
+                android:id="@+id/pb_ftq_loading"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/Primary"
+                android:indeterminateTintMode="src_atop"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_ftq_qr"
+                app:layout_constraintEnd_toEndOf="@+id/iv_ftq_qr"
+                app:layout_constraintStart_toStartOf="@+id/iv_ftq_qr"
+                app:layout_constraintTop_toTopOf="@+id/iv_ftq_qr" />
+
+            <ImageView
+                android:id="@+id/iv_ftq_qr"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                app:layout_constraintBottom_toTopOf="@+id/iv_ftq_refresh"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_ftq_start"
+                tools:srcCompat="@android:color/transparent" />
+
+            <com.thustop.thestop.widgets.NotoTextView
+                android:id="@+id/notoTextView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="남은시간"
+                android:textColor="@color/Black"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_ftq_refresh"
+                app:layout_constraintEnd_toStartOf="@+id/tv_ftq_timer"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_ftq_refresh" />
+
+            <com.thustop.thestop.widgets.NotoTextView
+                android:id="@+id/tv_ftq_timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="22dp"
+                android:text="2분 00초"
+                android:textColor="@color/Black"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_ftq_refresh"
+                app:layout_constraintEnd_toStartOf="@+id/iv_ftq_refresh"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/notoTextView15"
+                app:layout_constraintTop_toTopOf="@+id/iv_ftq_refresh" />
+
+            <ImageView
+                android:id="@+id/iv_ftq_refresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_circle_outline53"
+                android:padding="11dp"
+                android:onClick="@{FragTicketQR::onRefreshClick}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_ftq_timer"
+                app:layout_constraintTop_toBottomOf="@+id/iv_ftq_qr"
+                app:srcCompat="@drawable/ic_refresh_green" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:layerType="software"
+            android:src="@drawable/ic_dotted_line_green"
+            app:layout_constraintBottom_toTopOf="@+id/cl_ftq_functions"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_ftq_qr" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_ftq_functions"
+            android:layout_width="0dp"
+            android:layout_height="127dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="17dp"
+            android:background="@drawable/bg_ticket_qr_lower"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_ftq_info"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_circlef5"
+                android:padding="13dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/iv_ftq_call"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.3"
+                app:srcCompat="@drawable/ic_bus_green" />
+
+            <ImageView
+                android:id="@+id/iv_ftq_call"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_circlef5"
+                android:padding="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/iv_ftq_info"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.3"
+                app:srcCompat="@drawable/ic_call_green" />
+
+            <com.thustop.thestop.widgets.NotoTextView
+                android:id="@+id/notoTextView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="버스 정보"
+                android:textColor="@color/TextBlack"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/iv_ftq_info"
+                app:layout_constraintStart_toStartOf="@+id/iv_ftq_info"
+                app:layout_constraintTop_toBottomOf="@+id/iv_ftq_info" />
+
+            <com.thustop.thestop.widgets.NotoTextView
+                android:id="@+id/notoTextView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="고객센터"
+                android:textColor="@color/TextBlack"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/iv_ftq_call"
+                app:layout_constraintStart_toStartOf="@+id/iv_ftq_call"
+                app:layout_constraintTop_toBottomOf="@+id/iv_ftq_call" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

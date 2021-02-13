@@ -112,7 +112,12 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
             mainRecycler.setAdapter(mainAdapter);
             new Handler(Looper.getMainLooper()).postDelayed(() -> {
                 getRoutes();
-                getTickets();
+                if (_listener.getTickets() != null) {
+                    mainAdapter.updateTickets(_listener.getTickets());
+                    tickets = _listener.getTickets();
+                }
+                //TODO 티켓 정보 불러오는거 다시 돌려놓아야함
+                //getTickets();
             }, 300);
         } else {
             mainRecycler.setAdapter(mainAdapter);
@@ -126,7 +131,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 if (prePosition == position) {
                     preSelectedItem.setSelected(false);
-                    preSelectedItem.setTextColor(getResources().getColor(R.color.TextGray));
+                    preSelectedItem.setTextColor(ContextCompat.getColor(requireContext(), R.color.TextGray));
                     preSelectedItem.setBackgroundResource(R.drawable.bg_round25_grayf5);
                     prePosition = -1;
                     binding.tvSelLocal.setText(R.string.tvSelLocal);
@@ -135,13 +140,13 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
                     Log.d(TAG, selectedRegion);
                     curSelectedItem = (NotoTextView) view;
                     curSelectedItem.setSelected(true);
-                    curSelectedItem.setTextColor(getResources().getColor(R.color.TextBlack));
+                    curSelectedItem.setTextColor(ContextCompat.getColor(requireContext(), R.color.TextBlack));
                     curSelectedItem.setBackgroundResource(R.drawable.bg_outline25_green_f5);
                     binding.tvSelLocal.setText(selectedRegion);
                     if (prePosition != -1) {
                         preSelectedItem = (NotoTextView) regionGrid.getChildAt(prePosition);
                         preSelectedItem.setSelected(false);
-                        preSelectedItem.setTextColor(getResources().getColor(R.color.TextGray));
+                        preSelectedItem.setTextColor(ContextCompat.getColor(requireContext(), R.color.TextGray));
                         preSelectedItem.setBackgroundResource(R.drawable.bg_round25_grayf5);
                     }
                     prePosition = position;
@@ -174,6 +179,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
                 _listener.addFragment(AddRouteMapFragment.newInstance(null, null));
             } else {
                 Toast.makeText(getContext(), ticket_position + "번째 티켓 눌림", Toast.LENGTH_SHORT).show();
+                _listener.addFragment(TicketQRFragment.newInstance(tickets.get(ticket_position)));
             }
         } else if (position >= 2) {
             _listener.addFragment(BoardingApplicationDetailFragment.newInstance(routes.get(position - 2)));
@@ -202,7 +208,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     }
 
     public void onRefreshClick(View view) {
-        TicketDetailMapDialog ticketDetailMapDialog = new TicketDetailMapDialog(getContext(), routes.get(1), getActivity());
+        TicketDetailMapDialog ticketDetailMapDialog = new TicketDetailMapDialog(requireContext(), routes.get(1), getActivity());
         Log.d("출발지", String.valueOf(routes.get(1).boarding_stops.size()));
         ticketDetailMapDialog.show();
 

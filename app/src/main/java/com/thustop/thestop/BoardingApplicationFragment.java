@@ -116,11 +116,8 @@ public class BoardingApplicationFragment extends FragmentBase {
                     Log.e(TAG, "onFailure: 티켓 업데이트 서버 에러 발생", t);
                 }
             });
-        } else if(route.status.equals("모집중"))
+        } else
             _listener.addFragment(BoardingApplicationPassengerInfoFragment.newInstance(route, start_focus, end_focus - boarding_stop_num));
-        else
-            _listener.addFragment(PaymentInformationFragment.newInstance(route, start_focus, end_focus - boarding_stop_num));
-
     }
 
     private void updateFragmentPhase() {

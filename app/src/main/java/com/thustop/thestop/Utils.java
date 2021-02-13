@@ -67,10 +67,12 @@ public class Utils {
 
     /**
      * 예시 코드
-     * textView.setText(Utils.getBoldSpan(getContext(),"1회\n무료 탑승권", new String[] {"1회", "탑승권"}));
+     * textView.setText(Utils.getBoldSpan(getContext(), "Bold", "1회\n무료 탑승권", new String[] {"1회", "탑승권"}));
      **/
-    static public SpannableStringBuilder getBoldSpan(Context context, String mainString, String[] boldStrings) {
-        Typeface boldFace = Typeface.createFromAsset(context.getAssets(), "NotoSansKR-Bold-Hestia.otf");
+    static public SpannableStringBuilder getPartialFontSpan(Context context, String style, String mainString, String[] boldStrings) {
+        String name = style.substring(0, 1).toUpperCase() + style.substring(1).toLowerCase();
+        String path = "NotoSansKR-" + name + "-Hestia.otf";
+        Typeface boldFace = Typeface.createFromAsset(context.getAssets(), path);
         SpannableStringBuilder span = new SpannableStringBuilder(mainString);
         int index_start, index_end;
         for (String bold : boldStrings) {

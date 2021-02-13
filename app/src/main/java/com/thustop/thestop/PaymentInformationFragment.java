@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat;
 import com.thustop.R;
 import com.thustop.databinding.FragmentPaymentInfomationBinding;
 import com.thustop.thestop.model.Route;
+import com.thustop.thestop.model.Ticket;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -24,6 +25,8 @@ public class PaymentInformationFragment extends FragmentBase {
     private Route route;
     private int boarding_stop_position;
     private int alighting_stop_position;
+    private Ticket ticket;
+    private String start_date;
     private boolean isCouponSelected = false;
     private int couponMethod = -1;
     private int paymentMethod = -1;
@@ -42,13 +45,14 @@ public class PaymentInformationFragment extends FragmentBase {
         return fragment;
     }
 
-    public static PaymentInformationFragment newInstance(Route route, int boarding_stop_position, int alighting_stop_position) {
+    public static PaymentInformationFragment newInstance(Route route, int boarding_stop_position, int alighting_stop_position, String start_data) {
         PaymentInformationFragment fragment = new PaymentInformationFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         fragment.route = route;
         fragment.boarding_stop_position = boarding_stop_position;
         fragment.alighting_stop_position = alighting_stop_position;
+        fragment.start_date = start_data;
         return fragment;
     }
 
@@ -65,11 +69,11 @@ public class PaymentInformationFragment extends FragmentBase {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-                if (checkedId == binding.rbFpmCoupon.getId()){
+                if (checkedId == binding.rbFpmCoupon.getId()) {
                     //TODO 쿠폰 목록 리사이클러로 넣어야함
                     couponMethod = COUPON;
                     isCouponSelected = false;
-                } else if (checkedId == binding.rbFpmAffiliation.getId()){
+                } else if (checkedId == binding.rbFpmAffiliation.getId()) {
                     //TODO 제휴 목록 리사이클러로 넣어야함
                     couponMethod = AFFILIATION;
                     isCouponSelected = false;
@@ -103,6 +107,8 @@ public class PaymentInformationFragment extends FragmentBase {
             binding.rbFpmNothing.setChecked(true);
         }
         checkPaymentIsReady();
+        ticket = new Ticket(route, boarding_stop_position, alighting_stop_position, start_date);
+
 
         return binding.getRoot();
     }
@@ -119,12 +125,12 @@ public class PaymentInformationFragment extends FragmentBase {
 
     public void onMakePaymentClick(View view) {
         if (paymentMethod == CREDIT_CARD)
-            _listener.addFragment(PaymentFragment.newInstance("danal_tpay", "card",route));
+            _listener.addFragment(PaymentFragment.newInstance("danal_tpay", "card", ticket));
         else if (paymentMethod == KAKAO_PAY)
-            _listener.addFragment(PaymentFragment.newInstance("kakaopay", "card",route));
+            _listener.addFragment(PaymentFragment.newInstance("kakaopay", "card", ticket));
         else if (paymentMethod == VIRTUAL_ACCOUNT)
-            Toast.makeText(requireContext(), "테스트 모드에서는 가상계좌 결제를 지원하지 않습니다",Toast.LENGTH_SHORT).show();
-            //_listener.addFragment(PaymentFragment.newInstance("danal_tpay", "vbank",route));
+            Toast.makeText(requireContext(), "테스트 모드에서는 가상계좌 결제를 지원하지 않습니다", Toast.LENGTH_SHORT).show();
+        //_listener.addFragment(PaymentFragment.newInstance("danal_tpay", "vbank",route));
     }
 
 }

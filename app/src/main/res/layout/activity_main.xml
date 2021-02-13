@@ -198,18 +198,6 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:notoTextStyle="regular" />
 
-                        <com.thustop.thestop.widgets.NotoTextView
-                            android:id="@+id/tv_member_point"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="63dp"
-                            android:text="1200P"
-                            android:textColor="#ff6c2e"
-                            android:textSize="15sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/tv_member_nim"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:notoTextStyle="medium" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -290,13 +278,6 @@
                         app:layout_constraintTop_toBottomOf="@id/tv_personal_modify"
                         android:onClick="@{activity_main::onNavPersonalHistoryClick}"/>
 
-                    <com.thustop.thestop.widgets.NotoTextView
-                        android:id="@+id/tv_personal_point"
-                        style="@style/tvToolbarComponent"
-                        android:text="포인트"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_personal_history"
-                        android:onClick="@{activity_main::onNavPersonalPointClick}"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -312,16 +293,6 @@
                         android:text="이벤트"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="71dp"
-                        android:layout_marginTop="20dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tv_event"
-                        app:srcCompat="@drawable/img_event_new_member" />
 
                     <com.thustop.thestop.widgets.NotoTextView
                         android:id="@+id/tv_coupons"

@@ -11,11 +11,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.thustop.R;
 import com.thustop.databinding.FragmentBoardingApplicationDetailBinding;
 import com.thustop.thestop.model.Route;
+
+import java.util.Locale;
 
 public class BoardingApplicationDetailFragment extends FragmentBase {
     FragmentBoardingApplicationDetailBinding binding;
@@ -33,8 +36,6 @@ public class BoardingApplicationDetailFragment extends FragmentBase {
         return fragment;
     }
 
-    @SuppressLint("DefaultLocale")
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentBoardingApplicationDetailBinding.inflate(inflater);
@@ -45,15 +46,15 @@ public class BoardingApplicationDetailFragment extends FragmentBase {
         binding.tvDeparture.setText(route.getBoardingStopName(0));
         binding.tvDestination.setText(route.getAlightingStopName(alighting_stop_num - 1));
         binding.tvCapacity.setText(route.bus.type);
-        binding.tvPassengers.setText(String.format("%d/%d",route.cnt_passenger,route.max_passenger));
-        binding.tvDistance.setText(String.format("%.2fkm", route.distance));
+        binding.tvPassengers.setText(String.format(Locale.KOREA,"%d/%d",route.cnt_passenger,route.max_passenger));
+        binding.tvDistance.setText(String.format(Locale.KOREA,"%.2fkm", route.distance));
         RouteDetailAdapter adapter = new RouteDetailAdapter();
         binding.rvVias.setAdapter(adapter);
         return binding.getRoot();
     }
 
     public void onMapIconClick(View view){
-        BoardingApplicationMapDialog dialog = new BoardingApplicationMapDialog(getContext(), getActivity(), route.boarding_stops, route.alighting_stops);
+        BoardingApplicationMapDialog dialog = new BoardingApplicationMapDialog(requireContext(), getActivity(), route.boarding_stops, route.alighting_stops);
         dialog.show();
     }
 
@@ -70,7 +71,7 @@ public class BoardingApplicationDetailFragment extends FragmentBase {
                 holder.tvTime.setText(route.boarding_stops.get(position).time);
                 holder.tvStop.setText(route.getBoardingStopName(position));
                 if (position == 0) {
-                    holder.tvStop.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "NotoSansKR-Bold-Hestia.otf"));
+                    holder.tvStop.setTypeface(Typeface.createFromAsset(requireContext().getAssets(), "NotoSansKR-Bold-Hestia.otf"));
                     holder.ivUpperLine.setVisibility(View.INVISIBLE);
                     holder.ivDot.getLayoutParams().height = _listener.covertDPtoPX(10);
                     holder.ivDot.getLayoutParams().width = _listener.covertDPtoPX(10);
@@ -79,11 +80,11 @@ public class BoardingApplicationDetailFragment extends FragmentBase {
                 int offsetPosition = position - boarding_stop_num;
                 holder.tvTime.setText(route.alighting_stops.get(offsetPosition).time);
                 holder.tvStop.setText(route.getAlightingStopName(offsetPosition));
-                holder.ivUpperLine.setBackground(getContext().getDrawable(R.color.Red));
-                holder.ivLowerLine.setBackground(getContext().getDrawable(R.color.Red));
-                holder.ivDot.setImageDrawable(getContext().getDrawable(R.drawable.ic_via_red));
+                holder.ivUpperLine.setBackground(ContextCompat.getDrawable(requireContext(), R.color.Red));
+                holder.ivLowerLine.setBackground(ContextCompat.getDrawable(requireContext(), R.color.Red));
+                holder.ivDot.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_via_red));
                 if (offsetPosition == alighting_stop_num - 1){
-                    holder.tvStop.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "NotoSansKR-Bold-Hestia.otf"));
+                    holder.tvStop.setTypeface(Typeface.createFromAsset(requireContext().getAssets(), "NotoSansKR-Bold-Hestia.otf"));
                     holder.ivLowerLine.setVisibility(View.INVISIBLE);
                     holder.ivDot.getLayoutParams().height = _listener.covertDPtoPX(10);
                     holder.ivDot.getLayoutParams().width = _listener.covertDPtoPX(10);

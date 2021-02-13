@@ -136,7 +136,7 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
             postTestTicket();
         else
             //TODO 날짜도 넘겨줘야함
-            _listener.addFragment(PaymentInformationFragment.newInstance(route, boarding_stop_position, alighting_stop_position));
+            _listener.addFragment(PaymentInformationFragment.newInstance(route, boarding_stop_position, alighting_stop_position, boarding_start));
     }
 
     private void postTestTicket() {

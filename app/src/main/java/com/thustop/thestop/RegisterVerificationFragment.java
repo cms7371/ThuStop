@@ -20,7 +20,6 @@ import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.Certification;
 import com.thustop.databinding.FragmentWebViewBinding;
 import com.thustop.thestop.model.Auth;
-import com.thustop.thestop.model.CertificationBootPay;
 
 import java.io.IOException;
 
@@ -165,14 +164,6 @@ public class RegisterVerificationFragment extends FragmentBase{
 
     }
 
-    public void certificationToAuth(CertificationBootPay cert, Auth auth){
-        if (auth.username == null)
-            auth.username = cert.getPhone();
-        auth.name = cert.getName();
-        auth.phone = cert.getPhone();
-        auth.gender = cert.getGender();
-        auth.birth = cert.getBirth();
-    }
 }
 
 //삭제 예정 코드

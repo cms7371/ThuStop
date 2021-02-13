@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gtomato.android.ui.transformer.WheelViewTransformer;
@@ -57,7 +58,7 @@ public class FreeTicketIntroFragment extends FragmentBase {
         });
 
 
-        binding.tvUserInfomation.setText(Utils.getBoldSpan(getContext(),"로그인 후\n이용해주세요", new String[]{"로그인"}));
+        binding.tvUserInfomation.setText(Utils.getPartialFontSpan(getContext(), "bold","로그인 후\n이용해주세요", new String[]{"로그인"}));
         return binding.getRoot();
     }
 
@@ -108,10 +109,10 @@ public class FreeTicketIntroFragment extends FragmentBase {
         @Override
         public void onBindViewHolder(@NonNull FreeTicketHolder holder, int position) {
             if (position == 0 || position == getItemCount() - 1) {
-                holder.textView.setBackground(getResources().getDrawable(R.drawable.bg_free_ticket_blank));
+                holder.textView.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.bg_free_ticket_blank));
                 holder.textView.setText("");
             } else {
-                holder.textView.setText(Utils.getBoldSpan(getContext(),"1회\n무료 탑승권", new String[] {"1회"}));
+                holder.textView.setText(Utils.getPartialFontSpan(getContext(), "bold","1회\n무료 탑승권", new String[] {"1회"}));
                 holder.textView.setOnTouchListener(((view, motionEvent) -> {
                     switch (motionEvent.getAction()) {
                         case MotionEvent.ACTION_DOWN:

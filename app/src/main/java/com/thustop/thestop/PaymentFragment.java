@@ -23,24 +23,27 @@ import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.Payment;
 import com.thustop.databinding.FragmentWebViewBinding;
 import com.thustop.thestop.model.Route;
+import com.thustop.thestop.model.Ticket;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PaymentFragment extends FragmentBase{
     private FragmentWebViewBinding binding;
     private final static String TAG = "PaymentFragment";
     private String pg;
     private String method;
-    private Route route;
+    private Ticket ticket;
 
-    public static PaymentFragment newInstance(String pg, String method, Route route) {
+    public static PaymentFragment newInstance(String pg, String method, Ticket ticket) {
         PaymentFragment fragment = new PaymentFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         fragment.pg = pg;
         fragment.method = method;
-        fragment.route = route;
+        fragment.ticket = ticket;
         return fragment;
     }
 
@@ -107,6 +110,9 @@ public class PaymentFragment extends FragmentBase{
         public void onSuccess(String imp_uid) throws IOException, IamportResponseException {
             Payment result = iamportClient.paymentByImpUid(imp_uid).getResponse();
             Toast.makeText(requireContext(), "결제 결과 " + result.getStatus() + "로 성공! 메인화면으로 돌아갑니다.", Toast.LENGTH_LONG).show();
+            List<Ticket> ticketList = new ArrayList<Ticket>();
+            ticketList.add(ticket);
+            _listener.putTickets(ticketList);
             _listener.setFragment(MainFragment.newInstance());
         }
 
@@ -127,12 +133,12 @@ public class PaymentFragment extends FragmentBase{
 
         @JavascriptInterface
         public String getName(){
-            return route.name + " 노선 20회권";
+            return ticket.route_obj.name + " 노선 20회권";
         }
 
         @JavascriptInterface
         public int getPrice(){
-            return route.default_price;
+            return ticket.route_obj.default_price;
         }
 
     }
