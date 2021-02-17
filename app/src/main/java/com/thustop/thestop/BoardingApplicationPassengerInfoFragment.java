@@ -104,7 +104,7 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
             // TODO : route 시작일로 변경 필요.
 
             try {
-                Date start_date = dateFormat.parse("2021-02-13");
+                Date start_date = dateFormat.parse("2021-05-13");
                 application_start.setTime(start_date);
                 application_start.add(Calendar.DATE, -1);
                 application_end.setTime(start_date);

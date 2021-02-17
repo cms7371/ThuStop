@@ -22,7 +22,6 @@ import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.Payment;
 import com.thustop.databinding.FragmentWebViewBinding;
-import com.thustop.thestop.model.Route;
 import com.thustop.thestop.model.Ticket;
 
 import java.io.IOException;
@@ -50,8 +49,6 @@ public class PaymentFragment extends FragmentBase{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentWebViewBinding.inflate(inflater);
-
-
         WebSettings webSettings = binding.wvCertification.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setBuiltInZoomControls(true);
@@ -133,7 +130,7 @@ public class PaymentFragment extends FragmentBase{
 
         @JavascriptInterface
         public String getName(){
-            return ticket.route_obj.name + " 노선 20회권";
+            return ticket.route_obj.name + " 노선 한 달 이용권";
         }
 
         @JavascriptInterface

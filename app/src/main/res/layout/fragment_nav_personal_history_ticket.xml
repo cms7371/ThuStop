@@ -200,6 +200,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
+            <!--TODO 홀딩 버튼 변경하고 다시 보이게 만들어야함-->
             <com.thustop.thestop.widgets.NotoTextView
                 android:id="@+id/tv_convert_point"
                 android:layout_width="0dp"
@@ -214,6 +215,7 @@
                 android:textColor="@color/TextBlack"
                 android:textSize="14sp"
                 android:onClick="@{NavPersonalHistoryTicketFrag::onTicketPointClick}"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@id/stroke_convert_point"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

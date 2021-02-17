@@ -45,7 +45,6 @@ public class BoardingApplicationDetailFragment extends FragmentBase {
         binding.tvBusId.setText(route.name);
         binding.tvDeparture.setText(route.getBoardingStopName(0));
         binding.tvDestination.setText(route.getAlightingStopName(alighting_stop_num - 1));
-        binding.tvCapacity.setText(route.bus.type);
         binding.tvPassengers.setText(String.format(Locale.KOREA,"%d/%d",route.cnt_passenger,route.max_passenger));
         binding.tvDistance.setText(String.format(Locale.KOREA,"%.2fkm", route.distance));
         RouteDetailAdapter adapter = new RouteDetailAdapter();
