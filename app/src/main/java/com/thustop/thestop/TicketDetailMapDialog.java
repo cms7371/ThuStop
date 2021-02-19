@@ -36,21 +36,33 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 
-public class TicketDetailMapDialog extends DialogBase {
+public class TicketDetailMapDialog extends DialogBase implements MapView.POIItemEventListener {
+    private static final String TAG = "TicketDetailMapDialog";
+    private MapView mapView;
+
+
+    private ArrayList<Via> boarding_stops;
+    private ArrayList<Via> alighting_stops;
+
+    private Via via;
+    private boolean op_mod;
+    private final static boolean SINGLE = false;
+    private final static boolean MULTIPLE = true;
+    private MapPoint startTag;
+
+
     private Ticket ticket;
-    private Context context;
-    private Route route;
     private Activity activity;
     protected OnFragmentInteractionListener _listener;
 
 
     //TODO:루트 티켓으로 변경 필요/
-    public TicketDetailMapDialog(@NonNull Context context, Route route, Activity activity) {
+    public TicketDetailMapDialog(@NonNull Context context, Ticket ticket, Activity activity) {
         super(context, R.style.CustomFullDialog);
-        this.context = context;
-        this.route = route;
         this.activity = activity;
-        //this.ticket = ticket;
+        this.ticket = ticket;
+        this.boarding_stops = ticket.route_obj.boarding_stops;
+        this.alighting_stops = ticket.route_obj.alighting_stops;
     }
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +78,46 @@ public class TicketDetailMapDialog extends DialogBase {
         ImageView ivBack = findViewById(R.id.bt_dtdm_back);
         RecyclerView rvRoute = findViewById(R.id.rv_dtdm_vias);
 
+        mapView = new MapView(activity);
+        ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.mv_dtdm_map);
+        mapViewContainer.addView(mapView);
+        findViewById(R.id.bt_dtdm_back).setOnClickListener(view -> dismiss());
+        findViewById(R.id.bt_dtdm_gps).setOnClickListener(view -> onGPSClick());
+
+        MapPOIItem marker;
+        mapView.setPOIItemEventListener(this);
+        //출발 정류장 마커 만들어 줍니다.(1, 2, 3 등 양수 태그 가짐)
+        for (int i = 1; i <= boarding_stops.size(); i++) {
+            marker = new MapPOIItem();
+            marker.setTag(i);
+            marker.setItemName(boarding_stops.get(i - 1).stop.name);
+            marker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
+            if (boarding_stops.get(i-1).id == ticket.start_via) {
+                marker.setCustomImageResourceId(R.drawable.icon_pin_green);
+                startTag = getMapPointWithVia(boarding_stops.get(i - 1));
+            } else { marker.setCustomImageResourceId(R.drawable.icon_pin_head_green);}
+            marker.setCustomImageAutoscale(true);
+            marker.setCustomImageAnchor(0.5f, 1.0f);
+            marker.setMapPoint(getMapPointWithVia(boarding_stops.get(i - 1)));
+            mapView.addPOIItem(marker);
+        }
+        //도착 정류장 마커 만들기(-1, -2, -3 음수 태그 가짐)
+        for (int i = 1; i <= alighting_stops.size(); i++) {
+            marker = new MapPOIItem();
+            marker.setTag(-i);
+            marker.setItemName(alighting_stops.get(i - 1).stop.name);
+            marker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
+            if (alighting_stops.get(i-1).id == ticket.end_via) {
+                marker.setCustomImageResourceId(R.drawable.icon_pin_red);
+            } else {
+                marker.setCustomImageResourceId(R.drawable.icon_pin_head_red);
+            }
+            marker.setCustomImageAutoscale(true);
+            marker.setCustomImageAnchor(0.5f, 1.0f);
+            marker.setMapPoint(getMapPointWithVia(alighting_stops.get(i - 1)));
+            mapView.addPOIItem(marker);
+        }
+        mapView.setMapCenterPointAndZoomLevel(startTag, 2, true);
 
         SlidingUpPanelLayout spl = findViewById(R.id.main_panel);
 
@@ -84,12 +136,70 @@ public class TicketDetailMapDialog extends DialogBase {
                 }
             }
         });
+
+        NotoTextView tv_busID = findViewById(R.id.tv_dtdm_bus_ID);
+        NotoTextView tv_start_via = findViewById(R.id.tv_dtdm_start_via);
+        NotoTextView tv_end_via = findViewById(R.id.tv_dtdm_end_via);
+        tv_busID.setText(ticket.route_obj.name);
+        tv_start_via.setText(ticket.start_via_obj.stop.name);
+        tv_end_via.setText(ticket.end_via_obj.stop.name);
+
+
         spl.setScrollableView(rvRoute);
         ScrollableViewHelper helper = new ScrollableViewHelper();
         spl.setScrollableViewHelper(helper);
-        Log.d("출발지", String.valueOf(route.boarding_stops.size()));
-        RouteDetailAdapter adapter = new RouteDetailAdapter(context, route, _listener);
+        RouteDetailAdapter adapter = new RouteDetailAdapter(getContext(), ticket, _listener);
         rvRoute.setAdapter(adapter);
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        _listener = null;
+        mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOff);
+        mapView.setShowCurrentLocationMarker(false);
+    }
+
+    //TODO:gps 벡터 잘되나 확인!(안되면 마커는 png로 변경)
+    private void onGPSClick() {
+        if (_listener.getGPSServiceStatus()) {
+            if (mapView.getCurrentLocationTrackingMode() == MapView.CurrentLocationTrackingMode.TrackingModeOff) {
+                mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeadingWithoutMapMoving);
+                mapView.setCustomCurrentLocationMarkerTrackingImage(R.drawable.ic_gps_marker, new MapPOIItem.ImageOffset(_listener.covertDPtoPX(18), _listener.covertDPtoPX(18)));
+                Toast.makeText(getContext(), "위치를 탐색 중입니다(10초~1분 소요)\n한 번 더 누르면 현재 위치로 핀이 이동합니다.", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onGPSClick: 현위지 마커 활성화 됨");
+            } else {
+                GpsTracker gpsTracker = new GpsTracker(activity);
+                mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(gpsTracker.getLatitude(), gpsTracker.getLongitude()), true);
+            }
+        } else {
+            Toast.makeText(getContext(), "GPS 또는 위치 서비스가 비활성화 되어있습니다.\n설정에서 권한을 활성화해주세요", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    private MapPoint getMapPointWithVia(Via v) {
+        return MapPoint.mapPointWithGeoCoord(v.stop.pos.latitude, v.stop.pos.longitude);
+    }
+
+    @Override
+    public void onPOIItemSelected(MapView mapView, MapPOIItem mapPOIItem) {
+
+    }
+
+    @Override
+    public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem) {
+
+    }
+
+    @Override
+    public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem, MapPOIItem.CalloutBalloonButtonType calloutBalloonButtonType) {
+
+    }
+
+    @Override
+    public void onDraggablePOIItemMoved(MapView mapView, MapPOIItem mapPOIItem, MapPoint mapPoint) {
+
     }
 
 

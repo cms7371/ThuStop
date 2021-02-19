@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.thustop.R;
 import com.thustop.databinding.FragmentBoardingApplicationDetailBinding;
+import com.thustop.thestop.adapter.RouteDetailAdapter;
 import com.thustop.thestop.model.Route;
 
 import java.util.Locale;
@@ -47,7 +48,8 @@ public class BoardingApplicationDetailFragment extends FragmentBase {
         binding.tvDestination.setText(route.getAlightingStopName(alighting_stop_num - 1));
         binding.tvPassengers.setText(String.format(Locale.KOREA,"%d/%d",route.cnt_passenger,route.max_passenger));
         binding.tvDistance.setText(String.format(Locale.KOREA,"%.2fkm", route.distance));
-        RouteDetailAdapter adapter = new RouteDetailAdapter();
+        //RouteDetailAdapter adapter1 = new RouteDetailAdapter();
+        com.thustop.thestop.adapter.RouteDetailAdapter adapter = new com.thustop.thestop.adapter.RouteDetailAdapter(getContext(), route, _listener);
         binding.rvVias.setAdapter(adapter);
         return binding.getRoot();
     }
@@ -61,7 +63,8 @@ public class BoardingApplicationDetailFragment extends FragmentBase {
         //TODO 로그인 안했을 때 로그인창으로 보내야함
         _listener.addFragment(BoardingApplicationFragment.newInstance(route));
     }
-
+    /***
+     * 삭제 예정
     private class RouteDetailAdapter extends RecyclerView.Adapter<RouteDetailAdapter.RouteDetailHolder>{
 
         @Override
@@ -119,4 +122,5 @@ public class BoardingApplicationDetailFragment extends FragmentBase {
             return new RouteDetailHolder(itemView);
         }
     }
+    ***/
 }
