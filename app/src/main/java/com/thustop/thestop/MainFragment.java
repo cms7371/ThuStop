@@ -209,8 +209,11 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
 
     public void onRefreshClick(View view) {
         Ticket ticket11 = new Ticket(routes.get(1), 1, 1, "2021-03-22");
-        TicketDetailMapDialog ticketDetailMapDialog = new TicketDetailMapDialog(requireContext(), ticket11, getActivity());
-        ticketDetailMapDialog.show();
+        ticket11.id = 2222;
+        _listener.addFragment(BoardingApplicationDetailFragment.newInstance(ticket11));
+
+        //TicketDetailMapDialog ticketDetailMapDialog = new TicketDetailMapDialog(requireContext(), ticket11, getActivity());
+        //ticketDetailMapDialog.show();
 
         //TODO:다이얼로그 확인차 여기다 집어넣음. 나중에 주석 풀기 필수!
         /*

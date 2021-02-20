@@ -35,19 +35,31 @@ public class NavPersonalHistoryTicketFragment extends FragmentBase {
     private ArrayList<Integer> type;
     private int current_position = 0;
     private List<Ticket> tickets;
+    private int ticketID = -1;
 
     public NavPersonalHistoryTicketFragment() {
         // Required empty public constructor
     }
 
+    public NavPersonalHistoryTicketFragment(int ticketID) {
+        this.ticketID = ticketID;
+    }
 
-    public static NavPersonalHistoryTicketFragment newInstance(String param1, String param2) {
+
+    public static NavPersonalHistoryTicketFragment newInstance() {
         NavPersonalHistoryTicketFragment fragment = new NavPersonalHistoryTicketFragment();
         Bundle args = new Bundle();
-
         fragment.setArguments(args);
         return fragment;
     }
+
+    public static NavPersonalHistoryTicketFragment newInstance(int ticketID) {
+        NavPersonalHistoryTicketFragment fragment = new NavPersonalHistoryTicketFragment(ticketID);
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,7 +74,9 @@ public class NavPersonalHistoryTicketFragment extends FragmentBase {
         binding = FragmentNavPersonalHistoryTicketBinding.inflate(inflater);
         binding.setNavPersonalHistoryTicketFrag(this);
         mArrayList = new ArrayList<>();
+
         tickets = _listener.getTickets();
+        //TODO: ticket이 null이어서 아직 못함호호..;ㅁ;
         mAdapter = new TicketRecyclerAdapter(getContext(), tickets, false);
         //TODO: 타입 어떻게 받을 지 결정 필요
         type = new ArrayList<Integer>();
@@ -88,8 +102,14 @@ public class NavPersonalHistoryTicketFragment extends FragmentBase {
         });
 
         binding.rvTicket.addOnScrollListener(mListener);
+        for (int i = 0; i < tickets.size(); i++) {
+            if (tickets.get(i).id == ticketID) {
+                binding.rvTicket.scrollToPosition(i);
+            }
+        }
 
         setIndicator(mAdapter.getItemCount());
+        Log.d("인디케이터", String.valueOf(mAdapter.getItemCount()));
         return binding.getRoot();
     }
 

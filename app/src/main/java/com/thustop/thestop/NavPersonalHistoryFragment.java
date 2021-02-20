@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -25,6 +26,8 @@ public class NavPersonalHistoryFragment extends FragmentBase implements MainActi
     private final int FRAGMENT_HISTORY = 1;
     private final int FRAGMENT_TICKET = 2;
 
+    private int ticketID = -1;
+
     public NavPersonalHistoryFragment() {
         // Required empty public constructor
     }
@@ -33,7 +36,14 @@ public class NavPersonalHistoryFragment extends FragmentBase implements MainActi
     public static NavPersonalHistoryFragment newInstance() {
         NavPersonalHistoryFragment fragment = new NavPersonalHistoryFragment();
         Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
+    public static NavPersonalHistoryFragment newInstance(int ticketID) {
+        NavPersonalHistoryFragment fragment = new NavPersonalHistoryFragment();
+        Bundle args = new Bundle();
+        fragment.ticketID = ticketID;
         fragment.setArguments(args);
         return fragment;
     }
@@ -53,25 +63,33 @@ public class NavPersonalHistoryFragment extends FragmentBase implements MainActi
         _listener.setToolbarStyle(_listener.WHITE_BACK_EXIT, "이용 내역");
 
         _listener.setOnBackPressedListener(this);
+        if (ticketID == -1) {
+            callFragment(FRAGMENT_HISTORY);
+        } else {
+            setTicketFragment();
+        }
 
-        callFragment(FRAGMENT_HISTORY);
         return binding.getRoot();
     }
 
     // 클릭시 탭 색과 배경 변경(좌우 방향 있어서 메소드 사용 안함)
     public void onHistoryClick(View view) {
         binding.btHistory.setBackgroundResource(R.drawable.bg_tap_right);
-        binding.btHistory.setTextColor(getResources().getColor(R.color.Primary));
+        binding.btHistory.setTextColor(ContextCompat.getColor(requireContext(),R.color.Primary));
         binding.btTicket.setBackgroundColor(Color.parseColor("#00000000"));
-        binding.btTicket.setTextColor(getResources().getColor(R.color.TextBlack));
+        binding.btTicket.setTextColor(ContextCompat.getColor(requireContext(),R.color.TextBlack));
         callFragment(FRAGMENT_HISTORY);
     }
 
     public void onTicketClick(View view) {
+        setTicketFragment();
+    }
+
+    public void setTicketFragment() {
         binding.btHistory.setBackgroundColor(Color.parseColor("#00000000"));
-        binding.btHistory.setTextColor(getResources().getColor(R.color.TextBlack));
+        binding.btHistory.setTextColor(ContextCompat.getColor(requireContext(), R.color.TextBlack));
         binding.btTicket.setBackgroundResource(R.drawable.bg_tap_left);
-        binding.btTicket.setTextColor(getResources().getColor(R.color.Primary));
+        binding.btTicket.setTextColor(ContextCompat.getColor(requireContext(),R.color.Primary));
         callFragment(FRAGMENT_TICKET);
     }
 
@@ -88,7 +106,12 @@ public class NavPersonalHistoryFragment extends FragmentBase implements MainActi
                 break;
 
             case 2:
-                NavPersonalHistoryTicketFragment fragmentTicket = new NavPersonalHistoryTicketFragment();
+                NavPersonalHistoryTicketFragment fragmentTicket;
+                if (ticketID == -1) {
+                    fragmentTicket = new NavPersonalHistoryTicketFragment();
+                } else {
+                    fragmentTicket = new NavPersonalHistoryTicketFragment(ticketID);
+                }
                 fragmentTransaction.replace(R.id.frame1, fragmentTicket);
                 fragmentTransaction.commit();
                 break;
