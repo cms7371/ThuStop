@@ -112,12 +112,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
             mainRecycler.setAdapter(mainAdapter);
             new Handler(Looper.getMainLooper()).postDelayed(() -> {
                 getRoutes();
-                if (_listener.getTickets() != null) {
-                    mainAdapter.updateTickets(_listener.getTickets());
-                    tickets = _listener.getTickets();
-                }
-                //TODO 티켓 정보 불러오는거 다시 돌려놓아야함
-                //getTickets();
+                getTickets();
             }, 300);
         } else {
             mainRecycler.setAdapter(mainAdapter);

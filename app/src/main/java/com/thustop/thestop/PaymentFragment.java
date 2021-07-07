@@ -107,9 +107,6 @@ public class PaymentFragment extends FragmentBase{
         public void onSuccess(String imp_uid) throws IOException, IamportResponseException {
             Payment result = iamportClient.paymentByImpUid(imp_uid).getResponse();
             Toast.makeText(requireContext(), "결제 결과 " + result.getStatus() + "로 성공! 메인화면으로 돌아갑니다.", Toast.LENGTH_LONG).show();
-            List<Ticket> ticketList = new ArrayList<Ticket>();
-            ticketList.add(ticket);
-            _listener.putTickets(ticketList);
             _listener.setFragment(MainFragment.newInstance());
         }
 

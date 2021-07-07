@@ -75,7 +75,7 @@ dependencies {
     /*Retrofit for Api request*/
     implementation 'com.squareup.retrofit2:retrofit:2.7.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.4.0'
 
     /*pixplicity Library*/
     implementation 'com.pixplicity.easyprefs:library:1.9.0'
