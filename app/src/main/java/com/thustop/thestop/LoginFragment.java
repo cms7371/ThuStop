@@ -95,6 +95,8 @@ public class LoginFragment extends FragmentBase {
                     Log.d(TAG, "onResponse: 서버 로그인 토큰 " + Prefs.getString(Constant.LOGIN_KEY, ""));
                     Utils.registerDevice();
                     getUserDetail(response.body().key);
+                    _listener.updateLoginState();
+                    _listener.setFragment(MainFragment.newInstance());
                     //_listener.setFragment(MainFragment.newInstance());
                 } else {
                     Log.e(TAG, "onResponse: Thustop 서버 에러 Null 반환", new NullPointerException());

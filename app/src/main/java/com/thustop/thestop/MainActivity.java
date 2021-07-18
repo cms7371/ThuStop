@@ -158,13 +158,11 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         }
         Log.d(TAG, "onCreate: GPSServiceStatus is " + GPSServiceStatus);
         checkFirstRun();
-
-        //TODO 지워야함
-        binding.clCustomerCenter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateLoginState();
-            }
+        updateLoginState();
+        binding.btLogout.setOnClickListener((v) -> {
+            Prefs.putString(Constant.LOGIN_KEY, "");
+            updateLoginState();
+            setFragment(MainFragment.newInstance());
         });
     }
 
@@ -618,11 +616,11 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                 }
             });
         } else{
-            binding.clDrawerHeadGuest.setVisibility(View.GONE);
-            binding.clDrawerHeadMember.setVisibility(View.VISIBLE);
-            binding.clMyPage.setVisibility(View.VISIBLE);
-            binding.btLogout.setVisibility(View.VISIBLE);
-            binding.tvLogout.setVisibility(View.VISIBLE);
+            binding.clDrawerHeadGuest.setVisibility(View.VISIBLE);
+            binding.clDrawerHeadMember.setVisibility(View.GONE);
+            binding.clMyPage.setVisibility(View.GONE);
+            binding.btLogout.setVisibility(View.GONE);
+            binding.tvLogout.setVisibility(View.GONE);
         }
     }
 

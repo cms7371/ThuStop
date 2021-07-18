@@ -345,6 +345,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
                         ticket.route_obj.initialize();
                     mainAdapter.updateTickets(response.body().results);
                     _listener.putTickets(response.body().results);
+                    tickets = response.body().results;
                 }
             }
 
