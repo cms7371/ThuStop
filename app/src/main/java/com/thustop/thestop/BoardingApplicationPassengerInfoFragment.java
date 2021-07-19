@@ -103,15 +103,11 @@ public class BoardingApplicationPassengerInfoFragment extends FragmentBase {
         if (route.status.equals("모집중") || route.status.equals("운행대기")) {
             // TODO : route 시작일로 변경 필요.
 
-            try {
-                Date start_date = dateFormat.parse("2021-05-13");
-                application_start.setTime(start_date);
-                application_start.add(Calendar.DATE, -1);
-                application_end.setTime(start_date);
-                application_end.add(Calendar.DATE, -1);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            Date start_date = new Date(System.currentTimeMillis());
+            application_start.setTime(start_date);
+            application_start.add(Calendar.DATE, -1);
+            application_end.setTime(start_date);
+            application_end.add(Calendar.DATE, -1);
         }
         // 최대 탑승 신청기간은 가능일(다음날)로 부터 1주일
         application_end.add(Calendar.DATE, 7);

@@ -203,15 +203,14 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
     }
 
     public void onRefreshClick(View view) {
-        Ticket ticket11 = new Ticket(routes.get(1), 1, 1, "2021-03-22");
+        /*Ticket ticket11 = new Ticket(routes.get(1), 1, 1, "2021-03-22");
         ticket11.id = 2222;
-        _listener.addFragment(BoardingApplicationDetailFragment.newInstance(ticket11));
+        _listener.addFragment(BoardingApplicationDetailFragment.newInstance(ticket11));*/
 
         //TicketDetailMapDialog ticketDetailMapDialog = new TicketDetailMapDialog(requireContext(), ticket11, getActivity());
         //ticketDetailMapDialog.show();
 
         //TODO:다이얼로그 확인차 여기다 집어넣음. 나중에 주석 풀기 필수!
-        /*
         if (!isRefreshing) {
             isRefreshing = true;
             view.animate().rotation(720f).setDuration(750).setInterpolator(new AccelerateDecelerateInterpolator()).withEndAction(() -> {
@@ -227,7 +226,6 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
                     }
             ).start();
         }
-        */
     }
 
 
@@ -339,7 +337,7 @@ public class MainFragment extends FragmentBase implements MainRecyclerAdapter.On
         call.enqueue(new Callback<PageResponse<Ticket>>() {
             @Override
             public void onResponse(@NotNull Call<PageResponse<Ticket>> call, @NotNull Response<PageResponse<Ticket>> response) {
-                if (response.isSuccessful() && response.body() != null) {
+                if (response.isSuccessful() && response.body() != null && response.body().results.size() != 0) {
                     Log.d(TAG, "onResponse: 티켓 로딩 성공" + response.body().results);
                     for (Ticket ticket : response.body().results)
                         ticket.route_obj.initialize();
